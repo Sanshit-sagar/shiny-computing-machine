@@ -1,0 +1,10 @@
+node_modules
+.next
+.vscode
+.nova
+.history
+.DS_Store
+yarn-error.log
+dist
+examples
+packages
