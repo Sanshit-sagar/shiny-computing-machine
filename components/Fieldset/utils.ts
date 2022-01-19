@@ -1,4 +1,4 @@
-import { useContext, ReactChild } from 'react' 
+import React, { useContext, ReactChild } from 'react' 
 
 import {
     IFieldsetContext,
@@ -17,6 +17,11 @@ import FieldsetErrorMessage from './FieldsetErrorMessage'
 import FieldsetContext from './FieldsetContext'
 
 import { isElementOfType } from '@/interfaces/Guards'
+
+import { TextInput } from '@/components/TextInput'
+import { TextArea } from '@/components/TextArea'
+import { NumberField } from '@/components/NumberField'
+
 
 export const useFieldsetContext = () => {
     const fieldsetContext = useContext<IFieldsetContext | null>(FieldsetContext)
@@ -45,6 +50,18 @@ export const isFieldsetDescriptionElement = (child: ReactChild, index: number): 
 
 export const isFieldsetErrorMessageElement = (child: ReactChild, index: number): child is FieldsetErrorMessageNode => (
     child && isElementOfType(child, FieldsetErrorMessage) && !isElementOfType(child, FieldsetRoot)
+)
+
+
+
+export type InputNode = React.ReactElement<{}, string | React.JSXElementConstructor<any>>
+
+export const isInputElement = (child: ReactChild, index: number): child is InputNode => (
+    child &&  !isElementOfType(child, FieldsetRoot) && (
+            isElementOfType(child, TextInput) 
+        ||  isElementOfType(child, TextArea)
+        ||  isElementOfType(child, NumberField)
+    )
 )
 
 

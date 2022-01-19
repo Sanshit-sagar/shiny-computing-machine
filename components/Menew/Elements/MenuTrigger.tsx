@@ -27,16 +27,16 @@ export const MenuTrigger = ({
     <Overlay.Root
         title=""
         subtitle=""
-        placement="bottom end"
+        placement="bottom"
         offset={5}
         crossOffset={0}
-        isDismissable={true}
-        isKeyboardDismissDisabled={false}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
         shouldFlip={true}
         shouldCloseOnBlur={false}
         shouldUpdatePosition={true}
     >
-        <Overlay.Trigger as={StyledButton}>
+        <Overlay.Trigger as={StyledButton} defaultOpen={true}>
             Open <TriangleDownIcon /> 
         </Overlay.Trigger>
 

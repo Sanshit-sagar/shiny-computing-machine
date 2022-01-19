@@ -41,9 +41,6 @@ export function Select<T extends object>(props: AriaSelectProps<T>) {
 
     return (
         <StyledWrapper>
-            {props.label && (
-                <StyledLabel {...labelProps}> {props.label} </StyledLabel>
-            )}
 
             <HiddenSelect state={state} triggerRef={ref} label={props.label} name={props.name} />
 

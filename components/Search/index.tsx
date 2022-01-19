@@ -51,7 +51,7 @@ export function SearchAutocomplete<T extends object>(props: ComboBoxProps<T>) {
 
     return (
         <StyledWrapper>
-            <StyledLabel> {props.label} </StyledLabel>
+    
             <StyledInputGroup>
                 <StyledPrefix>
                     <MagnifyingGlassIcon aria-hidden="true" />

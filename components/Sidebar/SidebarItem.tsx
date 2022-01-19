@@ -7,14 +7,14 @@ import { useSidebarContext } from './utils'
 import { 
     StyledSidebarItem, 
     StyledSidebarAnchor,
-    StyledSidebarExtendableContainer
+    StyledItemContainer
 } from './styles'
 
 import { useInteractions } from '@/hooks/useInteractions'
 import { useSidebarItem, SidebarItemProps } from '@/hooks/collections/Sidebar'
 
 const SidebarItem = <T extends object>(props: SidebarItemProps<T>) => {
-    const { item, ...rest } = props
+    const { item, level = 1, ...rest } = props
     const { 
         key, 
         rendered, 
@@ -29,6 +29,7 @@ const SidebarItem = <T extends object>(props: SidebarItemProps<T>) => {
         toggleKey 
     } = state
 
+    
     const isSelected = selectionManager.isSelected(key)
     const isDisabled = disabledKeys.has(key)
     const isExpanded = expandedKeys.has(key)
@@ -39,12 +40,14 @@ const SidebarItem = <T extends object>(props: SidebarItemProps<T>) => {
     const { interactionProps, ...interactionStates } = useInteractions({ isDisabled }) 
 
     return (
-        <StyledSidebarExtendableContainer>
+        <StyledItemContainer>
             <StyledSidebarItem 
                 {...listItemProps} 
                 isSelected={isSelected} 
                 isDisabled={isDisabled} 
                 isExpanded={isExpanded}
+                hasChildNodes={hasChildNodes}
+                level={`${level}`}
                 onClick={(event) => toggleKey(key)}
             >
                 <FocusRing>
@@ -52,19 +55,21 @@ const SidebarItem = <T extends object>(props: SidebarItemProps<T>) => {
                         {rendered} 
                     </StyledSidebarAnchor>
                 </FocusRing>
-        
-                {expandChildNodes && (
-                    <>
-                        {[...childNodes].map((node: Node<T>, index: number) => (
-                            <Fragment key={node.key}>
-                                {node.rendered}
-                            </Fragment>
-                        ))} 
-                    </>
-                )}
-                
             </StyledSidebarItem>
-        </StyledSidebarExtendableContainer>
+
+            {expandChildNodes && (
+                <>
+                    {[...childNodes].map((node: Node<T>, index: number) => (
+                        <Fragment key={node.key}>
+                            <SidebarItem 
+                                item={node} 
+                                level={level + 1}
+                            />
+                        </Fragment>
+                    ))} 
+                </>
+            )}
+        </StyledItemContainer>
     )
 }
 

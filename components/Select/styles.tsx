@@ -3,15 +3,8 @@ import { styled } from 'stitches.config'
 export const StyledWrapper = styled('div', {
     display: 'inline-flex',
     fd: 'column',
-    position: 'relative',
-    mt: '$3'
-})
-
-export const StyledLabel = styled('label', {
-    display: 'block',
-    textAlign: 'left',
-    fontFamily: '$jetbrains',
-    fontSize: '$2'
+    ai: 'stretch',
+    position: 'relative'
 })
 
 export const StyledValue = styled('span', {
@@ -21,25 +14,34 @@ export const StyledValue = styled('span', {
 
 export const StyledSelectorIcon = styled('span', {
     size: '18px',
-    p: '$1',
-    m: '0 $1',
-    bc: '$accentSolid',
-    br: '$1',
-    color: '$white'
+    d: 'flex',
+    ai: 'center',
+    jc: 'center',
+    gap: 0,
+
+    p: 0,
+    mr: '1px',
+    mb: '1px',
+    color: '$accentSolid',
+
 })
 
 export const StyledButton = styled('button', {
     appearance: 'none',
     p: '6px 2px 6px 8px',
     border: '1px solid $accentBorder',
-    mt: '$2',
     outline: 'none',
     br: '$1',
-    display: 'inline-flex',
+      
+    height: '32px',
+    width: '100%',
+    d: 'inline-flex',
     ai: 'center',
     jc: 'space-between',
-    width: '210px',
+
     textAlign: 'left',
+
+    fontFamily: '$plexsans',
     fontSize: '$2',
     color: '$accentText',
 

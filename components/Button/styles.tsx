@@ -24,9 +24,10 @@ const sharedStyles = {
     fontSize: '$2',
     fontWeight: '$2',
    
-    height: '30px',
+    height: '32px',
     width: 'max-content',
     p: 0,
+    px: '$5',
     m: 0, 
     opacity: 1,
     boxShadow: 'none',

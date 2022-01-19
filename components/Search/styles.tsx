@@ -25,9 +25,10 @@ export const StyledInputGroup = styled('div', {
     position: 'relative',
     display: 'inline-flex',
     fd: 'row',
+    jc: 'stretch',
     ai: 'center',
     gap: 0,
-    pr: '$1',
+    p: 0,
     m: 0,
 
     br: '$1',

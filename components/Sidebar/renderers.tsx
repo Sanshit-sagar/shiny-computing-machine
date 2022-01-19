@@ -1,6 +1,6 @@
 import { Item } from '@react-stately/collections'
 import { LeftSlot } from './styles'
-import { RocketIcon } from '@radix-ui/react-icons'
+
 
 export const menuItemRenderer = (item) =>  (
     <Item 
@@ -9,7 +9,14 @@ export const menuItemRenderer = (item) =>  (
         key={item.name}
     >
         <LeftSlot>
-            <RocketIcon />
+            {item.icon && (
+                <span 
+                    aria-hidden="false" 
+                    aria-label={`${item.name}-component-icon`}
+                > 
+                    {item.icon}
+                </span>
+            )}
             {item.name} 
         </LeftSlot>
     </Item>

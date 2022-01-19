@@ -20,7 +20,7 @@ export const SelectWithoutSections = () => (
                 {/* <StyledAvatar src={item.avatar} alt={item.name} /> */}
                 <div>
                     <Label> {item.name} </Label>
-                    <Description> {item.username} </Description>
+                    {/* <Description> {item.username} </Description> */}
                 </div>
             </Item>
         )}

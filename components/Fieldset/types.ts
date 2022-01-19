@@ -1,8 +1,11 @@
 import { ElementType, HTMLAttributes, ReactNode, LabelHTMLAttributes, ReactElement, JSXElementConstructor } from 'react' 
-import { CSS } from 'stitches.config' 
+import { CSS, VariantProps } from 'stitches.config' 
 import { DOMProps, ValidationState } from '@/interfaces/Shared'
 import { AriaLabelingProps } from '@/interfaces/Aria'
 import { FieldEnum } from './constants'
+import {
+    StyledFieldsetErrorMessage 
+} from './styles'
 
 export type FieldType = keyof typeof FieldEnum
 
@@ -39,8 +42,10 @@ export type FieldsetState = Required<FieldsetProps>
 export default FieldsetState
 
 export type FieldsetDescriptionProps = FieldsetComponentProps
-export type FieldsetErrorMessageProps = FieldsetComponentProps
+export type FieldsetErrorMessageProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetErrorMessage>
 export type FieldsetLabelProps = FieldsetComponentProps
+export type FieldsetIconProps = FieldsetComponentProps
+
 
 export type FieldsetRootNode = ReactElement<{}, string | JSXElementConstructor<any>>
 export type FieldsetLabelNode = ReactElement<{}, string | JSXElementConstructor<any>>

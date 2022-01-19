@@ -14,7 +14,7 @@ const DialogTrigger = ({ element: Component = 'div', children, css, ...props }: 
         <Component {...props}>
             {flattenedChildren.map((child: ReactChild, index: number) => {
                 if(index === 0) return cloneElement(child, {
-                    onPress: (_event: PressEvent) => state.open()
+                    onClick: (_event: PressEvent) => state.open()
                 })
             })}
         </Component>

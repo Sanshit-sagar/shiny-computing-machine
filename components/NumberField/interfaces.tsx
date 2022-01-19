@@ -13,16 +13,6 @@ import { FocusEvents, KeyboardEvents, PressEvents } from '@/interfaces/Events'
 import { AriaLabelingProps, AriaValidationProps } from '@/interfaces/Aria'
 
 
-// export interface NumberFieldAria {
-//     inputProps: HTMLAttributes<HTMLInputElement>;
-//     labelProps: HTMLAttributes<HTMLLabelElement>;
-//     groupProps: HTMLAttributes<HTMLElement>;
-//     incrementButtonProps: Partial<AriaButtonProps>;
-//     decrementButtonProps: Partial<AriaButtonProps>;
-//     errorMessageProps: HTMLAttributes<HTMLDivElement>;  
-//     descriptionProps: HTMLAttributes<HTMLDivElement>;
-// }
-
 export interface TooltipIconProps { 
     props: React.HTMLAttributes<HTMLButtonElement>; 
     ref: React.RefObject<HTMLButtonElement>;
@@ -32,7 +22,7 @@ export interface TooltipIconProps {
     children: ReactNode; 
 }
 
-export interface AriaNumberFieldProps extends DOMProps, ReadableDOMProps, LabelableDOMProps, FocusableDOMProps, 
+export interface AriaNumberFieldProps extends DOMProps, ReadableDOMProps, FocusableDOMProps, 
 FocusEvents, PressEvents, KeyboardEvents, AriaLabelingProps, AriaValidationProps {
     rel?: string; 
     href?: string;

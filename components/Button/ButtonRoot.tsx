@@ -1,7 +1,6 @@
 import React, { forwardRef, Ref, RefObject, HTMLAttributes } from 'react'
 
 import { FocusRing } from '@react-aria/focus'
-import { mergeProps } from '@react-aria/utils'
 import { useButton, ButtonAria } from '@react-aria/button'
 
 import { StyledRoot } from './styles'
@@ -14,6 +13,7 @@ import ButtonContext from './ButtonContext'
 
 import { useFocusableRef } from '@/utils/useRefs'
 import { isElementOfType } from '@/interfaces/Guards'
+import { flattenChildren } from '@/utils/flattenChildren'
 
 import { isDOMElementTrigger } from './utils'
 

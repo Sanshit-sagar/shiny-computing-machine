@@ -1,30 +1,23 @@
-import { Key } from 'react'
 import { styled } from 'stitches.config'
-
-import { Rect } from '@react-stately/virtualizer'
 
 export const StyledSidebar = styled('div', {
     listStyleType: 'none',
     m: 0,
-    py: 0,
-    px: '$2',
+    p: '$2',
     outline: 'none',
   
     br: '$2',
-    bc: '$accentBase',
-
-    height: '600px',
-    width: '250px',
+    width: '300px',
+    height: '100%',
+    bc: '$accentBg'
 })
 
-export const StyledSidebarExtendableContainer = styled('div', {
-    display: 'flex', 
-    fd: 'column',
-    jc: 'flex-start',
-    ai: 'stretch',
-    gap: 0, 
-    m: 0,
-    p: 0
+export const StyledItemContainer = styled('div', {
+    d: 'flex', 
+    fd: 'column', 
+    jc: 'flex-start', 
+    ai: 'stretch', 
+    gap: 0
 })
 
 export const StyledSidebarItem = styled('div', {
@@ -32,14 +25,13 @@ export const StyledSidebarItem = styled('div', {
     margin: 0,
 
     width: '100%',
-    color: '$accentText',
     border: 'none',
     outline: '0',
     br: '$2',
 
     '&:hover': {
         bc: '$accentBgHover',
-        color: '$accentText',
+        color: '$accentText'
     },
     '&:active': {
         bc: '$accentBgActive',
@@ -48,11 +40,12 @@ export const StyledSidebarItem = styled('div', {
     '&:focus': {
         outline: '1px solid $accentFocusRing'
     },
-
+    
     variants: {
         isSelected: {
             true: {
                 bc: '$successBg',
+
                 color: '$successText',
                 '&:hover': {
                     bc: '$successBgHover',
@@ -62,7 +55,6 @@ export const StyledSidebarItem = styled('div', {
                     bc: '$successBgActive',
                     color: '$successTextContrast'
                 },
-
                 '&:focus': {
                     outline: '1px solid $infoFocusRing'
                 }
@@ -78,38 +70,61 @@ export const StyledSidebarItem = styled('div', {
                 '&:focus': {    
                     outline: '1px solid $disabledFocusRing'
                 }
-            },
+            }
         },
         isExpanded: {
             true: {
+                
+            }
+        },
+        hasChildNodes: {
+            true: {
 
             }
+        },
+        level: {
+            1: { pl: '0px', color: '$accentLine' },
+            2: { pl: '10px', color: '$accentBorderHover' },
+            3: { pl: '20px', color: '$accentSolid' },
+            4: { pl: '30px', color: '$accentText' },
+            5: { pl: '40px', color: '$accentTextContrast'}
         }
     },
+    compoundVariants: [
+        {
+            isExpanded: true,
+            hasChildNodes: true,
+            css: {
+                bc: '$accentLine',
+            }
+        }
+    ],
     defaultVariants: {
         isSelected: false,
-        isDisabled: false
+        isDisabled: false,
+        isExpanded: false,
+        level: '1'
     }
 })
 
 export const StyledSidebarAnchor = styled('a', {
-    // bc: '$accentBg',
     color: '$accentText',
-
     width: '100%',
     position: 'relative',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+
+    d: 'inline-flex',
+    fd: 'column',
+    ai: 'flex-start',
+    jc: 'flex-start',
     boxSizing: 'border-box',
 
     inlineSize: '100%',
     minBlockSize: '32px',
-    padding: '$2',
 
-    borderRadius: '$2',
+    p: '$2',
+    br: '$2',
 
-    fontFamily: '$jetbrains',
+    fontFamily: '$plexsans',
     fontSize: '$2',
     fontWeight: 400,
     fontStyle: 'normal',
@@ -125,10 +140,10 @@ export const StyledSidebarAnchor = styled('a', {
     `,
 
     '&:hover': {
-        color: '$accentText'
+        // color: '$accentText'
     },
     '&:active': {
-        color: '$accentTextContrast',
+        // color: '$accentTextContrast',
     },
     '&:focus': {
         outline: 'none',
@@ -144,34 +159,8 @@ export const StyledSidebarAnchor = styled('a', {
         '&::before': {
             borderColor: '$accentFocusRing'
         }
-    },
-    variants: {
-        level: {
-            0: { pl: '$1' },
-            1: { pl: '$3' },
-            2: { pl: '$5' },
-            3: { pl: '$7' },
-            4: { pl: '$9' },
-            5: { pl: '$12' }
-        }
-    },
-    defaultVariants: {
-        level: '1'
     }
 })
-
-type LayoutInfo = {
-    type: string;
-    key: Key;
-    parentKey: Key | null;
-    rect: Rect;
-    estimatedSize: boolean;
-    isSticky: boolean;
-    opacity: number;
-    transform: string | null;
-    zIndex: number;
-    allowOverflow: boolean;
-}
 
 export const StyledHeader = styled('div', {
     transition: 'all',
@@ -200,43 +189,44 @@ export const StyledHeader = styled('div', {
         }
     },
     defaultVariants: {
-        isSticky: false,
+        isSticky: true,
         allowOverflow: true
     }
 })
 
 export const SectionHeading = styled('span', {
     color: '$accentTextContrast',
-    blockSize: '100px',
-    lineHeight: '$2',
-    margin: '$2 0 $4 0',
-    padding: '$1',
-    borderRadius: '$5',
+    lineHeight: '$1',
+    mt: '$2',
+    ml: '$2',
+    mb: 0,
+    p: 0,
+   
     textAlign: 'start',
     fontFamily: '$plexsans',
-    fontSize: '$2',
-    fontWeight: 200,
+    fontSize: '$3',
+    fontWeight: 300,
     fontStyle: 'light',
     letterSpacing: '',
-    textTransform: 'uppercase'
+    textTransform: 'capitalize'
 })
 
 
 export const LeftSlot = styled('div', {
-    // bc: 'purple',
     height: 'fit-content',
     width: 'inherit',
-    display: 'flex', 
+
+    d: 'flex', 
     fd: 'row', 
     jc: 'flex-start', 
     ai: 'center', 
-    gap: '$1',
+    gap: '$3',
+
+    px: '$1',
+    py: '$2',
+    m: 0,
 })
 
-export const SectionItems = styled('div', {
-    transition: 'all',
-    WebkitTransition: 'all',
-    WebkitTransitionDuration: 'inherit',
-    transitionDuration: 'inherit',
-    height: '600px'
+export const SectionItems = styled('div', {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    overflow: 'hidden'
 })

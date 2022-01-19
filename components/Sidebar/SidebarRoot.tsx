@@ -26,7 +26,7 @@ const SidebarRoot =<T extends object>(props: SidebarProps<T>) => {
         sensitivity: 'base'
     })
     const layout = useMemo(() => new ListLayout({
-        rowHeight: 40, 
+        rowHeight: 500, 
         collator
     }), [collator])
 
@@ -70,7 +70,7 @@ const SidebarRoot =<T extends object>(props: SidebarProps<T>) => {
 
 
     return (
-        <nav {...navProps} style={{ display: 'flex', width: 'inherit', height: 'inherit'}}>
+        <nav {...navProps} style={{ display: 'flex',  height: '600px', width: 'inherit' }}>
             <SidebarContext.Provider value={state}>
                 <StyledSidebar>
                     <Virtualizer 

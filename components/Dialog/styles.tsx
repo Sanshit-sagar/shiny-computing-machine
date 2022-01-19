@@ -60,8 +60,8 @@ export const StyledContent = styled('div', {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '90vw',
-    maxWidth: '450px',
-    maxHeight: '85vh',
+    maxWidth: '350px',
+    maxHeight: '350px',
     bc: '$accentBase',
     color: '$accentText',
     br: '$4',
@@ -93,7 +93,7 @@ export const StyledBody = styled('div', {
     gap: 0,
     fw: 'nowrap',
 
-    width: '100%',
+    
     height: 'inherit',
     maxHeight: '30vh',
 
@@ -102,7 +102,7 @@ export const StyledBody = styled('div', {
 
     p: 0,
     px: '$5',
-    m: 0,
+    m: '$3',
 
     bc: '$accentBase',
     br: 'inherit',
@@ -113,7 +113,7 @@ export const StyledBody = styled('div', {
 export const StyledTitle = styled('h2', {
     fontFamily: '$mono', 
     fontWeight: 500, 
-    fontSize: 48, 
+    fontSize: 36, 
     my: '$4',
     mx: '$5', 
     p: 0

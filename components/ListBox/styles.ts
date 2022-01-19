@@ -93,19 +93,18 @@ export const StyledItemContent = styled('div', {
 
 export const StyledDescription = styled('div', {
     fontSize: '$1',
-    fontFamily: '$jetbrains',
+    fontFamily: '$plexsans',
     fontStyle: 'normal',
     fontWeight: 'light',
-    color: '$accentTextContrast'
+    color: '$accentText'
 })
 
 export const StyledLabel = styled('label', {
-    fontSize: '$2',
-    fontFamily: '$jetbrains',
+    fontSize: '$3',
+    fontFamily: '$plexsans',
     fontWeight: 'light', 
     fontStyle: 'normal',
-    color: '$accentText',
-    mb: '$1'
+    color: '$accentText'
 })
 
 export const StyledSection = styled('li', {
@@ -115,7 +114,7 @@ export const StyledSection = styled('li', {
 
 
 export const StyledSectionHeading = styled('span', {
-    fontFamily: '$mono',
+    fontFamily: '$plaxsans',
     color: '$accentTextContrast',
     m: 0,
     marginBottom: '$2',

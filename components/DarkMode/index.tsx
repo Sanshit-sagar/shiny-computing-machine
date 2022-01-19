@@ -13,10 +13,11 @@ export const DarkMode = () => {
 
     return (
         <PButton.Root radius="y=x-n">
-            <PButton.Prefix variant="secondary">
-                hi
-            </PButton.Prefix>
-            <PButton.Base variant="primary" onPress={updateTheme}>
+            <PButton.Base 
+                variant="primary" 
+                onPress={updateTheme} 
+                css={{ bc: '$accentBase', borderColor: '$accentBorder', '&:hover': { bc: '$accentBgSubtle' }, btlr: '$1', bblr: '$1' }}
+            >
                 {themeName}
             </PButton.Base>
             <PButton.Suffix variant="outlined" onPress={updateMode}>

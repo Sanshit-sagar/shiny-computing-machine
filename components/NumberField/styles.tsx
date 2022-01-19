@@ -6,19 +6,9 @@ import { Flex } from '@/components/Flex'
 
 import { DEFAULT_TAG } from './constants'
 
-export const ControlGroup = styled(Flex, {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    fd: 'column', 
-    jc: 'center', 
-    ai: 'center', 
-    gap: 0,
-    padding: '$1',
-})
 
 export const LeftAlignedWrapper = styled(Flex, {
-    width: 200,
+    width: '100%',
     height: 100,
     fd: 'column',
     jc: 'center',
@@ -38,40 +28,6 @@ export const InputGroup = styled(Flex, {
     border: 'none',
     outline: 'none'
 })
-
-export const MessageText = styled(Text, {
-    width: '100%',
-    display: 'flex',
-    fd: 'row',
-    jc: 'flex-start',
-    ai: 'flex-end',
-    gap: '$1',
-    bc: 'transparent',
-    color: '$text',
-    fontSize: '$1',
-    fontWeight: 'normal',
-    fontStyle: 'lighter',
-    '&:hover': {
-        color: '$accent'
-    }
-})
-
-export const StyledLabel = styled(Text, {
-    fontSize: '$1',
-    fontWeight: 300,
-    display: 'flex', 
-    fd: 'row',
-    jc: 'flex-start',
-    ai: 'center',
-    gap: '$1'
-})
-
-
-export const Label = (props: any) => (
-    <StyledLabel {...props}> 
-        {props.children}
-    </StyledLabel>
-)
 
 export const StyledButton = styled('button', {
     display: 'flex',

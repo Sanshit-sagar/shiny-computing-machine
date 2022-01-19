@@ -175,7 +175,6 @@ export const Container = styled('div', {
     width: 'fit-content',
     p: 0,
     m: 0,
-    mt: '$8',
     oy: 'hidden',
     display: 'flex',
     fd: 'column',

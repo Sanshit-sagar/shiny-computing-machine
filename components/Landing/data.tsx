@@ -4,6 +4,7 @@ import { BreadcrumbsInstance } from '@/components/Breadcrumbs/examples'
 import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
+import { DialogInstance } from '@/components/Dialog/examples'
 import { InlineEditInstance } from '@/components/LinedEdit/examples'
 import { KbdInstance } from '@/components/Kbd/examples'
 import { LinkInstance } from '@/components/Link/examples'
@@ -50,6 +51,10 @@ const showcases: IShowcase[] = [{
         name: 'Checkbox Group',
         description: 'this one checks all the boxes'
     }, {
+        element: <DialogInstance defaultOpen={true} />,
+        name: 'Dialog',
+        description: ''
+    }, {
         element: <InlineEditInstance />,
         name: 'Inline Edit',
         description: ``
@@ -64,7 +69,8 @@ const showcases: IShowcase[] = [{
      }, {
         element: <MenewInstance />,
         name: 'Menu',
-        description: 'much better than the old one'
+        description: 'much better than the old one',
+        align: 'start'
     }, {
         element: <NumberFieldInstance />,
         name: 'NumberField',

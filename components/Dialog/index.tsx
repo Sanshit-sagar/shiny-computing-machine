@@ -19,4 +19,6 @@ const Dialog = {
     Action: DialogAction
 }
 
+export const DynamicDialog = Dialog
+
 export default Dialog

@@ -4,36 +4,73 @@ import { Item, Section } from 'react-stately'
 
 import Sidebar from './index'
 import { ExampleBase } from '@/components/ExampleBase'
-import { SliderIcon as SidebarIcon, RocketIcon } from '@radix-ui/react-icons'
+import { SliderIcon as SidebarIcon } from '@radix-ui/react-icons'
 import { menuItemRenderer } from './renderers'
 
-type FlatItem = { name: string; }
+const TextInputIcon = () => <i className="bi bi-input-cursor"></i>
+const TextAreaIcon = () => <i className="bi bi-textarea-t"></i>
+const NumberFieldIcon = () =>  <i className="bi bi-123"></i>
+const CheckboxIcon = () => <i className="bi bi-check2"></i>
+const CheckboxItemIcon = () =>  <i className="bi bi-check2-square"></i>
+const CheckboxListIcon = () =>  <i className="bi bi-ui-checks"></i>
+const CheckboxGridIcon = () =>  <i className="bi bi-ui-checks-grid"></i>
+const SwitchIcon = () =>  <i className="bi bi-toggle-on"></i>
+const SwitchGroupIcon = () =>  <i className="bi bi-toggles"></i>
+const RadioListIcon = () =>  <i className="bi bi-ui-radios"></i>
+const RadioGridIcon = () =>  <i className="bi bi-ui-radios-grid"></i>
+const SliderGroupIcon = () => <i className="bi bi-sliders"></i>
+const TagIcon = () =>  <i className="bi bi-tag"></i>
+const SearchIcon = () =>  <i className="bi bi-search"></i>
+const ColorPaletteIcon = () =>  <i className="bi bi-palette"></i>
+const ColorPickerIcon = () => <i className="bi bi-eyedropper"></i>
 
-const flatItems: FlatItem[] = [
-    {name: 'Aardvark'},
-    {name: 'Kangaroo', children: [
-        { name: 'Roo1' },
-        { name: 'Roo2' },
-    ]},
-    {name: 'Snake'},
-    {name: 'Bob the builder'},
-    {name: 'Thomas '},
-    {name: 'the engine'}
-]
 const withSection = [
-    {name: 'People', children: [
-        {name: 'Some more peeps', children: [
-            {name: 'Aardvark2'},
-            {name: 'Kangaroo2'},
+    { name: 'Form Elements', children: [
+        { name: 'Text Field', icon: <TextInputIcon /> },
+        { name: 'Text Area', icon: <TextAreaIcon /> },
+        { name: 'Number Field', icon: <NumberFieldIcon /> },
+        { name: 'Checkbox', icon: <CheckboxIcon />, children: [
+            { name: 'Checkbox Item', icon: <CheckboxItemIcon /> },
+            { name: 'Checkbox List', icon: <CheckboxListIcon /> },
+            { name: 'Checkbox Grid', icon: <CheckboxGridIcon /> },
         ]},
-        {name: 'Danni'},
-        {name: 'Devon'},
-        {name: 'Animals', children: [
-            {name: 'Aardvark'},
-            {name: 'Kangaroo'},
-            {name: 'Snake'}
+        { name: 'Radio', icon: <RadioListIcon />, children: [
+            { name: 'Radio Item', icon: <RadioListIcon /> },
+            { name: 'Radio Group', icon: <RadioGridIcon /> },
         ]},
+        { name: 'Switch', icon: <SwitchIcon />, children: [
+            { name: 'Switch Item', icon: <SwitchIcon /> },
+            { name: 'Switch Group', icon: <SwitchGroupIcon /> },
+        ]},
+        {name: 'Range', icon: <SliderGroupIcon />, children: [
+            {name: 'Single Thumb Slider', icon: <SliderGroupIcon /> },
+            {name: 'Multi Thumb Slider', icon: <SliderGroupIcon /> },
+        ]},
+        { name: 'Tag', icon: <TagIcon />, children: [
+            { name: 'Tag Item', icon: <TagIcon /> },
+            { name: 'Tag Group' }
+        ]},
+        { name: 'Color', icon: <ColorPaletteIcon />, children: [
+            { name: 'Color Slider', icon: <SliderGroupIcon />, },
+            { name: 'Color Wheel',  }
+        ]}
     ]},
+    { name: 'DOM Elements', children: [
+        { name: 'Tooltip', children: [
+            { name: 'Tooltip' },
+            { name: 'Tooltip Trigger' },
+        ]},
+        { name: 'Popover', children: [
+            { name: 'Popover' },
+            { name: 'Popver Trigger' },
+        ]},
+        { name: 'Dialog', children: [
+            { name: 'Dialog' },
+            { name: 'Alert' },
+            { name: 'Dialog Trigger' },
+        ]},
+        { name: 'Overlay' },
+    ]}
 ]
 
 export const StaticSidebarWithSections = () => {
@@ -100,11 +137,10 @@ export const SidebarInstance = () => {
     return (
        <Sidebar.Root 
            id="sidebarProgrammaticExample-items" 
-           items={flatItems}
-           selectedKeys={selected}
+           items={withSection}
            onSelectionChange={handleSelectionChange}
        >
-            {(item) => menuItemRenderer(item)}
+           {(item) => menuItemRenderer(item)}
        </Sidebar.Root>
     )
 }
@@ -116,7 +152,7 @@ const ExampleSidebar = () => {
         <ExampleBase 
             heading={'Sidebar'}
             description=""
-            component={<SidebarInstance />}
+            component={<SidebarWithSections />}
             icon={<SidebarIcon />}
             controls={[]}
         />

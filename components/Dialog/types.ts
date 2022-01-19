@@ -12,6 +12,9 @@ export type DialogVariant = Pick<VariantProps<typeof StyledContent>, 'variant'>
 
 
 export type DialogProps = {
+    isOpen?: boolean;
+    defaultOpen?: boolean;
+    onOpenChange?: boolean;
     children: ReactNode;
     title?: string | ReactNode; 
     subtitle?: string | ReactNode; 
@@ -45,6 +48,9 @@ export type IDialogContext = Nullable<{
     trigger: ReactNode | string; 
     variant: 'success' | 'danger' | 'warning' | 'primary' | 'secondary' | 'info';
     onAction: (mutation: CloseType) => void; 
+    onClose: () => void;
+    isOpen: boolean;
+    isDismissible: boolean;
 }>
 
 export type DialogBodyNode = ReactElement<{}, string | JSXElementConstructor<any>>

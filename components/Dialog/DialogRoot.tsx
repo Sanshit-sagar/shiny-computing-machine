@@ -11,12 +11,22 @@ import { DialogProps, IDialogContext } from './types'
 import { flattenChildren } from '@/utils/flattenChildren'
 
   
-const DialogRoot = ({ children, title, subtitle, trigger, onAction, ...props }: DialogProps) => {
-    
-    const openButtonRef = useRef<HTMLButtonElement>()
-    const state = useOverlayTriggerState({ })
+const DialogRoot = ({ title, subtitle, trigger, children, portalContainer, ...props }: DialogProps) => {
 
-    const { buttonProps } = useButton({ onPress: () => state.open() }, openButtonRef)
+    const { 
+        isOpen, 
+        defaultOpen, 
+        onOpenChange, 
+        onAction, 
+        ...rest 
+    } = props
+
+    const openButtonRef = useRef<HTMLButtonElement>()
+    const state = useOverlayTriggerState({ isOpen, defaultOpen, onOpenChange })
+
+    const { buttonProps } = useButton({ 
+        onPress: () => state.open() 
+    }, openButtonRef)
     
     const contextValue: IDialogContext = {
         title,
@@ -28,7 +38,10 @@ const DialogRoot = ({ children, title, subtitle, trigger, onAction, ...props }: 
         state,
         children,
         variant: props.variant,
-        onAction
+        onAction,
+        isOpen,
+        defaultOpen,
+        onOpenChange
     }
 
     const flattenedChildren = flattenChildren(children)
@@ -40,9 +53,19 @@ const DialogRoot = ({ children, title, subtitle, trigger, onAction, ...props }: 
                 if(isDialogTrigger(child, index)) 
                     return React.cloneElement(child)
 
-                if(state.isOpen) return (
-                    <OverlayContainer> {children} </OverlayContainer>
-                )
+                if(state.isOpen) {
+                    if(portalContainer) {
+                        return (
+                            <OverlayContainer portalContainer={'div'}> 
+                                {children} 
+                            </OverlayContainer>
+                        ) 
+                    } else {
+                        return (
+                            <OverlayContainer> {children} </OverlayContainer>
+                        )
+                    }
+                }
             })}
         </DialogContext.Provider>
     );

@@ -1,5 +1,4 @@
-import { ReactNode } from 'react'
-import { InputProps } from '../TextInput/interfaces'
+
 import { TextAreaProps as StyledTextAreaProps } from './styles'
 import { 
     DOMProps, 
@@ -27,11 +26,7 @@ export type RestrictedInputProps = {
     cols?: number;
     value: string;
     limit: number; 
-} & StyledTextAreaProps & { 
-    props: Partial<InputProps>; 
-} & { 
-    icon?: ReactNode | null; 
-}
+} & StyledTextAreaProps 
 
 export interface TextAreaProps extends DOMProps, LabelableDOMProps, ReadableDOMProps, FocusableDOMProps, StyledTextAreaProps {
     defaultValue: string;

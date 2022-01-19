@@ -38,6 +38,7 @@ export interface AriaSidebarProps<T> extends DOMProps, AriaLabelingProps {
 
 export interface SidebarItemProps<T> extends HTMLAttributes<HTMLElement> {
     item: Node<T>;
+    level: Pick<VariantProps<StyledSidebarItem>, 'level'>; 
 }
 
 

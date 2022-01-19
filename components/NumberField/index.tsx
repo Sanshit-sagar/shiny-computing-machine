@@ -6,19 +6,15 @@ import { mergeProps } from '@react-aria/utils'
 import { useNumberField } from '@react-aria/numberfield'
 import { useNumberFieldState } from '@react-stately/numberfield'
 
-import { PlusIcon, MinusIcon, RulerSquareIcon } from '@radix-ui/react-icons'
+import { PlusIcon, MinusIcon } from '@radix-ui/react-icons'
 
-import { DecoratedLabel } from '@/components/Shared'
 import { TooltipTrigger } from '@/components/Tooltip'
 import { useInteractions } from '@/hooks/useInteractions'
 
 import { 
     InputGroup, 
-    MessageText, 
-    ControlGroup, 
     StyledButton, 
-    NumberInputField,
-    LeftAlignedWrapper 
+    NumberInputField 
 } from './styles'
 
 import { MessageProps, TooltipIconProps } from './interfaces'
@@ -50,11 +46,8 @@ export function NumberField(props) {
     let decrRef: RefObject<HTMLButtonElement> = createRef<HTMLButtonElement>()
    
     let {
-        labelProps,
         groupProps,
         inputProps,
-        descriptionProps,
-        errorMessageProps,
         decrementButtonProps,
         incrementButtonProps
     } = useNumberField(props, state, inputRef)
@@ -67,35 +60,20 @@ export function NumberField(props) {
     });
 
     return (
-        <ControlGroup>
-        
-            <InputGroup {...mergeProps(interactionProps, groupProps)}>
-                <TooltipIconButton {...decrementProps} type="decrement" ref={decrRef}>
-                    <MinusIcon />
-                </TooltipIconButton>
-                
-                <NumberInputField {...mergeProps(inputProps, interactionStates)} ref={inputRef} />
-                
-                <TooltipIconButton {...incrementProps} type="increment" ref={incrRef}>
-                    <PlusIcon />
-                </TooltipIconButton>
-            </InputGroup>
-        
-        </ControlGroup>
-    );
+       
+        <InputGroup {...mergeProps(interactionProps, groupProps)}>
+            <TooltipIconButton {...decrementProps} type="decrement" ref={decrRef}>
+                <MinusIcon />
+            </TooltipIconButton>
+            
+            <NumberInputField {...mergeProps(inputProps, interactionStates)} ref={inputRef} />
+            
+            <TooltipIconButton {...incrementProps} type="increment" ref={incrRef}>
+                <PlusIcon />
+            </TooltipIconButton>
+        </InputGroup>
+    
+    )
 }
- 
-{/* <LeftAlignedWrapper> */}
-{/* <DecoratedLabel  */}
-// hideLabel={false}
-// text={props.label}
-// labelProps={labelProps}
-// isLoading={props.isLoading}
-// icon={<RulerSquareIcon />}
-// {...interactionStates}
-{/* />  */}
-// {props.errorMessage  ? (
-    // <Message props={errorMessageProps} message={props.errorMessage} state="invalid" /> 
-// ) : props.description ? (
-    // <Message props={descriptionProps} message={props.description} state="valid" /> 
-// ) : null}
+
+NumberField.displayName = 'NumberField'
