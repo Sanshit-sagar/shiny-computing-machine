@@ -18,8 +18,8 @@ import {
     Container
 } from '@/components/ColorSlider/styles'
 
-const TRACK_THICKNESS = 28;
-const THUMB_SIZE = 20;
+const TRACK_THICKNESS = 20;
+const THUMB_SIZE = 24;
 
 export const ColorSlider = (props) => {
     let { locale } = useLocale();

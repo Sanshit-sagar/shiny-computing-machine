@@ -2,11 +2,10 @@ import { styled } from 'stitches.config'
 
 
 export const StyledGalleryContainer = styled('div', {
-    width: '1205px',
-    height: '825px',
+    width: '100%',
+    height: '100%',
     p: '$1',
-    mx: '-60px',
-    my: '-20px',
+    m: 0,
 
     bc: '$accentBase',
     color: '$accentSolid',
@@ -63,12 +62,12 @@ export const StyledComponentWrapper = styled('div', {
     
     boxSizing: 'border-box',
     border: '1px solid',
-    br: '$1',
+    br: '$4',
 
     bc: '$panelBase',
     color: '$accentLine',
     borderColor: '$accentBorder',
-    transition: 'all 0.4s ease-in-out',
+    transition: 'all 0.2s ease-in-out',
 
     display: 'flex',
     fd: 'column',
@@ -138,7 +137,7 @@ export const StyledComponentName = styled('h3', {
     color: '$light1',
     
     willChange: 'transition',
-    transition: 'all 0.4s ease-in-out'
+    transition: 'all 0.2s ease-in-out'
 })
 
 export const StyledComponentDescription = styled('p', {

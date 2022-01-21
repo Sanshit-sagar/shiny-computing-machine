@@ -1,25 +1,5 @@
 import { styled } from './stitches.config'
 
-import Link from 'next/link'
-import { Box } from '@/components/Box'
-import { Text } from '@/components/Text'
-import { Avatar } from '@/components/UiMaterial'
-
-const EditOnGitHub = styled('span', {
-    fontSize: '$1', 
-    mr: '$2', 
-    display: 'inline-flex'
-});
-
-function translateEditOnLink(locale) {
-    switch (locale) {
-        case "es-ES":
-          return "Edite esta página en GitHub";
-        default:
-          return "Edit this page on GitHub";
-    }
-}
-
 export default {
     github: null,
     docsRepositoryBase: 'https://github.com/Sanshit-sagar/opus/tree/main',

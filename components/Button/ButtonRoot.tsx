@@ -30,21 +30,13 @@ function AriaButton<T extends object>(props: ButtonProps<T>, ref: Ref<HTMLButton
 
 
     let hasPrefix = false
-    let nodes = {
-        prefix: null,
-        base: null,
-        suffix: null
-    }
 
     const prefixRadius = radius === "y=x" ? "topLeftRound" : radius==="y=x-n" ? "bottomLeftRound" : radius
     const suffixRadius = radius === "y=x" ? "bottomRightRound" : radius==="y=x-n" ? "topRightRound" : radius
     
 
     const contextValue = {
-        ...rest,
-        prefix: nodes.prefix,
-        base: nodes.base,
-        suffix: nodes.suffix
+        ...rest
     }
 
     const flattenedChildren = React.Children.toArray(props.children)

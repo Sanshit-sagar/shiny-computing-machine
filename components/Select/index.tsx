@@ -1,4 +1,4 @@
-import React, { useRef, Ref } from 'react'
+import React, { useRef } from 'react'
 
 import { 
     useButton,
@@ -10,12 +10,10 @@ import {
 
 export { Item } from 'react-stately'
 import { useSelectState } from 'react-stately'
-import { CaretSortIcon } from '@radix-ui/react-icons'
 import { AriaSelectProps } from '@react-types/select'
 
 import { 
-    StyledWrapper, 
-    StyledLabel, 
+    StyledWrapper,  
     StyledSelectorIcon, 
     StyledButton, 
     StyledValue 
@@ -24,17 +22,13 @@ import {
 import { Popover } from './Popover'
 import ListBox from '@/components/ListBox/index'
 
-export function Select<T extends object>(props: AriaSelectProps<T>) {
+import { CaretDownIcon } from '@/components/Icons/Arrows'
+
+const Select = <T extends object>(props: AriaSelectProps<T>) => {
     const state = useSelectState(props)
 
-    const ref: Ref<HTMLButtonElement> = useRef<HTMLButtonElement>(null)
-    const {
-        labelProps,
-        triggerProps,
-        valueProps,
-        menuProps
-    } = useSelect(props, state, ref)
-
+    const ref = useRef<HTMLButtonElement>(null)
+    const { triggerProps, valueProps, menuProps } = useSelect(props, state, ref)
     const { buttonProps } = useButton(triggerProps, ref)
 
     const { isFocusVisible, focusProps } = useFocusRing()
@@ -53,8 +47,9 @@ export function Select<T extends object>(props: AriaSelectProps<T>) {
                 <StyledValue {...valueProps}>
                     {state.selectedItem ? state.selectedItem.rendered : "Select an option"} 
                 </StyledValue>
+
                 <StyledSelectorIcon>
-                    <CaretSortIcon /> 
+                    <CaretDownIcon /> 
                 </StyledSelectorIcon>
             </StyledButton>
 
@@ -66,3 +61,6 @@ export function Select<T extends object>(props: AriaSelectProps<T>) {
         </StyledWrapper>
     )
 }
+
+Select.displayName = 'Select'
+export default Select

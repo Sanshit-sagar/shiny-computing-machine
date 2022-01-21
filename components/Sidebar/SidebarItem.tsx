@@ -3,15 +3,20 @@ import { useRef, Fragment } from 'react'
 import { Node } from '@react-types/shared'
 import { FocusRing } from '@react-aria/focus'
 
-import { useSidebarContext } from './utils'
-import { 
-    StyledSidebarItem, 
-    StyledSidebarAnchor,
-    StyledItemContainer
-} from './styles'
-
 import { useInteractions } from '@/hooks/useInteractions'
 import { useSidebarItem, SidebarItemProps } from '@/hooks/collections/Sidebar'
+
+import { 
+    StyledSidebarItem, 
+    StyledSidebarAnchor
+} from './styles'
+import { SidebarItemLevel } from './types'                                                                                                                                                                                                                                                                                 
+import { useSidebarContext } from './utils'
+
+import {
+    ChevronDownIcon,
+    ChevronRightIcon
+} from '@radix-ui/react-icons'
 
 const SidebarItem = <T extends object>(props: SidebarItemProps<T>) => {
     const { item, level = 1, ...rest } = props
@@ -40,36 +45,40 @@ const SidebarItem = <T extends object>(props: SidebarItemProps<T>) => {
     const { interactionProps, ...interactionStates } = useInteractions({ isDisabled }) 
 
     return (
-        <StyledItemContainer>
-            <StyledSidebarItem 
-                {...listItemProps} 
-                isSelected={isSelected} 
-                isDisabled={isDisabled} 
-                isExpanded={isExpanded}
-                hasChildNodes={hasChildNodes}
-                level={`${level}`}
-                onClick={(event) => toggleKey(key)}
-            >
-                <FocusRing>
+        <>
+            <FocusRing>
+                <StyledSidebarItem 
+                    {...listItemProps} 
+                    isSelected={isSelected} 
+                    isDisabled={isDisabled} 
+                    isExpanded={isExpanded}
+                    hasChildNodes={hasChildNodes}
+                    level={`${level}` as SidebarItemLevel}
+                    onClick={(event) => toggleKey(key)}
+                >
                     <StyledSidebarAnchor {...listItemLinkProps} ref={ref}>
                         {rendered} 
                     </StyledSidebarAnchor>
-                </FocusRing>
-            </StyledSidebarItem>
+
+                    {hasChildNodes && (
+                        <> {isExpanded ? (
+                            <ChevronDownIcon /> 
+                        ) : (
+                            <ChevronRightIcon /> 
+                    )} </> )}
+                </StyledSidebarItem>
+            </FocusRing>
 
             {expandChildNodes && (
                 <>
-                    {[...childNodes].map((node: Node<T>, index: number) => (
+                    {[...childNodes].map((node: Node<T>) => (
                         <Fragment key={node.key}>
-                            <SidebarItem 
-                                item={node} 
-                                level={level + 1}
-                            />
+                            <SidebarItem item={node} level={level + 1} />
                         </Fragment>
                     ))} 
                 </>
             )}
-        </StyledItemContainer>
+        </>
     )
 }
 

@@ -1,5 +1,6 @@
 
 import { HTMLAttributes, ReactNode, AnchorHTMLAttributes } from 'react'
+import { VariantProps, CSS } from 'stitches.config'
 
 import { ReusableView } from '@react-stately/virtualizer'
 import { Node, KeyboardDelegate } from '@react-types/shared'
@@ -8,7 +9,7 @@ import { AriaLabelingProps } from '@/interfaces/Aria'
 import { DOMProps, Expandable } from '@/interfaces/Shared'
 import { MultipleSelection } from '@/interfaces/Selection'
 import { CollectionBase } from '@/interfaces/Collections'
-
+import { StyledSidebarItem } from '@/components/Sidebar/styles'
 
 /// last updated @ 4:22PM friday 
 
@@ -38,7 +39,7 @@ export interface AriaSidebarProps<T> extends DOMProps, AriaLabelingProps {
 
 export interface SidebarItemProps<T> extends HTMLAttributes<HTMLElement> {
     item: Node<T>;
-    level: Pick<VariantProps<StyledSidebarItem>, 'level'>; 
+    level?: 1 | 2 | 3 | 4 | 5 | 6; 
 }
 
 

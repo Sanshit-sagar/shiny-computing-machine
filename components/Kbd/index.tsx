@@ -16,7 +16,7 @@ export const StyledKbd = styled('kbd', {
     br: '$1',
     p: '$1',
 
-    color: '$accentBorder',
+    color: '$accentText',
     us: 'none',
     cursor: 'default',
     whiteSpace: 'nowrap',
@@ -27,13 +27,13 @@ export const StyledKbd = styled('kbd', {
         0px 2px 1px -1px $colors$panelSolid,
         0 1px $colors$panelSolid`,
     textShadow: '0 0 1px rgba(255, 255, 255, 0.5)',
-    fontFamily: 'inherit',
+   
     fontWeight: 300,
     lineHeight: 1,
 
     mx: '2px',
-    padding: '$3',
-    height: '2em',
+    p: '$3',
+    minHeight: '2em',
     minWidth: '2em',
     fontFamily: '$jetbrains',
     fontSize: '$2',

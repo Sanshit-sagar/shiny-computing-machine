@@ -9,8 +9,7 @@ export const cssReset = globalCss({
         WebkitTextSizeAdjust: 'none', 
         textSizeAdjust: 'none',
         touchAction: 'manipulation',
-        overflowX: 'hidden',
-        overflowY: 'hidden'
+        overflow: 'hidden'
     },
     h1: {
         fontFamily: '$mono',
@@ -73,92 +72,95 @@ export const cssReset = globalCss({
         color: 'transparent'
     },
     '.sidebar': { 
-        us: 'none',
-        width: '225px',
-        maxWidth: '225px',
-        overflow: 'hidden',
-        margin: 0,
-        py: 0,
-        pl: '1.25rem',
-        pr: '0.75rem',
-        position: 'fixed',
-        border: 'none',
-        outline: 'none',
-        boxShadow: 'none',
-        top: 0,
-        left: 0,
-        bc: '$accentBase',
-        color: '$accentText',
+        // width: 0,
+        // display: 'none',
+        // visibility: 'hidden',
+        // us: 'none',
+        // width: '225px',
+        // maxWidth: '225px',
+        // overflow: 'hidden',
+        // margin: 0,
+        // py: 0,
+        // pl: '1.25rem',
+        // pr: '0.75rem',
+        // position: 'fixed',
+        // border: 'none',
+        // outline: 'none',
+        // boxShadow: 'none',
+        // top: 0,
+        // left: 0,
+        // bc: '$accentBase',
+        // color: '$accentText',
 
-        '& ul ul': {
-            position: 'relative',
-            fontWeight: 200
-        },
-        '& .active-anchor': {
-            opacity: 1,
-            fontWeight: 200
-        },
-        '& li.active > a': {
-            bc: '$accentLine',
-            color: '$accentTextContrast',
-            border: 'none'
-        },
-        '& a': {
-            mt: '0.25em',
-            display: 'block',
-            width: '100%',
-            us: 'none',
-            br: '0.2em',
-            p: '0.5em',
-            textAlign: 'left',
-            fontSize: '$1',
-            lineHeight: '1.5rem',
-            fontWeight: 150,
-            color: '$accentText',
-            opacity: 1,
-            textDecoration: 'none',
-            WebkitTapHighlightColor: 'transparent',
-            WebkitTouchCallout: 'none',
-            '&:hover': {
-                bc: '$accentSolidHover',
-                color: '$accentTextContrast'
-            }
-        },
-        '& button': {
-            mt: '0.25em',
-            display: 'block',
-            us: 'none',
-            br: '0.2em',
-            p: '0.5em',
-            textAlign: 'left',
-            fontSize: '$1',
-            lineHeight: '1.5rem',
-            fontWeight: 150,
-            color: '$accentText',
-            opacity: 1,
-            textDecoration: 'none',
-            WebkitTapHighlightColor: 'transparent',
-            WebkitTouchCallout: 'none',
-            '&:hover': {
-                bc: '$accentSolidHover',
-                color: '$accentTextContrast'
-            }
-        },
+        // '& ul ul': {
+            // position: 'relative',
+            // fontWeight: 200
+        // },
+        // '& .active-anchor': {
+            // opacity: 1,
+            // fontWeight: 200
+        // },
+        // '& li.active > a': {
+            // bc: '$accentLine',
+            // color: '$accentTextContrast',
+            // border: 'none'
+        // },
+        // '& a': {
+            // mt: '0.25em',
+            // display: 'block',
+            // width: '100%',
+            // us: 'none',
+            // br: '0.2em',
+            // p: '0.5em',
+            // textAlign: 'left',
+            // fontSize: '$1',
+            // lineHeight: '1.5rem',
+            // fontWeight: 150,
+            // color: '$accentText',
+            // opacity: 1,
+            // textDecoration: 'none',
+            // WebkitTapHighlightColor: 'transparent',
+            // WebkitTouchCallout: 'none',
+            // '&:hover': {
+                // bc: '$accentSolidHover',
+                // color: '$accentTextContrast'
+            // }
+        // },
+        // '& button': {
+            // mt: '0.25em',
+            // display: 'block',
+            // us: 'none',
+            // br: '0.2em',
+            // p: '0.5em',
+            // textAlign: 'left',
+            // fontSize: '$1',
+            // lineHeight: '1.5rem',
+            // fontWeight: 150,
+            // color: '$accentText',
+            // opacity: 1,
+            // textDecoration: 'none',
+            // WebkitTapHighlightColor: 'transparent',
+            // WebkitTouchCallout: 'none',
+            // '&:hover': {
+                // bc: '$accentSolidHover',
+                // color: '$accentTextContrast'
+            // }
+        // },
 
-        '&::-webkit-scrollbar': {
-            width: '0.25em',
-        },
-        '&::-webkit-scrollbar-track': {
-            bc: 'transparent',
-        },
-        '&::-webkit-scrollbar-thumb': {
-            bc: '$accentSolid',
-            br: '999px',
-            '&:hover': {
-                bc: '$accentSolidHover',
-                br: '0px'
-            }
-        }
+        // '&::-webkit-scrollbar': {
+            // width: '0.25em',
+        // },
+        // '&::-webkit-scrollbar-track': {
+            // bc: 'transparent',
+        // },
+        // '&::-webkit-scrollbar-thumb': {
+            // bc: '$accentSolid',
+            // br: '999px',
+            // '&:hover': {
+                // bc: '$accentSolidHover',
+                // br: '0px'
+            // }
+        // }
     },
     '.token.parameter': { color: '$accentSolid' },
     '.token.imports': { color: '$accentSolid' },

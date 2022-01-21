@@ -7,7 +7,7 @@ import { TooltipTrigger } from './index'
 
 
 export const TooltipInstance = () => (
-    <TooltipTrigger defaultOpen={false} delay={100} content="Primary Tooltip">
+    <TooltipTrigger defaultOpen={true} delay={100} content="Primary Tooltip">
         <Button variant="primary"> Protip: Hover me! </Button>
     </TooltipTrigger> 
 )

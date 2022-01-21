@@ -21,7 +21,7 @@ type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 };
 
-export default function Nextra({ Component, pageProps }: AppPropsWithLayout) {
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = (children: ReactNode) => (
         <PersistentLayout> 
             {children} 

@@ -14,7 +14,7 @@ const carouselState: CarouselState = {
 const init = (): CarouselState => carouselState; 
 
 export const CarouselInstance = () => {
-    const { state, update } = StateFactory<CarouselState>(init)
+    const { state } = StateFactory<CarouselState>(init)
     const [prevSp, setPrevSp] = useState<number>(state.slidesPresented)
     const props = { ...state, prevSp }
 
@@ -35,19 +35,3 @@ const ExampleCarousel = () => {
 }
 
 export default ExampleCarousel 
-
-
-// const controls = [{
-    // type: 'switch',
-    // name: 'Multiple',
-    // value: state.slidesPresented === 1,
-    // onChange: (val: boolean) => {
-        // if(state.slidesPresented === 1) {
-            // update('slidesPresented', prevSp)
-        // } else {
-            // setPrevSp(state.slidesPresented)
-            // update('slidesPresented', 1)
-        // }
-    // },
-    // isDisabled: false
-// }]

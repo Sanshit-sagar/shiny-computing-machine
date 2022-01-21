@@ -4,13 +4,16 @@ import { BreadcrumbsInstance } from '@/components/Breadcrumbs/examples'
 import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
+import { ColorSliderInstance } from '@/components/ColorSlider/examples'
 import { DialogInstance } from '@/components/Dialog/examples'
+import { InlineCodeInstance } from '@/components/InlineCode/examples'
 import { InlineEditInstance } from '@/components/LinedEdit/examples'
 import { KbdInstance } from '@/components/Kbd/examples'
 import { LinkInstance } from '@/components/Link/examples'
 import { MenewInstance } from '@/components/Menew/examples'
 import { MultiToggleInstance } from '@/components/MultiToggle/examples'
 import { NumberFieldInstance } from '@/components/NumberField/examples'
+import { PinCodeInstance } from '@/components/PinCode/examples'
 import { ProgressBarInstance } from '@/components/ProgressBar/examples'
 import { PopoverInstance } from '@/components/Popover/examples'
 import { RadioButtonInstance } from '@/components/RadioGroup/examples'
@@ -29,7 +32,7 @@ import { TreeInstance } from '@/components/TreeView/examples'
 
 import { IShowcase } from './types'
 
-const showcases: IShowcase[] = [{
+export const showcases: IShowcase[] = [{
         element: <AccordionInstance />,
         name: 'Accordion',
         description: 'did it strike a-cord-in your heart?'
@@ -51,9 +54,17 @@ const showcases: IShowcase[] = [{
         name: 'Checkbox Group',
         description: 'this one checks all the boxes'
     }, {
+        element: <ColorSliderInstance />,
+        name: 'Color Slider',
+        description: '' 
+    }, {
         element: <DialogInstance defaultOpen={true} />,
         name: 'Dialog',
         description: ''
+    }, {
+        element: <InlineCodeInstance />,
+        name: 'Inline Code', 
+        description: '',
     }, {
         element: <InlineEditInstance />,
         name: 'Inline Edit',
@@ -79,6 +90,10 @@ const showcases: IShowcase[] = [{
         element: <MultiToggleInstance />,
         name: 'MultiToggle',
         description: 'cause one toggle wasnt enough'
+    }, {
+        element: <PinCodeInstance />,
+        name: 'Pin Code',
+        description: ''
     }, {
         element: <PopoverInstance />,
         name: 'Popover',
@@ -138,4 +153,3 @@ const showcases: IShowcase[] = [{
     }
 ]
 
-export default showcases

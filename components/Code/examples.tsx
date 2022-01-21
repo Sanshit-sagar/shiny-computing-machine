@@ -25,28 +25,6 @@ export const NewWindowIcon = () => <i className='bx bxs-window-alt'></i>
 export const PrivateWindowIcon = () => <i className='bx bx-capsule'></i>
 
 
-// let menuTestProps = {
-//     id: 'test_menu',
-//     label: 'Test Menu',
-//     description: 'heres an example',
-//     sections: [{ 
-//         id: 'prismThemes', 
-//         label: 'Themes', 
-//         leftSlot: <MixIcon />,
-//         items: prismThemeSelections, 
-//         type: SectionType.RADIO, 
-//         appendSeparator: false,
-//         isDisabled: false,
-//     }],
-//     onSelect: (selected: string) => alert(`i selected ${selected}`),
-//     errorMessage: '',
-//     'aria-label': 'testMenu',
-//     'aria-labelledby': 'testMenu',
-//     'aria-describedby': 'testMenuDescription',
-//     'aria-details': 'testMenuDetails'
-// }
-
-
 let initCodeState: CodeState = {
     id: 'sampleTest',
     theme: 'oceanicNext',

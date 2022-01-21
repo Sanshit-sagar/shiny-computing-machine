@@ -2,6 +2,7 @@ import { styled, CSS } from 'stitches.config'
 
 const sharedStyles: CSS = {
     appearance: 'none',
+
     d: 'inline-flex',
     fd: 'row',
     jc: 'flex-start',
@@ -19,7 +20,7 @@ const sharedStyles: CSS = {
 
 export const StyledFieldsetRoot = styled('fieldset', {
     width: 250,
-    p: 0,
+    p: '$4',
 
     d: 'flex',
     fd: 'column',
@@ -27,7 +28,20 @@ export const StyledFieldsetRoot = styled('fieldset', {
     ai: 'stretch',
     gap: '$3',
     fw: 'nowrap',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+
+    bc: '$accentBg',
+    border: '1px solid $accentBorder',
+    br: '$2'
+})
+
+export const StyledFieldsetIcon = styled('span', {
+    display: 'inline-flex',
+    p: 0,
+    m: 0,
+    color: '$accentText',
+    border: 'none',
+    outline: 'none'
 })
 
 export const StyledFieldsetLabel = styled('label', {
@@ -45,33 +59,39 @@ export const StyledFieldsetDescription = styled('div', {
     fontSize: '$2',
     textAlign: 'left',
     maxWidth: '80%',
-    color: '$accentTextContrast'
+    color: '$accentTextContrast',
+    opacity: 0.6,
+
+    '&:hover': {
+        opacity: 0.8
+    },
+    '&:focus': {
+        opacity: 1
+    }
 })
 
 export const StyledFieldsetErrorMessage = styled('div', {
     ...sharedStyles,
 
     fontSize: '$2',
-    textAlign: 'left',
-
+    textAlign: 'right',
     maxWidth: '80%',
 
     variants: {
         validationState: {
-            valid: {
-                color: '$successText'
-            },
             invalid: {
+                display: 'inline-flex',
+                visibility: 'visible',
                 color: '$dangerText'
-            }
-        },
-        display: {
-            hidden: { 
+            },
+            none: {
+                display: 'inline-flex',
+                visibility: 'visible',
+                color: '$accentText'
+            },
+            valid: {
                 display: 'none', 
                 visibility: 'hidden' 
-            },
-            visible: { 
-                visibility: 'visible' 
             }
         }
     },
@@ -80,11 +100,31 @@ export const StyledFieldsetErrorMessage = styled('div', {
     }
 })
 
-export const StyledFieldsetIcon = styled('span', {
-    display: 'inline-flex',
-    p: 0,
-    m: 0,
-    color: '$accentText',
-    border: 'none',
-    outline: 'none'
+export const StyledFieldsetSuccessMessage = styled('span', {
+    ...sharedStyles,
+    fontSize: '$2',
+    textAlign: 'right',
+    maxWidth: '80%',
+
+    variants: {
+        validationState: {
+            valid: {
+                display: 'inline-flex',
+                visibility: 'visible',
+                color: '$successText'
+            },
+            none: {
+                display: 'inline-flex',
+                visibility: 'visible',
+                color: '$accentText'
+            },
+            invalid: {
+                display: 'none', 
+                visibility: 'hidden' 
+            }
+        }
+    },
+    defaultVariants: {
+        validationState: 'none'
+    }
 })

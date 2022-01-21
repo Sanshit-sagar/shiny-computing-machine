@@ -1,33 +1,64 @@
 import React from 'react'
-import { Section, Item } from 'react-stately'
+import { Section, Item } from '@react-stately/collections'
 
-import { Select } from '@/components/Select/index'
-import { ExampleBase } from '@/components/ExampleBase' 
-
+import Fieldset from '@/components/Fieldset'
 import Label from '@/components/ListBox/Label'
 import Description from '@/components/ListBox/Description'
 
+import { ExampleBase } from '@/components/ExampleBase' 
+import { CaretDownIcon, ShareIcon } from '@/components/Icons'
+
+import Select from './index'
 import { StyledAvatar } from './styles'
-
-import { people } from '@/components/Select/constants'
-import { CaretSortIcon } from '@radix-ui/react-icons'
+import { people, socials, SocialMedium } from './constants'
 
 
-export const SelectWithoutSections = () => (
-    <Select label="Reviewer" items={people}>
+export const SelectPeopleWithoutSections = () => (
+    <Select items={people}>
         {(item) => (
             <Item textValue={item.name}>
-                {/* <StyledAvatar src={item.avatar} alt={item.name} /> */}
+                <StyledAvatar src={item.avatar} alt={item.name} />
                 <div>
                     <Label> {item.name} </Label>
-                    {/* <Description> {item.username} </Description> */}
+                    <Description> {item.username} </Description>
                 </div>
             </Item>
         )}
     </Select>
 )
 
-export const SelectInstance = () => <SelectWithoutSections /> 
+export const SelectSocialsWithoutSections = () => (
+    <Select items={socials}>
+       {(item: SocialMedium) => (
+           <Item textValue={item.name}>
+               {item.icon}
+               <div>
+                   <Label> {item.name} </Label> 
+                   <Description> {item.link} </Description> 
+               </div>
+           </Item>
+       )}
+    </Select>
+)
+
+export const SelectInstance = () => (
+    <Fieldset.Root>
+        <Fieldset.Icon> <ShareIcon /> </Fieldset.Icon>
+        <Fieldset.Label> Social Mediums </Fieldset.Label> 
+
+        <Select items={socials}>
+           {(item: SocialMedium) => (
+               <Item textValue={item.name}>
+                   {item.icon}
+                   <div>
+                       <Label> {item.name} </Label> 
+                       <Description> {item.link} </Description> 
+                   </div>
+               </Item>
+           )}
+        </Select>
+    </Fieldset.Root>
+)
 
 const ExampleSelect = () => {
 
@@ -35,10 +66,8 @@ const ExampleSelect = () => {
         <ExampleBase
             heading={'Select'}
             description={'Select description here'}
-            icon={<CaretSortIcon />}
-            component={
-                <SelectInstance  />
-            }
+            icon={<CaretDownIcon />}
+            component={<SelectInstance  />}
             controls={[]}
         /> 
     );

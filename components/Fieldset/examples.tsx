@@ -13,22 +13,11 @@ import { InputIcon } from '@radix-ui/react-icons'
 
 export const FieldsetInstance = () => (
     <Fieldset.Root validationState="invalid">
-        <Fieldset.Icon>
-            <InputIcon /> 
-        </Fieldset.Icon>
-        
-        <Fieldset.Label>
-            Preferred Contact Method
-        </Fieldset.Label>
-        
+        <Fieldset.Icon> <InputIcon /> </Fieldset.Icon>
+        <Fieldset.Label> Preferred Contact Method </Fieldset.Label>
         <SelectInstance />
-
-        <Fieldset.Description>
-            hello darkness my old friend
-        </Fieldset.Description>
-        <Fieldset.ErrorMessage display="hidden">
-            Select a contact method.
-        </Fieldset.ErrorMessage>
+        <Fieldset.Description> hello darkness my old friend </Fieldset.Description>
+        <Fieldset.ErrorMessage> Select a contact method. </Fieldset.ErrorMessage>
     </Fieldset.Root>
 )
 

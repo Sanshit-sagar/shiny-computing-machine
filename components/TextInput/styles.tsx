@@ -3,6 +3,8 @@ import { styled } from 'stitches.config'
 
 export const StyledInput = styled('input', {
     appearance: 'none',
+    userSelect: 'contain',
+    WebkitTapHighlightColor: 'blue',
     
     width: '100%',
     outline: 'none',
@@ -22,14 +24,15 @@ export const StyledInput = styled('input', {
     opacity: 1,
 
     boxShadow: 'none',
-    willChange: 'transition, opacity',
-    transition: 'all 0.4s ease-in-out',
+    // willChange: 'transition, opacity',
+    // transition: 'all 0.4s ease-in-out',
 
-    bc: '$accentBg',
+    bc: 'inherit',
+    color: 'inherit',
   
     '&::placeholder': {
-        color: '$light3',
-        opacity: 0.5
+        color: '$accentText',
+        opacity: 0.6
     },
 
 
@@ -67,7 +70,7 @@ export const StyledInputWrapper = styled('div', {
     pl: '0.5em',
     overlow: 'hidden',
 
-    bc: '$accentBg',
+    bc: '$accentBgSubtle',
     color: '$accentText',
     br: '$1',
     border: '1px solid $accentBorder',
@@ -96,21 +99,10 @@ export const StyledInputWrapper = styled('div', {
     },
 
     '&:hover': {
-        input: {
-            '&:not(:disabled)': {
-                '--shadow': 'var(--shadow-hover-primary)',
-                '--border-color': '$colors$accentBorder',
-
-                '& + svg': {
-                    '--icon-color': '$colors$accentBorder',
-                },
-
-                '& + button': {
-                    svg: {
-                        '--icon-color': '$colors$accentBorder'
-                    }
-                }
-            }
+        '&:not(:disabled)': {
+            bc: '$accentBgHover',
+            color: '$accentTextContrast',
+            borderColor: '$accentBorderHover'
         }
     },
 
@@ -147,7 +139,8 @@ export const StyledInputWrapper = styled('div', {
 export const StyledPrefix = styled('span', {
     fontWeight: 300,
     fontSize: '$2',
-    color: '$accentText',
+    bc: 'inherit',
+    color: 'inherit',
     mr: '$1',
     
     variants: {
@@ -169,6 +162,9 @@ export const StyledSuffix = styled('span', {
     ml: '$1',
     mb: '1px',
     p: 0,
+
+    bc: 'inherit',
+    color: 'inherit',
     opacity: 0.7,
 
     variants: {

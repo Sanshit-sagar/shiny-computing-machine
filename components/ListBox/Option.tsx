@@ -21,16 +21,18 @@ function Option({ item, state }: OptionProps) {
 
 
     return (
-        <StyledListItem {...optionProps} ref={ref} isFocused={isFocused} isSelected={isSelected}>
-            <StyledItemContent>
-                <OptionContext.Provider value={{ labelProps, descriptionProps }}>
+        <OptionContext.Provider value={{ labelProps, descriptionProps }}>
+            <StyledListItem {...optionProps} ref={ref} isFocused={isFocused} isSelected={isSelected}>
+                
+                <StyledItemContent>
                     {item.rendered} 
-                </OptionContext.Provider>
-            </StyledItemContent>
-            {isSelected && (
-                <CheckIcon aria-hidden="true" style={{ height: 18, width: 18 }} />
-            )}
-        </StyledListItem>
+                </StyledItemContent>
+
+                {isSelected && (
+                    <CheckIcon aria-hidden="true" />
+                )}
+            </StyledListItem>
+        </OptionContext.Provider>
     )
 }
 

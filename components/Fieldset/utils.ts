@@ -6,22 +6,25 @@ import {
     FieldsetLabelNode,
     FieldsetIconNode,
     FieldsetDescriptionNode,
-    FieldsetErrorMessageNode
+    FieldsetErrorMessageNode,
+    FieldsetSuccessMessageNode
 } from './types'
 
 import FieldsetRoot from './FieldsetRoot'
-import FieldsetLabel from './FieldsetLabel'
 import FieldsetIcon from './FieldsetIcon'
+import FieldsetLabel from './FieldsetLabel'
 import FieldsetDescription from './FieldsetDescription'
 import FieldsetErrorMessage from './FieldsetErrorMessage'
+import FieldsetSuccessMessage from './FieldsetSuccessMessage'
+
 import FieldsetContext from './FieldsetContext'
 
-import { isElementOfType } from '@/interfaces/Guards'
-
-import { TextInput } from '@/components/TextInput'
 import { TextArea } from '@/components/TextArea'
+import { TextInput } from '@/components/TextInput'
 import { NumberField } from '@/components/NumberField'
+import Select from '@/components/Select'
 
+import { isElementOfType } from '@/interfaces/Guards'
 
 export const useFieldsetContext = () => {
     const fieldsetContext = useContext<IFieldsetContext | null>(FieldsetContext)
@@ -52,6 +55,10 @@ export const isFieldsetErrorMessageElement = (child: ReactChild, index: number):
     child && isElementOfType(child, FieldsetErrorMessage) && !isElementOfType(child, FieldsetRoot)
 )
 
+export const isFieldsetSuccessMessageElement = (child: ReactChild, index: number): child is FieldsetSuccessMessageNode => (
+    child && isElementOfType(child, FieldsetSuccessMessage) && !isElementOfType(child, FieldsetRoot)
+)
+
 
 
 export type InputNode = React.ReactElement<{}, string | React.JSXElementConstructor<any>>
@@ -61,6 +68,7 @@ export const isInputElement = (child: ReactChild, index: number): child is Input
             isElementOfType(child, TextInput) 
         ||  isElementOfType(child, TextArea)
         ||  isElementOfType(child, NumberField)
+        ||  isElementOfType(child, Select)
     )
 )
 

@@ -88,23 +88,23 @@ export const StyledListItem = styled('li', {
 
 export const StyledItemContent = styled('div', {
     display: 'flex',
-    ai: 'center'
+    ai: 'center',
+    gap: '$3'
 })
 
 export const StyledDescription = styled('div', {
     fontSize: '$1',
     fontFamily: '$plexsans',
     fontStyle: 'normal',
-    fontWeight: 'light',
-    color: '$accentText'
+    fontVariant: 'tabular',
+    color: '$accentText',
 })
 
 export const StyledLabel = styled('label', {
-    fontSize: '$3',
+    fontSize: '$2',
     fontFamily: '$plexsans',
-    fontWeight: 'light', 
     fontStyle: 'normal',
-    color: '$accentText'
+    color: '$accentTextContrast',
 })
 
 export const StyledSection = styled('li', {
@@ -117,7 +117,7 @@ export const StyledSectionHeading = styled('span', {
     fontFamily: '$plaxsans',
     color: '$accentTextContrast',
     m: 0,
-    marginBottom: '$2',
+    mb: '$2',
     px: '$2',
     fontSize: '$2',
 })

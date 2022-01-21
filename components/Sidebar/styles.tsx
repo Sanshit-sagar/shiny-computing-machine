@@ -1,46 +1,100 @@
 import { styled } from 'stitches.config'
 
 export const StyledSidebar = styled('div', {
+    appearance: 'none',
+    userSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
+    listStyle: 'none',
     listStyleType: 'none',
-    m: 0,
-    p: '$2',
-    outline: 'none',
-  
-    br: '$2',
-    width: '300px',
-    height: '100%',
-    bc: '$accentBg'
-})
+    scroll: 'smooth',
 
-export const StyledItemContainer = styled('div', {
-    d: 'flex', 
-    fd: 'column', 
-    jc: 'flex-start', 
-    ai: 'stretch', 
-    gap: 0
+    my: 0,
+    ml: '$2',
+    mr: 0,
+    p: 0,
+    outline: 'none',
+
+    width: '225px',
+    minWidth: '225px',
+    height: '725px',
+
+    d: 'flex',
+    fd: 'column',
+    jc: 'space-between',
+    ai: 'stretch',
+    gap: 0,
+  
+    
+    br: '$3',
+    oy: 'scroll',
+    ox: 'hidden',
+
+    bc: 'transparent',
+
+    '&::-webkit-scrollbar': {
+        width: '0.15em',
+        bc: 'transparent',
+        ml: '$2',
+    },
+    '&::-webkit-scrollbar-thumb': {
+        br: '999px',
+        bc: '$accentSolid',
+
+        '&:hover': {
+            bc: '$accentSolidHover'
+        },
+        '&:active': {
+            bc: '$accentSolidActive'
+        },
+        '&:focus': {
+            bc: '$accentFocusRing'
+        },
+    },
+    '&::-webkit-scrollbar-track': {
+        bc: 'transparent',
+
+        '&:hover': {
+            bc: '$accentBgSubtle'
+        },
+        '&:active': {
+            bc: '$accentBg'
+        }
+    }
 })
 
 export const StyledSidebarItem = styled('div', {
     listStyleType: 'none',
-    margin: 0,
+    m: 0,
+    pr: '$1',
 
-    width: '100%',
-    border: 'none',
+    d: 'flex',
+    fd: 'row',
+    jc: 'space-between',
+    ai: 'center',
+    gap: 0,
+
+    width: '95%',
+    border: '1px solid transparent',
     outline: '0',
     br: '$2',
 
+    // opacity: 0.6,
+
     '&:hover': {
         bc: '$accentBgHover',
-        color: '$accentText'
+        color: '$accentText',
+        // opacity: 0.8
     },
     '&:active': {
         bc: '$accentBgActive',
-        color: '$accentTextContrast'
+        color: '$accentTextContrast',
+        // opacity: 1
     },
     '&:focus': {
-        outline: '1px solid $accentFocusRing'
+        outline: '1px solid $accentFocusRing',
+        // opacity: 1
     },
-    
+
     variants: {
         isSelected: {
             true: {
@@ -74,7 +128,7 @@ export const StyledSidebarItem = styled('div', {
         },
         isExpanded: {
             true: {
-                
+                // opacity: 1
             }
         },
         hasChildNodes: {
@@ -83,11 +137,11 @@ export const StyledSidebarItem = styled('div', {
             }
         },
         level: {
-            1: { pl: '0px', color: '$accentLine' },
-            2: { pl: '10px', color: '$accentBorderHover' },
-            3: { pl: '20px', color: '$accentSolid' },
-            4: { pl: '30px', color: '$accentText' },
-            5: { pl: '40px', color: '$accentTextContrast'}
+            1: { ml: '0px', color: '$accentLine' },
+            2: { ml: '10px', width: 'calc(95% - 10px)', color: '$accentBorderHover' },
+            3: { ml: '20px', color: '$accentSolid' },
+            4: { ml: '30px', color: '$accentText' },
+            5: { ml: '40px', color: '$accentTextContrast'}
         }
     },
     compoundVariants: [
@@ -95,7 +149,19 @@ export const StyledSidebarItem = styled('div', {
             isExpanded: true,
             hasChildNodes: true,
             css: {
-                bc: '$accentLine',
+                bc: '$accentBg',
+                color: '$accentText',
+                borderColor: '$accentBorder',
+                '&:hover': {
+                    bc: '$accentBgHover',
+                    color: '$accentTextContrast',
+                    borderColor: '$accentBorderHover'
+                },
+                '&:active': {
+                    bc: '$accentBgActive',
+                    color: '$accentTextContrast',
+                    borderColor: '$accentFocusRing'
+                }
             }
         }
     ],
@@ -105,6 +171,34 @@ export const StyledSidebarItem = styled('div', {
         isExpanded: false,
         level: '1'
     }
+})
+
+export const StyledContainer = styled('div', {
+    height: '800px',
+    width: '225px',
+    d: 'flex',
+    fd: 'column',
+    jc: 'space-around',
+    ai: 'stretch',
+    gap: '$1',
+    my: '$2',
+    mx: '$1'
+})
+
+export const StyledTopArea = styled('div', {
+    d: 'flex', 
+    fd: 'row', 
+    jc: 'flex-start', 
+    ai: 'center', 
+    gap: '$2'
+})
+
+export const StyledBottomArea = styled('div', {
+    d: 'flex',
+    fd: 'row',
+    jc: 'center',
+    ai: 'flex-end',
+    gap: 0
 })
 
 export const StyledSidebarAnchor = styled('a', {
@@ -166,7 +260,7 @@ export const StyledHeader = styled('div', {
     transition: 'all',
     WebkitTransition: 'all',
     WebkitTransitionDuration: 'inherit',
-    transitionDuration: 'inherit',
+    transitionDuration: 'inherit',  
 
     variants: {
         isSticky: {
@@ -177,29 +271,15 @@ export const StyledHeader = styled('div', {
                 position: 'absolute'
             }
         },
-        allowOverflow: {
-            true: {
-                overflow: 'visibile',
-                contain: 'size layout style'
-            },
-            false: {
-                overflow: 'hidden',
-                contain: 'size layout style paint'
-            }
-        }
     },
     defaultVariants: {
-        isSticky: true,
-        allowOverflow: true
+        isSticky: true
     }
 })
 
 export const SectionHeading = styled('span', {
-    color: '$accentTextContrast',
+    color: 'transparent',
     lineHeight: '$1',
-    mt: '$2',
-    ml: '$2',
-    mb: 0,
     p: 0,
    
     textAlign: 'start',
@@ -208,7 +288,10 @@ export const SectionHeading = styled('span', {
     fontWeight: 300,
     fontStyle: 'light',
     letterSpacing: '',
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+
+    mt: '$2',
+    mb: '$4'
 })
 
 
@@ -227,6 +310,6 @@ export const LeftSlot = styled('div', {
     m: 0,
 })
 
-export const SectionItems = styled('div', {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-    overflow: 'hidden'
+export const StyledSectionItems = styled('div', {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    my: '$6',
 })

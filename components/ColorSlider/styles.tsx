@@ -9,37 +9,39 @@ export const Container = styled('div', {
     width: 300,
     px: '$1',
     py: '$3',
-    bc: '$panelBase',
-    border: '2px solid',
-    borderColor: '$accentBorder',
+    bc: 'transparent',
+    border: '1px solid transparent',
     br: 0,
     borderTop: 'none',
     borderBottom: 'none',
     '&:first-child': {
-        borderTop: '2px solid $accentBorder',
         br: 0,
-        borderTopLeftRadius: '$2',
-        borderTopRightRadius: '$2'
+        btlr: '$2',
+        btrr: '$2'
     },
     '&:last-child': {
-        borderBottom: '2px solid $accentBorder',
         br: 0,
-        borderBottomLeftRadius: '$2',
-        borderBottomRightRadius: '$2'
+        bblr: '$2',
+        bbrr: '$2'
     }
 }); 
 
 
 export const Label = styled('label', {
-    fontSize: '$2',
-    color: '$accentTextContrast',
+    textAlign: 'start',
     lineHeight: 1,
-    mx: 0,
-    my: '$1'
+    color: '$accentTextContrast',
+    fontFamily: '$plexsans',
+    fontSize: '$2',
+    fontVariant: 'tabular'
 });
 
 export const Output = styled('output', {
+    lineHeight: 1,
     flex: '1 0 auto', 
     textAlign: 'end',
-    color: '$accentTextContrast'
-}); 
+    color: '$accentTextContrast',
+    fontFamily: '$plexsans',
+    fontSize: '$2',
+    fontVariant: 'tabular'
+})

@@ -1,9 +1,9 @@
 import { cloneElement } from 'react' 
 
-import showcases from './data'
-import { IShowcase } from './types'
 import { useIsSSR } from '@react-aria/ssr'
 
+import { showcases } from './data'
+import { IShowcase } from './types'
 import {
     StyledComponentWrapper,
     StyledGalleryContainer,
@@ -21,7 +21,9 @@ const ComponentGallery = () => {
                 <StyledComponentWrapper>
                     <StyledComponentDisplay align={align}>
                         {   name === 'Dialog' 
-                        ?   cloneElement(element, { defaultOpen: false })
+                        ?   cloneElement(element, { 
+                                defaultOpen: false 
+                            })
                         :   element}
                     </StyledComponentDisplay>
                 </StyledComponentWrapper>

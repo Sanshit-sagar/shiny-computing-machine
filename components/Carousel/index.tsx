@@ -5,8 +5,8 @@ import { useCarousel, CarouselOptions } from './useCarousel'
 const Carousel = styled('div', {
     position: 'relative',
     overflow: 'hidden',
-    width: '150px',
-    height: '150px',
+    width: '300px',
+    height: '300px',
 });
 
 const CarouselIndicators = styled('ol', {

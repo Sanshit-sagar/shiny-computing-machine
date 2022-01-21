@@ -4,12 +4,15 @@ export const StyledWrapper = styled('div', {
     display: 'inline-flex',
     fd: 'column',
     ai: 'stretch',
-    position: 'relative'
+    position: 'relative',
+    mt: '$4'
 })
 
 export const StyledValue = styled('span', {
     display: 'inline-flex',
-    ai: 'center'
+   
+    ai: 'center',
+    gap: '$3',
 })
 
 export const StyledSelectorIcon = styled('span', {
@@ -28,12 +31,12 @@ export const StyledSelectorIcon = styled('span', {
 
 export const StyledButton = styled('button', {
     appearance: 'none',
-    p: '6px 2px 6px 8px',
+    p: '$2 $1 $2 $3',
     border: '1px solid $accentBorder',
     outline: 'none',
-    br: '$1',
+    br: '$2',
       
-    height: '32px',
+
     width: '100%',
     d: 'inline-flex',
     ai: 'center',
@@ -47,14 +50,21 @@ export const StyledButton = styled('button', {
 
     $$shadowColor: '$colors$accentFocusRing',
 
+    willChange: 'background, opacity',
+    transition: 'all 0.5s ease-in-out',
+
+    '&:hover': {
+        bc: '$accentBgHover',
+        borderColor: '$accentBorderHover',
+    },
+
     variants: {
         isOpen: {
             true: {
-                bc: '$accentBgActive'
+                bc: '$accentBgHover',
+                borderColor: '$accentFocusRing',
             },
-            false: {
-                bc: '$accentBg'
-            }
+            false: null
         },
         isFocusVisible: {
             true: {
@@ -83,7 +93,7 @@ export const StyledPopoverWrapper = styled('div', {
     width: '100%',
     border: '1px solid $accentBorder',
     br: '$1',
-    mt: '$2',
+    mt: '$1',
     bc: '$accentBase',
 })
 
@@ -91,4 +101,10 @@ export const StyledAvatar = styled('img', {
     size: '30px',
     br: '50%',
     mr: '8px'
+})
+
+export const StyledIcon = styled('span', {
+    mr: '$4',
+    border: 'none',
+    color: '$accentTextContrast'
 })

@@ -73,6 +73,8 @@ export type ButtonBaseProps = VariantProps<typeof StyledBase> & BaseButtonProps
 
 ////////////
 
+export type RadiusButtonProp = Pick<VariantProps<typeof StyledButton>, 'radius'>
+
 ///////////////
 
 export type UnionToIntersection<Union> = (

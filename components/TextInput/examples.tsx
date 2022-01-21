@@ -3,8 +3,9 @@ import { InputIcon } from '@radix-ui/react-icons'
 
 import StateFactory from '@/utils/StateFactory'
 import { ExampleBase } from '@/components/ExampleBase'
+import Fieldset from '@/components/Fieldset'
 
-import { TextInput } from './index'
+import TextInput from './index'
 import { TextInputProps } from './interfaces'
 
 const init = (): TextInputProps => {
@@ -33,7 +34,16 @@ const init = (): TextInputProps => {
 export const TextInputInstance = () => {
     const{ state } = StateFactory<TextInputProps>(init)
 
-    return <TextInput {...state} />
+    return (
+        <Fieldset.Root validationState="valid">
+            <Fieldset.Label> Element Name </Fieldset.Label>
+            <Fieldset.Icon> <InputIcon /> </Fieldset.Icon> 
+            <TextInput {...state} />
+            <Fieldset.Description> Look through a peiodic table to find examples </Fieldset.Description> 
+            <Fieldset.ErrorMessage> That's not a valid element </Fieldset.ErrorMessage> 
+            <Fieldset.SuccessMessage> Yes! that's definitely valid  </Fieldset.SuccessMessage>
+        </Fieldset.Root>
+    )
 }
 
 const ExampleTextInput = () => {

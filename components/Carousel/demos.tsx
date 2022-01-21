@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { styled } from 'stitches.config'
+import { styled, VariantProps } from 'stitches.config'
 import { CarouselContainer, CarouselChild } from './index'
 
 interface SingleCarouselProps {
@@ -16,15 +16,15 @@ interface DemoCarouselProps extends MultipleCarouselProps {}
 export type CarouselState = DemoCarouselProps
 
 const Slide = styled('div', {
-    height: '150px',
-    width: '150px',
-    border: '4px solid $accentBorder',
-    br: '$2',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 0,
+    height: '300px',
+    width: '300px',
+    border: '3px solid $accentBorder',
+    br: '$4',
+    d: 'flex',
+    fd: 'column',
+    jc: 'center',
+    ai: 'center',
+    p: 0,
 
     variants: {
         'gradient': {
@@ -61,7 +61,7 @@ const Slide = styled('div', {
     }
 });
 
-type SlideGradient =  StitchesVariants<typeof Slide>[keyof Pick<StitchesVariants<typeof Slide>, 'gradient'>]
+type SlideGradient =  VariantProps<typeof Slide>[keyof Pick<VariantProps<typeof Slide>, 'gradient'>]
 
 const variantSet: SlideGradient[] = [
     'stripe', 'flare', 'default', 'sublime-light', 'blurry-beach', 'bighead',

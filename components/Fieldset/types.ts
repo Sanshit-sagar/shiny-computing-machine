@@ -1,11 +1,25 @@
-import { ElementType, HTMLAttributes, ReactNode, LabelHTMLAttributes, ReactElement, JSXElementConstructor } from 'react' 
 import { CSS, VariantProps } from 'stitches.config' 
-import { DOMProps, ValidationState } from '@/interfaces/Shared'
+
+import { 
+    ElementType, 
+    ReactNode, 
+    ReactElement, 
+    JSXElementConstructor,
+    HTMLAttributes, 
+    LabelHTMLAttributes, 
+} from 'react' 
+
 import { AriaLabelingProps } from '@/interfaces/Aria'
-import { FieldEnum } from './constants'
+import { DOMProps, ValidationState } from '@/interfaces/Shared'
+
 import {
-    StyledFieldsetErrorMessage 
+    StyledFieldsetLabel,
+    StyledFieldsetIcon,
+    StyledFieldsetDescription,
+    StyledFieldsetErrorMessage,
+    StyledFieldsetSuccessMessage
 } from './styles'
+import { FieldEnum } from './constants'
 
 export type FieldType = keyof typeof FieldEnum
 
@@ -22,7 +36,8 @@ export interface FieldsetProps extends DOMProps, AriaLabelingProps, FieldsetComp
     label?: ReactNode;
     description?: ReactNode;
     errorMessage?: ReactNode; 
-    validationState: ValidationState;
+    successMessage?: ReactNode; 
+    validationState?: ValidationState | 'none';
     icon?: ReactNode | HTMLOrSVGElement;
 }
 
@@ -31,6 +46,7 @@ export interface FieldAria {
     labelProps: LabelHTMLAttributes<HTMLLabelElement>;
     descriptionProps: HTMLAttributes<HTMLElement>;
     errorMessageProps: HTMLAttributes<HTMLElement>;
+    successMessageProps?: HTMLAttributes<HTMLElement>;
     iconProps?: HTMLAttributes<HTMLSpanElement>;
 } 
 
@@ -41,10 +57,11 @@ export interface IFieldsetContext extends FieldsetProps, FieldAria {
 export type FieldsetState = Required<FieldsetProps>
 export default FieldsetState
 
-export type FieldsetDescriptionProps = FieldsetComponentProps
+export type FieldsetLabelProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetLabel>
+export type FieldsetIconProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetIcon>
+export type FieldsetDescriptionProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetDescription>
 export type FieldsetErrorMessageProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetErrorMessage>
-export type FieldsetLabelProps = FieldsetComponentProps
-export type FieldsetIconProps = FieldsetComponentProps
+export type FieldsetSuccessMessageProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetSuccessMessage>
 
 
 export type FieldsetRootNode = ReactElement<{}, string | JSXElementConstructor<any>>
@@ -52,3 +69,4 @@ export type FieldsetLabelNode = ReactElement<{}, string | JSXElementConstructor<
 export type FieldsetIconNode = ReactElement<{}, string | JSXElementConstructor<any>>
 export type FieldsetDescriptionNode = ReactElement<{}, string | JSXElementConstructor<any>>
 export type FieldsetErrorMessageNode = ReactElement<{}, string | JSXElementConstructor<any>>
+export type FieldsetSuccessMessageNode = ReactElement<{}, string | JSXElementConstructor<any>>

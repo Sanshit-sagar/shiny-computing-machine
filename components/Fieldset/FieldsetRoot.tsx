@@ -10,10 +10,12 @@ import {
     IFieldsetContext 
 } from './types'
 import {
+    isInputElement,
     isFieldsetLabelElement,
     isFieldsetIconElement,
     isFieldsetDescriptionElement,
-    isFieldsetErrorMessageElement
+    isFieldsetErrorMessageElement,
+    isFieldsetSuccessMessageElement
 } from './utils'
 
 import { ValidationState } from '@/interfaces/Shared'
@@ -22,30 +24,36 @@ import { Flex } from '@/components/Flex'
 
 
 const FieldsetRoot = ({ 
-    element: Component, 
-    children, 
-    css, 
+    element: Component = 'div', 
+    labelElementType = ('label' as ElementType), 
     label,
     description,
-    errorMessage,
+    errorMessage = 'Error!',
+    successMessage = 'Success!',
+    validationState = ('none' as ValidationState),
+    children, 
+    css, 
     ...props 
 }: FieldsetProps) => {
     const ariaFieldProps: FieldAria = useField(props)
 
     const contextValue: IFieldsetContext = {
-        labelElementType: props?.labelElementType ?? ('label' as ElementType), 
+        labelElementType,
         label,
         description,
         errorMessage,
-        validationState: props?.validationState ?? ('valid' as ValidationState),
+        successMessage,
+        validationState,
         ...ariaFieldProps
     } 
 
     const flattenedChildren = flattenChildren(children)
     const filteredIcon = flattenedChildren.filter((child, index) => isFieldsetIconElement(child, index))
     const filteredLabel =  flattenedChildren.filter((child, index) => isFieldsetLabelElement(child, index))
-    // const filteredDescription = flattenedChildren.filter((child, index) => isFieldsetDescriptionElement(child, index)) 
-    // const fiteredErrorMessage = flattenedChildren.filter((child, index) => isFieldsetErrorMessageElement(child, index))
+    const filteredDescription = flattenedChildren.filter((child, index) => isFieldsetDescriptionElement(child, index)) 
+    const fiteredErrorMessage = flattenedChildren.filter((child, index) => isFieldsetErrorMessageElement(child, index))
+    const filteredSuccessMessage = flattenedChildren.filter((child, index) => isFieldsetSuccessMessageElement(child, index))
+    const filteredField = flattenedChildren.filter((child, index) => isInputElement(child, index))
 
     return (
         <FieldsetContext.Provider value={contextValue}>
@@ -54,25 +62,16 @@ const FieldsetRoot = ({
                     {filteredIcon}
                     {filteredLabel}
                 </Flex>
+                
+                {filteredField}
 
-                {flattenedChildren.map((child: ReactChild, index: number) => {
-                    if(index <= 1) return null
-                    
-                    if(isFieldsetDescriptionElement(child,index)) {
-                        return cloneElement(child, {
-                          
-                        })
-                    }
-                    if(isFieldsetErrorMessageElement(child, index)) {
-                        return cloneElement(child, {
-                            
-                        })
-                    }
-
-                    return cloneElement(child, {
-                        
-                    })
-                })}
+                <Flex css={{ fd: 'column', jc: 'flex-start', ai: 'stretch', gap: '$3' }}>
+                    {filteredDescription}
+                    <Flex css={{ fd: 'row', jc: 'flex-end', ai: 'center', gap: '$2' }}>
+                        {fiteredErrorMessage}
+                        {filteredSuccessMessage}
+                    </Flex>
+                </Flex>
             </StyledFieldsetRoot>
         </FieldsetContext.Provider>
     )

@@ -83,12 +83,12 @@ type ShowcaseProps = {
 
 export const StyledContainer = styled(Flex, {
     height: '97.5vh',  
-    width: '1185px',
-    mx: -50,
-    my: -10
+    width: '100%',
+    mx: '1.25vh',
+    my: '1.25vh'
 })
 
-const GridParent = styled(Card, {
+const GridParent = styled('div', {
     height: '100%',
     width: '100%',
     bc: '$panelBgSubtle',
@@ -101,15 +101,7 @@ const GridParent = styled(Card, {
     border: '2px solid $accentBorder',
     br: '$2',
     bblr: '$6',
-    btrr: '$6',
-    // br: '$2',
-    // $$shadowColor: 'black',
-    // boxShadow: `
-        // inset 1px 1px 2px 1px $$shadowColor,
-        // inset 2px 2px 4px 2px $$shadowColor
-    // `,
-    // willChange: 'transform',
-    // transform: 'transition'
+    btrr: '$6'
 })
 
 const GridCeiling = styled('div', {

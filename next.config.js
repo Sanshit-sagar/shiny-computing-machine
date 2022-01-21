@@ -5,7 +5,7 @@ const withNextra = require('nextra')({
     unstable_staticImage: true
 });
 
-module.exports = withNextra({
+module.exports = {
     i18n: {
         locales: [
             "en-US", 
@@ -16,7 +16,7 @@ module.exports = withNextra({
     images: {
         domains: ['avatar.uimaterial.com'],
     },
-})  
+}
     
 //     {
 //     i18n: {

@@ -6,8 +6,11 @@ import ButtonBase from './ButtonBase'
 import ButtonPrefix from './ButtonPrefix'
 import ButtonSuffix from './ButtonSuffix'
 
+import { 
+    ButtonImplProps, 
+    RadiusButtonProp 
+} from './types'
 import { ButtonRoot } from './ButtonRoot'
-import { ButtonImplProps } from './types'
 
 const PButton = {
     Root: ButtonRoot,
@@ -19,7 +22,7 @@ const PButton = {
 export const Button =<T extends object>({ 
     children, 
     variant, 
-    radius = 'y=x-n', 
+    radius = ('2' as RadiusButtonProp), 
     ...props 
 }: ButtonImplProps<T>) => (
     <PButton.Root variant={variant} radius={radius} {...props}>

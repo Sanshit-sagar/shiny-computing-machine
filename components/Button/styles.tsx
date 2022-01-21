@@ -342,11 +342,11 @@ export const StyledPrefix = styled('span', {
 export const StyledSuffix = styled('button', {
     ...sharedStyles,
 
-    minWidth: '25px',
-    maxWidth: '50px',
+    width: '20px',
+
     minHeight: '34px',
     maxHeight: '50px',
-    p: '$3',
+    p: '$1',
     m: 0,
     br: 0,
  
