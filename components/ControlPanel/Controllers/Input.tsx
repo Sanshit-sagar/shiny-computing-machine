@@ -1,4 +1,4 @@
-import { Input as InputController } from '@/components/TextInput'
+import { Input as InputController } from '@/components/TextInput/TextInputRoot'
 import { InputProps } from '@/components/TextInput/interfaces'
 import { useId } from '@react-aria/utils'
 

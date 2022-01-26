@@ -5,7 +5,9 @@ export const StyledWrapper = styled('div', {
     fd: 'column',
     ai: 'stretch',
     position: 'relative',
-    mt: '$4'
+    mt: '$4',
+
+    
 })
 
 export const StyledValue = styled('span', {
@@ -89,12 +91,12 @@ export const StyledButton = styled('button', {
 export const StyledPopoverWrapper = styled('div', {
     position: 'absolute',
     top: '100%',
-    zIndex: 1,
     width: '100%',
     border: '1px solid $accentBorder',
-    br: '$1',
+    br: '$4',
     mt: '$1',
-    bc: '$accentBase',
+    bc: '$accentLine',
+    zIndex: 100,
 })
 
 export const StyledAvatar = styled('img', {

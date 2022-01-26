@@ -1,6 +1,15 @@
 import { useContext } from 'react'
+
+import TextInputPrefix from './InputPrefix'
+import TextInputSuffix from './TextInputSuffix'
 import TextInputContext from './TextInputContext'
 import { ITextInputContext } from './interfaces'
+import { isElementOfType } from '@/interfaces/Guards'
+
+import {
+    InputSuffixNode,
+    InputPrefixNode 
+} from './interfaces'
 
 export const useTextInputContext = () => {
     const textInputContext = useContext<ITextInputContext>(TextInputContext)
@@ -50,3 +59,15 @@ const luhnCheck = (num: number) => {
     sum += lastDigit
     return sum % 10 === 0
 }
+
+
+
+export const isInputPrefix = (child, index: number): child is InputPrefixNode => (
+    child && index === 0
+)
+
+export const isInputSuffix = (child, index: number): child is InputSuffixNode => (
+    child && index === 1
+)
+
+export const isInputBase = (_child, index: number) => true

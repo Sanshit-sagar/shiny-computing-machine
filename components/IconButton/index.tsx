@@ -30,10 +30,12 @@ function execCopyToClipboard(content: string) {
     document.body.removeChild(el)
 }
 
+const noop = (checked: boolean) => {}
+
 export const IconButton = ({ 
     copied = false, 
     content = "",
-    onChange,
+    onChange = noop,
     timeoutValue = 3000, 
     strokeWidth = "1"  
 }: IconButtonProps) => {

@@ -1,9 +1,5 @@
-import React from 'react'
-import { styled } from '../../stitches.config'
-
-import type * as Stitches from '@stitches/react'
-
-import { UpIcon } from './Icons'
+import React, { ReactNode } from 'react'
+import { styled, VariantProps, CSS } from '../../stitches.config'
 
 export const StyledKbd = styled('kbd', {
     boxSizing: 'border-box',
@@ -14,7 +10,6 @@ export const StyledKbd = styled('kbd', {
     gap: '$2',
     border: '1px solid $accentBorder',
     br: '$1',
-    p: '$1',
 
     color: '$accentText',
     us: 'none',
@@ -41,7 +36,7 @@ export const StyledKbd = styled('kbd', {
     variants: {
         size: {
             '1': {
-                borderRadius: '$1',
+                br: '$2',
                 px: '0.3em',
                 height: '$3',
                 minWidth: '1.6em',
@@ -49,7 +44,7 @@ export const StyledKbd = styled('kbd', {
                 lineHeight: '$spaces$3'
             },
             '2': {
-                borderRadius: '$2',
+                br: '$2',
                 px: '0.5em',
                 height: '$5',
                 minWidth: '2em',
@@ -58,6 +53,11 @@ export const StyledKbd = styled('kbd', {
             }
         },
         width: {
+            default: {
+                width: 'fit-content',
+                px: '$3',
+                jc: 'center'
+            },
             shift: {
                 width: '4em',
                 justifyContent: 'flex-start',
@@ -67,40 +67,25 @@ export const StyledKbd = styled('kbd', {
                 justifyContent: 'flex-end',
             },
             space: {
-                width: '8em',
+                width: '6.5em',
             }
         }
     },
-    compoundVariants: [{
-            size: '1',
-            width: 'shift',
-            css: {
-                width: '3em',
-            },
-        },
-        {
-            size: '1',
-            width: 'command',
-            css: {
-                width: '2.5em',
-            },
-        },
-        {
-            size: '1',
-            width: 'space',
-            css: {
-                width: '5em',
-            },
-        }
+    compoundVariants: [
+        { size: '2', width: 'default', css: { width: 'fit-content', px: '$3', jc: 'center' } },
+        { size: '2', width: 'shift', css: {  width: '6.25em' } },
+        { size: '2', width: 'command', css: {  width: '4.5em' } },
+        { size: '2', width: 'space', css: {  width: '9.75em' } },
     ],
     defaultVariants: {
+        width: 'default',
         size: '2',
     }
 });
 
-export type KbdProps = Stitches.VariantProps<typeof StyledKbd> & { 
-    children: React.ReactNode; 
-    css?: Stitches.CSS; 
+export type KbdProps = VariantProps<typeof StyledKbd> & { 
+    children: ReactNode; 
+    css?: CSS; 
 }
 
 export const Kbd = ({ children, ...otherProps }: KbdProps) => (

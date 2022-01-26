@@ -1,8 +1,9 @@
-import { ReactNode } from 'react'
+import { ReactNode, ReactElement, JSXElementConstructor } from 'react'
 
 export interface IShowcase {
-    element: ReactNode;
+    element: ReactElement<{}, string | JSXElementConstructor<any>>;
     name: string;
     description: string; 
     align?: 'start' | 'end' | 'center';
+    icon?: ReactNode;
 }

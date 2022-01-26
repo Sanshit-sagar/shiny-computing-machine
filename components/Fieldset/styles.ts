@@ -19,7 +19,7 @@ const sharedStyles: CSS = {
 }
 
 export const StyledFieldsetRoot = styled('fieldset', {
-    width: 250,
+    width: 300,
     p: '$4',
 
     d: 'flex',

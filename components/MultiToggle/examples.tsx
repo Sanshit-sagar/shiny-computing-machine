@@ -11,7 +11,48 @@ import {
     ValueIcon 
 } from '@radix-ui/react-icons'
 
-export const MultiToggleInstance = () => {
+import {
+    AppleIcon,
+    EarbudsIcon
+} from '@/components/Icons'
+
+
+export const DualToggle = () => {
+    const [selected, setSelected] = React.useState<string>('Apple Music')
+    
+    const handleChange = (updatedSelection: string) => setSelected(updatedSelection)
+
+    return (
+        <MultiToggle
+            values={[
+                { icon: <AppleIcon />, value: 'Apple Music' },
+                { icon: <EarbudsIcon />, value: 'Your Library' }
+            ]}
+            onChange={handleChange}
+            selection={selected}
+        /> 
+    )
+}
+
+export const TriToggle = () => {
+    const [selected, setSelected] = React.useState<string>('Toggle')
+    
+    const handleChange = (updatedSelection: string) => setSelected(updatedSelection)
+
+    return (
+        <MultiToggle
+            values={[
+                { value: 'Toggle' },
+                { value: 'Submit' },
+                { value: 'Cancel' }
+            ]}
+            onChange={handleChange}
+            selection={selected}
+        /> 
+    )
+}
+
+export const PluresToggle = () => {
     const [selected, setSelected] = React.useState<string>('left')
  
     const onChange = (updatedSelection: string) => setSelected(updatedSelection)
@@ -31,6 +72,8 @@ export const MultiToggleInstance = () => {
         />
     )
 }
+
+export const MultiToggleInstance = () => <DualToggle /> 
 
 const ExampleMultiToggle = () => {
 

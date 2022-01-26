@@ -1,10 +1,10 @@
-import { styled } from 'stitches.config'
+import { styled, CSS } from 'stitches.config'
 
 
 export const StyledInput = styled('input', {
     appearance: 'none',
     userSelect: 'contain',
-    WebkitTapHighlightColor: 'blue',
+    WebkitTapHighlightColor: 'transparent',
     
     width: '100%',
     outline: 'none',
@@ -20,12 +20,11 @@ export const StyledInput = styled('input', {
     fontWeight: 200,
     fontSpacing: '$2',
     lineHeight: '26px',
+
     textDecoration: 'none',
     opacity: 1,
 
     boxShadow: 'none',
-    // willChange: 'transition, opacity',
-    // transition: 'all 0.4s ease-in-out',
 
     bc: 'inherit',
     color: 'inherit',
@@ -41,7 +40,14 @@ export const StyledInput = styled('input', {
             text: { },
             password: { },
             email: { },
-            search: { },
+            search: { 
+                '&::-webkit-search-cancel-button': {
+                    appearance: 'none'
+                },
+                '&::-webkit-search-decoration': {
+                    appearance: 'none'
+                }
+            },
             numeric: {
                 fontVariantNumeric: 'tabular-nums'
             },
@@ -62,6 +68,12 @@ export const StyledInput = styled('input', {
     }
 })
 
+const sharedSuffixStyles: CSS = {
+    appearance: 'none',
+    border: 'none',
+    outline: 'none',
+    background: 'none'
+}
 
 export const StyledInputWrapper = styled('div', {
     display: 'flex',
@@ -72,7 +84,10 @@ export const StyledInputWrapper = styled('div', {
 
     bc: '$accentBgSubtle',
     color: '$accentText',
+    
     br: '$1',
+    btlr: '$2',
+    bblr: '$2',
     border: '1px solid $accentBorder',
 
     $$inputFocusShadow: '$colors$accentLine',
@@ -114,13 +129,14 @@ export const StyledInputWrapper = styled('div', {
 
     variants: {
         suffix: {
+            email: {
+                ...sharedSuffixStyles
+            },
             password: {
                 button: {
-                    background: 'none',
-                    border: 'none',
+                    ...sharedSuffixStyles, 
                     cursor: 'pointer',
                     br: '50%',
-                    outline: 'none',
                     padding: '0px',
                     mx: '$1'
                 },
@@ -128,11 +144,14 @@ export const StyledInputWrapper = styled('div', {
                     cursor: 'not-allowed'
                 },
             },
+            search: {
+                ...sharedSuffixStyles
+            },
             none: null
         }
     },
     defaultVariants: {
-        suffix: 'password'
+        suffix: 'none'
     }
 })
 
@@ -156,15 +175,13 @@ export const StyledPrefix = styled('span', {
     }
 })
 
-export const StyledSuffix = styled('span', {
+export const StyledSuffix = styled('button', {
     fontSize: '$2',
-    mr: '$2',
-    ml: '$1',
-    mb: '1px',
+    m: '$1',
     p: 0,
 
-    bc: 'inherit',
-    color: 'inherit',
+    bc: 'red',
+    color: '$accentText',
     opacity: 0.7,
 
     variants: {

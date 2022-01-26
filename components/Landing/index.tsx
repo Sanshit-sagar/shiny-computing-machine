@@ -5,10 +5,15 @@ import { useIsSSR } from '@react-aria/ssr'
 import { showcases } from './data'
 import { IShowcase } from './types'
 import {
-    StyledComponentWrapper,
-    StyledGalleryContainer,
-    StyledComponentDisplay
+    StyledName,
+    StyledHeader,
+    StyledSettings,
+    StyledWrapper,
+    StyledGallery,
+    StyledDisplay
 } from './styles'
+
+import { DualToggle } from '@/components/MultiToggle/examples'
 
 const ComponentGallery = () => {
     const isSSR = useIsSSR()
@@ -16,19 +21,23 @@ const ComponentGallery = () => {
     if(isSSR) return null
 
     return (
-        <StyledGalleryContainer>
-            {showcases.map(({ name, element, align = 'center' }: IShowcase) => (
-                <StyledComponentWrapper>
-                    <StyledComponentDisplay align={align}>
-                        {   name === 'Dialog' 
-                        ?   cloneElement(element, { 
-                                defaultOpen: false 
-                            })
-                        :   element}
-                    </StyledComponentDisplay>
-                </StyledComponentWrapper>
+        <StyledGallery>
+            {showcases.map(({ name, icon, element, align = 'center' }: IShowcase) => (
+                <StyledWrapper>
+                    
+                    <StyledHeader>
+                        <StyledName> {icon} {name} </StyledName> 
+                        <StyledSettings> 
+                            <DualToggle />
+                        </StyledSettings> 
+                    </StyledHeader>
+
+                    <StyledDisplay align={align}>
+                        {cloneElement(element)}
+                    </StyledDisplay>
+                </StyledWrapper>
             ))}
-        </StyledGalleryContainer>
+        </StyledGallery>
     )
 }
 

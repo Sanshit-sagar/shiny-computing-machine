@@ -26,14 +26,13 @@ export type LabelProps = {
     icon: ReactNode;
     hideLabel: boolean;
     labelProps: HTMLAttributes<HTMLLabelElement>; 
-}>; 
+}>
 
 export const Wrapper = styled('div', {
     display: 'inline-flex',
     flexDirection: 'column', 
     position: 'relative',
-});
-
+})
 
 export const Label = styled('label', {
     display: 'flex',
@@ -48,7 +47,7 @@ export const Label = styled('label', {
     mb: '$1',
     color: '$accentText',
     textTransform: 'uppercase'
-});
+})
 
 export const DecoratedLabel = ({ 
     hideLabel = false,
@@ -62,18 +61,19 @@ export const DecoratedLabel = ({
 }: LabelProps) => (
     <> 
         {!hideLabel ? 
-        <Label {...labelProps}> 
-            <> {icon || null} </>
-            
-            <Text css={{ color: '$accentText' }}> 
-                {text} 
-            </Text>
+            <Label {...labelProps}> 
+                <> {icon || null} </>
 
-            {isRequired && <DotFilledIcon />}
-            {isDisabled && <LockClosedIcon />}
-        </Label> : null}
+                <Text css={{ color: '$accentText' }}> 
+                    {text} 
+                </Text>
+
+                {isRequired && <DotFilledIcon />}
+                {isDisabled && <LockClosedIcon />}
+            </Label> 
+        : null}
     </>
-);
+)
 
 
 export const TextMessage = ({ 

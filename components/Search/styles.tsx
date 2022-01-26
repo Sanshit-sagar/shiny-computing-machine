@@ -20,8 +20,7 @@ export const StyledInputGroup = styled('div', {
     appearance: 'none',
     WebkitTapHighlightColor: 'transparent',
 
-    overflow: 'hidden',
-
+    width: 'inherit',
     position: 'relative',
     display: 'inline-flex',
     fd: 'row',
@@ -31,40 +30,40 @@ export const StyledInputGroup = styled('div', {
     p: 0,
     m: 0,
 
-    br: '$1',
+    br: '$2',
     bc: '$accentBase',
     border: '1px solid $accentBorder',
 
+    willChange: 'background, opacity',
+    transition: 'all 0.4s ease-in-out',
+
     '&:hover': {
+        bc: '$accentBgHover',
         borderColor: '$accentBorderHover'
     },
     '&:active': {
+        bc: '$accentBgActive',
         borderColor: '$accentFocusRing'
     }
 })
 
 export const StyledInput = styled('input', {
+    width: '100%',
     appearance: 'none',
     outline: 'none',
-    bc: '$accentBg',
-    color: '$accentText',
-    p: '$2 $3',
+    bc: 'transparent',
+    color: '$accentTextContrast',
+    p: '$3 $2',
     m: 0,
 
     fontFamily: '$jetbrains',
     fontSize: '$2',
-    
-
-    '&:hover': {
-        bc: '$accentBgHover',
-    },
-    '&:active': {
-        bc: '$accentBgActive',
-    }
 })
 
-export const StyledButton = styled('button', {
+export const StyledSuffix = styled('button', {
     cursor: 'default',
+
+    bc: 'transparent',
     color: '$accentText',
     p: '$2',
     m: 0,
@@ -74,9 +73,26 @@ export const StyledButton = styled('button', {
     },
     '&:active': {
         outline: '1px solid $accentFocusRing'
+    },
+
+    variants: {
+        isVisible: {
+            false: {
+                color: 'transparent'
+            },
+            true: {
+                color: '$accentTextContrast'
+            }
+        }
+    },
+    defaultVariants: {
+        isVisible: false
     }
 })
 
-export const StyledPrefix = styled('div', {
-    px: '$3',
+export const StyledPrefix = styled('span', {
+    pl: '$3',
+    pr: '$1',
+    bc: 'transparent',
+    color: '$accentTextContrast'
 })

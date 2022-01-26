@@ -36,9 +36,14 @@ export const primaryVariant: CSS = {
 }
 
 export const secondaryVariant: CSS = {
-    bc: '$panelBg',
-    color: '$panelText',
-    borderColor: '$panelBorder',
+    bc: '$accentSolid',
+    color: '$dark1',
+    borderColor: '$dark1',
+
+    '& svg': {
+        fill: '$dark1'
+    },
+
     '&:disabled': {
         bc: '$disabledBg',
         color: '$disabledText',
@@ -50,9 +55,12 @@ export const secondaryVariant: CSS = {
             boxShadow: 'none'
         },
         '&:not(:disabled)': {
-            bc: '$panelBgHover',
-            color: '$panelTextContrast',
-            borderColor: '$panelBorderHover'
+            bc: '$accentSolidHover',
+            color: '$light1',
+            borderColor: '$light1',
+            '& svg': {
+                fill: '$light1'
+            },
         }
     },
     '&:active': {
@@ -60,9 +68,13 @@ export const secondaryVariant: CSS = {
             boxShadow: 'none'
         },
         '&:not(:disabled)': {
-            bc: '$panelBgActive',
-            color: '$panelTextContrast',
-            borderColor: '$panelFocusRing',
+            
+            color: '$light1',
+            borderColor: '$light1',
+
+            '& svg': {
+                fill: '$light1'
+            },
         }
     },
     '&:focus-visible': {
@@ -70,9 +82,10 @@ export const secondaryVariant: CSS = {
             boxShadow: 'none',
         },
         '&:not(:disabled)': {
-            outline: '1px solid $panelFocusRing'
+            outline: '2px solid $panelFocusRing'
         }
-    }
+    },
+
 }
 
 export const dangerVariant: CSS = {
@@ -217,6 +230,8 @@ export const outlinedVariant: CSS = {
     bc: 'transparent',
     color: '$accentText',
     borderColor: '$accentBorder',
+    borderWidth: '2px',
+
     '&:disabled': {
         bc: 'transparent',
         color: '$disabledText',
@@ -250,13 +265,6 @@ export const outlinedVariant: CSS = {
         '&:not(:disabled)': {
             outline: '0.5px solid $accentFocusRing'
         }
-    }
-}
-
-
-const flexVariants: CSS = {
-    justify: {
-        
     }
 }
 

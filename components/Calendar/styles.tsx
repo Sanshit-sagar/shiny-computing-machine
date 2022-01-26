@@ -1,5 +1,6 @@
 import React, { ComponentProps } from 'react'
 import { styled, VariantProps, CSS } from '../../stitches.config'
+import { primaryVariant, outlinedVariant } from '@/components/Button/variants'
 
 export const Controls = styled('div', {
     height: 'fit-content',
@@ -11,8 +12,8 @@ export const Controls = styled('div', {
     ai: 'center',
     gap: 0,
 
-    p: '$2',
-    m: 0,
+    p: 0,
+    m: '$2',
 
     border: 0,
     outline: 0
@@ -22,10 +23,6 @@ export const Title = styled('div', {
     display: 'flex',
     width: '100%',
     border: 'none',
-
-    variants: {
-
-    }
 });
 
 export const CellWrapper = styled('td', {
@@ -36,29 +33,45 @@ export const CellWrapper = styled('td', {
     outline: 'none'
 });
 
-const StyledContainer = styled('div', {
-    height: 400,
+const CalendarWrapper = styled('div', {
+    height: '300px',
     d: 'flex', 
     fd: 'column', 
     jc: 'flex-start', 
     ai: 'stretch', 
     m: 0, 
-    p: 0 
-})
-
-const CalendarWrapper = styled('div', {
-    border: '0',
+    p: 0 ,
+    br: '$3',
+    p: '$2',
+    m: 0,
+    border: '1px solid $accentBorder',
     outline: 'none',
 
-    br: 0,
-    btrr: '$5',
-    p: 0,
-    m: 0
-}); 
+    variants: {
+        theme: {
+            primary: {
+                ...primaryVariant,
+                bc: '$accentBase',
+                '&:hover': {
+                    bc: '$accentBase'
+                }
+            },
+            outlined: outlinedVariant,
+        }
+    },
+    defaultVariants: {
+        theme: 'primary'
+    }
+})
+
+type CalendarChildProps =  { children: React.ReactNode; }
+type CalendarCssProps = { css?: CSS; }
+type CalendarOwnProps = ComponentProps<typeof CalendarWrapper>
+type CalendarWrapperProps = CalendarOwnProps & CalendarChildProps & CalendarCssProps
 
 const ForwardedCalendarWrapper = React.forwardRef<
     HTMLDivElement,
-    React.ComponentProps<typeof CalendarWrapper> & { children: React.ReactNode; }
+    CalendarContainerProps
 >(({ children, ...otherProps }, forwardedRef) => (
     <CalendarWrapper ref={forwardedRef} {...otherProps}>
         {children}
@@ -66,14 +79,12 @@ const ForwardedCalendarWrapper = React.forwardRef<
 ));
 
 export const CalendarContainer = (props) => {
-    let { children, ref, ...otherProps } = props
+    let { children, ref, ...rest } = props
 
     return (
-        <StyledContainer>
-            <CalendarWrapper forwardedRef={ref} {...otherProps}>
-                {children}
-            </CalendarWrapper>
-        </StyledContainer>
+        <CalendarWrapper forwardedRef={ref} {...rest}>
+            {children}
+        </CalendarWrapper>
     ); 
 }
 
@@ -85,9 +96,12 @@ export const StyledCell = styled('span', {
     fd: 'column',
     jc: 'center',
     ai: 'center',
-    mx: 0,
-    my: '$1',
-    p: '1px',
+    m: '0em',
+
+    width: '36px',
+    height: '36px',
+    aspectRatio: '1',
+    my: '1px',
 
     color: '$light1',
     border: '1px solid transparent',
@@ -96,37 +110,30 @@ export const StyledCell = styled('span', {
     fontVariantNumeric: 'tabular-nums',
 
     variants: {
-        padding: {
-            '1': { p: '8px' },
-            '2': { p: '10px' },
-            '3': { p: '12px' },
-            '4': { p: '16px' },
-            '5': { p: '22px' },
-            '6': { p: '28px' },
-            '7': { p: '36px' },
-            '8': { p: '40px' },
-        },
         isHovered: {
             true: {
-                borderColor: '$accentTextContrast',
-                br: '$2',
-                bc: '$accentLine',
-                cursor: 'grabbing'
+                br: '50%',
+                width: '36px',
+                height: '36px',
+                aspectRatio: '1',
+                bc: '$light1',
+                color: '$dark1',
+                cursor: 'pointer'
             },
             false: null,
         },
         isFocused: {
             true: {
-                bc: '$accentSolidHover', 
-                borderColor: 'none',
+                bc: '$accentBgActive', 
                 color: '$accentTextContrast',
+                borderColor: '1px solid $accentFocusRing',
                 cursor: 'grabbing'
             },
             false: null,
         },
         isPressed: {
             true: {
-                bc: '$accentBgActive', 
+                bc: '$accentSolid', 
                 color: '$accentTextContrast',
                 cursor: 'grabbing'
             },
@@ -137,57 +144,63 @@ export const StyledCell = styled('span', {
                 visibility: 'visible' 
             },
             false: { 
-                visibility: 'hidden',
-                bc: 'red'
+                visibility: 'hidden'
             } 
         },
         isToday: {
             true: {
-                border: '1px solid $turq',
-                br: 0,
-                btrr: '$3',
-                bblr: '$2',
-                color: '$accentText'
+                br: '50%',
+                width: '36px',
+                height: '36px',
+                aspectRation: '1',
+                border: '1px solid $accentTextContrast',
+                color: '$accentTextContrast',
+                bc: '$accentSolidActive'
             }
         },
         isSelected: {
             true: {
                 bc: '$accentLine',
                 color: '$accentTextContrast',
+                border: '0',
             },
             false: null
         },
         isSelectionStart: {
             true: {
-                bc: '$accentSolidActive',
+                bc: '$accentLine',
                 color: '$accentTextContrast',
-                btlr: '$4',
-                bblr: '$4'
+                border: '0',
+                btlr: '$2',
+                bblr: '$2',
+                borderLeft: '4px solid $accentBorder',
             },
             false: null
         },
         isSelectionEnd: {
             true: {
-                bc: '$accentSolidActive',
+                bc: '$accentLine',
                 color: '$accentTextContrast',
-                btrr: '$4',
-                bbrr: '$4'
+                border: '0',
+                btrr: '$2',
+                bbrr: '$2',
+                borderRight: '4px solid $accentBorder',
             },
             false: null
         },
         isRangeStart: {
             true: {
-                bc: '$accentBgActive',
-                color: '$accentTextContrast',
-                borderColor: '$accentBorder'
+                color: '$disabledText',
+                btlr: '$2',
+                bblr: '$2',
             },
             false: null
         },
         isRangeEnd: {
             true: {
-                bc: '$accentBgActive',
-                color: '$accentTextContrast',
-                borderColor: '$accentBorder'
+                color: '$disabledText',
+                btrr: '$2',
+                bbrr: '$2'
             },
             false: null
         },
@@ -196,9 +209,6 @@ export const StyledCell = styled('span', {
                 bc: '$disabledBg', 
                 color: '$disabledText',
                 cursor: 'not-allowed',
-                br: '0',
-                mx: '0',
-                my: '0',
             },
             false: null
         },
@@ -209,6 +219,51 @@ export const StyledCell = styled('span', {
             true: { borderRight: 'none' }
         }
     },
+    compoundVariants: [
+        {
+            isHovered: true,
+            isToday: true,
+            css: {
+                color: '$accentSolid',
+            }
+        },
+        {
+            isHovered: true,
+            isRangeStart: true,
+            css: {
+
+            }
+        },
+        {
+            isSelected: true,
+            isSelectionStart: false,
+            isSelectionEnd: false,
+            css: {
+                br: 0
+            }
+        },
+        {
+            isHovered: true,
+            isSelected: true,
+            css: {
+                br: '50%',
+                width: '36px',
+                height: '36px',
+                aspectRation: '1',
+                bc: '$light1'
+            }
+        },
+        {
+            isHovered: true,
+            isSelectionStart: true,
+            css: {
+                width: '36px',
+                height: '36px',
+                aspectRation: '1',
+                bc: '$light1'
+            }
+        }
+    ],
     defaultVariants: {
         padding: '8',
         isHovered: false,

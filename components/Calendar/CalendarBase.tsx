@@ -41,12 +41,6 @@ const MonthHeading = ({ state, month, index  }: MonthHeaderProps) => {
     )
 }
 
-const NavButton = ({ navProps, dir }) => (
-    <button {...navProps} onClick={() => navProps.onPress()}>
-        <NavIcon dir={dir} />  
-    </button>    
-)
-
 export function CalendarBase<T extends CalendarStateType>(props: CalendarBaseProps<T> & CellStyleProps) {
     let  { state,  useCalendar, visibleMonths = 1, padding, ...otherProps } = props; 
 
@@ -76,15 +70,14 @@ export function CalendarBase<T extends CalendarStateType>(props: CalendarBasePro
                             month={state.visibleRange.start} 
                         />
                         
-                        <PButton.Root variant="primary" radius="y=x-n">
-                            <PButton.Prefix {...prevButtonProps}>
+                        <span style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', gap: '8px', marginRight: '5px', marginBottom: '5px', float: 'right' }}>
+                            <button {...prevButtonProps} onClick={() => prevButtonProps.onPress()}>
                                 <TriangleLeftIcon /> 
-                            </PButton.Prefix>
-                            <PButton.Suffix {...nextButtonProps}>
+                            </button>
+                            <button {...nextButtonProps} onClick={() => nextButtonProps.onPress()}>
                                 <TriangleRightIcon />
-                            </PButton.Suffix>
-                        </PButton.Root>
-                    
+                            </button>
+                        </span>
                     </Controls>
                 }
             </Fragment>

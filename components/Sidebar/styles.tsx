@@ -8,28 +8,27 @@ export const StyledSidebar = styled('div', {
     listStyleType: 'none',
     scroll: 'smooth',
 
-    my: 0,
-    ml: '$2',
-    mr: 0,
-    p: 0,
+    m: '$4',
+    p: '$3',
     outline: 'none',
 
-    width: '225px',
-    minWidth: '225px',
-    height: '725px',
+    width: '300px',
+    minWidth: '300px',
+    height: '800px',
 
     d: 'flex',
     fd: 'column',
     jc: 'space-between',
     ai: 'stretch',
-    gap: 0,
+    gap: '$2',
   
     
-    br: '$3',
+    br: '$4',
     oy: 'scroll',
     ox: 'hidden',
 
-    bc: 'transparent',
+    bc: '$accentBg',
+    border: '1px solid $accentBorder',
 
     '&::-webkit-scrollbar': {
         width: '0.15em',
@@ -62,6 +61,23 @@ export const StyledSidebar = styled('div', {
     }
 })
 
+export const StyledTopArea = styled('div', {
+    width: '100%',
+    d: 'flex', 
+    fd: 'column', 
+    jc: 'flex-start', 
+    ai: 'stretch',
+    mb: '$6'
+})
+
+export const StyledBottomArea = styled('div', {
+    d: 'flex',
+    fd: 'row',
+    jc: 'center',
+    ai: 'flex-end',
+    gap: 0
+})
+
 export const StyledSidebarItem = styled('div', {
     listStyleType: 'none',
     m: 0,
@@ -78,22 +94,19 @@ export const StyledSidebarItem = styled('div', {
     outline: '0',
     br: '$2',
 
-    // opacity: 0.6,
-
     '&:hover': {
         bc: '$accentBgHover',
         color: '$accentText',
-        // opacity: 0.8
     },
     '&:active': {
         bc: '$accentBgActive',
-        color: '$accentTextContrast',
-        // opacity: 1
+        color: '$accentTextContrast'
     },
     '&:focus': {
-        outline: '1px solid $accentFocusRing',
-        // opacity: 1
+        outline: '1px solid $accentFocusRing'
     },
+
+    color: '$accentTextContrast',
 
     variants: {
         isSelected: {
@@ -137,11 +150,11 @@ export const StyledSidebarItem = styled('div', {
             }
         },
         level: {
-            1: { ml: '0px', color: '$accentLine' },
-            2: { ml: '10px', width: 'calc(95% - 10px)', color: '$accentBorderHover' },
-            3: { ml: '20px', color: '$accentSolid' },
-            4: { ml: '30px', color: '$accentText' },
-            5: { ml: '40px', color: '$accentTextContrast'}
+            1: { ml: '0px' },
+            2: { ml: '10px', width: 'calc(95% - 10px)' },
+            3: { ml: '20px', width: 'calc(95% - 20px)' },
+            4: { ml: '30px', width: 'calc(95% - 30px)'},
+            5: { ml: '40px', width: 'calc(95% - 40px)'}
         }
     },
     compoundVariants: [
@@ -173,34 +186,6 @@ export const StyledSidebarItem = styled('div', {
     }
 })
 
-export const StyledContainer = styled('div', {
-    height: '800px',
-    width: '225px',
-    d: 'flex',
-    fd: 'column',
-    jc: 'space-around',
-    ai: 'stretch',
-    gap: '$1',
-    my: '$2',
-    mx: '$1'
-})
-
-export const StyledTopArea = styled('div', {
-    d: 'flex', 
-    fd: 'row', 
-    jc: 'flex-start', 
-    ai: 'center', 
-    gap: '$2'
-})
-
-export const StyledBottomArea = styled('div', {
-    d: 'flex',
-    fd: 'row',
-    jc: 'center',
-    ai: 'flex-end',
-    gap: 0
-})
-
 export const StyledSidebarAnchor = styled('a', {
     color: '$accentText',
     width: '100%',
@@ -218,7 +203,7 @@ export const StyledSidebarAnchor = styled('a', {
     p: '$2',
     br: '$2',
 
-    fontFamily: '$plexsans',
+    fontFamily: '$jetbrains',
     fontSize: '$2',
     fontWeight: 400,
     fontStyle: 'normal',
@@ -257,6 +242,8 @@ export const StyledSidebarAnchor = styled('a', {
 })
 
 export const StyledHeader = styled('div', {
+    pl: '$2',
+
     transition: 'all',
     WebkitTransition: 'all',
     WebkitTransitionDuration: 'inherit',
@@ -278,20 +265,17 @@ export const StyledHeader = styled('div', {
 })
 
 export const SectionHeading = styled('span', {
-    color: 'transparent',
+    color: '$accentTextContrast',
     lineHeight: '$1',
     p: 0,
    
     textAlign: 'start',
-    fontFamily: '$plexsans',
+    fontFamily: '$jetbrains',
     fontSize: '$3',
     fontWeight: 300,
-    fontStyle: 'light',
+    fontStyle: 'normal',
     letterSpacing: '',
-    textTransform: 'capitalize',
-
-    mt: '$2',
-    mb: '$4'
+    textTransform: 'uppercase'
 })
 
 

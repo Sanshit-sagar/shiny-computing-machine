@@ -5,12 +5,13 @@ export const StyledList = styled('ul', {
     overflow: 'auto',
     listStyle: 'none',
     padding: 0,
-    margin: '4px 0',
+    margin: '$3 0',
     outline: 'none',
 
     '&::-webkit-scrollbar': {
-        width: '0.25em',
-        br: '999px'
+        width: '0.15em',
+        br: '999px',
+        bc: '$accentBgHover',
     },
     '&::-webkit-scrollbar-track': {
         bc: 'transparent',
@@ -24,32 +25,40 @@ export const StyledList = styled('ul', {
         }
     },
     '&::-webkit-scrollbar-thumb': {
-        bc: '$accentBorder',
+        bc: '$light2',
         border: 'none',
         outline: 'none',
         br: '999px',
         '&:hover': {
-            bc: '$accentBorderHover',
+            bc: '$light1',
         },
         '&:active': {
-            bc: '$accentFocusRing',
+            bc: '$light1',
         }
     }
 });
 
 export const StyledListItem = styled('li', {
+    appearance: 'none',
+    userSelect: 'none',
+    cursor: 'pointer',
+    outline: 'none',
+    overflow: 'hidden',
+
     display: 'flex',
     fd: 'row',
     jc: 'space-between',
     ai: 'center',
-    p: '$2',
+    gap: 0,
+
+    fw: 'nowrap',
+    whiteSpace: 'nowrap',
+
+    textOverflow: 'clip',
+    color: '$accentTextContrast',
+    py: '$3',
+    px: '$4',
     m: 0,
-
-    us: 'none',
-    cursor: 'default',
-    outline: 'none',
-
-    color: '$accentText',
 
     '&[data-disabled]': {
         color: '$disabledSolid',
@@ -95,16 +104,25 @@ export const StyledItemContent = styled('div', {
 export const StyledDescription = styled('div', {
     fontSize: '$1',
     fontFamily: '$plexsans',
-    fontStyle: 'normal',
+    fontStyle: 'light',
     fontVariant: 'tabular',
     color: '$accentText',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: " [..]"
 })
 
 export const StyledLabel = styled('label', {
-    fontSize: '$2',
-    fontFamily: '$plexsans',
+    fontSize: '$1',
+    fontFamily: '$jetbrains',
+    fontVariant: 'tabular',
     fontStyle: 'normal',
-    color: '$accentTextContrast',
+    color: '$accentText',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'clip',
+    textTransform: 'uppercase',
+    wordBreak: 'break-word',
 })
 
 export const StyledSection = styled('li', {

@@ -9,7 +9,7 @@ import Paragraph from '@/components/Text/Text'
 import { Button } from '@/components/Button'
 import { ExampleBase } from '@/components/ExampleBase'
 
-export const DialogInstance = ({ defaultOpen = false, portalContainer }) => {
+export const DialogInstance = ({ defaultOpen = false }) => {
     const handleAction = () => {}
 
     return (

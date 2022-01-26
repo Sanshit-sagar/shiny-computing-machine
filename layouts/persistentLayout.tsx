@@ -14,7 +14,7 @@ interface PersistentLayoutProps {
 const StyledLayoutContainer = styled('div', {
     height: '100vh', 
     width: '100%',
-    bc: '$accentBase',  
+    bc: '$dark1',  
 
     d: 'flex', 
     fd: 'row', 

@@ -1,18 +1,23 @@
 import { styled } from 'stitches.config'
 
 
-export const StyledGalleryContainer = styled('div', {
-    width: '100%',
+export const StyledGallery = styled('div', {
+    position: 'absolute',
+    bottom: 0,
+    right: '10px',
+    width: '1100px',
     height: '100%',
-    p: '$1',
-    m: 0,
+    p: '$3',
+    mx: '$3',
+    my: '$2',
 
-    bc: '$accentBase',
-    color: '$accentSolid',
+    bc: '$dark1',
+    color: '$light1',
+    br: '$6',
     
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-    gridGap: '$1',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
+    gridGap: '$2',
 
     flexWrap: 'wrap',
     whiteSpace: 'wrap',
@@ -51,22 +56,25 @@ export const StyledGalleryContainer = styled('div', {
     },
 })
 
-export const StyledComponentWrapper = styled('div', {
+export const StyledWrapper = styled('div', {
     userSelect: 'none',
     appearance: 'none',
     WebkitHighlight: 'transparent',
 
-    size: '385px',
-    m: '$1',
+    height: '400px', 
+    width: '525px',
     p: '0',
     
     boxSizing: 'border-box',
     border: '1px solid',
-    br: '$4',
+    br: '$6',
+    my: '$3',
 
-    bc: '$panelBase',
-    color: '$accentLine',
+    bc: '$accentBg',
+    color: '$accentTextContrast',
     borderColor: '$accentBorder',
+    
+    willChange: 'background, opacity',
     transition: 'all 0.2s ease-in-out',
 
     display: 'flex',
@@ -74,23 +82,29 @@ export const StyledComponentWrapper = styled('div', {
     jc: 'space-between',
     ai: 'stretch',
     gap: 0,
-
-    '&:hover': {
-        bc: '$panelBg'
-    }
+    zIndex: 0
 })
 
-export const StyledComponentDisplay = styled('div', {
-    width: '100%',
-    height: '80%',
+export const StyledDisplay = styled('div', {
+    width: 'calc(100% -$2)',
+    height: '87.5%',
 
     d: 'flex',
     fd: 'column',
     ai: 'center',
     gap: 0,
 
-    m: 0,
-    p: '$4',
+    bc: '$dark1',
+    color: '$accentTextContrast',
+
+    border: '1px solid',
+    borderColor: '$accentBorder',
+    br: 'inherit',
+
+    mx: '$1',
+    mb: '$1',
+    p: '$6',
+    zIndex: 0,
 
     variants: {
         align: {
@@ -104,51 +118,43 @@ export const StyledComponentDisplay = styled('div', {
     }
 })
 
-export const StyledInfoContainer = styled('div', {
-    display: 'flex',
-    fd: 'column',
-    jc: 'flex-start',
-    ai: 'flex-start',
-    gap: '$2',
-    whiteSpace: 'nowrap',
-    flexWrap: 'nowrap',
-    overflow: 'hidden',
-
-    width: '100%',
-    height: '20%',
-    px: '$1',
-    py: 0,
-    m: 0,
-    border: 'none',
-    outline: 'none',
-})
-
-export const StyledComponentName = styled('h3', {
-    m: 0,
-    py: 0,
-    px: '$2',
+export const StyledName = styled('h3', {
+    my: '$3',
+    mx: '$5',
+    p: 0,
 
     fontFamily: '$jetbrains',
     fontSize: '$7',
     fontStyle: 'normal',
-    fontWeight: 300,
+    fontWeight: 700,
     fontVariant: 'tabular',
     fontVariantNumeric: 'tabular-nums',
-    color: '$light1',
+    color: '$accentText',
+    textTransform: 'uppercase',
     
     willChange: 'transition',
-    transition: 'all 0.2s ease-in-out'
+    transition: 'all 0.4s ease-in-out',
+
+    d: 'flex',
+    fd: 'row', 
+    jc: 'flex-start', 
+    ai: 'center',
+    gap: '$3'
 })
 
-export const StyledComponentDescription = styled('p', {
-    m: 0,
+export const StyledSettings = styled('span', {
+    bc: 'transparent',
+    float: 'right',
     p: 0,
-    pl: '$2',
+    mx: '$2',
+    my: '$1'
+})
 
-    fontFamily: '$mono',
-    fontSize: '$2',
-    fontStyle: 'normal',
-    fontWeight: '100',
-    color: '$accentTextContrast',
-    textOverflow: 'clip'
+export const StyledHeader = styled('div', {
+    width: '100%',
+    d: 'flex',
+    fd: 'row',
+    jc: 'space-between',
+    ai: 'center',
+    px: '$2'
 })

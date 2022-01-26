@@ -5,3 +5,6 @@ export * from './Objects'
 export * from './Kbd'
 export * from './Emojis'
 export * from './Typography'
+export * from './Components'
+export * from './Files'
+

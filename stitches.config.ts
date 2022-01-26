@@ -306,11 +306,11 @@ const sharedDarkColors = {
     disabledAccent: '$mauve12',
     disabledDanger: '$crimson12',
 
-    dark1: 'rgba(0,0,0,1.0)', 
-    dark2: 'rgba(0,0,0,0.75)',
-    dark3: 'rgba(0,0,0,0.5)',
-    dark4: 'rgba(0,0,0,0.25)',
-    dark5: 'rgba(0,0,0,0,0.0)',
+    dark1: 'rgba(8,9,12,1.0)', 
+    dark2: 'rgba(8,9,12,0.8)',
+    dark3: 'rgba(8,9,12,0.6)',
+    dark4: 'rgba(8,9,12,0.4)',
+    dark5: 'rgba(8,9,12,0.2)',
     light1: 'rgba(255,255,255,1.0)',
     light2: 'rgba(255,255,255,0.75)',
     light3: 'rgba(255,255,255,0.5)',
@@ -711,6 +711,10 @@ export const {
             backgroundImage: `linear-gradient(${value})`,
             WebkitBackgroundImage: `linear-gradient(${value})`
         }),
+        clipPath: (value: Stitches.PropertyValue<'clipPath'>) => ({
+            clipPath: value,
+            WebkitClipPath: value
+        })
     },
 });
 
@@ -725,21 +729,21 @@ export const blackTheme = createTheme({
         ...whiteA,
         ...sharedDarkColors,
 
-        accentBase: 'rgba(13,17,23, 1)',
-        accentBgSubtle: 'rgba(13,17,23, 1)', 
-        accentBg: 'rgba(32,38,45,1)',
-        accentBgHover: 'rgba(47,54,61,1)', 
-        accentBgActive: 'rgba(47,54,61,1)',
+        accentBase: 'rgba(8,9,10,1.0)',
+        accentBgSubtle: 'rgba(8,9,10,1.0)',
+        accentBg: 'rgba(8,9,10,1.0)',
+        accentBgHover: 'rgba(20,22,24,1.0)', 
+        accentBgActive: 'rgba(20,22,24,1.0)',
         accentLine: 'rgba(47,54,61,1)',
         accentBorder: 'rgba(138,148,159,1)',
         accentBorderHover: 'rgba(138,148,170,1)',
-        accentBorderActive: 'rgba(200,200,200,1)',
-        accentSolid: 'rgba(210,212,213,1)',
-        accentSolidHover: 'rgba(210,212,213,1)',
-        accentSolidActive: 'rgba(236,237,238,1)',
-        accentText: 'rgba(210,212,213, 1)',
+        accentBorderActive: 'rgba(138,148,170,1)',
+        accentSolid: 'rgba(235,245,255, 1)',
+        accentSolidHover: 'rgba(245,250,255,1)',
+        accentSolidActive: 'rgba(255,255,255,1)',
+        accentText: 'rgba(235,235,235, 1.0)',
         accentTextContrast: 'rgba(255,255,255, 1)',
-        accentFocusRing: '#f0f4f8',
+        accentFocusRing: 'rgba(0,116,192,1.0)',
 
         panelBase: '$whiteA1',
         panelBgSubtle: '$whiteA2',

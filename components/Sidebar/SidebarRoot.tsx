@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 
 import { useTreeState } from '@react-stately/tree'
 
@@ -6,7 +6,7 @@ import SidebarItem from './SidebarItem'
 import SidebarSection from './SidebarSection' 
 import SidebarContext from './SidebarContext'
 
-import { StyledSidebar,StyledContainer, StyledTopArea, StyledBottomArea } from './styles'
+import { StyledSidebar, StyledTopArea, StyledBottomArea } from './styles'
 import { SidebarProps } from '@/hooks/collections/Sidebar'
 
 type SidebarComposition = { 
@@ -23,46 +23,47 @@ const SidebarRoot = <T extends object>(props: SidebarCompositionProps<T>) => {
     const selectionManager = state.selectionManager 
     const focusedKey = selectionManager.focusedKey
     const collection = state.collection
-    
 
     return (
         <SidebarContext.Provider value={state}>
-            <StyledContainer>
-                {props.header && (
-                    <StyledTopArea> {props.header} </StyledTopArea>
-                )}
-    
+            
+               
                 <StyledSidebar>
-                    {[...collection].map((item) => {
-                        if (item.type === 'section') {
-                            return (
-                                <SidebarSection
-                                    key={item.key}
-                                    item={item}
-                                    state={state}
-                                />
-                            )
-                        }
-                    
-                        let sidebarItem = (
-                            <SidebarItem
-                                key={item.key}
-                                item={item}
-                                state={state}
-                            />
-                        )
+                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'stretch', gap: 0 }}>
+                        {props.header && (
+                            <StyledTopArea> 
+                                {props.header} 
+                            </StyledTopArea>
+                        )}
+
+                        {[...collection].map((item) => {
+                            if (item.type === 'section') {
+                                return (
+                                    <SidebarSection
+                                        key={item.key}
+                                        item={item}
+                                        state={state}
+                                    />
+                                )
+                            }
                         
-                        if (item.wrapper) {
-                            sidebarItem = item.wrapper(sidebarItem);
-                        }
-                        return sidebarItem
-                    })}
-                </StyledSidebar>
+                            let sidebarItem = (
+                                <SidebarItem key={item.key} item={item} />
+                            )
+                            
+                            if (item.wrapper) {
+                                sidebarItem = item.wrapper(sidebarItem);
+                            }
+                            return sidebarItem
+                        })}
+                    </div>
                 
-                {props.footer && (
-                    <StyledBottomArea> {props.footer} </StyledBottomArea> 
-                )}
-            </StyledContainer>
+                    {props.footer && (
+                        <StyledBottomArea> {props.footer} </StyledBottomArea> 
+                    )}
+
+                </StyledSidebar>
+     
         </SidebarContext.Provider>
     )
 }

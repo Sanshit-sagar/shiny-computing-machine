@@ -1,58 +1,45 @@
 import React, { useRef, RefObject } from 'react'
 
-import { styled } from '../../stitches.config'
-import * as Radix from '@radix-ui/react-primitive'
+import { styled } from 'stitches.config'
 
-import { ArrowDownIcon } from '@radix-ui/react-icons'
+import { ChevronDownIcon } from '@radix-ui/react-icons'
 import type { ComboBoxProps } from '@react-types/combobox'
 
-import { useComboBoxState, Item, Section } from 'react-stately'
-import { useComboBox, useFilter, useButton, useHover } from 'react-aria'
+import { useComboBoxState } from 'react-stately'
+import { useComboBox, useFilter, useButton } from 'react-aria'
 
-import { Text } from '../Text/Text'
-import { ListBox } from '../ListBox'
-import { Popover } from '../Popover'
-import { IconButton } from '../IconButton'
+
+import ListBox from '@/components/ListBox/index'
+import { Popover } from '@/components/Select/Popover'
+import { StyledInput, StyledInputWrapper } from '@/components/TextInput/styles'
 
 const Container = styled('div', {
+    width: '215px',
     display: 'inline-flex',
     flexDirection: 'column',
     position: 'relative',
-});
-
-const Label = styled('label', {
-    display: 'inline-block',
-    fontSize: '1',
-    fontStyle: 'medium',
-    color: 'black',
-    alignText: 'left'
 })
 
-
-const InputGroup = styled('div', {
-    display: 'inline-flex', 
-    flexDirection: 'row',
+const StyledButton = styled('button', {
+   
+    height: '100%',
+    width: '36px',
     border: 'none',
-    outline: 'none',
-    overflow: 'hidden',
-    backgroundColor: 'transparent'
+    borderLeft: '1px solid $accentBorder',
+    bc: '$panelBase',
+    color: '$accentTextContrast',
+
+    d: 'flex',
+    fd: 'column',
+    jc: 'center',
+    ai: 'center',
+
+    m: 0,
+    p: 0,
 })
 
-const UserInput = styled('input', {
-    padding: '$1',
-    outline: 'none', 
-    backgroundColor: 'white',
-    border: '1px solid black',
-    borderRadius: '$1',
-    color: 'black',
-    fontSize: '$1',
-    fontWeight: 200,
-    borderRight: 'none',
-    borderTopRightRadius: 0, 
-    borderBottomRightRadius: 0,
-})
 
-export function ComboBox<T extends object>(props: ComboBoxProps<T>) {
+export const ComboBox = <T extends object>(props: ComboBoxProps<T>) => {
 
     let { contains } = useFilter({ sensitivity: "base" });
     let state = useComboBoxState({ ...props, defaultFilter: contains });
@@ -65,57 +52,30 @@ export function ComboBox<T extends object>(props: ComboBoxProps<T>) {
     let {
         buttonProps: triggerProps,
         inputProps,
-        listBoxProps,
-        labelProps
+        listBoxProps
     } = useComboBox({ ...props, inputRef, buttonRef, listBoxRef, popoverRef }, state);
 
     let { buttonProps } = useButton(triggerProps, buttonRef)
 
     return (
         <Container>
-            <Label {...labelProps}> 
-                <Text>{props.label}</Text>
-            </Label> 
+            <StyledInputWrapper>
+                <StyledInput {...inputProps} type="text" ref={inputRef} />
+                <StyledButton {...buttonProps} ref={buttonRef}>
+                    <ChevronDownIcon aria-hidden='true' /> 
+                </StyledButton> 
+            </StyledInputWrapper>
 
-            <InputGroup>
-                <UserInput 
-                    {...inputProps} 
-                    ref={inputRef} 
-                    css={{ 
-                        borderBottomLeftRadius: state.isOpen ? 1 : 2 
-                    }} 
-                />
-                <IconButton 
-                    {...buttonProps} 
-                    ref={buttonRef}
-                    size='2' 
-                    variant='ghost' 
-                    css={{ 
-                        margin: 0, 
-                        borderTopLeftRadius: 0,
-                        borderBottomLeftRadius: 0,
-                        borderBottomRightRadius: state.isOpen ? 1 : 2,
-                    }}
-                >
-                    <ArrowDownIcon aria-hidden='true' /> 
-                </IconButton> 
-            </InputGroup>
-
-            {state.isOpen ? 
-                <Popover 
-                    popoverRef={popoverRef} 
-                    isOpen={state.isOpen} 
-                    onClose={state.close}
-                >
-                    <ListBox
-                        {...listBoxProps}
-                        listBoxRef={listBoxRef}
-                        state={state}
-                    />
+            {state.isOpen && ( 
+                <Popover popoverRef={popoverRef} isOpen={state.isOpen} onClose={state.close}>
+                    <ListBox {...listBoxProps} listBoxRef={listBoxRef} state={state} />
                 </Popover> 
-            : null} 
+            )} 
         </Container>
     );
 }
+
+ComboBox.displayName = 'ComboBox'
+export default ComboBox 
 
 

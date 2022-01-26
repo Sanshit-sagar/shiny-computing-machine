@@ -11,6 +11,7 @@ import {
     ConcealedRadioProps, 
     ClickableLabelProps
 } from './types'
+// import { useInteractions } from '@/hooks/useInteractions'
 
 export type ToggleItem = IToggleItem
 export type MultiToggleProps = IMultiToggleProps
@@ -27,7 +28,7 @@ const ClickableLabel = ({ id, title, checked, onChange, icon = null }: Clickable
     >
         {icon || titleCase(title)}
     </SwitchLabel>
-);
+)
 
 const ConcealedRadio = ({ value, selection }: ConcealedRadioProps) => (
     <SwitchRadio 
@@ -35,7 +36,7 @@ const ConcealedRadio = ({ value, selection }: ConcealedRadioProps) => (
         name="switch" 
         defaultChecked={selection === value} 
     />
-);
+)
 
 
 export const MultiToggle = ({ selection, onChange, values }: MultiToggleProps) => {
@@ -43,8 +44,18 @@ export const MultiToggle = ({ selection, onChange, values }: MultiToggleProps) =
     const selectionStyle = () => {
         return {
             left: `${values.map((v) => v.value).indexOf(selection) / values.length * 100}%`,
+            willChange: 'background, content, opacity',
+            transition: 'all 0.4s ease-in-out',
+            d: 'inline-flex',
+            jc: 'center',
+            ai: 'center',
         };
-    };
+    }
+
+    const filteredSelection = values[values.map((v) => v.value).indexOf(selection)]
+    const selectedIcon = filteredSelection.icon
+    const selectedText = filteredSelection.value
+    const selectedContent = selectedIcon ? selectedIcon : selectedText
 
     return (
         <Switch>
@@ -59,11 +70,14 @@ export const MultiToggle = ({ selection, onChange, values }: MultiToggleProps) =
                         title={val.value} 
                         icon={val.icon}
                         onChange={onChange} 
-                        checked={selection===val.value}
+                        checked={selection === val.value}
                     />
+                    <SwitchSelection css={selectionStyle()}>
+                        {selectedContent}
+                    </SwitchSelection>
                 </span>
             ))}
-            <SwitchSelection style={selectionStyle()} />
+            
         </Switch>
     );
 }

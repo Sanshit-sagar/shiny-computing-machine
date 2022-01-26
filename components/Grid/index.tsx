@@ -1,4 +1,4 @@
-import { styled } from '../../stitches.config'
+import { styled, CSS } from '../../stitches.config'
 import React, { HTMLAttributes } from 'react'
 
 type Alignements =
@@ -35,6 +35,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
     justifyContent?: Alignements;
     justifyItems?: Alignements;
     'data-testid'?: string;
+    css?: CSS;
 }
 
 const StyledGrid = styled('div', {

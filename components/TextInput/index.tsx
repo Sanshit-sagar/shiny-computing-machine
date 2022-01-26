@@ -53,4 +53,3 @@ export const TextInput = ({ label, value, ...props }: TextInputProps) => {
 
 TextInput.displayName = 'TextualInput'
 export default TextInput
-

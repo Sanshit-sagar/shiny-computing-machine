@@ -23,7 +23,7 @@ const sharedStateInit = ()  => {
         isDisabled: false,
         isReadOnly: false,
         autoFocus: false,
-        padding: '6'
+        padding: '4'
     };
     return initCalendarState;
 };
@@ -34,9 +34,7 @@ export const RangeCalendarInstance = () => {
 
     return (
         <CalendarWrapper>
-            <Card.Wrapper> 
-                <CalendarInstance useRange={useRange} state={state} />
-            </Card.Wrapper>
+            <CalendarInstance useRange={useRange} state={state} />
         </CalendarWrapper>
     )
 }

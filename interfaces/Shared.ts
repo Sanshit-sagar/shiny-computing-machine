@@ -19,6 +19,8 @@ export type Selection = 'all' | Set<Key>
 export type Axis = 'top' | 'left' | 'bottom' | 'right'
 export type PlacementAxis = Axis | 'center'
 
+export type PointerType = 'mouse' | 'pen' | 'touch' | 'virtual' | 'keyboard'
+
 export interface DOMProps {
     id?: string;
 }

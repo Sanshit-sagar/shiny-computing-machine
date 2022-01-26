@@ -15,9 +15,8 @@ import { Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
 
 import {
     StyledInput,
-    StyledLabel,
+    StyledSuffix,
     StyledPrefix,
-    StyledButton,
     StyledWrapper,
     StyledInputGroup,
 } from './styles'
@@ -44,10 +43,10 @@ export function SearchAutocomplete<T extends object>(props: ComboBoxProps<T>) {
     }
 
     const searchState = useSearchFieldState(searchProps)
-    const { clearButtonProps } = useSearchField(searchProps, searchState, inputRef)
+    const { inputProps: searchInputProps, clearButtonProps } = useSearchField(searchProps, searchState, inputRef)
     const clearButtonRef = useRef<HTMLButtonElement>(null)
     const { buttonProps } = useButton(clearButtonProps, clearButtonRef)
-    
+
 
     return (
         <StyledWrapper>
@@ -59,12 +58,15 @@ export function SearchAutocomplete<T extends object>(props: ComboBoxProps<T>) {
 
                 <StyledInput {...inputProps} ref={inputRef} />
                
-                <StyledButton {...buttonProps} ref={clearButtonRef} isVisible={state.inputValue === ""}>
+               
+                <StyledSuffix {...buttonProps} ref={clearButtonRef} isVisible={state.inputValue !== ''}>
+                   
                     <Cross2Icon />
-                </StyledButton> 
+                </StyledSuffix> 
 
             </StyledInputGroup>
-            {state.isOpen && (
+
+            {state.isOpen &&  (
                 <Popover popoverRef={popoverRef} isOpen={state.isOpen} onClose={state.close}>
                     <ListBox {...listBoxProps} listBoxRef={listBoxRef} state={state} />
                 </Popover>

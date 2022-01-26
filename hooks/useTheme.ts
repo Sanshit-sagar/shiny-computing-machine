@@ -6,3 +6,4 @@ export const useTheme = () => {
     const activeTheme = useAtomValue(activeThemeClassAtom)
     return activeTheme 
 }
+
