@@ -8,8 +8,7 @@ import {
     infoVariant,
     warningVariant,
     dangerVariant,
-    successVariant,
-    disabledVariant
+    successVariant
 } from '@/components/Button/variants'
 import { Flex } from '@/components/Flex'
 
@@ -35,6 +34,8 @@ export const sharedStyles: CSS = {
     willChange: 'background-color, border-color, color, opacity',
     transition: 'all $$buttonTransitionDuration ease-out',
 
+   
+
     '& svg': {
         display: 'inline-block',
         verticalAlign: 'middle',
@@ -45,7 +46,7 @@ export const sharedStyles: CSS = {
     '&:hover': {
         '&:not(:disabled)': {
             '& svg': {
-                fill: '$accentTextContrast'
+                fill: 'currentColor'
             }
         }
     },
@@ -56,7 +57,7 @@ export const sharedStyles: CSS = {
             boxShadow: '0 0 0 3px $$buttonBoxShadow',
             
             '& svg': {
-                fill: '$accentTextContrast'
+                fill: 'currentColor'
             }
         }
     },
@@ -80,10 +81,10 @@ const sharedCircleStyles: CSS = {
 export const StyledButtonBase = styled('button', {
     ...sharedStyles,
 
-    $$paddingZero: '0.485em 0.680em',
-    $$paddingOne:  '0.625em 0.850em',
-    $$paddingTwo:  '0.760em 1.020em',
-    $$paddingThree:  '0.900em 1.190em',
+    $$paddingZero: '0.45em 0.680em',
+    $$paddingOne:  '0.60em 0.850em',
+    $$paddingTwo:  '0.70em 1.020em',
+    $$paddingThree:  '0.80em 1.190em',
     
     $$fontSizeZero: '0.8em',
     $$fontSizeOne: '1em',
@@ -92,24 +93,25 @@ export const StyledButtonBase = styled('button', {
     
     variants: {
         code: {
-            '0000': { br: 0, padding: '$$paddingZero',     fontSize: '$$fontSizeZero', minWidth: '6.25em'  }, // sharp size 0
-            '0001': { br: 0, padding: '$$paddingOne',      fontSize: '$$fontSizeOne', minWidth: '6.25em'   }, // sharp size 1
-            '0010': { br: 0, padding: '$$paddingTwo',      fontSize: '$$fontSizeTwo', minWidth: '6.25em'  }, // sharp size 2
-            '0011': { br: 0, padding: '$$paddingThree',    fontSize: '$$fontSizeThree', minWidth: '6.25em' }, // sharp size 3
-            '0100': { br: '$2', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em'  }, // rounded size 0
-            '0101': { br: '$3', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '6.25em'   }, // rounded size 1
-            '0110': { br: '$4', padding: '$$paddingTwo',   fontSize: '$$fontSizeTwo', minWidth: '6.25em'   }, // rounded size 2
-            '0111': { br: '$5', padding: '$$paddingThree', fontSize: '$$fontSizeThree', minWidth: '6.25em' }, // rounded size 3
-            '1000': { br: '$6', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em'  }, // oval size 0
-            '1001': { br: '$8', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '6.25em'   }, // oval size 1
-            '1010': { br: 'calc(7px + $9)', padding: '$$paddingTwo',     fontSize: '$$fontSizeTwo', minWidth: '6.25em'   }, // oval size 2
-            '1011': { br: 'calc(25px + $9)', padding: '$$paddingThree',  fontSize: '$$fontSizeThree', minWidth: '6.25em' }, // oval size 3
+            '0000': { br: 0, padding: '$$paddingZero',     fontSize: '$$fontSizeZero', minWidth: '6.25em',  borderWidth: '1px'  }, // sharp size 0
+            '0001': { br: 0, padding: '$$paddingOne',      fontSize: '$$fontSizeOne', minWidth: '6.25em',  borderWidth: '1px'   }, // sharp size 1
+            '0010': { br: 0, padding: '$$paddingTwo',      fontSize: '$$fontSizeTwo', minWidth: '6.25em',  borderWidth: '1px'  }, // sharp size 2
+            '0011': { br: 0, padding: '$$paddingThree',    fontSize: '$$fontSizeThree', minWidth: '6.25em',  borderWidth: '1px' }, // sharp size 3
+            '0100': { br: '$2', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em',  borderWidth: '1px',  }, // rounded size 0
+            '0101': { br: '$3', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '6.25em', borderWidth: '1px',   }, // rounded size 1
+            '0110': { br: '$4', padding: '$$paddingTwo',   fontSize: '$$fontSizeTwo', minWidth: '6.25em', borderWidth: '1px', }, // rounded size 2
+            '0111': { br: '$5', padding: '$$paddingThree', fontSize: '$$fontSizeThree', minWidth: '6.25em', borderWidth: '1px', }, // rounded size 3
+            '1000': { br: '$6', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em', borderWidth: '1px', }, // oval size 0
+            '1001': { br: '$8', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '7.25em', borderWidth: '1px', }, // oval size 1
+            '1010': { br: 'calc(7px + $9)', padding: '$$paddingTwo',     fontSize: '$$fontSizeTwo', minWidth: '8.25em', borderWidth: '1px'  }, // oval size 2
+            '1011': { br: 'calc(25px + $9)', padding: '$$paddingThree',  fontSize: '$$fontSizeThree', minWidth: '9.25em',  borderWidth: '1px', }, // oval size 3
             '1100': { 
                 ...sharedCircleStyles,
                 minWidth: '3.0em',
                 maxWidth: '4.5em',
                 padding: '0.375rem', 
                 fontSize: '0.75em',
+                borderWidth: '1px',
             },
             '1101': { 
                 ...sharedCircleStyles,
@@ -117,6 +119,7 @@ export const StyledButtonBase = styled('button', {
                 maxWidth: '6.0em',
                 padding: '0.375rem', 
                 fontSize: '0.75em',
+                borderWidth: '1px',
             }, 
             '1110': { 
                 ...sharedCircleStyles,
@@ -124,6 +127,7 @@ export const StyledButtonBase = styled('button', {
                 maxWidth: '7.5em',
                 padding: '0.375rem', 
                 fontSize: '0.75em',
+                borderWidth: '1px',
             }, 
             '1111': { 
                 ...sharedCircleStyles,
@@ -131,19 +135,23 @@ export const StyledButtonBase = styled('button', {
                 maxWidth: '9.0em',
                 padding: '0.375rem', 
                 fontSize: '0.75em',
-            }
+                borderWidth: '1px',
+            },
+            'bevel1': {},
+            'bevel2': {},
+            'bevel3': {},
+            'bevel4': {}
         },
         weight: {
             '0': { fontWeight: 300, borderWidth: '1px' },
             '1': { fontWeight: 500, borderWidth: '1px' },
-            '2': { fontWeight: 700, borderWidth: '2px' },
-            '3': { fontWeight: 900, borderWidth: '2px' }
+            '2': { fontWeight: 700, borderWidth: '1px' },
+            '3': { fontWeight: 900, borderWidth: '1px' }
         },
         variant: {
             primary: primaryVariant,
             secondary: secondaryVariant,
-            outlined: outlinedVariant,
-            disabled: disabledVariant,
+            outlined: outlinedVariant
         },
         icon: {
             true: {
@@ -161,9 +169,9 @@ export const StyledButtonBase = styled('button', {
         }
     },
     defaultVariants: {
-        code: '0101', // defaults to rounded button sized 1,
+        code: '0101', 
         weight: '0',
-        theme: 'outlined'
+        variant: 'outlined'
     }
 })
 
@@ -182,10 +190,11 @@ type ButtonVariantProps = VariantProps<typeof StyledButtonBase>
 type ButtonChildProps = { children: ReactNode; }
 type ButtonCSSProps = { css?: CSS; }
 
-export const AccessibleButtonBase = ({ children, ...props }: ButtonVariantProps) => (
+type ButtonProps = ButtonVariantProps & ButtonChildProps & ButtonCSSProps
+
+
+export const AccessibleButtonBase = ({ children, ...props }: ButtonProps) => (
     <StyledButtonBase {...props}>
-        <InlineFlex>
-            {children}
-        </InlineFlex>
+        <InlineFlex> {children} </InlineFlex>
     </StyledButtonBase>
 )

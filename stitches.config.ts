@@ -1,6 +1,6 @@
 import { createStitches, defaultThemeMap } from '@stitches/react'
 import type * as Stitches from '@stitches/react'
-export type { VariantProps } from '@stitches/react'
+export type { VariantProps, PropertyValue } from '@stitches/react'
 
 import {
     tomato,

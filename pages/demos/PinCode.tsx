@@ -1,6 +1,6 @@
-import ExamplePinCode from '@/components/PinCode/examples'
+import ExampleCodeInput from '@/components/CodeInput/examples'
 
-const PinCodeDemo = () => <ExamplePinCode /> 
+const PinCodeDemo = () => <ExampleCodeInput /> 
 
 
 export default PinCodeDemo

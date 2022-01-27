@@ -1,5 +1,5 @@
 import { styled } from '../../stitches.config'
-import { Boop } from '@/components/Boop'
+import { Boop } from '@/components/Boop/Booop'
 
 const replies = [
     { id: '1', photo: '🐶' },

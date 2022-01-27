@@ -1,20 +1,25 @@
-import { Flex } from '@/components/Flex'
-import { ExampleBase } from '@/components/ExampleBase'
 import { 
     RobotIcon,
     TrashIcon, 
     SendIcon, 
     RocketIcon 
 } from '@/components/Icons'
+
 import { AccessibleButtonBase as StyledButtonBase } from './styles'
-import { NuBoop } from '@/components/Boop'
+
+import { Flex } from '@/components/Flex'
+import { Boop, Slide } from '@/components/Animated'
 
 const DefaultIconButton = (props) => (
     <StyledButtonBase icon={true} variant="outlined" {...props} />
 )
 
 const SmallDangerRoundedButton = (props) => (
-    <StyledButtonBase code="0100" theme="warning" {...props} /> 
+    <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
+        <StyledButtonBase code="0100" variant="secondary" {...props} /> 
+        <StyledButtonBase code="0101" variant="primary" {...props} /> 
+        <StyledButtonBase code="0110" variant="outlined" {...props} /> 
+    </Flex>
 )
 const OvularButtons = (props) => (
     <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
@@ -36,11 +41,11 @@ const CircularButtons = (props) => (
 export const ButtonsInstance = () => (
     <Flex css={{ fd: 'column', jc: 'flex-start', ai: 'center', gap: '$3' }}>
 
-        <NuBoop>
+        <Slide color="transparent" x="30px" duration="800ms">
             <DefaultIconButton> 
                 <RobotIcon /> 
             </DefaultIconButton>
-        </NuBoop>
+        </Slide>
 
         <SmallDangerRoundedButton> 
             Danger <TrashIcon /> 

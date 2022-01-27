@@ -18,7 +18,7 @@ import { LinkInstance } from '@/components/Link/examples'
 import { MenewInstance } from '@/components/Menew/examples'
 import { MultiToggleInstance } from '@/components/MultiToggle/examples'
 import { NumberFieldInstance } from '@/components/NumberField/examples'
-import { PinCodeInstance } from '@/components/PinCode/examples'
+import { CodeInputInstance } from '@/components/CodeInput/examples'
 import { ProgressBarInstance } from '@/components/ProgressBar/examples'
 import { PopoverInstance } from '@/components/Popover/examples'
 import { RadioButtonInstance } from '@/components/RadioGroup/examples'
@@ -80,6 +80,11 @@ export const showcases: IShowcase[] = [{
         description: 'soft flaky crumbles',
         icon: <TabsIcon /> 
     }, {
+        element: <ButtonsInstance />,
+        name: 'Buttons',
+        description: '',
+        icon: <ButtonIcon /> 
+    }, {
         element: <RangeCalendarInstance />,
         name: 'Calendar',
         description: 'every night is a date with this one',
@@ -106,7 +111,7 @@ export const showcases: IShowcase[] = [{
         description: '',
         icon: <ComboBoxIcon />
     }, {
-        element: <DialogInstance defaultOpen={true} />,
+        element: <DialogInstance defaultOpen={false} />,
         name: 'Dialog',
         description: '',
         icon: <DialogIcon /> 
@@ -148,7 +153,7 @@ export const showcases: IShowcase[] = [{
         description: 'cause one toggle wasnt enough',
         icon: <TabsIcon />
     }, {
-        element: <PinCodeInstance />,
+        element: <CodeInputInstance />,
         name: 'Pin Code',
         description: '',
         icon: <KeyIcon />
@@ -226,11 +231,6 @@ export const showcases: IShowcase[] = [{
         element: <ShapeInstances />,
         name: 'Shape',
         description: '',
-    }, {
-        element: <ButtonsInstance />,
-        name: 'Buttons',
-        description: '',
-        icon: <ButtonIcon /> 
     }
 ]
 
