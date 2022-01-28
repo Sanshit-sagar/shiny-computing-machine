@@ -91,22 +91,6 @@ const StyledAlternatingCornersShape = styled(Flex, {
     }
 })
 
-const StyledPolygonWrapper = styled(Flex, {
-    ...wrapperStyles,
-    $$dropShadowColor: '$colors$accentBorder',
-    clipPath: `polygon(12.5% 0%, 87.5% 0%, 100% 12.5%, 100% 87.5%, 87.5% 100%, 12.5% 100%, 0% 87.5%, 0% 12.5%)`
-})
-
-const StyledPolygon = styled(Flex, {
-    ...sharedStyles,
-    border: 'none',
-    height: 'calc(31px + 0.1em)',
-    width: 'calc(83px + 0.1em)',
-    backgroundSize: 'cover',
-    margin: 'auto',
-    clipPath: `polygon(12.5% 0%, 87.5% 0%, 100% 12.5%, 100% 87.5%, 87.5% 100%, 12.5% 100%, 0% 87.5%, 0% 12.5%)`
-})
-
 type ShapeProps<T> = T & HTMLAttributes<HTMLElement>
 type AltCornersShapeProps<T> = ShapeProps<T> & VariantProps<typeof StyledAlternatingCornersShape>
 

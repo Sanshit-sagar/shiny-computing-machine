@@ -1,20 +1,39 @@
 import { 
+    SendIcon,
     RobotIcon,
-    TrashIcon, 
-    SendIcon, 
-    RocketIcon 
+    TrashIcon,  
+    RocketIcon,
+    SunglassesIcon
 } from '@/components/Icons'
 
 import { AccessibleButtonBase as StyledButtonBase } from './styles'
 
 import { Flex } from '@/components/Flex'
 import { Boop, Slide } from '@/components/Animated'
+import ClippedButton from './ClippedButton'
+
 
 const DefaultIconButton = (props) => (
     <StyledButtonBase icon={true} variant="outlined" {...props} />
 )
 
-const SmallDangerRoundedButton = (props) => (
+const ClippedButtons = (props) => (
+    <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
+        <ClippedButton size='0' variant="secondary" {...props} />
+        <ClippedButton size='1' variant="primary" {...props} />
+        <ClippedButton size='2' variant="outlined" {...props} />
+    </Flex>
+)
+
+const BevelEdgedButtons = (props) => (
+    <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
+        <StyledButtonBase code="011100" variant="secondary" {...props} />
+        <StyledButtonBase code="011101" variant="primary" {...props} />
+        <StyledButtonBase code="011110" variant="outlined" {...props} />
+    </Flex>
+)
+
+const RoundedButtons = (props) => (
     <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
         <StyledButtonBase code="0100" variant="secondary" {...props} /> 
         <StyledButtonBase code="0101" variant="primary" {...props} /> 
@@ -47,9 +66,14 @@ export const ButtonsInstance = () => (
             </DefaultIconButton>
         </Slide>
 
-        <SmallDangerRoundedButton> 
+
+        <BevelEdgedButtons>
+            <SunglassesIcon /> yoyo 
+        </BevelEdgedButtons>
+
+        <RoundedButtons> 
             Danger <TrashIcon /> 
-        </SmallDangerRoundedButton>
+        </RoundedButtons>
 
         <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
             <OvularButtons> 

@@ -36,12 +36,12 @@ export const primaryVariant: CSS = {
 }
 
 export const secondaryVariant: CSS = {
-    bc: '$accentSolid',
-    color: '$dark1',
-    borderColor: '$dark1',
+    bc: '$accentLine',
+    color: '$accentText',
+    borderColor: '$accentText',
 
     '& svg': {
-        fill: '$dark1'
+        fill: '$accentText'
     },
 
     '&:disabled': {
@@ -55,9 +55,9 @@ export const secondaryVariant: CSS = {
             boxShadow: 'none'
         },
         '&:not(:disabled)': {
-            bc: '$accentSolidHover',
-            color: '$light1',
-            borderColor: '$light1',
+            bc: '$accentBorder',
+            color: '$accentTextContrast',
+            borderColor: '$accentTextContrast',
             '& svg': {
                 fill: '$light1'
             },

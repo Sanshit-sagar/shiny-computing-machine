@@ -81,10 +81,10 @@ const sharedCircleStyles: CSS = {
 export const StyledButtonBase = styled('button', {
     ...sharedStyles,
 
-    $$paddingZero: '0.45em 0.680em',
-    $$paddingOne:  '0.60em 0.850em',
-    $$paddingTwo:  '0.70em 1.020em',
-    $$paddingThree:  '0.80em 1.190em',
+    $$paddingZero: '0.48em 0.680em',
+    $$paddingOne:  '0.68em 0.850em',
+    $$paddingTwo:  '0.75em 1.020em',
+    $$paddingThree:  '0.92em 1.190em',
     
     $$fontSizeZero: '0.8em',
     $$fontSizeOne: '1em',
@@ -137,10 +137,34 @@ export const StyledButtonBase = styled('button', {
                 fontSize: '0.75em',
                 borderWidth: '1px',
             },
-            'bevel1': {},
-            'bevel2': {},
-            'bevel3': {},
-            'bevel4': {}
+            '011100': {
+                bblr: '$5', btrr: '$5', bbrr: '$2', btlr: '$2',
+                padding: '$$paddingZero',  
+                fontSize: '$$fontSizeZero', 
+                minWidth: '6.25em',
+                borderWidth: '1px',
+            },
+            '011101': {
+                bblr: '$5', btrr: '$5', bbrr: '$2', btlr: '$2',
+                padding: '$$paddingOne',  
+                fontSize: '$$fontSizeOne', 
+                minWidth: '7.25em',
+                borderWidth: '1px',
+            },
+            '011110': {
+                bblr: '$5', btrr: '$5', bbrr: '$2', btlr: '$2',
+                padding: '$$paddingTwo',  
+                fontSize: '$$fontSizeTwo', 
+                minWidth: '8.25em',
+                borderWidth: '1px',
+            },
+            '011111': {
+                bblr: '$5', btrr: '$5', bbrr: '$2', btlr: '$2',
+                padding: '$$paddingThree',  
+                fontSize: '$$fontSizeThree', 
+                minWidth: '9.25em',
+                borderWidth: '1px',
+            }
         },
         weight: {
             '0': { fontWeight: 300, borderWidth: '1px' },
@@ -175,7 +199,7 @@ export const StyledButtonBase = styled('button', {
     }
 })
 
-const InlineFlex = styled(Flex, {
+export const InlineFlex = styled(Flex, {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

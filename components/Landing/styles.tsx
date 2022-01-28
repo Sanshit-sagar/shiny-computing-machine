@@ -158,3 +158,124 @@ export const StyledHeader = styled('div', {
     ai: 'center',
     px: '$2'
 })
+
+
+///////////////
+
+
+export const StyledFigure = styled('figure', {
+    zIndex: 200,
+    position: 'relative',
+    margin: 0,
+    padding: 0,
+    width: '500px',
+    height: '375px',
+    borderRadius: '8px 8px 0px 0px',
+    overflow: 'hidden',
+    backfaceVisibility: 'hidden',
+    transition: 'all 0.45s ease',
+
+    '&::before': {
+        content: '',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        right: 0,
+        background: '$accentBase',
+        transition: 'all 0.45s ease'
+    }
+})
+
+export const StyledContent = styled('div', {
+    zIndex: 200,
+    position: 'relative',
+    padding: '20px 20px 30px',
+})
+
+export const StyledTitle = styled('span', {
+    display: 'block',
+    marginBottom: '4px',
+    fontSize: '1.25em',
+    fontWeight: 500,
+    transition: 'all 0.45s ease'
+})
+
+export const StyledDescription = styled('span', {
+    display: 'block',
+    fontSize: '0.875em',
+    color: '#999999',
+    transition: 'all 0.45s ease',
+    transitionDelay: '0.04s'
+})
+
+export const StyledBottomBar = styled('span', {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    width: '100%',
+    height: '10px',
+    borderRadius: '0px 0px 8px 8px',
+    transition: 'all 0.45s ease'
+})
+
+export const StyledCard = styled('button', {
+    position: 'relative',
+    flexShrink: '0',
+    width: '500px',
+    textAlign: 'left',
+    backgroundColor: '#ffffff',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    boxShadow: `
+        0px 2px 20px rgba(0, 0, 0, 0.12), 
+        0 20px 20px -10px rgba(0, 0, 0, 0.125)
+    `,
+    transition: 'all 0.45s ease',
+    
+    '&:hover': {
+        transform: 'scale(1.04)',
+
+        [`& ${StyledTitle}`]: {
+            transform: 'scale(0.92) translateY(-10px)'
+        },
+        [`& ${StyledDescription}`]: {
+            transform: 'scale(0.92) translateY(-12px)'
+        },
+        [`& ${StyledBottomBar}`]: {
+            transform: 'scale(0.92)',
+            borderRadius: '6px'
+        },
+        [`& ${StyledFigure}`]: {
+            transform: `scale(0.92) translateY(4px)`,
+            borderRadius: '6px',
+
+            '&::before': {
+                background: 'rgba(0, 0, 0, 0.1)' 
+            }
+        }
+    }
+})
+
+export type CardProps = {
+    title?: string;
+    description?: string;
+    content: ReactNode;
+}
+
+export const NuCard = ({ 
+    title = 'unknown', 
+    description = '', 
+    content 
+}: CardProps) => (
+
+    <StyledCard>
+        <StyledFigure> {content} </StyledFigure>
+        <StyledContent>
+            <StyledTitle> {title} </StyledTitle>
+            <StyledDescription> {description} </StyledDescription> 
+            <StyledBottomBar css={{ bc: 'red' }} /> 
+        </StyledContent>
+    </StyledCard>
+
+)

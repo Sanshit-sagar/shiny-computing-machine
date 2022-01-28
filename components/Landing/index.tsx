@@ -42,3 +42,15 @@ const ComponentGallery = () => {
 }
 
 export default ComponentGallery
+
+
+{/* <StyledGallery> */}
+{/* {showcases.map(({ name, icon, element }: IShowcase, index: number) => (  */}
+    // <NuCard
+        // key={`component-${index}: ${name}`}
+        // title={name}
+        // description={'description here'}
+        // content={cloneElement(element)}
+    // /> 
+// ))}
+{/* </StyledGallery> */}

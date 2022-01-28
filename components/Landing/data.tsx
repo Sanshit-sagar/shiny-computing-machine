@@ -15,6 +15,7 @@ import { InlineCodeInstance } from '@/components/InlineCode/examples'
 import { InlineEditInstance } from '@/components/LinedEdit/examples'
 import { KbdInstance } from '@/components/Kbd/KbdInstance'
 import { LinkInstance } from '@/components/Link/examples'
+import { ChipInstance } from '@/components/Chip/examples'
 import { MenewInstance } from '@/components/Menew/examples'
 import { MultiToggleInstance } from '@/components/MultiToggle/examples'
 import { NumberFieldInstance } from '@/components/NumberField/examples'
@@ -100,6 +101,11 @@ export const showcases: IShowcase[] = [{
         name: 'Checkbox Group',
         description: 'checks all the boxes',
         icon: <CheckboxIcon />
+    }, {
+        element: <ChipInstance />,
+        name: 'Chip',
+        description: '',
+        icon: <ButtonIcon />  
     }, {
         element: <ColorSliderInstance />,
         name: 'Color Slider',
@@ -227,10 +233,6 @@ export const showcases: IShowcase[] = [{
         name: 'Tree',
         description: '',
         icon: <TreeIcon />
-    }, {
-        element: <ShapeInstances />,
-        name: 'Shape',
-        description: '',
     }
 ]
 

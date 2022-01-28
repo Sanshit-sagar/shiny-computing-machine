@@ -112,18 +112,6 @@ export const KbdInstance = () => {
 
     return (
         <StyledContainer>
-            <Kbd> {mostRecentKey} </Kbd> 
-
-            <ul style={{ width: '250px', overflow: 'hidden', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', gap: '2px' }}>
-                {upHistory.map((upHistoryItem, index) => (
-                    <li>
-                       <Kbd size='2'> {upHistoryItem} </Kbd> 
-                    </li> 
-                ))}
-            </ul> 
-
-            <input {...keyboardProps} placeholder="pls hold me" />
-
             <StyledRow row='0'> <Power /> </StyledRow>
             <KbdRow index='0' rowKeys={rowContents[0]} suffix={<Backspace />} />
             <KbdRow index='1' rowKeys={rowContents[1]} prefix={<Tab />} /> 
@@ -134,3 +122,12 @@ export const KbdInstance = () => {
     )
 }
 
+//  <Kbd> {mostRecentKey} </Kbd> 
+{/* <ul style={{ width: '250px', overflow: 'hidden', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', gap: '2px' }}> */}
+{/* {upHistory.map((upHistoryItem, index) => ( */}
+    // <li>
+       {/* <Kbd size='2'> {upHistoryItem} </Kbd>  */}
+    {/* </li>  */}
+// ))}
+{/* </ul>  */}
+{/* <input {...keyboardProps} placeholder="pls hold me" /> */}
