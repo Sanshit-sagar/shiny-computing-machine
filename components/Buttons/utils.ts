@@ -1,6 +1,20 @@
-// borderRadius: '0.3125em',
-// backgroundColor: '$accentBorder',
-// color: '$accentText',
+import { Children, isValidElement, ComponentType } from "react"
 
-// XXYY -> XX = shape, YY = size e.g. 1110 = Circle of size 2, 
-// 0011 = Sharp of size 3
+export const withDefaultProps = <
+    P extends object, 
+    DP extends Partial<P> = Partial<P>
+>(
+    defaultProps: P, 
+    Cmp: ComponentType<P>
+) => {
+    type RequiredProps = Omit<P, keyof DP>
+    type Props = Partial<DP> & Required<RequiredProps>
+
+    Cmp.defaultProps = defaultProps
+    return (Cmp as ComponentType<any>) as ComponentType<Props>
+}
+
+export const isTextOnly = (children): boolean => (
+        typeof children === 'string' 
+    ||  Children.toArray(children).every((child) => !isValidElement(child))
+)

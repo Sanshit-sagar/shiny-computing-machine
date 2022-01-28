@@ -1,10 +1,10 @@
 import { HTMLAttributes } from 'react'
 import { PointerType } from '@/interfaces/Shared'
 
-export type PressEventType =  'pressstart' | 'presend' | 'pressup' | 'press'
+export type PressEventType =  'pressstart' | 'pressend' | 'pressup' | 'press'
 export type LongPressEventType = 'longpressstart' | 'longpressend' | 'longpress'
 
-export interface PressEvent {
+export type PressEvent = {
     type: PressEventType;
     pointerType: PointerType; 
     target: HTMLElement;

@@ -477,7 +477,14 @@ export const {
             9: 9
         },
         letterSpacings: {
-
+            1: '0.025em',
+            2: '0.05em',
+            3: '0.10em',
+            4: '0.15em',
+            5: '0.20em',
+            6: '0.25em',
+            7: '0.35em',
+            8: '0.50em'
         },
         sizes: {
             1: '5px',
@@ -520,7 +527,7 @@ export const {
             none: 'none'
         },
         radii: {
-            0: 0,
+            0: '0px',
             1: '3px',
             2: '5px',
             3: '7px',
@@ -538,15 +545,36 @@ export const {
         shadows: {
             spreadAndBlur: `
                 64px 64px 12px 40px rgba(0,0,0,0.4), 
-                12px 12px 0px 8px rgba(0,0,0,0.4) inset
+                12px 12px 0px 8px rgba(0,0,0,0.4)
             `,
+            small: `
+                0.5px 1px 1px hsl(220deg 100% 80% / 0.7)
+            `,
+            medium: `
+                1px 2px 2px hsl(220deg 100% 80% / 0.333),
+                2px 4px 4px hsl(220deg 100% 80% / 0.333),
+                3px 6px 6px hsl(220deg 100% 80% / 0.333)
+            `,
+            large: `
+                1px 2px 2px hsl(250deg 100% 80% / 0.2),
+                2px 4px 4px hsl(250deg 100% 80% / 0.2),
+                4px 8px 8px hsl(250deg 100% 80% / 0.2),
+                8px 16px 16px hsl(250deg 100% 80% / 0.2),
+                16px 32px 32px hsl(250deg 100% 80% / 0.2)
+            `
         },
         zIndices: {
-        1: '100',
-        2: '200',
-        3: '300',
-        4: '400',
-        max: '999',
+            min: '-999',
+            0: '0',
+            1: '100',
+            2: '200',
+            3: '300',
+            4: '400',
+            5: '500',
+            6: '600',
+            7: '700',
+            8: '800',
+            max: '999',
         },
         transitions: {
 
@@ -732,12 +760,12 @@ export const blackTheme = createTheme({
         accentBase: 'rgba(8,9,10,1.0)',
         accentBgSubtle: 'rgba(8,9,10,1.0)',
         accentBg: 'rgba(8,9,10,1.0)',
-        accentBgHover: 'rgba(20,22,24,1.0)', 
-        accentBgActive: 'rgba(20,22,24,1.0)',
-        accentLine: 'rgba(47,54,61,1)',
-        accentBorder: 'rgba(138,148,159,1)',
-        accentBorderHover: 'rgba(138,148,170,1)',
-        accentBorderActive: 'rgba(138,148,170,1)',
+        accentBgHover: 'rgba(8,9,10,1.0)', 
+        accentBgActive: 'rgba(8,9,10,1.0)',
+        accentLine: 'rgba(20,20,20,1)',
+        accentBorder: 'rgba(100,100,100,1)',
+        accentBorderHover: 'rgba(150,150,150,1)',
+        accentBorderActive: 'rgba(200,200,200,1)',
         accentSolid: 'rgba(235,245,255, 1)',
         accentSolidHover: 'rgba(245,250,255,1)',
         accentSolidActive: 'rgba(255,255,255,1)',

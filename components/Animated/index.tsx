@@ -1,4 +1,5 @@
 export * from './Boop'
 export * from './Slide'
+export * from './Float'
 export * from './types'
 export * from './utils'

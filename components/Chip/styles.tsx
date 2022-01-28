@@ -8,25 +8,24 @@ export const StyledChip = styled('div', {
     display: 'inline-flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'stretch',
+    alignItems: 'center',
     gap: '$2',
 
     padding: '4px 8px',
     margin: 0,
 
     fontSize: '0.815rem',
-    fontWeight: 700,
-    fontFamily: '$jetbrains',
+    fontWeight: 300,
+    fontFamily: 'inherit',
     lineHeight: 1.25,
     letterSpacing: '0.025rem',
     fontVariant: 'tabular',
     fontVariantNumeric: 'tabular-nums',
 
-    color: '$panelTextContrast',
-    background: '$panelBase',
-    border: '1px solid $panelBorder',
-    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)',
-    borderRadius: '4px',
+    color: '$accentText',
+    background: '$accentBg',
+    border: '1px solid $accentBorder',
+    borderRadius: '$3',
 
     variants: {
         raised: {
@@ -38,4 +37,16 @@ export const StyledChip = styled('div', {
     defaultVariants: {
         raised: true
     }
+})
+
+export const StyledPrefix = styled('span', {
+    mr: '$1',
+
+    '& svg': {
+        fill: '$accentText'
+    }
+})
+
+export const StyledSuffix = styled('span', {
+
 })

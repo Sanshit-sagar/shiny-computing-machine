@@ -57,10 +57,12 @@ const OuterClippedButton = styled('button', {
 
 const InnerClippedButton = styled('button', {
     ...sharedStyles,
+
     border: 'none',
-    backgroundSize: 'cover',
     margin: 'auto',
+    backgroundSize: 'cover',
     clipPath: `polygon(12.5% 0%, 87.5% 0%, 100% 12.5%, 100% 87.5%, 87.5% 100%, 12.5% 100%, 0% 87.5%, 0% 12.5%)`,
+
     variants: {
         size: {
             0: {
@@ -85,9 +87,7 @@ const InnerClippedButton = styled('button', {
             }
         },
         variant: {
-            primary: {
-                bc: '$dark1'
-            },
+            primary: { bc: '$dark1' },
             secondary: {
                 bc: '$accentBg'
             },

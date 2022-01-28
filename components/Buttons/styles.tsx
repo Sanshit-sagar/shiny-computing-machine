@@ -78,7 +78,7 @@ const sharedCircleStyles: CSS = {
     textOverflow: 'clip'
 }
 
-export const StyledButtonBase = styled('button', {
+export const StyledButtonBase = styled('span', {
     ...sharedStyles,
 
     $$paddingZero: '0.48em 0.680em',
@@ -210,11 +210,11 @@ export const InlineFlex = styled(Flex, {
     textOverflow: 'clip'
 })
 
-type ButtonVariantProps = VariantProps<typeof StyledButtonBase>
-type ButtonChildProps = { children: ReactNode; }
-type ButtonCSSProps = { css?: CSS; }
+export type ButtonVariantProps = VariantProps<typeof StyledButtonBase>
+export type ButtonChildProps = { children: ReactNode; }
+export type ButtonCSSProps = { css?: CSS; }
 
-type ButtonProps = ButtonVariantProps & ButtonChildProps & ButtonCSSProps
+export type ButtonProps = ButtonVariantProps & ButtonChildProps & ButtonCSSProps
 
 
 export const AccessibleButtonBase = ({ children, ...props }: ButtonProps) => (

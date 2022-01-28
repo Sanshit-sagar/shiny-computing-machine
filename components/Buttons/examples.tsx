@@ -11,7 +11,7 @@ import { AccessibleButtonBase as StyledButtonBase } from './styles'
 import { Flex } from '@/components/Flex'
 import { Boop, Slide } from '@/components/Animated'
 import ClippedButton from './ClippedButton'
-
+import { AriaButton } from './ButtonBase'
 
 const DefaultIconButton = (props) => (
     <StyledButtonBase icon={true} variant="outlined" {...props} />
@@ -56,7 +56,7 @@ const CircularButtons = (props) => (
     </Flex>
 )
 
-
+/*
 export const ButtonsInstance = () => (
     <Flex css={{ fd: 'column', jc: 'flex-start', ai: 'center', gap: '$3' }}>
 
@@ -87,7 +87,16 @@ export const ButtonsInstance = () => (
             </CircularButtons>
         </Flex>
     </Flex>
-
-
 )
+*/
 
+export const ButtonsInstance = () => (
+    <Boop duration="800ms">
+    <AriaButton 
+        code="0101" 
+        variant="secondary" 
+    >
+        <SunglassesIcon /> yoyo
+    </AriaButton>
+    </Boop>
+)
