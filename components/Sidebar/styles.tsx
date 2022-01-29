@@ -8,13 +8,13 @@ export const StyledSidebar = styled('div', {
     listStyleType: 'none',
     scroll: 'smooth',
 
-    m: '$4',
-    p: '$3',
+    m: 0,
+    p: '$2',
     outline: 'none',
 
-    width: '300px',
-    minWidth: '300px',
-    height: '800px',
+    width: '325px',
+    minWidth: '325px',
+    height: '100%',
 
     d: 'flex',
     fd: 'column',
@@ -23,17 +23,18 @@ export const StyledSidebar = styled('div', {
     gap: '$2',
   
     
-    br: '$4',
+    br: 0,
     oy: 'scroll',
     ox: 'hidden',
 
-    bc: '$accentBg',
-    border: '1px solid $accentBorder',
+    bc: 'transparent',
+    border: '1px solid transparent',
+    borderRightColor: '$accentBorder',
 
     '&::-webkit-scrollbar': {
-        width: '0.15em',
+        width: '0.35em',
         bc: 'transparent',
-        ml: '$2',
+        ml: '$1',
     },
     '&::-webkit-scrollbar-thumb': {
         br: '999px',
@@ -95,18 +96,16 @@ export const StyledSidebarItem = styled('div', {
     br: '$2',
 
     '&:hover': {
-        bc: '$accentBgHover',
-        color: '$accentText',
+        bc: '$black3',
+        color: '$white3',
     },
     '&:active': {
-        bc: '$accentBgActive',
-        color: '$accentTextContrast'
+        bc: '$black3',
+        color: '$white3'
     },
     '&:focus': {
         outline: '1px solid $accentFocusRing'
     },
-
-    color: '$accentTextContrast',
 
     variants: {
         isSelected: {
@@ -162,18 +161,18 @@ export const StyledSidebarItem = styled('div', {
             isExpanded: true,
             hasChildNodes: true,
             css: {
-                bc: '$accentBg',
-                color: '$accentText',
-                borderColor: '$accentBorder',
+                bc: '$black3',
+                color: '$white3',
+                borderLeft: '3px solid $white1',
                 '&:hover': {
-                    bc: '$accentBgHover',
-                    color: '$accentTextContrast',
-                    borderColor: '$accentBorderHover'
+                    bc: '$black3',
+                    color: '$white3',
+                    borderColor: 'transparent'
                 },
                 '&:active': {
-                    bc: '$accentBgActive',
-                    color: '$accentTextContrast',
-                    borderColor: '$accentFocusRing'
+                    bc: '$black3',
+                    color: '$white1',
+                    borderColor: 'transparent'
                 }
             }
         }
@@ -187,7 +186,6 @@ export const StyledSidebarItem = styled('div', {
 })
 
 export const StyledSidebarAnchor = styled('a', {
-    color: '$accentText',
     width: '100%',
     position: 'relative',
 
@@ -204,10 +202,11 @@ export const StyledSidebarAnchor = styled('a', {
     br: '$2',
 
     fontFamily: '$jetbrains',
-    fontSize: '$2',
-    fontWeight: 400,
+    fontSize: '$3',
+    fontWeight: 300,
     fontStyle: 'normal',
     textDecoration: 'none',
+    color: '$white1',
 
     wordBreak: 'break-word',
     hyphens: 'auto',
@@ -265,7 +264,7 @@ export const StyledHeader = styled('div', {
 })
 
 export const SectionHeading = styled('span', {
-    color: '$accentTextContrast',
+    color: '$white1',
     lineHeight: '$1',
     p: 0,
    

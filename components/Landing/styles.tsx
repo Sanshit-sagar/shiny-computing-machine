@@ -4,15 +4,14 @@ import { styled } from 'stitches.config'
 export const StyledGallery = styled('div', {
     position: 'absolute',
     bottom: 0,
-    right: '10px',
+    right: 0,
     width: '1100px',
     height: '100%',
     p: '$3',
     mx: '$3',
     my: '$2',
 
-    bc: '$dark1',
-    color: '$light1',
+    bc: 'transparent',
     br: '$6',
     
     display: 'grid',
@@ -70,7 +69,7 @@ export const StyledWrapper = styled('div', {
     br: '$6',
     my: '$3',
 
-    bc: '$accentBg',
+    bc: '$white3',
     color: '$accentTextContrast',
     borderColor: '$accentBorder',
     
@@ -86,19 +85,19 @@ export const StyledWrapper = styled('div', {
 })
 
 export const StyledDisplay = styled('div', {
-    width: 'calc(100% -$2)',
-    height: '87.5%',
+    width: 'calc(100% - $2)',
+    height: '90%',
 
     d: 'flex',
     fd: 'column',
     ai: 'center',
     gap: 0,
 
-    bc: '$dark1',
+    bc: 'transparent',
     color: '$accentTextContrast',
 
     border: '1px solid',
-    borderColor: '$accentBorder',
+    borderColor: 'transparent',
     br: 'inherit',
 
     mx: '$1',
@@ -163,17 +162,23 @@ export const StyledHeader = styled('div', {
 ///////////////
 
 
-export const StyledFigure = styled('figure', {
+export const StyledFigure = styled('div', {
     zIndex: 200,
     position: 'relative',
     margin: 0,
     padding: 0,
     width: '500px',
-    height: '375px',
+    height: '350px',
     borderRadius: '8px 8px 0px 0px',
     overflow: 'hidden',
     backfaceVisibility: 'hidden',
     transition: 'all 0.45s ease',
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    gap: '$2',
 
     '&::before': {
         content: '',
@@ -222,9 +227,9 @@ export const StyledBottomBar = styled('span', {
 export const StyledCard = styled('button', {
     position: 'relative',
     flexShrink: '0',
-    width: '500px',
+    width: '515px',
     textAlign: 'left',
-    backgroundColor: '#ffffff',
+    backgroundColor: '$black1',
     borderRadius: '8px',
     cursor: 'pointer',
     boxShadow: `
@@ -273,8 +278,7 @@ export const NuCard = ({
         <StyledFigure> {content} </StyledFigure>
         <StyledContent>
             <StyledTitle> {title} </StyledTitle>
-            <StyledDescription> {description} </StyledDescription> 
-            <StyledBottomBar css={{ bc: 'red' }} /> 
+            <StyledBottomBar css={{ bc: 'white' }} /> 
         </StyledContent>
     </StyledCard>
 

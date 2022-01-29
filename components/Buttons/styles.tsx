@@ -1,5 +1,5 @@
 
-import { ReactNode } from 'react'
+import { ReactNode, forwardRef, RefObject, ComponentPropsWithRef } from 'react'
 import { styled, CSS, VariantProps } from 'stitches.config'
 import {
     primaryVariant,
@@ -78,7 +78,7 @@ const sharedCircleStyles: CSS = {
     textOverflow: 'clip'
 }
 
-export const StyledButtonBase = styled('span', {
+export const StyledButton = styled('span', {
     ...sharedStyles,
 
     $$paddingZero: '0.48em 0.680em',
@@ -210,15 +210,4 @@ export const InlineFlex = styled(Flex, {
     textOverflow: 'clip'
 })
 
-export type ButtonVariantProps = VariantProps<typeof StyledButtonBase>
-export type ButtonChildProps = { children: ReactNode; }
-export type ButtonCSSProps = { css?: CSS; }
 
-export type ButtonProps = ButtonVariantProps & ButtonChildProps & ButtonCSSProps
-
-
-export const AccessibleButtonBase = ({ children, ...props }: ButtonProps) => (
-    <StyledButtonBase {...props}>
-        <InlineFlex> {children} </InlineFlex>
-    </StyledButtonBase>
-)

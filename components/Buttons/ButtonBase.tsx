@@ -10,7 +10,13 @@ import { FocusableRef, useFocusableRef } from '@/utils/useRefs'
 
 import { isTextOnly } from './utils'
 import { AriaButtonProps } from './types'
-import { AccessibleButtonBase as StyledButton } from './styles'
+import { InlineFlex, StyledButton } from './styles'
+
+const ButtonSlot = ({ children }) => (
+    <InlineFlex>
+        {children}
+    </InlineFlex>
+)
 
 
 const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>, ref: FocusableRef<HTMLElement>) => {
@@ -36,11 +42,13 @@ const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>,
         <FocusRing autoFocus={autoFocus}>
             <Component {...mergedProps} ref={buttonRef}>
                 <StyledButton code={code} variant={variant}>
-                    {isTextOnly(children) ? (
-                        <Text> {children} </Text>
-                    ) : (
-                        <> {children} </>
-                    )}
+                    <ButtonSlot>
+                        {isTextOnly(children) ? (
+                            <Text> {children} </Text>
+                        ) : (
+                            <> {children} </>
+                        )}
+                    </ButtonSlot> 
                 </StyledButton>
             </Component>
         </FocusRing>
@@ -49,7 +57,7 @@ const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>,
 
 const _AriaButton = forwardRef(AriaButton) as <T extends ElementType>(
     props: AriaButtonProps<T> & 
-    { ref: FocusableRef<HTMLElement> }
+    { ref?: FocusableRef<HTMLElement> }
 ) => ReactElement 
 export { _AriaButton as AriaButton }
 

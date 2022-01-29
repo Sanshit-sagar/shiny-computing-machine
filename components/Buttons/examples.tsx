@@ -1,3 +1,4 @@
+import { useRef } from 'react' 
 import { 
     SendIcon,
     RobotIcon,
@@ -6,15 +7,15 @@ import {
     SunglassesIcon
 } from '@/components/Icons'
 
-import { AccessibleButtonBase as StyledButtonBase } from './styles'
-
 import { Flex } from '@/components/Flex'
-import { Boop, Slide } from '@/components/Animated'
-import ClippedButton from './ClippedButton'
 import { AriaButton } from './ButtonBase'
+import { StyledButton } from './styles'
+
+import ClippedButton from './ClippedButton'
+import { Button as DefaultButton } from './DefaultButton'
 
 const DefaultIconButton = (props) => (
-    <StyledButtonBase icon={true} variant="outlined" {...props} />
+    <StyledButton icon={true} variant="outlined" {...props} />
 )
 
 const ClippedButtons = (props) => (
@@ -27,37 +28,36 @@ const ClippedButtons = (props) => (
 
 const BevelEdgedButtons = (props) => (
     <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
-        <StyledButtonBase code="011100" variant="secondary" {...props} />
-        <StyledButtonBase code="011101" variant="primary" {...props} />
-        <StyledButtonBase code="011110" variant="outlined" {...props} />
+        <StyledButton code="011100" variant="secondary" {...props} />
+        <StyledButton code="011101" variant="primary" {...props} />
+        <StyledButton code="011110" variant="outlined" {...props} />
     </Flex>
 )
 
 const RoundedButtons = (props) => (
     <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
-        <StyledButtonBase code="0100" variant="secondary" {...props} /> 
-        <StyledButtonBase code="0101" variant="primary" {...props} /> 
-        <StyledButtonBase code="0110" variant="outlined" {...props} /> 
+        <StyledButton code="0100" variant="secondary" {...props} /> 
+        <StyledButton code="0101" variant="primary" {...props} /> 
+        <StyledButton code="0110" variant="outlined" {...props} /> 
     </Flex>
 )
 const OvularButtons = (props) => (
     <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
-        <StyledButtonBase code="1000" variant="secondary" {...props} /> 
-        <StyledButtonBase code="1001" variant="primary" {...props} /> 
-        <StyledButtonBase code="1010" variant="outlined" {...props} /> 
+        <StyledButton code="1000" variant="secondary" {...props} /> 
+        <StyledButton code="1001" variant="primary" {...props} /> 
+        <StyledButton code="1010" variant="outlined" {...props} /> 
     </Flex>
 )
 
 const CircularButtons = (props) => (
     <Flex css={{ fd: 'row', jc: 'flex-start', ai: 'center', gap: '$3' }}>
-        <StyledButtonBase code="1100" variant="secondary" {...props} /> 
-        <StyledButtonBase code="1101" variant="primary" {...props} /> 
-        <StyledButtonBase code="1110" variant="outlined" {...props} /> 
+        <StyledButton code="1100" variant="secondary" {...props} /> 
+        <StyledButton code="1101" variant="primary" {...props} /> 
+        <StyledButton code="1110" variant="outlined" {...props} /> 
     </Flex>
 )
 
-/*
-export const ButtonsInstance = () => (
+/* export const ButtonsInstance = () => (
     <Flex css={{ fd: 'column', jc: 'flex-start', ai: 'center', gap: '$3' }}>
 
         <Slide color="transparent" x="30px" duration="800ms">
@@ -91,12 +91,7 @@ export const ButtonsInstance = () => (
 */
 
 export const ButtonsInstance = () => (
-    <Boop duration="800ms">
-    <AriaButton 
-        code="0101" 
-        variant="secondary" 
-    >
+    <DefaultButton code="0100" variant="secondary">
         <SunglassesIcon /> yoyo
-    </AriaButton>
-    </Boop>
+    </DefaultButton>
 )

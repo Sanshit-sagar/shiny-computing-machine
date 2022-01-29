@@ -1,17 +1,15 @@
 import '../styles/main.css'
 
-import { ReactElement, ReactNode } from 'react'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
+import { ReactElement, ReactNode } from 'react'
 
-import PersistentLayout from '../layouts/persistentLayout'
-import { IdProvider } from '@radix-ui/react-id'
+import { Provider } from 'jotai'
 import { SSRProvider } from '@react-aria/ssr'
-import { Provider } from "jotai"
-
-
+import { IdProvider } from '@radix-ui/react-id'
 import { OverlayProvider } from '@react-aria/overlays'
 
+import PersistentLayout from '../layouts/persistentLayout'
 
 type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode; 
@@ -22,10 +20,9 @@ type AppPropsWithLayout = AppProps & {
 };
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+    
     const getLayout = (children: ReactNode) => (
-        <PersistentLayout> 
-            {children} 
-        </PersistentLayout>
+        <PersistentLayout> {children} </PersistentLayout>
     )
 
     return (

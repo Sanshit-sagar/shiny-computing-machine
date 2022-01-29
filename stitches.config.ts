@@ -171,11 +171,18 @@ const sharedColors = {
     dark4: 'rgba(255,255,255,0.25)',
     dark5: 'rgba(255,255,255,0)',
    
-    black: 'rgba(19, 19, 21, 1)',
+    black: 'rgba(0, 0, 0, 1)',
+    white: 'rgba(255,255,255,1)',
+
+    white1: 'rgba(245,245,245,1)',
+    white2: 'rgba(237,237,237,1)',
+    white3: 'rgba(229,229,229,1)',
+    black1: 'rgba(12, 14, 17, 1)',
+    black2: 'rgba(15, 17, 21, 1)',
+    black3: 'rgba(18, 20, 24, 1)',
+
     darkgray: 'rgba(21,23,24,1)',
-    lightgray: 'rgba(57,63,66,1)',
-    
-    white: 'rgba(255, 255, 255, 1)',
+    lightgray: 'rgba(35,39,47,1)',
     gray: 'rgba(128, 128, 128, 1)',
     blue: 'rgba(3, 136, 252, 1)',
     red: 'rgba(249, 16, 74, 1)',
@@ -317,8 +324,17 @@ const sharedDarkColors = {
     light4: 'rgba(255,255,255,0.25)',
     light5: 'rgba(255,255,255,0)',
 
-    black: 'rgba(19, 19, 21, 1)',
-    white: 'rgba(255, 255, 255, 1)',
+    black: 'rgba(0, 0, 0, 1)',
+    white: 'rgba(255,255,255,1)',
+
+    // inverted bg colors for dark mode
+    white1: 'rgba(12, 14, 17, 1)',
+    white2: 'rgba(15, 17, 21, 1)',
+    white3: 'rgba(18, 20, 25, 1)',
+    black1: 'rgba(245,245,245,1)',
+    black2: 'rgba(237,237,237,1)',
+    black3: 'rgba(229,229,229,1)',
+
     gray: 'rgba(128, 128, 128, 1)',
     blue: 'rgba(3, 136, 252, 1)',
     red: 'rgba(249, 16, 74, 1)',

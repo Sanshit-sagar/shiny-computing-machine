@@ -5,7 +5,7 @@ import { BreadcrumbsInstance } from '@/components/Breadcrumbs/examples'
 import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 
-// import { CheckboxInstance } from '@/components/Checkbox/examples'
+import { ToggleableInstance } from '@/components/Toggleable/examples'
 
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
 import { ColorSliderInstance } from '@/components/ColorSlider/examples'
@@ -85,7 +85,7 @@ export const showcases: IShowcase[] = [{
         name: 'Buttons',
         description: '',
         icon: <ButtonIcon /> 
-    }, {
+    },{
         element: <RangeCalendarInstance />,
         name: 'Calendar',
         description: 'every night is a date with this one',
@@ -141,7 +141,6 @@ export const showcases: IShowcase[] = [{
         name: 'Link',
         description: '',
         icon: <LinkIcon />
-
      }, {
         element: <MenewInstance />,
         name: 'Menu',

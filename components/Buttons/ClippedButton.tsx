@@ -11,7 +11,14 @@ export const wrapperStyles: CSS = {
     border: '0',
     opacity: 1,
     margin: 0,
-    padding: 0,    
+    padding: 0
+}
+
+const OuterClippedButton = styled('button', {
+    ...wrapperStyles,
+
+    $$dropShadowColor: '$colors$accentBorder',
+    clipPath: `polygon(12.5% 0%, 87.5% 0%, 100% 12.5%, 100% 87.5%, 87.5% 100%, 12.5% 100%, 0% 87.5%, 0% 12.5%)`,
 
     variants: {
         size: {
@@ -47,12 +54,6 @@ export const wrapperStyles: CSS = {
         size: '0', 
         variant: 'primary'
     }
-}
-
-const OuterClippedButton = styled('button', {
-    ...wrapperStyles,
-    $$dropShadowColor: '$colors$accentBorder',
-    clipPath: `polygon(12.5% 0%, 87.5% 0%, 100% 12.5%, 100% 87.5%, 87.5% 100%, 12.5% 100%, 0% 87.5%, 0% 12.5%)`
 })
 
 const InnerClippedButton = styled('button', {
@@ -67,27 +68,29 @@ const InnerClippedButton = styled('button', {
         size: {
             0: {
                 minWidth: '6.25em',
-                $$paddingZero: '0.48em 0.680em',
-                $$fontSizeZero: '0.8em'
+               padding: '0.48em 0.680em',
+               fontSize: '0.8em'
             },
             1: {
                 minWidth: '7.25em',
-                $$paddingOne:  '0.68em 0.850em',
-                $$fontSizeOne: '1em'
+               padding:  '0.68em 0.850em',
+               fontSize: '1em'
             },
             2: {
                 minWidth: '8.25em',
-                $$paddingTwo:  '0.75em 1.020em',
-                $$fontSizeTwo: '120%'
+                padding:  '0.75em 1.020em',
+                fontSize: '120%'
             },
             3: {
                 minWidth: '9.25em',
-                $$paddingThree:  '0.92em 1.190em',   
-                $$fontSizeThree: '140%'
+                padding:  '0.92em 1.190em',   
+                fontSize: '140%'
             }
         },
         variant: {
-            primary: { bc: '$dark1' },
+            primary: { 
+                bc: '$dark1' 
+            },
             secondary: {
                 bc: '$accentBg'
             },
@@ -102,7 +105,7 @@ const InnerClippedButton = styled('button', {
     }
 })
 
-type ClippedButtonProps = VariantProps<typeof OuterClippedButton> & { 
+type ClippedButtonProps = VariantProps<typeof InnerClippedButton> & { 
     children: ReactNode; 
 }
 
@@ -110,9 +113,7 @@ type ClippedButtonProps = VariantProps<typeof OuterClippedButton> & {
 const ClippedButton = ({ size, variant, children, ...rest }: ClippedButtonProps) => (
     <OuterClippedButton size={size} variant={variant}>
         <InnerClippedButton size={size} variant={variant}>
-            <InlineFlex>
-                {children}
-            </InlineFlex>
+            <InlineFlex> {children} </InlineFlex>
         </InnerClippedButton>
     </OuterClippedButton>
 )

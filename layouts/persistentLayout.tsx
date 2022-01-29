@@ -4,6 +4,9 @@ import { styled } from 'stitches.config'
 
 import { SidebarInstance } from '@/components/Sidebar/examples'
 
+import { Navbar, NavItem, DropdownMenu } from '@/components/Navbar'
+import { LightningBoltIcon, CaretDownIcon } from '@radix-ui/react-icons'
+
 import { activeThemeClassAtom } from '@/atoms/darkMode'
 import { cssReset } from '../styles/globalStyles'
    
@@ -14,14 +17,19 @@ interface PersistentLayoutProps {
 const StyledLayoutContainer = styled('div', {
     height: '100vh', 
     width: '100%',
-    bc: '$dark1',  
+    bc: '$black1',  
 
     d: 'flex', 
     fd: 'row', 
-    jc: 'flex-start',
-    ai: 'flex-start', 
-    gap: 0 
+    jc: 'space-between',
+    ai: 'stretch', 
+    gap: '0px'
 })
+
+const StyledDemos = styled('div', {
+
+})
+
 
 const PersistentLayout = ({ children }: PersistentLayoutProps) => {   
     cssReset()
@@ -29,9 +37,21 @@ const PersistentLayout = ({ children }: PersistentLayoutProps) => {
     const activeThemeClass = useAtomValue(activeThemeClassAtom)
    
     return ( 
-        <StyledLayoutContainer className={activeThemeClass}>
+        <StyledLayoutContainer>
+            <Navbar>
+                <NavItem icon={<LightningBoltIcon />} />
+                <NavItem icon="🔥" />
+                <NavItem icon="🔥" />
+            
+                <NavItem icon={<CaretDownIcon />}>
+                    <DropdownMenu />
+                </NavItem>
+            </Navbar>
+
             <SidebarInstance />
-            {children}
+            <StyledDemos className={activeThemeClass}> 
+                {children} 
+            </StyledDemos>
         </StyledLayoutContainer>
     )
 }

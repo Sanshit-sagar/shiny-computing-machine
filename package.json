@@ -1,7 +1,7 @@
 {
   "name": "nextra",
   "version": "1.0.0",
-  "description": "Opus - an atomic design system composed from the group up",
+  "description": "Composable UI - an atomic design system composed from the group up",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -39,6 +39,7 @@
     "gray-matter": "^4.0.3",
     "hast-util-to-html": "7.1.2",
     "hast-util-to-string": "1.0.4",
+    "hoist-non-react-statics": "^3.3.2",
     "jotai": "^1.4.2",
     "lorem-ipsum": "^2.0.4",
     "mdx-bundler": "^8.0.0",

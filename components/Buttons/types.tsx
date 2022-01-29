@@ -1,8 +1,14 @@
 import { ElementType, JSXElementConstructor, ReactNode } from 'react'
-import { withDefaultProps } from './utils'
+import { VariantProps } from 'stitches.config'
+
+import { 
+    HoverEvents, 
+    FocusEvents, 
+    KeyboardEvents, 
+    PressEvents 
+} from '@/interfaces/Interactions'
 import { DOMProps } from '@/interfaces/Shared'
-import { HoverEvents, FocusEvents, KeyboardEvents, PressEvents } from '@/interfaces/Interactions'
-import { ButtonProps as StyledButtonProps } from './styles'
+import { StyledButton } from './styles'
 
 interface ButtonEventHandlerProps extends PressEvents, HoverEvents, FocusEvents, KeyboardEvents {}
 
@@ -41,7 +47,7 @@ export interface GenericButtonProps<T> {
 }
 
 
-export interface ButtonBaseProps extends DOMProps, ButtonEventHandlerProps, ButtonAriaProps {
+export interface SharedButtonProps {
     autoFocus?: boolean;
     children: ReactNode; 
     isDisabled?: boolean;
@@ -49,10 +55,14 @@ export interface ButtonBaseProps extends DOMProps, ButtonEventHandlerProps, Butt
     excludeFromTabOrder?: boolean; 
 }
 
+export interface ButtonBaseProps extends DOMProps, ButtonEventHandlerProps, ButtonAriaProps, SharedButtonProps {}
 export type DiscriminatedButtonProps<T> = ButtonAsLinkProps | ButtonAsButtonProps | GenericButtonProps<T>
+export type ButtonVariantProps = Omit<VariantProps<typeof StyledButton>, 'children'>
 
-export type AriaButtonProps<T extends ElementType> = ButtonBaseProps & DiscriminatedButtonProps<T> & Omit<StyledButtonProps, 'children'>
+export type AriaButtonProps<T extends ElementType> = ButtonBaseProps & DiscriminatedButtonProps<T> & ButtonVariantProps
 
+
+export type DefaultButtonProps = ButtonAsButtonProps & SharedButtonProps & ButtonVariantProps
 
 
 

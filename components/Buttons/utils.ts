@@ -8,7 +8,8 @@ export const withDefaultProps = <
     Cmp: ComponentType<P>
 ) => {
     type RequiredProps = Omit<P, keyof DP>
-    type Props = Partial<DP> & Required<RequiredProps>
+    // type Props = Partial<DP> & Required<RequiredProps>
+    type Props = Partial<DP> & RequiredProps
 
     Cmp.defaultProps = defaultProps
     return (Cmp as ComponentType<any>) as ComponentType<Props>
