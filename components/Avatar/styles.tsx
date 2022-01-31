@@ -1,80 +1,76 @@
-import { styled } from '../../stitches.config'
-import { Boop } from '@/components/Boop/Booop'
+import { styled } from 'stitches.config'
 
-const replies = [
-    { id: '1', photo: '🐶' },
-    { id: '2', photo: '🐱' },
-    { id: '3', photo: '🐰' },
-    { id: '4', photo: '🐭' },
-    { id: '5', photo: '🐹' },
-    { id: '6', photo: '🦊' },
-    { id: '7', photo: '🐻' },
-    { id: '8', photo: '🐼' },
-    { id: '9', photo: '🐨' }
-]
-
-const Avatar = styled('div', {
-    background: 'linear-gradient(90deg,#ffa0ae 0%,#aacaef 75%)',
-    height: '50px',
-    width: '50px',
-    borderRadius: '50%',
-    border: '3px solid #4C79DF',
-    display: 'flex',
-    alignItems: 'center',
+export const StyledAvatarRoot = styled('span', {
+    appearance: 'none',
+    userSelect: 'none',
+    display: 'inline-flex',
     justifyContent: 'center',
-    cursor: 'pointer',
-    fontSize: '38px',
-})
-Avatar.displayName = 'avatar'
-Avatar.toString = () => '.avatar'
+    alignItems: 'center',
+    verticalAlign: 'middle',
+   
+    backgroundColor: '$accentSolid',
+    overflow: 'hidden',
+    boxShadow: '$small',
 
-const AvatarList = styled('ul', {
+    variants: {
+        size: {
+            1: { size: 'calc(48px + $1)', padding: '$1' },
+            2: { size: 'calc(64px + $1)', padding: '$1' },
+            3: { size: 'calc(72px + $2)', padding: '$2' },
+        },
+        shape: {
+            'round': { borderRadius: '9999px' },
+            'square': { borderRadius: '$2' },
+        }
+    },
+    defaultVariants: {
+        size: '2',
+        shape: 'square'
+    }
+})
+
+export const StyledAvatarImage = styled('img', {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    borderRadius: 'inherit',
+    boxShadow: '$small'
+})
+
+export const StyledAvatarFallback = styled('span', {
+    width: '100%',
+    height: '100%',
+   
     display: 'flex',
-    flexWrap: 'wrap',
-    marginLeft: '0px',
-    marginBottom: '8px',
-    marginTop: '15px'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 'inherit',
+
+    backgroundColor: '$accentBorder',
+    color: '$black1',
+
+    fontFamily: '$plexsans',
+    fontVariant: 'tabular',
+    fontVariantNumeric: 'tabular-nums',
+
+    willChange: 'background-color, color',
+    transition: 'all 0.4s ease-in',
+    boxShadow: '$small',
+
+    '&:hover': {
+        backgroundColor: '$accentFocusRing',
+        color: '$black1'
+    },
+
+    variants: {
+        size: {
+            1: { fontSize: '$4', fontWeight: 300, letterSpacing: '0.05em', pl: '1px' },
+            2: { fontSize: '$6', fontWeight: 500, letterSpacing: '0.1em', pl: '2px' },
+            3: { fontSize: '$8', fontWeight: 700, letterSpacing: '0.15em', pl: '3px' }
+        }
+    },
+    defaultVariants: {
+        size: '2'
+    }
 })
-AvatarList.displayName = 'avatar-list'
-AvatarList.toString = () => '.avatar-list'
-
-const AvatarItem = styled('li', {
-    listStyle: 'none',
-    marginRight: '-10px'
-})
-AvatarItem.displayName = 'avatar-item'
-AvatarItem.toString = () => '.avatar-item'
-
-const AvatarEmoji = styled('span', {
-    paddingRight: 0
-})
-AvatarEmoji.displayName = 'avatar-emoji'
-AvatarEmoji.toString = () => '.avatar-emoji'
-
-interface IAvatar {
-    src?: string;
-    fallback?: string;
-    alt?: string;
-    delay?: string; 
-};
-
-interface AvatarDatum {
-    id: string;
-    photo: React.ReactNode | string; 
-}
-
-export const AvatarGroup = () => (
-    <AvatarList>
-        {replies.map((item: AvatarDatum, index: number) => (
-            <Boop rotation={30} timing={150}>
-                <AvatarItem key={`item-indexed-${index}`}>
-                    <Avatar>
-                        <AvatarEmoji role="img"> 
-                            {item.photo} 
-                        </AvatarEmoji>
-                    </Avatar>
-                </AvatarItem>
-            </Boop>
-        ))}
-    </AvatarList>
-)

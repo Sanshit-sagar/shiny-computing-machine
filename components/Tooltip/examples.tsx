@@ -1,16 +1,19 @@
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
-
-import { Button } from "@/components/Button"
 import { ExampleBase } from '@/components/ExampleBase'
 
-import { TooltipTrigger } from './index'
+import Tooltip from './index'
+import { Button } from '@/components/Buttons'
+import { FloatingTooltip } from './floaters'
 
-
-export const TooltipInstance = () => (
-    <TooltipTrigger defaultOpen={true} delay={100} content="Primary Tooltip">
-        <Button variant="primary"> Protip: Hover me! </Button>
-    </TooltipTrigger> 
+export const TooltipWithDelay = () => (
+    <Tooltip.Trigger defaultOpen={true} delay={100} content="Primary Tooltip">
+        <Button code="0100" variant="primary"> 
+            Hover me
+        </Button>
+    </Tooltip.Trigger> 
 )
+
+export const TooltipInstance = () => <FloatingTooltip /> 
 
 const ExampleTooltip = () => {
     return (

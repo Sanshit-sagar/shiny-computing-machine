@@ -1,6 +1,6 @@
 import { cloneElement, isValidElement, Children, useEffect } from 'react'
 import type { ReactNode, ReactChild } from 'react'
-import { isFragment } from 'react-is'
+import { isFragment } from '@/utils/reactTypes'
 
 import { 
     SplitDirection, 

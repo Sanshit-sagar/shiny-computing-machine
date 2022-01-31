@@ -6,7 +6,8 @@ import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 
 import { ToggleableInstance } from '@/components/Toggleable/examples'
-
+import { SelectorInstance } from '@/components/Selector/examples'
+import { AvatarInstance } from '@/components/Avatar/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
 import { ColorSliderInstance } from '@/components/ColorSlider/examples'
 import { ComboBoxInstance } from '@/components/ComboBox/examples'
@@ -38,6 +39,7 @@ import { TreeInstance } from '@/components/TreeView/examples'
 import { ShapeInstances } from '@/components/Shape/examples'
 import { IShowcase } from './types'
 
+import { AvatarIcon } from '@radix-ui/react-icons'
 import {
     KeyIcon,
     KeyboardIcon,
@@ -75,7 +77,12 @@ export const showcases: IShowcase[] = [{
         name: 'Accordion',
         description: 'did it strike a-cord-in your heart?',
         icon: <CollapseIcon />
-    },{
+    }, {
+        element: <AvatarInstance />,
+        name: 'Avatar',
+        description: '',
+        icon: <AvatarIcon />
+    }, {
         element: <BreadcrumbsInstance />,
         name: 'Breadcrumbs',
         description: 'soft flaky crumbles',
@@ -183,7 +190,7 @@ export const showcases: IShowcase[] = [{
         description: '',
         icon: <MagnifyingGlassIcon />
     }, {
-        element: <SelectInstance />,
+        element: <SelectorInstance />,
         name: 'Select',
         description: '',
         icon: <SelectIcon />

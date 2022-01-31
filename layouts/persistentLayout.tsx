@@ -20,8 +20,8 @@ const StyledLayoutContainer = styled('div', {
     bc: '$black1',  
 
     d: 'flex', 
-    fd: 'row', 
-    jc: 'space-between',
+    fd: 'column', 
+    jc: 'flex-start',
     ai: 'stretch', 
     gap: '0px'
 })
@@ -30,6 +30,40 @@ const StyledDemos = styled('div', {
 
 })
 
+const StyledHeader = styled('div', {
+    height: '50px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row', 
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    gap: '$3'
+})
+
+const StyledBody = styled('div', {
+    height: 'calc(100vh - 50px)',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    gap: 0
+})
+
+
+
+const HeaderNavbar = () => {
+    return (
+        <Navbar>
+            <NavItem icon={<LightningBoltIcon />} />
+
+            <NavItem icon={<CaretDownIcon />}>
+                <DropdownMenu />
+            </NavItem>
+        </Navbar>
+    )
+}
+
 
 const PersistentLayout = ({ children }: PersistentLayoutProps) => {   
     cssReset()
@@ -37,21 +71,17 @@ const PersistentLayout = ({ children }: PersistentLayoutProps) => {
     const activeThemeClass = useAtomValue(activeThemeClassAtom)
    
     return ( 
+    
         <StyledLayoutContainer>
-            <Navbar>
-                <NavItem icon={<LightningBoltIcon />} />
-                <NavItem icon="🔥" />
-                <NavItem icon="🔥" />
-            
-                <NavItem icon={<CaretDownIcon />}>
-                    <DropdownMenu />
-                </NavItem>
-            </Navbar>
-
-            <SidebarInstance />
-            <StyledDemos className={activeThemeClass}> 
-                {children} 
-            </StyledDemos>
+            <StyledHeader>
+                <HeaderNavbar />
+            </StyledHeader> 
+            <StyledBody>
+                <SidebarInstance />
+                <StyledDemos className={activeThemeClass}> 
+                    {children} 
+                </StyledDemos>
+            </StyledBody>
         </StyledLayoutContainer>
     )
 }

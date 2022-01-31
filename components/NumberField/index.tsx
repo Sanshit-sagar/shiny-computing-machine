@@ -8,7 +8,7 @@ import { useNumberFieldState } from '@react-stately/numberfield'
 
 import { PlusIcon, MinusIcon } from '@radix-ui/react-icons'
 
-import { TooltipTrigger } from '@/components/Tooltip'
+
 import { useInteractions } from '@/hooks/useInteractions'
 
 import { 
@@ -17,23 +17,15 @@ import {
     NumberInputField 
 } from './styles'
 
-import { MessageProps, TooltipIconProps } from './interfaces'
+import { TooltipIconProps } from './interfaces'
 
-const Message = ({ props, message, state }: MessageProps) => (
-    <MessageText {...props} css={{ color: state==='invalid' ? 'red' : 'green' }}>
-        {message}
-    </MessageText> 
-)
 
-const getTooltipContent = (type) => type === 'increment' ? 'Increment (+)' : 'Decrement (-1)'
 const getButtonPlacement = (type) => type === 'increment' ? 'right' : 'left'
 
 const TooltipIconButton = ({ ref, type, children, ...props }: TooltipIconProps) => (
-    <TooltipTrigger content={getTooltipContent(type)}>
-        <StyledButton {...props} placement={getButtonPlacement(type)} ref={ref}>
-            {children}
-        </StyledButton>
-    </TooltipTrigger>
+    <StyledButton {...props} placement={getButtonPlacement(type)} ref={ref}>
+        {children}
+    </StyledButton>
 )
 
 export function NumberField(props) {

@@ -1,10 +1,10 @@
-import { MutableRefObject, useRef } from 'react';
+import { MutableRefObject, useRef } from 'react'
 
-import { useColorSliderState } from '@react-stately/color';
-import { useColorSlider } from '@react-aria/color'; 
-import { VisuallyHidden } from '@react-aria/visually-hidden';
-import { useLocale } from '@react-aria/i18n';
-import { useFocusRing } from '@react-aria/focus';
+import { useColorSliderState } from '@react-stately/color'
+import { useColorSlider } from '@react-aria/color'
+import { VisuallyHidden } from '@react-aria/visually-hidden'
+import { useLocale } from '@react-aria/i18n'
+import { useFocusRing } from '@react-aria/focus'
 
 import {
     ColorChannel,

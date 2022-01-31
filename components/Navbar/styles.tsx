@@ -1,11 +1,21 @@
 import { styled } from 'stitches.config'
 
+//https://codesandbox.io/s/924217jvro?file=/src/experiments/compound-accordion.js
+//https://codesandbox.io/s/mystifying-lichterman-bv5to
+//https://www.framer.com/showcase/project/05KEi5HD5VbrLPqXODHR/
+//https://css-tricks.com/building-progress-ring-quickly/
+//https://codesandbox.io/s/skeleton-vtn9m?from-embed=&file=/src/components/Skeleton.jsx
+//https://codesandbox.io/s/framer-motion-auto-animation-netflix-style-menu-p33yl?file=/src/App.js
+//https://sites.framer.com/projects/Simple-Portfolio-copy--6XQqbMO8XgkYXc1m6xsJ-5F4vO?node=WQLkyLRf1
+
 
 export const StyledNavbar = styled('nav', {
-    height: '60px',
-    backgroundColor: '#242526',
-    padding: '0 1rem',
-    borderBottom: '1px solid #474a4d'
+    height: '50px',
+    width: '100%',
+    backgroundColor: 'transparent',
+    padding: 0,
+    pr: '200px',
+    margin: 0
 })
 
 export const StyledNavbarList = styled('ul', {
@@ -52,7 +62,9 @@ export const StyledIconButton = styled('a', {
 
 
 export const IconLeft = ({ children }) => (
-    <StyledIconButton as="span"> {children} </StyledIconButton>
+    <StyledIconButton as="span"> 
+        {children} 
+    </StyledIconButton>
 )
 
 export const IconRight = styled('span', {
@@ -89,11 +101,12 @@ export const StyledDropdown = styled('div', {
     top: '58px',
     width: '300px',
     transform: 'translateY(-45%)',
-    backgroundColor: '#242526',
+    backgroundColor: 'red',
     border: '1px solid #474a4d',
     borderRadius: '8px',
     padding: '1rem',
     overflow: 'hidden',
-    transition: 'height 500ms ease'
+    transition: 'height 500ms ease',
+    zIndex: 1000
 })
 

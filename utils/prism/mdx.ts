@@ -1,12 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import glob from 'glob';
-import matter from 'gray-matter';
-import readingTime from 'reading-time';
-import { bundleMDX } from 'mdx-bundler';
-import rehypeHighlightCode from '@/utils/prism/rehype-highlight-code';
-import rehypeMetaAttribute from '@/utils/prism/rehype-meta-attribute';
-import remarkSlug from 'remark-slug';
+import fs from 'fs'
+import path from 'path'
+import glob from 'glob'
+import matter from 'gray-matter'
+import { bundleMDX } from 'mdx-bundler'
+import rehypeHighlightCode from '@/utils/prism/rehype-highlight-code'
+import rehypeMetaAttribute from '@/utils/prism/rehype-meta-attribute'
 
 export type Frontmatter = {
     title: string;
@@ -36,7 +34,6 @@ export const getAllFrontmatter = (fromPath) => {
       ...(data as Frontmatter),
       slug: path.basename(filePath).replace('.mdx', ''), // file name without extension
       wordCount: content.split(/\s+/g).length,
-      readingTime: readingTime(content),
     } as Frontmatter;
   });
 };
@@ -60,7 +57,6 @@ export const getMdxBySlug = async (basePath, slug) => {
       ...(frontmatter as Frontmatter),
       slug,
       wordCount: code.split(/\s+/g).length,
-      readingTime: readingTime(code),
     } as Frontmatter,
     code,
   };
