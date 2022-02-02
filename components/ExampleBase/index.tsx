@@ -13,7 +13,7 @@ import { activeThemeClassAtom } from '@/atoms/darkMode'
 import { activePageAtom, updateActivePageAtom } from '@/atoms/globalState'
 
 import { PropsList } from '@/components/PropsList'
-import { ControlPanel, SettingsPanel } from '@/components/ControlPanel'
+
 
 
 export const AnimatedIconAndHeader = () => {
@@ -49,9 +49,9 @@ export const ExampleBase = ({
                 ceiling={<AnimatedIconAndHeader />}
                 content={component}
                 floor={<> </>}
-                corner={<SettingsPanel />}
+                corner={<> </>}
                 lwall={<PropsList {...state} />}
-                rwall={<ControlPanel controls={controls} state={state} />}
+                rwall={<> </>}
             />
         </Container>
     )

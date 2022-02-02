@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { useLayoutEffect } from '@radix-ui/react-use-layout-effect';
-
 import { Box } from '../Box'
 import { Flex } from '../Flex'
 
@@ -18,6 +16,8 @@ type Vector = {
 type ScrollAreaProps = {
   children: any;
 };
+
+const useLayoutEffect = Boolean(globalThis?.document) ? React.useLayoutEffect : () => {}
 
 export const ScrollArea = (props: ScrollAreaProps) => {
   const thumbRef = React.useRef<HTMLDivElement>(null);

@@ -1,5 +1,5 @@
 import React from 'react'
-import { styled, StitchesVariants } from '../../stitches.config'
+import { styled, VariantProps } from '../../stitches.config'
 import * as Radix from '@radix-ui/react-primitive'
 
 const StyledPanel = styled('div', {
@@ -10,7 +10,7 @@ const StyledPanel = styled('div', {
 });
 
 type PanelProps = Radix.ComponentPropsWithoutRef<typeof StyledPanel>;
-type PanelVariants = StitchesVariants<typeof StyledPanel> & { children: React.ReactNode; }
+type PanelVariants = VariantProps<typeof StyledPanel> & { children: React.ReactNode; }
 
 export const Panel = React.forwardRef<
     React.ElementRef<typeof StyledPanel>,

@@ -9,7 +9,6 @@ import {
 } from './styles'
 
 import { ScrollArea } from '@/components/ScrollArea'
-import { Card } from '@/components/CCard'
 
 type SlotProps = { 
     children: boolean | string | ReactNode;
@@ -43,7 +42,7 @@ const Slot = ({ children }: SlotProps) => {
 };
 
 export const PropsList = ({ children, ...props }: { children: React.ReactNode; }) => (
-    <Card css={{ br: '$1', p: '$1', m: 0, width: 'fit-content', bc: 'transparent', borderColor: 'transparent' }}>
+   
         <Container>
             <ScrollArea>
                 {Object.keys(props).map((val: string) => (
@@ -54,6 +53,6 @@ export const PropsList = ({ children, ...props }: { children: React.ReactNode; }
                 ))}
             </ScrollArea>
         </Container>
-    </Card>
+    
 );
 

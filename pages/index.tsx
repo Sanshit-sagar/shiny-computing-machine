@@ -1,10 +1,5 @@
 import ComponentGallery from '@/components/Landing'
 
-
-
-const Home = () => {
-
-    return <ComponentGallery /> 
-}
+const Home = () => <ComponentGallery /> 
 
 export default Home
