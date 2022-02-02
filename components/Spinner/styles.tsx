@@ -3,6 +3,11 @@ import { spin, ripple } from 'styles/keyframes/index'
 
 
 export const StyledSpinner = styled('div', {
+
+    '@property': {
+
+    },
+
     d: 'inline-block',
     m: '$1',
     p: 0,
@@ -19,10 +24,10 @@ export const StyledSpinner = styled('div', {
     variants: {
         size: {
             1: { size: '22px', borderWidth: '1px' },
-            2: { size: '26px', borderWidth: '1.5px' },
-            3: { size: '32px', borderWidth: '2px' },
-            4: { size: '36px', borderWidth: '2.5px' },
-            5: { size: '44px', borderWidth: '3px' }
+            2: { size: '28px', borderWidth: '1.5px' },
+            3: { size: '36px', borderWidth: '2px' },
+            4: { size: '44px', borderWidth: '2.5px' },
+            5: { size: '52px', borderWidth: '3px' }
         },
         speed: {
             1: { animation: `${spin} 4000ms linear infinite`  },
@@ -41,7 +46,7 @@ export const StyledSpinner = styled('div', {
     },
     defaultVariants: {
         size: '2',
-        speed: '1',
+        speed: '5',
         radius: '5'
     }
 })

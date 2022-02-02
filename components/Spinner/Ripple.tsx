@@ -2,7 +2,7 @@ import { StyledRipple, StyledWave } from './styles'
 import { RippleProps } from './types'
 
 
-const Ripple = ({ speed = '4', size = '1', css }: RippleProps) => (
+export const Ripple = ({ speed = '4', size = '1', css }: RippleProps) => (
     <StyledRipple speed={speed} size={size} css={{ ...css }}>
         {[...Array(2)].map((_, index: number) => (
             <StyledWave key={index} size={size} />
@@ -11,4 +11,3 @@ const Ripple = ({ speed = '4', size = '1', css }: RippleProps) => (
 )
 
 Ripple.displayName = 'Ripple'
-export default Ripple

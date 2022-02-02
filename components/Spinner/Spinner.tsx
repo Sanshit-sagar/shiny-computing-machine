@@ -5,7 +5,7 @@ import { SpinnerProps } from './types'
 
 export const Spinner = ({ 
     size = '2', 
-    speed = '3', 
+    speed = '4', 
     radius = '5', 
     label = 'Loading...',
     isIndeterminate = true
@@ -27,5 +27,5 @@ export const Spinner = ({
 }
 
 Spinner.displayName = 'Spinner'
-export default Spinner 
+
 

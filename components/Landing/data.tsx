@@ -6,11 +6,14 @@ import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 
 import { ToggleableInstance } from '@/components/Toggleable/examples'
+import { AsyncInstance } from '@/components/Async/examples'
+
 import { SelectorInstance } from '@/components/Selector/examples'
 import { AvatarInstance } from '@/components/Avatar/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
 import { ColorSliderInstance } from '@/components/ColorSlider/examples'
 import { ComboBoxInstance } from '@/components/ComboBox/examples'
+import { CountUpInstance } from '@/components/CountUp/examples'
 import { DialogInstance } from '@/components/Dialog/examples'
 import { InlineCodeInstance } from '@/components/InlineCode/examples'
 import { InlineEditInstance } from '@/components/LinedEdit/examples'
@@ -21,6 +24,7 @@ import { MenewInstance } from '@/components/Menew/examples'
 import { MultiToggleInstance } from '@/components/MultiToggle/examples'
 import { NumberFieldInstance } from '@/components/NumberField/examples'
 import { CodeInputInstance } from '@/components/CodeInput/examples'
+import { OrderedListInstance } from '@/components/OrderedList/examples'
 import { ProgressBarInstance } from '@/components/ProgressBar/examples'
 import { PopoverInstance } from '@/components/Popover/examples'
 import { RadioButtonInstance } from '@/components/RadioGroup/examples'
@@ -69,7 +73,8 @@ import {
     LinkIcon,
     CarouselIcon,
     ComboBoxIcon,
-    CollapseIcon
+    CollapseIcon,
+    ListIcon
 } from '@/components/Icons'
 
 export const showcases: IShowcase[] = [{
@@ -77,6 +82,11 @@ export const showcases: IShowcase[] = [{
         name: 'Accordion',
         description: 'did it strike a-cord-in your heart?',
         icon: <CollapseIcon />
+    }, {
+        element: <AsyncInstance />,
+        name: 'Async',
+        description: '',
+        icon: <HourglassIcon /> 
     }, {
         element: <AvatarInstance />,
         name: 'Avatar',
@@ -124,6 +134,11 @@ export const showcases: IShowcase[] = [{
         description: '',
         icon: <ComboBoxIcon />
     }, {
+        element: <CountUpInstance />,
+        name: 'Count Up', 
+        description: '',
+        icon: <NumberFieldIcon /> 
+    }, {
         element: <DialogInstance defaultOpen={false} />,
         name: 'Dialog',
         description: '',
@@ -169,6 +184,11 @@ export const showcases: IShowcase[] = [{
         name: 'Pin Code',
         description: '',
         icon: <KeyIcon />
+    }, {
+        element: <OrderedListInstance />,
+        name: 'Ordered List',
+        description: '',
+        icon: <ListIcon />
     }, {
         element: <PopoverInstance />,
         name: 'Popover',

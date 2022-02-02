@@ -3,7 +3,7 @@ import { useState, HTMLAttributes } from 'react';
 import { useHover, useFocusWithin, usePress } from '@react-aria/interactions'
 import { mergeProps } from '@react-aria/utils'
 
-import { PressEvent, HoverEvent } from '../interfaces/Events'
+import { PressEvent, HoverEvent } from '@/interfaces/Interactions'
 
 export interface InteractionProps {
     isDisabled?: boolean; 
@@ -34,7 +34,6 @@ export const useInteractions = ({
     const handlePressChange = (event: PressEvent) =>  setPressInfo({ ...event });
     const handleHoverChange = (event: HoverEvent) =>  setHoverInfo({ ...event });
 
-
     let { focusWithinProps } = useFocusWithin({
         isDisabled,
         onFocusWithinChange: (isFocusWithin: boolean) => setFocus(isFocusWithin)
@@ -52,9 +51,11 @@ export const useInteractions = ({
         onHoverEnd: (event: HoverEvent) => handleHoverChange(event)
     }); 
 
-    const interactionProps: HTMLAttributes<HTMLElement> = { 
-        ...mergeProps(pressProps, mergeProps(focusWithinProps, hoverProps))
-    }
+    const interactionProps: HTMLAttributes<HTMLElement> = mergeProps(
+        pressProps, 
+        hoverProps,
+        focusWithinProps,
+    )
 
     return {
         isFocused,

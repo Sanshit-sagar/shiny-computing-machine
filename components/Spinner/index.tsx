@@ -1,4 +1,4 @@
-export * as Spinner from './Spinner'
-export * as Ripple from './Ripple'
-export * as Equalizer from './Equalizer'
+export * from './Spinner'
+export * from './Ripple'
+export * from './Equalizer'
  

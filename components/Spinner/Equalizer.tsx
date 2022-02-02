@@ -65,7 +65,7 @@ const StyledEqualizer = styled('div', {
 })
 
 
-const Equalizer = () => (
+export const Equalizer = () => (
     <StyledEqualizer speed="1">
         <span className="left"></span>
         <span className="mid"></span>
@@ -74,4 +74,3 @@ const Equalizer = () => (
 )
 
 Equalizer.displayName = 'Equalizer'
-export default Equalizer
