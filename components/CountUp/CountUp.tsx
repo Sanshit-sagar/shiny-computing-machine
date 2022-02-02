@@ -3,103 +3,121 @@ import { CountUpProps } from './types'
 import { useCountUp } from './useCountUp'
 import { useEventCallback } from '@/hooks/useEventCallback'
 
-
-export const CountUp = (props: CountUpProps) => {
+export const CountUp: React.FC<CountUpProps> = (props) => {
     const {
-        redraw,
-        className,
-        children,
-        containerProps,
-        css,
-        ...rest
+      className,
+      redraw,
+      containerProps,
+      children,
+      style,
+      ...useCountUpProps
     } = props
 
-    const containerRef = useRef<HTMLElement>()
-    const isInitializedRef = useRef<boolean>(false)
-
-    const { 
-        reset, 
-        start, 
-        pauseResume, 
-        getCountUp, 
-        update: updateCountUp 
+    const containerRef = useRef<HTMLElement>(null)
+    const isInitializedRef = useRef(false)
+  
+    const {
+      start,
+      reset,
+      update: updateCountUp,
+      pauseResume,
+      getCountUp,
     } = useCountUp({
-        ...rest,
-        ref: containerRef,
-        startOnMount: typeof children !== 'function' || props.delay === 0,
-        enableReinitialize: false
-    })
-
+      ...useCountUpProps,
+      ref: containerRef,
+      startOnMount: typeof children !== 'function' || props.delay === 0,
+      enableReinitialize: false,
+    });
+  
     const restart = useEventCallback(() => {
-        start()
-    })
-
+      start();
+    });
+  
     const update = useEventCallback((end: string | number) => {
-        if(!props.preserveValue) {
-            reset()
-        }
-        updateCountUp(end)
-    })
-
-
+      if (!props.preserveValue) {
+        reset();
+      }
+      updateCountUp(end);
+    });
+  
     const initializeOnMount = useEventCallback(() => {
-        if(typeof props.children === 'function') {
-            if(!(containerRef.current instanceof Element)) {
-                console.error(`ContainerRef isnt an instance of JSX's Element`)
-            }
+      if (typeof props.children === 'function') {
+        // Warn when user didn't use containerRef at all
+        if (!(containerRef.current instanceof Element)) {
+          console.error(
+            `Couldn't find attached element to hook the CountUp instance into! Try to attach "containerRef" from the render prop to a an Element, eg. <span ref={containerRef} />.`,
+          );
+          return;
         }
-
-        getCountUp()
-    })
-
+      }
+  
+      // unlike the hook, the CountUp component initializes on mount
+      getCountUp();
+    });
+  
     useEffect(() => {
-        initializeOnMount()
-    }, [initializeOnMount])
-
+      initializeOnMount();
+    }, [initializeOnMount]);
+  
     useEffect(() => {
-        if(isInitializedRef.current) {
-            update(props.end)
-        }
-    }, [props.end, update])
-
-    const redrawDependencies = redraw && props
-
+      if (isInitializedRef.current) {
+        update(props.end);
+      }
+    }, [props.end, update]);
+  
+    const redrawDependencies = redraw && props;
+  
+    // if props.redraw, call this effect on every props change
     useEffect(() => {
-        if(redraw && isInitializedRef.current) {
-            restart()
-        }
-    }, [restart, redraw, redrawDependencies])
-
+      if (redraw && isInitializedRef.current) {
+        restart();
+      }
+    }, [restart, redraw, redrawDependencies]);
+  
+    // if not props.redraw, call this effect only when certain props are changed
     useEffect(() => {
-        if (!redraw && isInitializedRef.current) {
-            restart();
-        }
-    }, [redraw, reset, props.start, props.duration]) // TODO
-
+      if (!redraw && isInitializedRef.current) {
+        restart();
+      }
+    }, [
+      restart,
+      redraw,
+      props.start,
+      props.suffix,
+      props.prefix,
+      props.duration,
+      props.separator,
+      props.decimals,
+      props.decimal,
+      props.className,
+      props.formattingFn,
+    ]);
+  
     useEffect(() => {
-        isInitializedRef.current = true
-    }, [])
-
-    if(typeof children === 'function') {
-        return children({
-            countUpRef: containerRef,
-            start,
-            reset,
-            update: updateCountUp,
-            pauseResume,
-            getCountUp
-        }) as JSX.Element | null
+      isInitializedRef.current = true;
+    }, []);
+  
+    if (typeof children === 'function') {
+      // TypeScript forces functional components to return JSX.Element | null.
+      return children({
+        countUpRef: containerRef,
+        start,
+        reset,
+        update: updateCountUp,
+        pauseResume,
+        getCountUp,
+      }) as JSX.Element | null;
     }
-
+  
     return (
-        <span 
-            className={className} 
-            ref={containerRef}
-            {...containerProps} 
-            style={{ ...css }}
-        >
-            {props.start ? getCountUp() : ''}
-        </span>
-    )
-}
-
+      <span
+        className={className}
+        ref={containerRef}
+        style={style}
+        {...containerProps}
+      >
+        {props.start ? getCountUp().formattingFn(props.start) : ''}
+      </span>
+    );
+};
+  

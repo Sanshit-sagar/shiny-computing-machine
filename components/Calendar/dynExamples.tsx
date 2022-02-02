@@ -56,7 +56,7 @@ const CalendarInstance = ({ useRange, state }: { useRange: boolean; state: Defau
 
     return useRange 
         ? <RangeCalendarInstance {...rangeProps} />
-        : <DefaultCalendarInstance {...dayProps} />;
+        : <DefaultCalendarInstance {...dayProps} />
 }
 
 export default CalendarInstance

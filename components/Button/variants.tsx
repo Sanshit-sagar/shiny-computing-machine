@@ -4,6 +4,14 @@ export const primaryVariant: CSS = {
     bc: '$accentBg',
     color: '$accentText',
     borderColor: '$accentBorder',
+
+    '&:disabled': {
+        bc: '$disabledBg',
+        color: '$disabledText',
+        borderColor: '$disabledBorder',
+        cursor: 'not-allowed',
+    },
+
     '&:hover': {
         '&:disabled': {
             boxShadow: 'none'
@@ -92,6 +100,14 @@ export const dangerVariant: CSS = {
     bc: '$dangerBg',
     color: '$dangerText',
     borderColor: '$dangerBorder',
+
+    '&:disabled': {
+        bc: '$disabledBg',
+        color: '$disabledText',
+        borderColor: '$disabledBorder',
+        cursor: 'not-allowed',
+    },
+
     '&:hover': {
         '&:disabled': {
             boxShadow: 'none'
@@ -126,6 +142,14 @@ export const successVariant: CSS = {
     bc: '$successBg',
     color: '$successText',
     borderColor: '$successBorder',
+
+    '&:disabled': {
+        bc: '$disabledBg',
+        color: '$disabledText',
+        borderColor: '$disabledBorder',
+        cursor: 'not-allowed',
+    },
+
     '&:hover': {
         '&:disabled': {
             boxShadow: 'none'
@@ -161,6 +185,13 @@ export const warningVariant: CSS = {
     bc: '$warningBg',
     color: '$warningText',
     borderColor: '$warningBorder',
+    '&:disabled': {
+        bc: '$disabledBg',
+        color: '$disabledText',
+        borderColor: '$disabledBorder',
+        cursor: 'not-allowed',
+    },
+
     '&:hover': {
         '&:disabled': {
             boxShadow: 'none'
@@ -196,6 +227,14 @@ export const infoVariant: CSS = {
     bc: '$infoBg',
     color: '$infoText',
     borderColor: '$infoBorder',
+
+    '&:disabled': {
+        bc: '$disabledBg',
+        color: '$disabledText',
+        borderColor: '$disabledBorder',
+        cursor: 'not-allowed',
+    },
+
     '&:hover': {
         '&:disabled': {
             boxShadow: 'none'
@@ -232,15 +271,8 @@ export const outlinedVariant: CSS = {
     borderColor: '$accentBorder',
     borderWidth: '2px',
 
-    '&:disabled': {
-        bc: 'transparent',
-        color: '$disabledText',
-        borderColor: '$disabledBorder'
-    },
+
     '&:hover': {
-        '&:disabled': {
-            boxShadow: 'none'
-        },
         '&:not(:disabled)': {
             bc: 'transparent',
             color: '$accentTextContrast',
@@ -248,9 +280,6 @@ export const outlinedVariant: CSS = {
         }
     },
     '&:active': {
-        '&:disabled': {
-            boxShadow: 'none'
-        },
         '&:not(:disabled)': {
             bc: 'transparent',
             color: '$accentTextContrast',
@@ -258,10 +287,6 @@ export const outlinedVariant: CSS = {
         }
     },
     '&:focus-visible': {
-        '&:disabled': {
-            boxShadow: 'none',
-            outline: '2px solid $disabledFocusRing'
-        },
         '&:not(:disabled)': {
             outline: '0.5px solid $accentFocusRing'
         }

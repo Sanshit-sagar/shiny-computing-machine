@@ -9,15 +9,6 @@ import {
     CountUp as CountUpJs 
 } from 'countup.js'
 
-export type CounterInstanceProps = {
-    start?: number;
-    end: number;
-    duration?: number;
-}
-
-export interface CommonProps extends CounterInstanceProps {
-    delay?: number | null;
-}
 
 export interface CountUpApi {
     start: () => void;
@@ -26,6 +17,8 @@ export interface CountUpApi {
     pauseResume: () => void;
     getCountUp: (recreate?: boolean) => CountUpJs; 
 }
+
+export type UpdateFn = (newEnd: string | number) => void;
 
 type EventHandlerArgs = Omit<CountUpApi, 'getCountUp'>
 
@@ -37,13 +30,13 @@ export interface CallbackProps {
     onUpdate?: (args: Omit<EventHandlerArgs, 'update'>) => void; 
 }
 
-export interface CounterHookProps extends CallbackProps, CommonProps {
+export interface CountUpHookProps extends CallbackProps, CommonProps {
     ref: string | MutableRefObject<HTMLElement>;
     startOnMount?: boolean; 
     enableReinitialize?: boolean; 
 }
 
-export interface CountUpInstanceProps extends CounterInstanceProps {
+export interface CountUpInstanceProps {
     decimal?: string;
     decimals?: number;
     duration?: number;
@@ -58,6 +51,10 @@ export interface CountUpInstanceProps extends CounterInstanceProps {
     numerals?: string[];
 }
 
+export interface CommonProps extends CountUpInstanceProps {
+    delay?: number | null;
+}
+
 export interface RenderCounterProps extends CountUpApi {
     countUpRef: RefObject<HTMLElement>; 
 }
@@ -66,7 +63,7 @@ export interface CountUpProps extends CommonProps, CallbackProps {
     className?: string;
     redraw?: boolean;
     children?: (props: RenderCounterProps) => ReactNode;
-    css?: CSSProperties;
+    style?: CSSProperties;
     preserveValue?: boolean;
     containerProps?: ComponentPropsWithoutRef<'span'>;
 }

@@ -1,7 +1,9 @@
-import { useEffect, useLayoutEffect } from 'react' 
+import { useEffect, useLayoutEffect } from 'react'  
 
-export const useIsomorphicLayoutEffect = typeof window !== undefined 
-    &&  typeof   window.document !== undefined
-    &&  typeof   window.document.createElement !== undefined 
-    ?   useEffect 
-    :   useLayoutEffect
+export const useIsomorphicLayoutEffect = useEffect
+                //  window 
+    // &&  typeof   window                         !== undefined    
+    // &&  typeof   window.document                !== undefined
+    // &&  typeof   window.document.createElement  !== undefined 
+    // ?   useEffect 
+    // :   useLayoutEffect

@@ -6,7 +6,7 @@ export const StyledGallery = styled('div', {
     bottom: 0,
     right: 0,
     width: '1100px',
-    height: '87.5%',
+    height: '92.5%',
     p: 0,
     mx: '$2',
     my: '$1',
@@ -60,7 +60,7 @@ export const StyledWrapper = styled('div', {
     appearance: 'none',
     WebkitHighlight: 'transparent',
 
-    height: '400px', 
+    height: '450px', 
     width: '525px',
     p: '0',
     

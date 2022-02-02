@@ -26,8 +26,8 @@ export const Title = styled('div', {
 });
 
 export const CellWrapper = styled('td', {
-    margin: 0,
-    padding: 0,
+    m: 0,
+    p: 0,
     bc: 'transparent',
     border: 'none',
     outline: 'none'
@@ -39,29 +39,13 @@ const CalendarWrapper = styled('div', {
     fd: 'column', 
     jc: 'flex-start', 
     ai: 'stretch', 
-    m: 0, 
-    p: 0 ,
-    br: '$3',
+
     p: '$2',
     m: 0,
-    border: '1px solid $accentBorder',
-    outline: 'none',
 
-    variants: {
-        theme: {
-            primary: {
-                ...primaryVariant,
-                bc: '$accentBase',
-                '&:hover': {
-                    bc: '$accentBase'
-                }
-            },
-            outlined: outlinedVariant,
-        }
-    },
-    defaultVariants: {
-        theme: 'primary'
-    }
+    bc: 'transparent',
+    border: 'none',
+    outline: 'none'
 })
 
 type CalendarChildProps =  { children: React.ReactNode; }
@@ -69,24 +53,14 @@ type CalendarCssProps = { css?: CSS; }
 type CalendarOwnProps = ComponentProps<typeof CalendarWrapper>
 type CalendarWrapperProps = CalendarOwnProps & CalendarChildProps & CalendarCssProps
 
-const ForwardedCalendarWrapper = React.forwardRef<
-    HTMLDivElement,
-    CalendarContainerProps
->(({ children, ...otherProps }, forwardedRef) => (
+const StyledContainer = React.forwardRef<HTMLDivElement, CalendarWrapperProps>(({ 
+    children, 
+    ...otherProps 
+}, forwardedRef) => (
     <CalendarWrapper ref={forwardedRef} {...otherProps}>
         {children}
     </CalendarWrapper>
-));
-
-export const CalendarContainer = (props) => {
-    let { children, ref, ...rest } = props
-
-    return (
-        <CalendarWrapper forwardedRef={ref} {...rest}>
-            {children}
-        </CalendarWrapper>
-    ); 
-}
+))
 
 export const StyledCell = styled('span', {
     appearance: 'none',
@@ -105,6 +79,7 @@ export const StyledCell = styled('span', {
 
     color: '$light1',
     border: '1px solid transparent',
+    outline: 'none',
 
     fontVariant: 'tabular',
     fontVariantNumeric: 'tabular-nums',
@@ -116,8 +91,8 @@ export const StyledCell = styled('span', {
                 width: '36px',
                 height: '36px',
                 aspectRatio: '1',
-                bc: '$light1',
-                color: '$dark1',
+                bc: '$accentBgSubtle',
+                color: '$accentTextContrast',
                 cursor: 'pointer'
             },
             false: null,
@@ -147,15 +122,44 @@ export const StyledCell = styled('span', {
                 visibility: 'hidden'
             } 
         },
+        isRangeStart: {
+            true: {
+
+            },
+            false: null
+        },
+        isRangeEnd: {
+            true: {
+
+            },
+            false: null
+        },
+        isDisabled: {
+            true: {
+                bc: '$disabledBg', 
+                color: '$disabledText',
+                cursor: 'not-allowed',
+            },
+            false: null
+        },
+        isFirstDayOfWeek: {
+            true: { 
+                
+            }
+        },
+        isLastDayOfWeek: {
+            true: { 
+                
+            }
+        },
         isToday: {
             true: {
                 br: '50%',
                 width: '36px',
                 height: '36px',
                 aspectRation: '1',
-                border: '1px solid $accentTextContrast',
-                color: '$accentTextContrast',
-                bc: '$accentSolidActive'
+                border: '1px solid $accentBorder',
+                color: '$black1'
             }
         },
         isSelected: {
@@ -171,9 +175,9 @@ export const StyledCell = styled('span', {
                 bc: '$accentLine',
                 color: '$accentTextContrast',
                 border: '0',
-                btlr: '$2',
-                bblr: '$2',
-                borderLeft: '4px solid $accentBorder',
+                br: '50%',
+                btrr: '0',
+                bbrr: '0'
             },
             false: null
         },
@@ -182,42 +186,12 @@ export const StyledCell = styled('span', {
                 bc: '$accentLine',
                 color: '$accentTextContrast',
                 border: '0',
-                btrr: '$2',
-                bbrr: '$2',
-                borderRight: '4px solid $accentBorder',
+                br: '50%',
+                btlr: '0',
+                bblr: '0'
             },
             false: null
         },
-        isRangeStart: {
-            true: {
-                color: '$disabledText',
-                btlr: '$2',
-                bblr: '$2',
-            },
-            false: null
-        },
-        isRangeEnd: {
-            true: {
-                color: '$disabledText',
-                btrr: '$2',
-                bbrr: '$2'
-            },
-            false: null
-        },
-        isDisabled: {
-            true: {
-                bc: '$disabledBg', 
-                color: '$disabledText',
-                cursor: 'not-allowed',
-            },
-            false: null
-        },
-        isFirstDayOfWeek: {
-            true: { borderLeft: 'none' }
-        },
-        isLastDayOfWeek: {
-            true: { borderRight: 'none' }
-        }
     },
     compoundVariants: [
         {
@@ -226,14 +200,7 @@ export const StyledCell = styled('span', {
             css: {
                 color: '$accentSolid',
             }
-        },
-        {
-            isHovered: true,
-            isRangeStart: true,
-            css: {
-
-            }
-        },
+        }, 
         {
             isSelected: true,
             isSelectionStart: false,
@@ -241,31 +208,9 @@ export const StyledCell = styled('span', {
             css: {
                 br: 0
             }
-        },
-        {
-            isHovered: true,
-            isSelected: true,
-            css: {
-                br: '50%',
-                width: '36px',
-                height: '36px',
-                aspectRation: '1',
-                bc: '$light1'
-            }
-        },
-        {
-            isHovered: true,
-            isSelectionStart: true,
-            css: {
-                width: '36px',
-                height: '36px',
-                aspectRation: '1',
-                bc: '$light1'
-            }
         }
     ],
     defaultVariants: {
-        padding: '8',
         isHovered: false,
         isFocused: false,
         isPressed: false,
@@ -335,10 +280,9 @@ export const HeaderText = styled('span', {
 export const StyledHeader = styled('th', {
     textAlign: 'center',
     m: 0,
-    p: 0,
-    border: 'none',
-   
     p: '$1 $2',
+
+    border: 'none',
     color: '$accentText',
 
     fontFamily: '$jetbrains',
@@ -400,5 +344,5 @@ export const StyledHeader = styled('th', {
 
 export const Cell = ForwardedCell
 export const HeaderCell = StyledHeader
-export const Container = ForwardedCalendarWrapper
+export const Container = StyledContainer
 

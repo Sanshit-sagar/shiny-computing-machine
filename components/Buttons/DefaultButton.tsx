@@ -9,8 +9,8 @@ const defaultProps: DefaultButtonProps = {
     isDisabled: false,
     isLoading: false,
     autoFocus: false,
-    code: '0101',
-    variant: 'secondary',
+    shape: 'rounded',
+    size: 's',
     children: <DefaultButtonContent />
 }
 

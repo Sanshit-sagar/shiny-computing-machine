@@ -1,4 +1,4 @@
-import { Ref } from 'react';
+import { Ref, ReactNode } from 'react';
 
 
 import { CalendarAria } from '@react-aria/calendar'
@@ -30,13 +30,12 @@ export interface CalendarPropsBase {
 export interface CalendarProps<T extends DateValue> extends CalendarPropsBase, ValueBase<T, MappedDateValue<T>> {}
 export interface RangeCalendarProps<T extends DateValue> extends CalendarPropsBase, ValueBase<RangeValue<T>, RangeValue<MappedDateValue<T>>> {}
 
-type SP = Exclude<CellStyleProps, 'isDisabled'>
 
-export interface CustomCalendarProps<T extends DateValue> extends CalendarProps<T>, DOMProps, StyleProps{
+export interface CustomCalendarProps<T extends DateValue> extends CalendarProps<T>, DOMProps, StyleProps {
     padding: any; 
     visibleMonths?: number; 
 }
-export interface CustomRangeCalendarProps<T extends DateValue> extends RangeCalendarProps<T>, DOMProps,StyleProps  {
+export interface CustomRangeCalendarProps<T extends DateValue> extends RangeCalendarProps<T>, DOMProps, StyleProps {
     padding: any;
     visibleMonths?: number; 
 }
@@ -54,18 +53,18 @@ export interface CalendarBaseProps<T extends CalendarStateType> extends Calendar
 
 export interface CustomCalendarState extends CalendarStateBase {
     value: CalendarDate;
-    setValue(value: CalendarDate): void
+    setValue(value: CalendarDate): void;
 };
 
 export interface RangeCalendarStateBase extends CalendarStateBase {
     value: RangeValue<DateValue>;
-    setValue(value: RangeValue<DateValue>): void,
-    highlightDate(date: CalendarDate): void,
-    anchorDate: CalendarDate | null,
-    setAnchorDate(date: CalendarDate | null): void,
-    highlightedRange: RangeValue<CalendarDate>,
-    isDragging: boolean,
-    setDragging(isDragging: boolean): void
+    setValue(value: RangeValue<DateValue>): void;
+    highlightDate(date: CalendarDate): void;
+    anchorDate: CalendarDate | null;
+    setAnchorDate(date: CalendarDate | null): void;
+    highlightedRange: RangeValue<CalendarDate>;
+    isDragging: boolean;
+    setDragging(isDragging: boolean): void;
 }
 
 // export interface CalendarStateBase {

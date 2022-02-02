@@ -1,11 +1,11 @@
-import { ElementType, ReactNode, forwardRef, ReactElement } from 'react'
+import { ElementType, forwardRef, ReactElement } from 'react'
+import { VariantProps } from 'stitches.config'
 
-import { mergeProps } from '@react-aria/utils'
 import { useButton } from '@react-aria/button' 
-import { FocusRing } from '@react-aria/focus'
+import { useFocusRing } from '@react-aria/focus'
+import { useHover } from '@react-aria/interactions'
 
 import { Text } from '@/components/Text'
-import { useInteractions } from '@/hooks/useInteractions'
 import { FocusableRef, useFocusableRef } from '@/utils/useRefs'
 
 import { isTextOnly } from './utils'
@@ -19,7 +19,22 @@ const ButtonSlot = ({ children }) => (
 )
 
 
-const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>, ref: FocusableRef<HTMLElement>) => {
+const shapeMap = {
+    'sharp': '0000',
+    'rounded': '0001',
+    'oval': '0010',
+    'circular': '0011',
+    'alt_bltr': '0111'
+}
+
+const sizeMap = {
+    'xs': '00',
+    's': '01',
+    'm': '10',
+    'l': '11',
+}
+
+const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>, ref: FocusableRef<HTMLButtonElement>) => {
 
     const {
         elementType: Component = 'button',
@@ -27,37 +42,48 @@ const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>,
         isLoading,
         autoFocus,
         children,
-        code,
-        variant,
+        shape,
+        size,
         ...rest
     } = props
 
     const buttonRef = useFocusableRef(ref)
-    const { buttonProps } = useButton(props, buttonRef) 
-    const { interactionProps, ...interactionStates } = useInteractions({ isDisabled, isLoading })
 
-    const mergedProps = mergeProps(buttonProps, interactionStates) 
+    const isTextInput = isTextOnly(children) 
+
+    const { buttonProps, isPressed } = useButton(props, buttonRef) 
+    const { hoverProps, isHovered } = useHover({ isDisabled })
+    const { isFocused, isFocusVisible, focusProps } = useFocusRing({ within: true, isTextInput, autoFocus })
+
+    const codifiedVariant = `${shapeMap[shape]}${sizeMap[size]}` as unknown as VariantProps<typeof StyledButton>['code']
 
     return (
-        <FocusRing autoFocus={autoFocus}>
-            <Component {...mergedProps} ref={buttonRef}>
-                <StyledButton code={code} variant={variant}>
-                    <ButtonSlot>
-                        {isTextOnly(children) ? (
-                            <Text> {children} </Text>
-                        ) : (
-                            <> {children} </>
-                        )}
-                    </ButtonSlot> 
-                </StyledButton>
-            </Component>
-        </FocusRing>
+        <span {...focusProps}>
+            <StyledButton 
+                as={Component} 
+                {...hoverProps}
+                {...buttonProps}
+                code={codifiedVariant} 
+                isHovered={isHovered}
+                isPressed={isPressed}
+                isDisabled={isDisabled}
+                isFocused={isFocused}
+                isFocusVisible={isFocused || isFocusVisible}
+                ref={buttonRef}
+            >
+                {isTextInput ? (
+                    <Text> {children} </Text>
+                ) : (
+                    <ButtonSlot> {children} </ButtonSlot>
+                )}
+            </StyledButton>
+        </span>
     )
 }
 
 const _AriaButton = forwardRef(AriaButton) as <T extends ElementType>(
     props: AriaButtonProps<T> & 
-    { ref?: FocusableRef<HTMLElement> }
+    { ref?: FocusableRef<HTMLButtonElement> }
 ) => ReactElement 
 export { _AriaButton as AriaButton }
 

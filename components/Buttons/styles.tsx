@@ -1,15 +1,4 @@
-
-import { ReactNode, forwardRef, RefObject, ComponentPropsWithRef } from 'react'
-import { styled, CSS, VariantProps } from 'stitches.config'
-import {
-    primaryVariant,
-    secondaryVariant,
-    outlinedVariant,
-    infoVariant,
-    warningVariant,
-    dangerVariant,
-    successVariant
-} from '@/components/Button/variants'
+import { styled, CSS } from 'stitches.config'
 import { Flex } from '@/components/Flex'
 
 export const sharedStyles: CSS = {
@@ -28,13 +17,15 @@ export const sharedStyles: CSS = {
     textAlign: 'center',
     cursor: 'pointer',
 
+    color: '$accentText',
+    backgroundColor: '$accentBg',
+    borderColor: '$accentBorder',
+
     $$buttonTransitionDuration: '0.2s',
     $$buttonBoxShadow: '$colors$accentFocusRing',
 
     willChange: 'background-color, border-color, color, opacity',
     transition: 'all $$buttonTransitionDuration ease-out',
-
-   
 
     '& svg': {
         display: 'inline-block',
@@ -42,31 +33,6 @@ export const sharedStyles: CSS = {
         fill: 'currentColor',
         transition: 'all $$buttonTransitionDuration ease-in-out'
     },
-
-    '&:hover': {
-        '&:not(:disabled)': {
-            '& svg': {
-                fill: 'currentColor'
-            }
-        }
-    },
-
-    '&:focus': {
-        '&:not(:disabled)': {
-            outline: 'none',
-            boxShadow: '0 0 0 3px $$buttonBoxShadow',
-            
-            '& svg': {
-                fill: 'currentColor'
-            }
-        }
-    },
-
-    '&:active': {
-        '&:not(:disabled)': {
-            transform: 'translateY(2px)'
-        }
-    }
 }
 
 const sharedCircleStyles: CSS = {
@@ -78,7 +44,7 @@ const sharedCircleStyles: CSS = {
     textOverflow: 'clip'
 }
 
-export const StyledButton = styled('span', {
+export const StyledButton = styled('button', {
     ...sharedStyles,
 
     $$paddingZero: '0.48em 0.680em',
@@ -93,19 +59,19 @@ export const StyledButton = styled('span', {
     
     variants: {
         code: {
-            '0000': { br: 0, padding: '$$paddingZero',     fontSize: '$$fontSizeZero', minWidth: '6.25em',  borderWidth: '1px'  }, // sharp size 0
-            '0001': { br: 0, padding: '$$paddingOne',      fontSize: '$$fontSizeOne', minWidth: '6.25em',  borderWidth: '1px'   }, // sharp size 1
-            '0010': { br: 0, padding: '$$paddingTwo',      fontSize: '$$fontSizeTwo', minWidth: '6.25em',  borderWidth: '1px'  }, // sharp size 2
-            '0011': { br: 0, padding: '$$paddingThree',    fontSize: '$$fontSizeThree', minWidth: '6.25em',  borderWidth: '1px' }, // sharp size 3
-            '0100': { br: '$2', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em',  borderWidth: '1px',  }, // rounded size 0
-            '0101': { br: '$3', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '6.25em', borderWidth: '1px',   }, // rounded size 1
-            '0110': { br: '$4', padding: '$$paddingTwo',   fontSize: '$$fontSizeTwo', minWidth: '6.25em', borderWidth: '1px', }, // rounded size 2
-            '0111': { br: '$5', padding: '$$paddingThree', fontSize: '$$fontSizeThree', minWidth: '6.25em', borderWidth: '1px', }, // rounded size 3
-            '1000': { br: '$6', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em', borderWidth: '1px', }, // oval size 0
-            '1001': { br: '$8', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '7.25em', borderWidth: '1px', }, // oval size 1
-            '1010': { br: 'calc(7px + $9)', padding: '$$paddingTwo',     fontSize: '$$fontSizeTwo', minWidth: '8.25em', borderWidth: '1px'  }, // oval size 2
-            '1011': { br: 'calc(25px + $9)', padding: '$$paddingThree',  fontSize: '$$fontSizeThree', minWidth: '9.25em',  borderWidth: '1px', }, // oval size 3
-            '1100': { 
+            '000000': { br: 0, padding: '$$paddingZero',     fontSize: '$$fontSizeZero', minWidth: '6.25em',  borderWidth: '1px'  }, // sharp size 0
+            '000001': { br: 0, padding: '$$paddingOne',      fontSize: '$$fontSizeOne', minWidth: '6.25em',  borderWidth: '1px'   }, // sharp size 1
+            '000010': { br: 0, padding: '$$paddingTwo',      fontSize: '$$fontSizeTwo', minWidth: '6.25em',  borderWidth: '1px'  }, // sharp size 2
+            '000011': { br: 0, padding: '$$paddingThree',    fontSize: '$$fontSizeThree', minWidth: '6.25em',  borderWidth: '1px' }, // sharp size 3
+            '000100': { br: '$2', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em',  borderWidth: '1px',  }, // rounded size 0
+            '000101': { br: '$3', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '6.25em', borderWidth: '1px',   }, // rounded size 1
+            '000110': { br: '$4', padding: '$$paddingTwo',   fontSize: '$$fontSizeTwo', minWidth: '6.25em', borderWidth: '1px', }, // rounded size 2
+            '000111': { br: '$5', padding: '$$paddingThree', fontSize: '$$fontSizeThree', minWidth: '6.25em', borderWidth: '1px', }, // rounded size 3
+            '001000': { br: '$6', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em', borderWidth: '1px', }, // oval size 0
+            '001001': { br: '$8', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '7.25em', borderWidth: '1px', }, // oval size 1
+            '001010': { br: 'calc(7px + $9)', padding: '$$paddingTwo',     fontSize: '$$fontSizeTwo', minWidth: '8.25em', borderWidth: '1px'  }, // oval size 2
+            '001011': { br: 'calc(25px + $9)', padding: '$$paddingThree',  fontSize: '$$fontSizeThree', minWidth: '9.25em',  borderWidth: '1px', }, // oval size 3
+            '001100': { 
                 ...sharedCircleStyles,
                 minWidth: '3.0em',
                 maxWidth: '4.5em',
@@ -113,7 +79,7 @@ export const StyledButton = styled('span', {
                 fontSize: '0.75em',
                 borderWidth: '1px',
             },
-            '1101': { 
+            '001101': { 
                 ...sharedCircleStyles,
                 minWidth: '4.5em',
                 maxWidth: '6.0em',
@@ -121,7 +87,7 @@ export const StyledButton = styled('span', {
                 fontSize: '0.75em',
                 borderWidth: '1px',
             }, 
-            '1110': { 
+            '001110': { 
                 ...sharedCircleStyles,
                 minWidth: '6.0em',
                 maxWidth: '7.5em',
@@ -129,7 +95,7 @@ export const StyledButton = styled('span', {
                 fontSize: '0.75em',
                 borderWidth: '1px',
             }, 
-            '1111': { 
+            '001111': { 
                 ...sharedCircleStyles,
                 minWidth: '7.5em',
                 maxWidth: '9.0em',
@@ -166,36 +132,66 @@ export const StyledButton = styled('span', {
                 borderWidth: '1px',
             }
         },
-        weight: {
-            '0': { fontWeight: 300, borderWidth: '1px' },
-            '1': { fontWeight: 500, borderWidth: '1px' },
-            '2': { fontWeight: 700, borderWidth: '1px' },
-            '3': { fontWeight: 900, borderWidth: '1px' }
-        },
-        variant: {
-            primary: primaryVariant,
-            secondary: secondaryVariant,
-            outlined: outlinedVariant
-        },
-        icon: {
+        isHovered: {
             true: {
-                minWidth: 'initial',
-                textAlign: 'center',
-                padding: '0.485 0.68',
-            },
-            false: null
+                color: '$accentTextContrast',
+                bc: '$accentBgHover',
+                borderColor: '$accentBorderHover',
+                '& svg': {
+                    fill: 'currentColor'
+                }
+            }
         },
-        theme: {
-            success: successVariant,
-            danger: dangerVariant,
-            info: infoVariant,
-            warning: warningVariant
+        isFocused: {
+            true: {
+                color: '$accentTextContrast',
+                backgroundColor: '$accentBgActive',
+                borderColor: '$accentBorderHover',
+                '& svg': {
+                    fill: 'currentColor'
+                }           
+            }
+        },
+        isPressed: {
+            true: {
+                color: '$accentTextContrast',
+                backgroundColor: '$accentLine',
+                borderColor: '$accentFocusRing',
+                transform: 'translateY(2px)',
+
+                '& svg': {
+                    fill: 'currentColor'
+                }
+            }
+        },
+        isFocusVisible: {
+            true: {
+                outline: '2px solid $infoSolid',
+                outlineOffset: '2px'
+            }
+        },
+        isDisabled: {
+            true: {
+                bc: '$disabledBg',
+                color: '$disabledText',
+                borderColor: '$disabledBorder',
+                cursor: 'not-allowed',
+                boxShadow: 'none',
+                outline: 'none',
+
+                '& svg': {
+                    fill: '$disabledText'
+                }
+            }
         }
     },
     defaultVariants: {
         code: '0101', 
-        weight: '0',
-        variant: 'outlined'
+        isHovered: false,
+        isFocused: false,
+        isPressed: false,
+        isFocusVisible: false,
+        isDisabled: false,
     }
 })
 

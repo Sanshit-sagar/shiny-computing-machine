@@ -25,7 +25,7 @@ interface CalendarCellProps extends AriaCalendarCellProps {
 
 export function CalendarCell(props: CalendarCellProps & CellStyleProps) {
 
-    const { state, currentMonth, padding, ...rest } = props
+    const { state, currentMonth, ...rest } = props
 
     const ref: MutableRefObject<HTMLDivElement> = useRef<HTMLDivElement>()
 
@@ -75,7 +75,6 @@ export function CalendarCell(props: CalendarCellProps & CellStyleProps) {
         <CellWrapper {...cellProps}>
             <Cell 
                 {...mergeProps(buttonProps, interactionProps)} 
-                padding={padding}
                 isDisabled={isDisabled}
                 isHovered={isHovered}
                 isFocused={isFocused}

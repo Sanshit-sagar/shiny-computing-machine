@@ -43,7 +43,7 @@ export const MultiToggle = ({ selection, onChange, values }: MultiToggleProps) =
    
     const selectionStyle = () => {
         return {
-            left: `${values.map((v) => v.value).indexOf(selection) / values.length * 100}%`,
+            left: `${values.map((v) => v.value).indexOf(selection) / values.length * 102}%`,
             willChange: 'background, content, opacity',
             transition: 'all 0.4s ease-in-out',
             d: 'inline-flex',
