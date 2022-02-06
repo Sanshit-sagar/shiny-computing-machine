@@ -68,30 +68,27 @@ export const FocusableContentTabs = () =>{
     const [selected, setSelected] = React.useState('left')
 
     return (
-        <Card.Wrapper>
-            <Card.Header> Tabs Demo </Card.Header>
-            <Tabs.Group<typeof Tabs.Item>  element={Card.Body} aria-label="Notes app">
-                <Tabs.Item key="item1" title="Jane Doe">
-                    <TextInput type="text" label="Leave a note for Jane" />
-                </Tabs.Item>
-                <Tabs.Item key="item2" title="John Doe">
-                    <MultiToggle
-                        values={[
-                            { icon: <BorderLeftIcon />, value: 'left' },
-                            { icon: <BorderRightIcon />, value: 'right' },
-                            { icon: <BorderTopIcon />, value: 'top' },
-                            { icon: <BorderBottomIcon />, value: 'bottom' },
-                            { icon: <BorderAllIcon />, value: 'all' },
-                            { icon: <BorderNoneIcon />, value: 'none' },
-                        ]} 
-                        onChange={(updatedSelection) => setSelected(updatedSelection)}
-                        selection={selected}
-                    />
-                </Tabs.Item>
-                <Tabs.Item key="item3" title="Joe Bloggs">
-                    Alea jacta est.
-                </Tabs.Item>
-            </Tabs.Group>
-        </Card.Wrapper>
+        <Tabs.Group<typeof Tabs.Item>  element={Card.Body} aria-label="Notes app">
+            <Tabs.Item key="item1" title="Jane Doe">
+                <TextInput type="text" label="Leave a note for Jane" />
+            </Tabs.Item>
+            <Tabs.Item key="item2" title="John Doe">
+                <MultiToggle
+                    values={[
+                        { icon: <BorderLeftIcon />, value: 'left' },
+                        { icon: <BorderRightIcon />, value: 'right' },
+                        { icon: <BorderTopIcon />, value: 'top' },
+                        { icon: <BorderBottomIcon />, value: 'bottom' },
+                        { icon: <BorderAllIcon />, value: 'all' },
+                        { icon: <BorderNoneIcon />, value: 'none' },
+                    ]} 
+                    onChange={(updatedSelection) => setSelected(updatedSelection)}
+                    selection={selected}
+                />
+            </Tabs.Item>
+            <Tabs.Item key="item3" title="Joe Bloggs">
+                Alea jacta est.
+            </Tabs.Item>
+        </Tabs.Group>
     )
 }

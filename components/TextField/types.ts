@@ -27,25 +27,25 @@ const AutoCapitalizeEnum = strEnum([
     'invalid'
 ])
 
-type MappedAutoCapitalizeState = Omit<keyof typeof AutoCapitalizeEnum, 'on' | 'off' | 'default' | 'invalid'>
-type AutoCapitalizeStateMappingType = {
-    [ac in keyof typeof AutoCapitalizeEnum]: MappedAutoCapitalizeState
-}
-
-const autoCapitalizeMappings: AutoCapitalizeStateMappingType = {
-    'default': 'sentances',
-    'off': 'none',
-    'none': 'none',
-    'on': 'sentances',
-    'sentances': 'sentances',
-    'characters': 'characters',
-    'words': 'words',
-    'invalid': 'sentances'
-}
-
-const getMappedAutoCompleteState = (unsanitizedValue: keyof typeof AutoCapitalizeEnum): MappedAutoCapitalizeState => {
-    return autoCapitalizeMappings[unsanitizedValue]
-} 
+// type MappedAutoCapitalizeState = Omit<keyof typeof AutoCapitalizeEnum, 'on' | 'off' | 'default' | 'invalid'>
+// type AutoCapitalizeStateMappingType = {
+    // [ac in keyof typeof AutoCapitalizeEnum]: MappedAutoCapitalizeState
+// }
+// 
+// const autoCapitalizeMappings: AutoCapitalizeStateMappingType = {
+    // 'default': 'sentances',
+    // 'off': 'none',
+    // 'none': 'none',
+    // 'on': 'sentances',
+    // 'sentances': 'sentances',
+    // 'characters': 'characters',
+    // 'words': 'words',
+    // 'invalid': 'sentances'
+// }
+// 
+// const getMappedAutoCompleteState = (unsanitizedValue: keyof typeof AutoCapitalizeEnum): MappedAutoCapitalizeState => {
+    // return autoCapitalizeMappings[unsanitizedValue]
+// } 
 
 export interface TextFieldAriaProps {
     'aria-label'?: string;
@@ -63,26 +63,26 @@ interface AriaTextFieldBase extends KeyboardEvents, ClipboardEvents, Composition
 export type DefaultElementType = 'input'
 
 
-interface AriaTextFieldOptions extends AriaTextFieldBase, TextFieldAriaProps {
+export interface AriaTextFieldOptions extends AriaTextFieldBase, TextFieldAriaProps {
     children?: string | ReactNode | ReactElement; 
-    id?: string; 
-    inputElementType?: DefaultElementType; // 'input' or 'textarea'
+    id?: string;                            // DOMProps
+    inputElementType?: DefaultElementType;  // 'input' or 'textarea'
 
     isReadOnly?: boolean;
-    isRequired?: boolean;
+    isRequired?: boolean;                   // Validation 
     isDisabled?: boolean; 
-    validationState?: ValidationState;
+    validationState?: ValidationState;      // Validation
 
     label?: ReactNode;
-    description?: ReactNode;
-    errorMessage?: ReactNode;
+    description?: ReactNode;                // HelperTextProps
+    errorMessage?: ReactNode;               // HelperTextProps
 
     autoFocus?: boolean;
-    excludeFromTabOrder?: boolean; 
+    excludeFromTabOrder?: boolean;          // FocusabledDOMProps
 
-    value?: string;
-    defaultValue?: string;
-    onChange?: (value: string) => void; 
+    value?: string;                         // ValueBase
+    defaultValue?: string;                  // ValueBase
+    onChange?: (value: string) => void;     // ValueBase
 
     placeholder?: string;
     name?: string;
@@ -94,20 +94,19 @@ interface AriaTextFieldOptions extends AriaTextFieldBase, TextFieldAriaProps {
     autoComplete?: string;
     autoCorrect?: string;
     autoCapitalize?: keyof typeof AutoCapitalizeEnum;
+    spellCheck?: boolean | 'true' | 'false'; 
 
     type?:               'text' | 'url' | 'tel' | 'email' | 'search' | 'password' | string; 
     inputMode?: 'none' | 'text' | 'url' | 'tel' | 'email' | 'search' | 'numeric' | 'decimal';
 
-    spellCheck?: boolean | 'true' | 'false'; 
     ['data-testid']?: string;
 }
 
-export interface TextInputProps extends AriaTextFieldOptions {}
+export interface TextFieldProps extends AriaTextFieldOptions {}
 
-export interface ITextInputContext extends AriaTextFieldOptions {}
+export interface ITextFieldContext extends AriaTextFieldOptions {}
 
 ///////////////////////////////////////////////////////////////
 
 export type InputPrefixNode = ReactElement<{}, string | JSXElementConstructor<any>>
 export type InputSuffixNode = ReactElement<{}, string | JSXElementConstructor<any>>
-// export type ReactNodeCandidate = React.ReactChild | React.ReactFragment | React.ReactPortal

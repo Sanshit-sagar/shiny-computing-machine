@@ -13,8 +13,9 @@ import { AriaLabelingProps } from '@/interfaces/Aria'
 import { DOMProps, ValidationState } from '@/interfaces/Shared'
 
 import {
-    StyledFieldsetLabel,
     StyledFieldsetIcon,
+    StyledFieldsetField,
+    StyledFieldsetLabel,
     StyledFieldsetDescription,
     StyledFieldsetErrorMessage,
     StyledFieldsetSuccessMessage
@@ -59,6 +60,7 @@ export default FieldsetState
 
 export type FieldsetLabelProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetLabel>
 export type FieldsetIconProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetIcon>
+export type FieldsetFieldProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetField>
 export type FieldsetDescriptionProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetDescription>
 export type FieldsetErrorMessageProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetErrorMessage>
 export type FieldsetSuccessMessageProps = FieldsetComponentProps & VariantProps<typeof StyledFieldsetSuccessMessage>
@@ -66,6 +68,7 @@ export type FieldsetSuccessMessageProps = FieldsetComponentProps & VariantProps<
 
 export type FieldsetRootNode = ReactElement<{}, string | JSXElementConstructor<any>>
 export type FieldsetLabelNode = ReactElement<{}, string | JSXElementConstructor<any>>
+export type FieldsetFieldNode = ReactElement<{}, string | JSXElementConstructor<any>>
 export type FieldsetIconNode = ReactElement<{}, string | JSXElementConstructor<any>>
 export type FieldsetDescriptionNode = ReactElement<{}, string | JSXElementConstructor<any>>
 export type FieldsetErrorMessageNode = ReactElement<{}, string | JSXElementConstructor<any>>

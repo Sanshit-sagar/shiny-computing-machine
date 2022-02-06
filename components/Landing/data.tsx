@@ -5,11 +5,13 @@ import { BreadcrumbsInstance } from '@/components/Breadcrumbs/examples'
 import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 
-import { ToggleableInstance } from '@/components/Toggleable/examples'
+// import { ToggleableInstance } from '@/components/Toggleable/examples'
 import { AsyncInstance } from '@/components/Async/examples'
-
-import { SelectorInstance } from '@/components/Selector/examples'
+import { TableViewInstance } from '@/components/Table/examples'
+// import { SelectorInstance } from '@/components/Selector/examples'
+import { InputInstance } from '@/components/TextField/examples'
 import { AvatarInstance } from '@/components/Avatar/examples'
+import { CheckboxInstance } from '@/components/Checkbox/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
 import { ColorSliderInstance } from '@/components/ColorSlider/examples'
 import { ComboBoxInstance } from '@/components/ComboBox/examples'
@@ -74,7 +76,8 @@ import {
     CarouselIcon,
     ComboBoxIcon,
     CollapseIcon,
-    ListIcon
+    ListIcon,
+    TableIcon
 } from '@/components/Icons'
 
 export const showcases: IShowcase[] = [{
@@ -82,6 +85,11 @@ export const showcases: IShowcase[] = [{
         name: 'Accordion',
         description: 'did it strike a-cord-in your heart?',
         icon: <CollapseIcon />
+    }, {
+        element: <InputInstance />,
+        name: 'Input',
+        description: '',
+        icon: <TextInputIcon />
     }, {
         element: <AsyncInstance />,
         name: 'Async',
@@ -113,6 +121,11 @@ export const showcases: IShowcase[] = [{
         name: 'Carousel',
         description: 'really cares to sell itself',
         icon: <CarouselIcon />  
+    }, {
+        element: <CheckboxInstance />,
+        name: 'Checkbox',
+        description: 'Checkbox anotha one',
+        icon: <CheckboxIcon />
     }, {
         element: <CheckboxGroupInstance />,
         name: 'Checkbox Group',
@@ -210,7 +223,7 @@ export const showcases: IShowcase[] = [{
         description: '',
         icon: <MagnifyingGlassIcon />
     }, {
-        element: <SelectorInstance />,
+        element: <SelectInstance />,
         name: 'Select',
         description: '',
         icon: <SelectIcon />
@@ -234,6 +247,11 @@ export const showcases: IShowcase[] = [{
         name: 'Switch',
         description: '',
         icon: <SwitchIcon /> 
+    }, {
+        element: <TableViewInstance />,
+        name: 'Table',
+        description: '',
+        icon: <TableIcon />
     }, {
         element: <TabsInstance />,
         name: 'Tabs',

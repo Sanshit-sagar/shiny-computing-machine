@@ -5,6 +5,8 @@ import TableInstance from './index';
 
 import { TableIcon } from '@radix-ui/react-icons';
 
+export const TableViewInstance = () => <TableInstance /> 
+
 const ExampleTables = () => (
     <ExampleBase
         heading={'Table'}

@@ -11,12 +11,7 @@ import { FocusableRef, useFocusableRef } from '@/utils/useRefs'
 import { isTextOnly } from './utils'
 import { AriaButtonProps } from './types'
 import { InlineFlex, StyledButton } from './styles'
-
-const ButtonSlot = ({ children }) => (
-    <InlineFlex>
-        {children}
-    </InlineFlex>
-)
+import { Spinner } from '@/components/Spinner'
 
 
 const shapeMap = {
@@ -32,6 +27,12 @@ const sizeMap = {
     's': '01',
     'm': '10',
     'l': '11',
+}
+const spinnerSizeMap = {
+    'xs': 1,
+    's': 1,
+    'm': 2,
+    'l': 2
 }
 
 const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>, ref: FocusableRef<HTMLButtonElement>) => {
@@ -71,11 +72,10 @@ const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>,
                 isFocusVisible={isFocused || isFocusVisible}
                 ref={buttonRef}
             >
-                {isTextInput ? (
-                    <Text> {children} </Text>
-                ) : (
-                    <ButtonSlot> {children} </ButtonSlot>
-                )}
+                <InlineFlex size={size} isLoading={isLoading}> 
+                    {isTextInput ? <Text> {children} </Text> : children} 
+                    {isLoading && <Spinner size={spinnerSizeMap[size]} />} 
+                </InlineFlex>
             </StyledButton>
         </span>
     )

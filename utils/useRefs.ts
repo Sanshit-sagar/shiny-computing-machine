@@ -1,17 +1,5 @@
-import { LegacyRef, useImperativeHandle, useRef, useMemo, Ref, RefObject } from 'react'
-
-export interface DOMRefValue<T extends HTMLElement = HTMLElement> {
-    UNSAFE_getDOMNode(): T
-}
-export interface FocusableRefValue<
-    T extends HTMLElement = HTMLElement, 
-    D extends HTMLElement = T
-> extends DOMRefValue<D> {
-    focus(): void
-}
-
-export type DOMRef<T extends HTMLElement = HTMLElement> = LegacyRef<DOMRefValue<T>>
-export type FocusableRef<T extends HTMLElement = HTMLElement> = LegacyRef<FocusableRefValue<T>>
+import { useImperativeHandle, useRef, useMemo, RefObject } from 'react'
+import { DOMRef, DOMRefValue, FocusableRef, FocusableRefValue } from '@/interfaces/Shared/index'
 
 export function createDOMRef<T extends HTMLElement = HTMLElement>(ref: RefObject<T>): DOMRefValue<T> {
     return {

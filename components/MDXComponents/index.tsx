@@ -6,7 +6,7 @@ import { Card } from '@/components/Card/Card'
 import { Button } from '@/components/Button'
 import { CodeBlock } from '@/components/CodeBlock/Code'
 import { InlineCode } from '@/components/InlineCode'
-import { Checkbox } from '@/components/Checkbox'
+import { Checkbox } from '@/components/Checkbox/CheckboxRoot'
 import { Slider } from '@/components/Slider/Slider'
 import { Switch } from '@/components/Switch'
 import {

@@ -20,7 +20,7 @@ export const TextInput = ({ label, value, ...props }: TextInputProps) => {
             <StyledInputWrapper suffix={props.type === 'password' ? props.type : 'none'}>
                 <InputPrefix />
 
-                <StyledInput {...inputProps} type="text" ref={inputRef} />
+                <StyledInput {...inputProps} type="password" ref={inputRef} />
 
 
                 {props.type === 'email' && (

@@ -14,13 +14,9 @@ export const AvatarWithFallbackOnly = () => (
 
 export const AvatarWithImageAndFallback = () => (
     <Avatar.Root>
-        <Avatar.Image 
-            src={src} 
-            alt={alt}   
-        />
-        <Avatar.Fallback delayMs={10000}> 
-            SS 
-        </Avatar.Fallback>
+        <Avatar.Image src={src} alt={alt} />
+        <Avatar.StatusDot status="success" /> 
+        <Avatar.Fallback delayMs={10000}> SS </Avatar.Fallback>
     </Avatar.Root>
 )
 

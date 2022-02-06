@@ -23,11 +23,14 @@ export const StyledSpinner = styled('div', {
 
     variants: {
         size: {
-            1: { size: '22px', borderWidth: '1px' },
-            2: { size: '28px', borderWidth: '1.5px' },
-            3: { size: '36px', borderWidth: '2px' },
-            4: { size: '44px', borderWidth: '2.5px' },
-            5: { size: '52px', borderWidth: '3px' }
+            1: { size: '14px', borderWidth: '0.5px' },
+            2: { size: '16px', borderWidth: '0.75px' },
+            3: { size: '20px', borderWidth: '1px' },
+            4: { size: '24px', borderWidth: '1.25px' },
+            5: { size: '28px', borderWidth: '1.5px' },
+            6: { size: '36px', borderWidth: '2px' },
+            7: { size: '44px', borderWidth: '2.5px' },
+            8: { size: '52px', borderWidth: '3px' }
         },
         speed: {
             1: { animation: `${spin} 4000ms linear infinite`  },

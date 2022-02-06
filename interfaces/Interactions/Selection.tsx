@@ -1,5 +1,5 @@
 import { ReactEventHandler } from 'react'
 
-export interface SelectEvents {
+export interface SelectionEvents {
     onSelect?: ReactEventHandler<HTMLInputElement>;
 }

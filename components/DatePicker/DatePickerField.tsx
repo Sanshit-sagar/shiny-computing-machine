@@ -36,8 +36,8 @@ export function DatePickerField<T extends DateValue>(props: DatePickerFieldProps
     const { locale } = useLocale()
 
     const ref: MutableRefObject<HTMLDivElement> = useRef<HTMLDivElement>()
-    const state: DatePickerFieldState = useDatePickerFieldState({ ...props, locale, createCalendar });
-    const { fieldProps } = useDateField(props, state, ref);
+    const state: DatePickerFieldState = useDatePickerFieldState({ ...props, locale, createCalendar })
+    const { fieldProps } = useDateField(props, state, ref)
 
     return (
         <StyledField {...fieldProps} ref={ref}>

@@ -1,4 +1,4 @@
-import React, { ElementType, cloneElement, ReactChild } from 'react'
+import React, { ElementType, ElementRef, ComponentPropsWithoutRef, forwardRef, cloneElement, ReactChild } from 'react'
 
 import { useField } from '@react-aria/label'
 
@@ -11,8 +11,9 @@ import {
 } from './types'
 import {
     isInputElement,
-    isFieldsetLabelElement,
     isFieldsetIconElement,
+    isFieldsetFieldElement,
+    isFieldsetLabelElement,
     isFieldsetDescriptionElement,
     isFieldsetErrorMessageElement,
     isFieldsetSuccessMessageElement
@@ -22,9 +23,13 @@ import { ValidationState } from '@/interfaces/Shared'
 import { flattenChildren } from '@/utils/flattenChildren'
 import { Flex } from '@/components/Flex'
 
+const DEFAULT_TAG = 'fieldset'
 
-const FieldsetRoot = ({ 
-    element: Component = 'div', 
+type FieldsetRootElement = ElementRef<typeof DEFAULT_TAG>
+type FieldsetRootProps = ComponentPropsWithoutRef<typeof StyledFieldsetRoot> & FieldsetProps
+
+const FieldsetRoot = forwardRef<FieldsetRootElement, FieldsetRootProps>(({ 
+    element: Component = DEFAULT_TAG, 
     labelElementType = ('label' as ElementType), 
     label,
     description,
@@ -53,7 +58,7 @@ const FieldsetRoot = ({
     const filteredDescription = flattenedChildren.filter((child, index) => isFieldsetDescriptionElement(child, index)) 
     const fiteredErrorMessage = flattenedChildren.filter((child, index) => isFieldsetErrorMessageElement(child, index))
     const filteredSuccessMessage = flattenedChildren.filter((child, index) => isFieldsetSuccessMessageElement(child, index))
-    const filteredField = flattenedChildren.filter((child, index) => isInputElement(child, index))
+    const filteredField = flattenedChildren.filter((child, index) => isFieldsetFieldElement(child, index))
 
     return (
         <FieldsetContext.Provider value={contextValue}>
@@ -75,7 +80,7 @@ const FieldsetRoot = ({
             </StyledFieldsetRoot>
         </FieldsetContext.Provider>
     )
-}
+})
 
 FieldsetRoot.displayName = 'FieldsetRoot'
 export default FieldsetRoot

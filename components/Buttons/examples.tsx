@@ -51,7 +51,7 @@ const CircularButtons = (props) => (
 )
 
 export const ButtonsInstance = () => (
-    <DefaultButton shape="rounded" size="xs" isDisabled={true} isLoading={true}>
+    <DefaultButton shape="rounded" size="xs" isDisabled={false} isLoading={true}>
         <SunglassesIcon /> yoyo
     </DefaultButton>
 )

@@ -5,6 +5,7 @@ import {
     FieldsetRootNode,
     FieldsetLabelNode,
     FieldsetIconNode,
+    FieldsetFieldNode,
     FieldsetDescriptionNode,
     FieldsetErrorMessageNode,
     FieldsetSuccessMessageNode
@@ -13,6 +14,7 @@ import {
 import FieldsetRoot from './FieldsetRoot'
 import FieldsetIcon from './FieldsetIcon'
 import FieldsetLabel from './FieldsetLabel'
+import FieldsetField from './FieldsetField'
 import FieldsetDescription from './FieldsetDescription'
 import FieldsetErrorMessage from './FieldsetErrorMessage'
 import FieldsetSuccessMessage from './FieldsetSuccessMessage'
@@ -23,6 +25,7 @@ import { TextArea } from '@/components/TextArea'
 import { TextInput } from '@/components/TextInput'
 import { NumberField } from '@/components/NumberField'
 import Select from '@/components/Select'
+import { StyledInput } from '@/components/TextField/styles'
 
 import { isElementOfType } from '@/interfaces/Guards'
 
@@ -37,6 +40,10 @@ export const useFieldsetContext = () => {
 
 export const isFieldsetRootElement = (child: ReactChild, index: number): child is FieldsetRootNode => (
     child && isElementOfType(child, FieldsetRoot) && !isElementOfType(child, FieldsetRoot)
+)
+
+export const isFieldsetFieldElement = (child: ReactChild, index: number): child is FieldsetFieldNode => (
+    child && isElementOfType(child, FieldsetField) && !isElementOfType(child, FieldsetRoot)
 )
 
 export const isFieldsetLabelElement = (child: ReactChild, index: number): child is FieldsetLabelNode => (
@@ -59,8 +66,6 @@ export const isFieldsetSuccessMessageElement = (child: ReactChild, index: number
     child && isElementOfType(child, FieldsetSuccessMessage) && !isElementOfType(child, FieldsetRoot)
 )
 
-
-
 export type InputNode = React.ReactElement<{}, string | React.JSXElementConstructor<any>>
 
 export const isInputElement = (child: ReactChild, index: number): child is InputNode => (
@@ -69,6 +74,7 @@ export const isInputElement = (child: ReactChild, index: number): child is Input
         ||  isElementOfType(child, TextArea)
         ||  isElementOfType(child, NumberField)
         ||  isElementOfType(child, Select)
+        ||  isElementOfType(child, StyledInput)
     )
 )
 

@@ -3,7 +3,7 @@ import { ListBulletIcon } from '@radix-ui/react-icons'
 import { ExampleBase } from '@/components/ExampleBase'
 import { BasicPolymorphicTabs, FocusableContentTabs, BasicTabs } from './variants'
 
-export const TabsInstance = () => <BasicTabs /> 
+export const TabsInstance = () => <FocusableContentTabs /> 
 
 const ExampleTabs = () => {
     return (

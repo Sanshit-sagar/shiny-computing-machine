@@ -27,9 +27,7 @@ const ComponentGallery = () => {
                     
                     <StyledHeader>
                         <StyledName> {icon} {name} </StyledName> 
-                        <StyledSettings> 
-                            <DualToggle />
-                        </StyledSettings> 
+                        <StyledSettings> </StyledSettings> 
                     </StyledHeader>
 
                     <StyledDisplay align={align}>

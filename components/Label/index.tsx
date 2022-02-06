@@ -9,26 +9,28 @@ const StyledLabel = styled(DEFAULT_TAG, {
     border: 'none',
     outline: 'none',
     cursor: 'pointer',
-    display: 'inline-block',
-    verticalAlign: 'start',
+
+    display: 'inline-flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: '$2',
+
     
     m: 0,
     p: 0,
     fontSize: '$3',
-    fontWeight: '$3',
-    fontFamily: '$mono',
+    fontWeight: '$1',
+    fontFamily: '$jetbrains',
     letterSpacing: '0px',
+    verticalAlign: 'middle',
 
     bc: 'transparent',
     color: '$accentTextContrast',
 
     willChange: 'transform',
     transition: '450ms',
-    $$shadowColor: '$colors$accentBgActive',
 
-    '&:hover': {
-        boxShadow: '0px 1px 2px 1px $$shadowColor'
-    },
     '&:focus': {
         textDecoration: 'underline',
         textDecorationColor: '$successDefault'

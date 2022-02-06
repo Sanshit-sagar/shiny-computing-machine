@@ -7,17 +7,10 @@ export const StyledTabsListContainer = styled('div', {
     gap: 0,
     fw: 'wrap',
     whiteSpace: 'wrap',
-    ox: 'hidden',
-    oy: 'hidden',
     p: 0,
     m: 0,
-    bc: '$accentBg',
-    border: '1px solid $accentBorder',
-
-    btrr: '$6',
-    btlr: '$1',
-    bbrr: '$1',
-    bblr: '$6',
+    bc: 'transparent',
+    border: '1px solid transparent',
 
     variants: {
         orientation: {
@@ -51,10 +44,6 @@ export const StyledTabsList = styled('div', {
     bc: 'transparent',
 
     br: 'inherit',
-    bblr: 0,
-    bbrr: 0,
-    btlr: 0,
-    btrr: 0,
 
     '&::-webkit-scrollbar': {
         height: '0.125em'
@@ -104,9 +93,7 @@ export const StyledTabsPanel = styled('div', {
 
     fontSize: '$2',
     fontFamily: '$jetbrains',
-    textOverflow: 'clip',
-
-
+    textOverflow: 'clip'
 })
 
 

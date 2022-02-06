@@ -28,11 +28,7 @@ export const StyledFieldsetRoot = styled('fieldset', {
     ai: 'stretch',
     gap: '$3',
     fw: 'nowrap',
-    whiteSpace: 'nowrap',
-
-    bc: '$accentBg',
-    border: '1px solid $accentBorder',
-    br: '$2'
+    whiteSpace: 'nowrap'
 })
 
 export const StyledFieldsetIcon = styled('span', {
@@ -53,6 +49,10 @@ export const StyledFieldsetLabel = styled('label', {
     maxWidth: '50%'
 })
 
+export const StyledFieldsetField = styled('div', {
+
+})
+
 export const StyledFieldsetDescription = styled('div', {
     ...sharedStyles,
 
@@ -70,19 +70,19 @@ export const StyledFieldsetDescription = styled('div', {
     }
 })
 
-export const StyledFieldsetErrorMessage = styled('div', {
+export const StyledFieldsetErrorMessage = styled('span', {
     ...sharedStyles,
 
-    fontSize: '$2',
-    textAlign: 'right',
-    maxWidth: '80%',
+    fontSize: '$1',
+    textAlign: 'start',
+    color: '$dangerText',
 
     variants: {
         validationState: {
             invalid: {
                 display: 'inline-flex',
                 visibility: 'visible',
-                color: '$dangerText'
+                color: 'red'
             },
             none: {
                 display: 'inline-flex',
@@ -102,9 +102,10 @@ export const StyledFieldsetErrorMessage = styled('div', {
 
 export const StyledFieldsetSuccessMessage = styled('span', {
     ...sharedStyles,
-    fontSize: '$2',
-    textAlign: 'right',
-    maxWidth: '80%',
+ 
+    fontSize: '$1',
+    textAlign: 'start',
+    color: '$successText',
 
     variants: {
         validationState: {

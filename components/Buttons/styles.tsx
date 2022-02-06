@@ -47,26 +47,26 @@ const sharedCircleStyles: CSS = {
 export const StyledButton = styled('button', {
     ...sharedStyles,
 
-    $$paddingZero: '0.48em 0.680em',
-    $$paddingOne:  '0.68em 0.850em',
-    $$paddingTwo:  '0.75em 1.020em',
-    $$paddingThree:  '0.92em 1.190em',
+    $$paddingZero: '0.475em 0.550em',
+    $$paddingOne:  '0.550em 0.650em',
+    $$paddingTwo:  '0.650em 0.700em',
+    $$paddingThree:  '0.700em 0.825em',
     
-    $$fontSizeZero: '0.8em',
-    $$fontSizeOne: '1em',
-    $$fontSizeTwo: '120%',
-    $$fontSizeThree: '140%',
+    $$fontSizeZero: '$1',
+    $$fontSizeOne: '$2',
+    $$fontSizeTwo: '$3',
+    $$fontSizeThree: '$4',
     
     variants: {
         code: {
             '000000': { br: 0, padding: '$$paddingZero',     fontSize: '$$fontSizeZero', minWidth: '6.25em',  borderWidth: '1px'  }, // sharp size 0
-            '000001': { br: 0, padding: '$$paddingOne',      fontSize: '$$fontSizeOne', minWidth: '6.25em',  borderWidth: '1px'   }, // sharp size 1
-            '000010': { br: 0, padding: '$$paddingTwo',      fontSize: '$$fontSizeTwo', minWidth: '6.25em',  borderWidth: '1px'  }, // sharp size 2
-            '000011': { br: 0, padding: '$$paddingThree',    fontSize: '$$fontSizeThree', minWidth: '6.25em',  borderWidth: '1px' }, // sharp size 3
+            '000001': { br: 0, padding: '$$paddingOne',      fontSize: '$$fontSizeOne', minWidth: '7.25em',  borderWidth: '1px'   }, // sharp size 1
+            '000010': { br: 0, padding: '$$paddingTwo',      fontSize: '$$fontSizeTwo', minWidth: '8.25em',  borderWidth: '1px'  }, // sharp size 2
+            '000011': { br: 0, padding: '$$paddingThree',    fontSize: '$$fontSizeThree', minWidth: '9.25em',  borderWidth: '1px' }, // sharp size 3
             '000100': { br: '$2', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em',  borderWidth: '1px',  }, // rounded size 0
-            '000101': { br: '$3', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '6.25em', borderWidth: '1px',   }, // rounded size 1
-            '000110': { br: '$4', padding: '$$paddingTwo',   fontSize: '$$fontSizeTwo', minWidth: '6.25em', borderWidth: '1px', }, // rounded size 2
-            '000111': { br: '$5', padding: '$$paddingThree', fontSize: '$$fontSizeThree', minWidth: '6.25em', borderWidth: '1px', }, // rounded size 3
+            '000101': { br: '$3', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '7.25em', borderWidth: '1px',   }, // rounded size 1
+            '000110': { br: '$4', padding: '$$paddingTwo',   fontSize: '$$fontSizeTwo', minWidth: '8.25em', borderWidth: '1px', }, // rounded size 2
+            '000111': { br: '$5', padding: '$$paddingThree', fontSize: '$$fontSizeThree', minWidth: '9.25em', borderWidth: '1px', }, // rounded size 3
             '001000': { br: '$6', padding: '$$paddingZero',  fontSize: '$$fontSizeZero', minWidth: '6.25em', borderWidth: '1px', }, // oval size 0
             '001001': { br: '$8', padding: '$$paddingOne',   fontSize: '$$fontSizeOne', minWidth: '7.25em', borderWidth: '1px', }, // oval size 1
             '001010': { br: 'calc(7px + $9)', padding: '$$paddingTwo',     fontSize: '$$fontSizeTwo', minWidth: '8.25em', borderWidth: '1px'  }, // oval size 2
@@ -197,13 +197,33 @@ export const StyledButton = styled('button', {
 
 export const InlineFlex = styled(Flex, {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: '$3',
     flexWrap: 'nowrap',
     margin: 0,
     padding: 0,
-    textOverflow: 'clip'
+    textOverflow: 'clip',
+
+    variants: {
+        size: {
+            'xs': { gap: '$3' },
+            's': { gap: '$4' },
+            'm': { gap: '$5' },
+            'l': { gap: '$6' },
+        },
+        isLoading: {
+            true: {
+                justifyContent: 'space-between'
+            },
+            false: {
+                justifyContent: 'center'
+            }
+        }
+    },
+    defaultVariants: {
+        size: 'xs',
+        isLoading: false
+    }
 })
 
 
