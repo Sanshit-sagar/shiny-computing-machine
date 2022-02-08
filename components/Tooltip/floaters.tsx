@@ -1,6 +1,8 @@
 import { useFocusRing } from '@react-aria/focus'
 import { useHover } from '@react-aria/interactions'
+import { mergeProps } from '@react-aria/utils'
 
+import { useTooltip } from './useTooltip'
 
 import { 
     StyledArrow,
@@ -16,6 +18,7 @@ type FloatingTooltipProps = {
     tooltipPlacement?: 'left' | 'top' | 'bottom' | 'right'; 
     isOpen?: boolean;
     autoFocus?: boolean; 
+    isDisabled?: boolean; 
 }
 
 export const FloatingTooltip = ({ 
@@ -26,13 +29,13 @@ export const FloatingTooltip = ({
 }: FloatingTooltipProps) => {
 
     const { hoverProps, isHovered } = useHover({ isDisabled })
-    const { isFocused, isFocusVisible, focusProps } = useFocusRing({ isWithin: true })
+    const { isFocused, isFocusVisible, focusProps } = useFocusRing({ within: true })
 
     const {
         triggerRef,
         floatingRef,
         arrowRef,
-        tooltipLef,
+        tooltipLeft,
         tooltipTop,
         arrowLeft,
         arrowTop,
@@ -45,15 +48,16 @@ export const FloatingTooltip = ({
     } = useTooltip({ placement: tooltipPlacement, isDisabled })
 
     const mergedProps = {...mergeProps(hoverProps, focusProps)}
+    const isFocusWithin = isFocused || isFocusVisible
 
     return (
         <>
-            <StyledTooltipTrigger {...mergedProps} ref={triggerRef}> 
+            <StyledTrigger {...mergedProps} ref={triggerRef}> 
                 {TRIGGER_CONTENT} 
-            </StyledTooltipTrigger>
+            </StyledTrigger>
 
             <StyledContainer
-                isVisible={isHovered || isFocused || isOpen}
+                isVisible={isHovered || isFocusWithin || isOpen}
                 ref={floatingRef}
                 css={{
                     position: 'absolute',
@@ -62,11 +66,11 @@ export const FloatingTooltip = ({
                     ...tooltipSize          
                 }}
             >
-                <StyledTooltipContent css={{ height: tooltipHeight, width: tooltipWidth }}>
+                <StyledContent css={{ ...tooltipSize }}>
                     {TOOLTIP_CONTENT}
-                </StyledTooltipContent>
+                </StyledContent>
 
-                <StyledTooltipArrow 
+                <StyledArrow 
                     ref={arrowRef} 
                     placement={placement}
                     css={{ 

@@ -1,17 +1,11 @@
 import React, { forwardRef, ComponentPropsWithoutRef } from 'react'
-import { styled, keyframes, VariantProps, CSS } from 'stitches.config'
-import {
-    slideDownAndFade,
-    slideUpAndFade,
-    slideLeftAndFade,
-    slideRightAndFade
-} from 'styles/keyframes'
+import { styled, VariantProps, CSS } from 'stitches.config'
+import { slideDownAndFade, slideUpAndFade, slideLeftAndFade, slideRightAndFade } from 'styles/keyframes'
 
 const animationDuration = '0.3s'
 const animationFunction = 'cubic-bezier(0.16, 1, 0.3, 1)'
 
 const StyledTrigger = styled('button', {
-
     border: '1px solid black',
     padding: '$2',
     borderRadius: '$2',
@@ -76,9 +70,9 @@ export const StyledArrow = styled('div', {
 type ArrowCssProps     =  { css?: CSS; }
 type ArrowVariantProps =  { placement?: VariantProps<typeof StyledArrow>['placement'] }
 type ArrowOwnProps     =  ComponentPropsWithoutRef<typeof StyledArrow> 
-type ArrowProps        =  ArrowCssProps & ArrowOwnProps
+type ArrowProps        =  ArrowCssProps & ArrowOwnProps & ArrowVariantProps
 
-export const StyledTooltipArrow = forwardRef<HTMLDivElement, TriggerProps>(({ 
+export const StyledArrow = forwardRef<HTMLDivElement, ArrowProps>(({ 
     id = 'arrow', 
     placement = 'top',
     ...props 
@@ -92,7 +86,7 @@ export const StyledTooltipArrow = forwardRef<HTMLDivElement, TriggerProps>(({
     />
 ))
 
-StyledTooltipArrow.toString = () => '.styled-tooltip-arrow';
+StyledArrow.toString = () => '.styled-arrow';
 
 
 const StyledTooltip = styled('div', {
@@ -138,7 +132,7 @@ const StyledTooltip = styled('div', {
     }
 })
 
-export const StyledTooltipContent = styled('div', {
+export const StyledContent = styled('div', {
     position: 'relative',
     top: 0,
     left: 0,
@@ -197,5 +191,5 @@ export const ForwardedTrigger = forwardRef<HTMLDivElement, TriggerProps>(
     )
 )
 
-export const StyledTooltipTrigger = ForwardedTrigger
-export const StyledTooltipContainer = ForwardedTooltip
+export const StyledTrigger = ForwardedTrigger
+export const StyledContainer = ForwardedTooltip
