@@ -1,6 +1,11 @@
 import React, { forwardRef, ComponentPropsWithoutRef } from 'react'
 import { styled, VariantProps, CSS } from 'stitches.config'
-import { slideDownAndFade, slideUpAndFade, slideLeftAndFade, slideRightAndFade } from 'styles/keyframes'
+import {
+    slideDownAndFade,
+    slideUpAndFade,
+    slideLeftAndFade,
+    slideRightAndFade
+} from 'styles/keyframes'
 
 const animationDuration = '0.3s'
 const animationFunction = 'cubic-bezier(0.16, 1, 0.3, 1)'
@@ -64,29 +69,14 @@ export const StyledArrow = styled('div', {
         placement: 'top'
     }
 })
+ 
+type ArrowProps  =  VariantProps<typeof StyledArrow> & { css?: CSS; }
+export const StyledTooltipArrow = forwardRef<HTMLDivElement, ArrowProps>(
+    ({ placement, ...props }, forwardedRef) => (
+        <StyledArrow id="arrow" placement={placement} {...props} ref={forwardedRef} />       
+    ))
 
-////////////////////////////////////////////////////////////////////////////////////
-
-type ArrowCssProps     =  { css?: CSS; }
-type ArrowVariantProps =  { placement?: VariantProps<typeof StyledArrow>['placement'] }
-type ArrowOwnProps     =  ComponentPropsWithoutRef<typeof StyledArrow> 
-type ArrowProps        =  ArrowCssProps & ArrowOwnProps & ArrowVariantProps
-
-export const StyledArrow = forwardRef<HTMLDivElement, ArrowProps>(({ 
-    id = 'arrow', 
-    placement = 'top',
-    ...props 
-}, forwardedRef) => (
-
-    <StyledArrow 
-        id={id} 
-        {...props} 
-        placement={placement} 
-        ref={forwardedRef} 
-    />
-))
-
-StyledArrow.toString = () => '.styled-arrow';
+StyledTooltipArrow.toString = () => '.styled-tooltip-arrow';
 
 
 const StyledTooltip = styled('div', {
@@ -96,7 +86,7 @@ const StyledTooltip = styled('div', {
     pointerEvents: 'none',
 
     display: 'block',
-    padding: '$1',
+    padding: '0em',
     margin: '0em',
 
     backgroundColor: '$black1',
@@ -132,64 +122,44 @@ const StyledTooltip = styled('div', {
     }
 })
 
-export const StyledContent = styled('div', {
+export const StyledTooltipContent = styled('div', {
     position: 'relative',
     top: 0,
     left: 0,
+    height: '100%',
+    width: '100%',
+    padding: '0em',
+    margin: '0em',
+
     whiteSpace: 'break-line',
     visibility: 'inherit', 
     opacity: 'inherit', 
     overflow: 'hidden', 
+
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    gap: '0em',
+    flexWrap: 'wrap',
     textOverflow: 'ellipsis',
-    padding: 0,
-    margin: 0,
+    textAlign: 'center',
+    varticalAlign: 'middle',
 
     fontSize: '$2',
     fontFamily: '$plexsans',
     fontWeight: 'normal',
     lineHeight: '$3',
     fontVariant: 'tabular',
-    color: '$white1',
-
-    textAlign: 'center'
+    color: '$white1'
 })
 
+type TooltipProps  =  VariantProps<typeof StyledTooltip> & { css?: CSS; children: ReactNode; } 
+export const StyledTooltipContainer = forwardRef<HTMLDivElement, TooltipProps>((props, forwardedRef) => (
+    <StyledTooltip id="tooltip" role="tooltip" {...props} ref={forwardedRef} />
+))
 
-////////////////////////////////////////////////////////////////////////////////////
-
-type TooltipVariantProps =  VariantProps<typeof StyledTooltip>['isVisible'] 
-type TooltipCssProps     =  { css?: CSS; }
-type TooltipOwnProps     =  ComponentPropsWithoutRef<typeof StyledTooltip> 
-type TooltipProps        =  TooltipVariantProps & TooltipCssProps & TooltipOwnProps
-
-export const ForwardedTooltip = forwardRef<HTMLDivElement, TooltipProps>(
-    (props, forwardedRef) => (
-        <StyledTooltip 
-            id="tooltip" 
-            {...props} 
-            role="tooltip" 
-            ref={forwardedRef} 
-        />
-    )
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
-type TriggerVariantProps =  VariantProps<typeof StyledTrigger>['isHovered'] 
-type TriggerCssProps     =  { css?: CSS; }
-type TriggerOwnProps     =  ComponentPropsWithoutRef<typeof StyledTrigger> 
-type TriggerProps        =  TriggerVariantProps & TriggerCssProps & TriggerOwnProps
-
-export const ForwardedTrigger = forwardRef<HTMLDivElement, TriggerProps>(
-    (props, forwardedRef) => (
-        <StyledTrigger 
-            id="button"
-            {...props} 
-            aria-describedby="tooltip"
-            ref={forwardedRef} 
-        />
-    )
-)
-
-export const StyledTrigger = ForwardedTrigger
-export const StyledContainer = ForwardedTooltip
+type TriggerProps  =  VariantProps<typeof StyledTrigger> & { css?: CSS; children: ReactNode; }
+export const StyledTooltipTrigger = forwardRef<HTMLDivElement, TriggerProps>((props, forwardedRef) => (
+    <StyledTrigger id="button" aria-describedby="tooltip" {...props} ref={forwardedRef} />      
+))

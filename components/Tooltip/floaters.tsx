@@ -1,88 +1,53 @@
-import { useFocusRing } from '@react-aria/focus'
-import { useHover } from '@react-aria/interactions'
-import { mergeProps } from '@react-aria/utils'
-
-import { useTooltip } from './useTooltip'
-
 import { 
-    StyledArrow,
-    StyledContent, 
-    StyledTrigger,
-    StyledContainer
+    StyledTooltipArrow,
+    StyledTooltipContent, 
+    StyledTooltipTrigger,
+    StyledTooltipContainer
 } from './styles'
 
 const TRIGGER_CONTENT = 'Hover me!'
 const TOOLTIP_CONTENT = `The evil rabbit jumped over the fence`
 
 type FloatingTooltipProps = {
-    tooltipPlacement?: 'left' | 'top' | 'bottom' | 'right'; 
-    isOpen?: boolean;
-    autoFocus?: boolean; 
+    placement?: 'left' | 'top' | 'bottom' | 'right'; 
+    isOpen: boolean;
     isDisabled?: boolean; 
+    isLoading?: boolean;
 }
 
-export const FloatingTooltip = ({ 
-    tooltipPlacement = 'bottom',
-    isOpen,
-    isDisabled = false,
-    autoFocus = false
-}: FloatingTooltipProps) => {
+import { useTooltip } from './useTooltip'
 
-    const { hoverProps, isHovered } = useHover({ isDisabled })
-    const { isFocused, isFocusVisible, focusProps } = useFocusRing({ within: true })
+export const FloatingTooltip = ({ 
+    placement = 'bottom',
+    isOpen = false,
+    isDisabled = false,
+    isLoading = false
+}: FloatingTooltipProps) => {
 
     const {
         triggerRef,
         floatingRef,
         arrowRef,
-        tooltipLeft,
-        tooltipTop,
-        arrowLeft,
-        arrowTop,
-        arrowOffset,
-        placement,
-        strategy,
-        update,
-        staticSide,
-        tooltipSize
-    } = useTooltip({ placement: tooltipPlacement, isDisabled })
+        triggerStyles,
+        floatingStyles,
+        contentStyles,
+        arrowStyles,
+        isVisible,
+        interactionProps,  
+        ...rest
+    } = useTooltip({ placement, isDisabled, isLoading, isOpen })
 
-    const mergedProps = {...mergeProps(hoverProps, focusProps)}
-    const isFocusWithin = isFocused || isFocusVisible
 
     return (
         <>
-            <StyledTrigger {...mergedProps} ref={triggerRef}> 
+            <StyledTooltipTrigger {...interactionProps} {...rest} ref={triggerRef} css={triggerStyles}>
                 {TRIGGER_CONTENT} 
-            </StyledTrigger>
+            </StyledTooltipTrigger>
 
-            <StyledContainer
-                isVisible={isHovered || isFocusWithin || isOpen}
-                ref={floatingRef}
-                css={{
-                    position: 'absolute',
-                    top: tooltipTop,
-                    left: tooltipLeft,
-                    ...tooltipSize          
-                }}
-            >
-                <StyledContent css={{ ...tooltipSize }}>
-                    {TOOLTIP_CONTENT}
-                </StyledContent>
-
-                <StyledArrow 
-                    ref={arrowRef} 
-                    placement={placement}
-                    css={{ 
-                        position: 'absolute',
-                        top: arrowTop,
-                        left: arrowLeft,
-                        right: '',
-                        bottom: '',
-                        [staticSide]: '-4px',
-                    }} 
-                />
-            </StyledContainer>  
+            <StyledTooltipContainer isVisible={isVisible} ref={floatingRef} css={floatingStyles}>
+                <StyledTooltipContent css={contentStyles}> {TOOLTIP_CONTENT} </StyledTooltipContent>
+                <StyledTooltipArrow placement={placement} ref={arrowRef} css={arrowStyles} />
+            </StyledTooltipContainer>  
         </>
     )
 }

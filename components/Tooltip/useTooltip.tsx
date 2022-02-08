@@ -1,58 +1,61 @@
 import { useEffect, useRef } from 'react' 
-import { useFloating, shift, offset, flip, arrow, getScrollParents } from '@floating-ui/react-dom'
+import {
+    useFloating,
+    shift,
+    flip,
+    arrow,
+    getScrollParents,
+  } from '@floating-ui/react-dom';
+import { getTooltipStyles, getInteractionStates } from './utils'
 
-const tooltipSize = { 
-    height: '50px', 
-    width: '200px' 
-}
 
 interface UseTooltipProps {
-    tooltipPlacement?: 'left' | 'top' | 'bottom' | 'right'
+    placement: 'left' | 'top' | 'bottom' | 'right';
+    isDisabled: boolean;
+    isLoading: boolean;
+    isOpen: boolean; 
     offset?: number; 
     shift?: number; 
 }
 
 export const useTooltip = ({ 
-    tooltipPlacement = 'left',
+    placement: tooltipPlacement,
+    isDisabled,
+    isLoading,
+    isOpen, 
     offset = 10,
-    shift = 5 
+    shift = 5
 }: UseTooltipProps) => {
     const arrowRef = useRef<HTMLDivElement>()
 
-    const { 
+    const {
         x, 
         y, 
         reference, 
         floating, 
         strategy, 
         update, 
-        refs, 
-        placement,
+        refs,
         middlewareData: { 
             arrow: { 
                 x: arrowX, 
-                y: arrowY, 
-                centerOffset: arrowCenterOffset  
+                y: arrowY
             } = {} 
         }
     }= useFloating({
-        placement: tooltipPlacement,
-        middleware: [ 
-            offset(offset), 
+        placement: 'right',
+        middleware: [
+            offset(6), 
             flip(), 
-            shift({ 
-                padding: shift
-            }), 
+            shift({ padding: 5 }), 
             arrow({ 
                 element: arrowRef 
-            }) 
+            })
         ] 
     })
 
     useEffect(() => {
-        if (!refs.reference.current || !refs.floating.current) {
-          return
-        }
+        if (!refs.reference.current || !refs.floating.current) return
      
         const parents = [
           ...getScrollParents(refs.reference.current),
@@ -72,30 +75,14 @@ export const useTooltip = ({
         }
     }, [refs.reference, refs.floating, update])
 
-
-    const staticSide = {
-        top: 'bottom', 
-        right: 'left', 
-        bottom: 'top', 
-        left: 'right' 
-    }[placement.split('-')[0]]
-
+    const tooltipStyles = getTooltipStyles({ x, y, arrowX, arrowY, placement, strategy })
+    const interactionStates = getInteractionStates({ isDisabled, isLoading, isOpen })
 
     return {
         triggerRef: reference,
         floatingRef: floating,
-        arrowRef: arrowRef,
-        tooltipLeft: x ?? '',
-        tooltipTop: y ?? '',
-        arrowLeft: arrowX != null ? `${arrowX}px` : '',
-        arrowTop: arrowY != null ? `${arrowX}px` : '',
-        tooltipHeight:  `calc(${tooltipSize.height} - $2)`,
-        tooltipWidth: `calc(${tooltipSize.width} - $4)`,
-        arrowOffset: arrowCenterOffset,
-        placement,
-        strategy,
-        update,
-        staticSide,
-        tooltipSize
+        arrowRef,
+        ...tooltipStyles,
+        ...interactionStates
     }
 }

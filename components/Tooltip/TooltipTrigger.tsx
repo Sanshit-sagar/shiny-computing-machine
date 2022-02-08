@@ -1,37 +1,61 @@
-import React, { ReactElement, forwardRef, ElementType } from 'react' 
+import React, { ReactElement, forwardRef, Ref, ElementType } from 'react' 
 
 import { mergeProps } from '@react-aria/utils'
 import { useTooltipTrigger } from '@react-aria/tooltip'
 import { useTooltipTriggerState } from '@react-stately/tooltip'
-import { useInteractions } from '@/hooks/useInteractions'
-import { FocusableRef, useFocusableRef } from '@/utils/useRefs'
-
-import { TooltipTriggerProps, TooltipTriggerState } from './interfaces'
 
 import TooltipContent from './TooltipContent'
+import { useInteractions } from '@/hooks/useInteractions'
+import { FocusableRef, useFocusableRef } from '@/utils/useRefs'
+import { TooltipTriggerProps, TooltipTriggerState } from './interfaces'
 
-export const ExtTooltipTrigger = ({ children, content, elementType: ElementType = 'button', ...props  }: TooltipTriggerProps, ref: FocusableRef<HTMLElement>) => {
+import {
+    StyledTooltipContainer,
+    StyledTooltipArrow
+} from './styles'
 
-    const state: TooltipTriggerState = useTooltipTriggerState(props)
-    const buttonRef = useFocusableRef<HTMLElement>(ref) 
+export const ExtTooltipTrigger = ({ 
+    elementType: ElementType = 'button', 
+    placement = 'left',
+    isDisabled = false,
+    isLoading = false,
+    isOpen,
+    content, 
+    children, 
+    ...props  
+}: TooltipTriggerProps, ref: Ref<HTMLElement>) => {
 
-    const { tooltipProps, triggerProps } = useTooltipTrigger(props, state, buttonRef)
-    const { interactionProps, ...interactionStates } = useInteractions({ 
-        isDisabled: props.isDisabled 
-    })
+    // const state: TooltipTriggerState = useTooltipTriggerState(props)
+    
+    // const { tooltipProps, triggerProps } = useTooltipTrigger(props, state, buttonRef)
+    const {
+        triggerRef,
+        floatingRef,
+        arrowRef,
+        triggerStyles,
+        floatingStyles,
+        contentStyles,
+        arrowStyles,
+        isVisible,
+        interactionProps,  
+        ...rest
+    } = useTooltip({ placement, isDisabled, isLoading, isOpen })
+
+    // const buttonRef = useFocusableRef<HTMLElement>(ref) 
 
     return (
         <span style={{ position: 'relative' }}>
 
-            <ElementType {...mergeProps(triggerProps, interactionProps)} ref={buttonRef}>
+            <ElementType {...interactionProps} {...rest} ref={triggerRef} css={triggerStyles}>
                 {children}
             </ElementType>
 
-            {state.isOpen && (
-                <TooltipContent state={state} {...mergeProps(tooltipProps, interactionStates)}>
-                    {content}
-                </TooltipContent>
-            )}
+          
+            <StyledTooltipContainer isVisible={isVisible} ref={floatingRef} css={floatingStyles}>
+                <TooltipContent css={contentStyles}> {content} </TooltipContent>
+                <StyledTooltipArrow placement={placement} ref={arrowRef} css={arrowStyles} />
+            </StyledTooltipContainer>
+        
         </span>
     )
 }
@@ -39,7 +63,7 @@ export const ExtTooltipTrigger = ({ children, content, elementType: ElementType 
 ExtTooltipTrigger.displayName = 'TooltipTrigger'
 
 const TooltipTrigger = forwardRef(ExtTooltipTrigger) as <T extends ElementType = 'button'>(
-    props: TooltipTriggerProps & { ref?: FocusableRef<HTMLElement> }
+    props: TooltipTriggerProps & { ref?: Ref<HTMLElement> }
 ) => ReactElement
 
 export default TooltipTrigger
