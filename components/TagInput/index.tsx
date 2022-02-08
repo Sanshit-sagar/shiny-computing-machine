@@ -81,9 +81,6 @@ export const TagInput = ({ tags }) => {
                                 handleDelete={() => removeTagData(index)}
                             >
                                 <TagTitle>{tag}</TagTitle>
-                                {/* <button>
-                                    <Pencil1Icon />
-                                </button>  */}
                             </TagItem>
                         ))}
                     </Tags>

@@ -7,46 +7,21 @@ import { useOverlay, DismissButton } from '@react-aria/overlays'
 import { useMenuTriggerState } from '@react-stately/menu'
 import { useMenuTrigger } from '@react-aria/menu'
 
-import { Button } from '@/components/Button'
+import { Button } from '@/components/Buttons'
 import { CalendarIcon } from '@radix-ui/react-icons'
 
 export function DatePickerTrigger({ dir = 'ltr', children, ...props }) {
    
     const state = useMenuTriggerState({ direction: 'left', closeOnSelect: true, ...props })
-    const ref: MutableRefObject<HTMLButtonElement> = useRef<HTMLButtonElement>()
+    const ref = useRef<HTMLButtonElement>()
 
     const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, ref)
     const { buttonProps } = useButton(menuTriggerProps, ref)
 
     return (
-        <div
-            style={{  
-                height: '1px', 
-                backgroundColor: 'blue', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                justifyContent: 'flex-start',
-                alignItems: 'stretch', 
-                margin: 0, 
-                padding: 0 
-            }}
-        >
-            <Button
-                {...buttonProps} 
-                ref={ref} 
-                shape="quad" 
-                direction="row" 
-                justify="between" 
-                align="center" 
-                gap="0" 
-                radius="1" 
-                borderStyle="outset" 
-                borderWidth="1"
-                height={30}
-                width={150}
-            >
-                {props.label} 
-                <CalendarIcon /> 
+        <div>
+            <Button {...buttonProps} ref={ref}>
+               <> {props.label} </> <CalendarIcon /> 
             </Button>
 
             {state.isOpen && (

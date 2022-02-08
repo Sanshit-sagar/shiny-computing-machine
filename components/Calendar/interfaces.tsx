@@ -32,11 +32,11 @@ export interface RangeCalendarProps<T extends DateValue> extends CalendarPropsBa
 
 
 export interface CustomCalendarProps<T extends DateValue> extends CalendarProps<T>, DOMProps, StyleProps {
-    padding: any; 
+   
     visibleMonths?: number; 
 }
 export interface CustomRangeCalendarProps<T extends DateValue> extends RangeCalendarProps<T>, DOMProps, StyleProps {
-    padding: any;
+    
     visibleMonths?: number; 
 }
 

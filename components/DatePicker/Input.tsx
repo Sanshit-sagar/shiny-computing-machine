@@ -1,14 +1,15 @@
-import React, { useRef, MutableRefObject } from 'react'
+import React, { useRef, RefObject } from 'react'
 
 import { FocusRing, FocusScope } from '@react-aria/focus'
 import { mergeProps } from '@react-aria/utils'
 
 import { ValidationState } from '@/interfaces/Shared'
-import { Cross2Icon, CheckIcon } from '@radix-ui/react-icons'
+import { Cross2Icon, CheckIcon, CalendarIcon } from '@radix-ui/react-icons'
+
 
 interface InputProps {
     children: React.ReactNode;
-    inputRef?: MutableRefObject<HTMLInputElement>;
+    inputRef?: RefObject<HTMLInputElement>;
     fieldProps: any;
     autoFocus: boolean;
     isDisabled: boolean;
@@ -21,37 +22,35 @@ const ValidationIcon = ({ validationState  }: { validationState?: ValidationStat
     : null
 );
 
-export const Input = ({
-    children,
-    inputRef,
-    fieldProps,
-    autoFocus = false,
-    isDisabled = false,
-    validationState = 'valid'
-}: InputProps) => {
+export const Input = (props: InputProps) => {
+    let defaultRef = useRef()
+    let {
+        children,
+        inputRef,
+        fieldProps,
+        autoFocus = false,
+        isDisabled = false,
+        validationState = 'valid'
+    } = props
     
     if(!inputRef) {
-        const defaultRef: MutableRefObject<HTMLInputElement> = useRef<HTMLInputElement>(); 
-        inputRef = defaultRef; 
+        inputRef = defaultRef
     }
 
     return (
-        <div {...mergeProps(fieldProps)} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', gap: '1px' }}>
-             <FocusRing isTextInput within>
-                <div role="presentation" ref={inputRef} style={{ display:'flex', border: '1px solid black', backgroundColor: 'white', color: 'purple', fontSize: '14px', lineHeight: 1, fontWeight: 400, padding: '2em' }}>
-                    <FocusScope autoFocus={false}>
-                    {children}
-                    </FocusScope>
+        <div {...mergeProps(fieldProps)}>
+            <FocusRing isTextInput within>
+                <div role="presentation">
+                    <div role="presentation" ref={inputRef}>
+                        <FocusScope autoFocus={autoFocus} >
+                            
+                            {children}
+                          
+                        </FocusScope>
+                    </div>
                 </div>
-             </FocusRing>
-             <ValidationIcon validationState={validationState} />
+            </FocusRing>
+            <ValidationIcon validationState={validationState} />
         </div>
-    );
+    )
 }
-
-
-// isLoading, 
-// isDisabled,
-// isRequired,
-// isReadOnly,
-//  classNames

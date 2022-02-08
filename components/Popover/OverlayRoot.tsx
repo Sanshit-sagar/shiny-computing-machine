@@ -8,7 +8,6 @@ import { useOverlayPosition, useOverlayTrigger, OverlayContainer } from '@react-
 import { flattenChildren } from '@/utils/flattenChildren'
 
 import OverlayContext from './OverlayContext'
-import OverlayTrigger from './OverlayTrigger'
 import { IOverlayContext, OverlayProps } from './interfaces'
 import { isOverlayTrigger, initStateAndProps } from './utils'
 

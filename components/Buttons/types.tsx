@@ -58,7 +58,7 @@ export interface SharedButtonProps {
 export interface ButtonBaseProps extends DOMProps, ButtonEventHandlerProps, ButtonAriaProps, SharedButtonProps {}
 export type DiscriminatedButtonProps<T> = ButtonAsLinkProps | ButtonAsButtonProps | GenericButtonProps<T>
 export type ButtonVariantProps = Omit<VariantProps<typeof StyledButton>, 'children' | 'code'> & {
-    shape?: 'sharp' | 'rounded' | 'circle' | 'oval' | 'alt';
+    shape?: 'sharp' | 'rounded' | 'circular' | 'oval' | 'alt';
     size?: 'xs' | 's' | 'm' | 'l';
 }
 

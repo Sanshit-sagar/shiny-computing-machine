@@ -18,7 +18,7 @@ type MonthHeaderProps = {
     index: number; 
 }
 
-const MonthHeading = ({ state, month, index  }: MonthHeaderProps) => {
+const MonthHeading = ({ state, month, index }: MonthHeaderProps) => {
     let monthDateFormatter = useDateFormatter({
         month: 'long',
         year: 'numeric',
@@ -78,7 +78,7 @@ export function CalendarBase<T extends CalendarStateType>(props: CalendarBasePro
             </Fragment>
         )
 
-        let d = currentMonth.add({ months: i });
+        let d = currentMonth.add({ months: i })
         calendars.push(
             <CalendarMonth
                 {...props}

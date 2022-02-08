@@ -9,12 +9,13 @@ import { useModal, useOverlay, DismissButton } from '@react-aria/overlays'
 import { useTheme } from '@/hooks/useTheme'
 import { isElementOfType } from '@/interfaces/Guards'
 
+import OverlayBody from './OverlayBody'
 import OverlayHeading from './OverlayHeading'
 import OverlayDescription from './OverlayDescription'
 import { Separator } from '@/components/Separator'
 
 import { useOverlayContext } from './utils'
-import { StyledOverlay, StyledOverlayContents } from './styles'
+import { StyledOverlay, StyledOverlayContents, StyledOverlayContainer } from './styles'
 
 type OverlayDialogProps = {
     element?: ElementType;
@@ -51,7 +52,7 @@ const OverlayDialog = ({ element: Component = 'div', children, ...props }: Overl
         <FocusScope restoreFocus>
             <StyledOverlay {...mergedProps} ref={overlayRef} css={{ ...mergedOverlayProps.style }}>
                 <StyledOverlayContents className={activeThemeClass} {...props}>
-                    <Component>
+                    <StyledOverlayContainer as={Component}>
 
                         {dialogHeading && (
                             <OverlayHeading {...titleProps} css={{ ...dialogHeading.props?.css }}> 
@@ -65,10 +66,14 @@ const OverlayDialog = ({ element: Component = 'div', children, ...props }: Overl
                             </OverlayDescription>
                         )}
 
-                        {filteredContent}
+                        {filteredContent && (
+                            <OverlayBody>
+                                {filteredContent}
+                            </OverlayBody>
+                        )}
 
                         <DismissButton onDismiss={state.close} />  
-                    </Component> 
+                    </StyledOverlayContainer> 
                 </StyledOverlayContents>
             </StyledOverlay>
         </FocusScope>

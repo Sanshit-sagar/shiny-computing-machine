@@ -74,18 +74,23 @@ export const StyledArrow = styled('div', {
 ////////////////////////////////////////////////////////////////////////////////////
 
 type ArrowCssProps     =  { css?: CSS; }
+type ArrowVariantProps =  { placement?: VariantProps<typeof StyledArrow>['placement'] }
 type ArrowOwnProps     =  ComponentPropsWithoutRef<typeof StyledArrow> 
 type ArrowProps        =  ArrowCssProps & ArrowOwnProps
 
-export const StyledTooltipArrow = forwardRef<HTMLDivElement, TriggerProps>(
-    (props, forwardedRef) => (
-        <StyledArrow 
-            id="arrow" 
-            {...props} 
-            ref={forwardedRef} 
-        />
-    )
-)
+export const StyledTooltipArrow = forwardRef<HTMLDivElement, TriggerProps>(({ 
+    id = 'arrow', 
+    placement = 'top',
+    ...props 
+}, forwardedRef) => (
+
+    <StyledArrow 
+        id={id} 
+        {...props} 
+        placement={placement} 
+        ref={forwardedRef} 
+    />
+))
 
 StyledTooltipArrow.toString = () => '.styled-tooltip-arrow';
 

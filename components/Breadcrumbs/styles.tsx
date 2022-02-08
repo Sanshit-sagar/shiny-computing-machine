@@ -2,6 +2,13 @@ import React, { ElementRef } from 'react'
 import { styled, VariantProps, CSS } from 'stitches.config'
 import * as Radix from '@radix-ui/react-primitive'
 
+export const StyledNav = styled('nav', {
+    padding: '$3',
+    border: '1px solid $accentBorder',
+    bc: '$accentBase',
+    br: '$2'
+})
+
 export const OrderedList = styled('ol', {
     display: 'flex', 
     fd: 'row', 
@@ -20,8 +27,12 @@ export const ListItemWrapper = styled('li', {
 })
 
 const StyledLink = styled('a', {
-    display: 'inline-flex',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    gap: '$4',
+
     fontFamily: '$jetbrains',
     fontSize: '$4',
     lineHeight: '$2',
@@ -73,8 +84,16 @@ const ForwardedLink = React.forwardRef<
 })
 
 const StyledHeading = styled('h3', {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '$4',
+
     margin: 0,
-    fontSize: '1em',
+    fontSize: '15px',
+    fontFamily: '$jetbrains',
+    letterSpacing: '$1',
     color: '$accentSolid',
 
     '&:hover': {

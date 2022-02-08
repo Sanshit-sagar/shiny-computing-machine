@@ -7,32 +7,22 @@ import { createCalendar } from '@internationalized/date'
 
 import { DateValue } from '@react-types/calendar'
 import { CalendarBase } from './CalendarBase'
+
+
 import { CustomCalendarProps, CustomCalendarState } from './interfaces'
 
 import { CellStyleProps } from './styles'
 
-export function Calendar<T extends DateValue>(props: CustomCalendarProps<T> & CellStyleProps) {
+export function Calendar<T extends DateValue>({ 
+    visibleMonths = 1, 
+    ...props 
+}: CustomCalendarProps<T> & CellStyleProps) {
 
-    let { locale } = useLocale();
-    const { visibleMonths = 1, padding = '5' } = props; 
+    const { locale } = useLocale()
 
-    let visibleDuration = useMemo(() => ({  
-        months: visibleMonths 
-    }), [visibleMonths]); 
-  
-    let state: CustomCalendarState = useCalendarState({
-        ...props,
-        locale,
-        visibleDuration,
-        createCalendar
-    });
+    const visibleDuration = useMemo(() => ({ months: visibleMonths }), [visibleMonths])
+    const state: CustomCalendarState = useCalendarState({ ...props, locale, visibleDuration, createCalendar })
 
-    return (    
-        <CalendarBase
-            {...props}
-            state={state}
-            useCalendar={useCalendar}
-        />
-    );
+    return <CalendarBase {...props} state={state} useCalendar={useCalendar} />
 }
 

@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef } from 'react' 
+import React, { useRef } from 'react' 
 import { styled } from 'stitches.config'
 
 import { useLocale } from '@react-aria/i18n'
@@ -15,35 +15,46 @@ const StyledField = styled('div', {
     d: 'flex', 
     fd: 'row', 
     jc: 'flex-start', 
-    ai: 'stretch',
-    bc: '$accentBase',
+    ai: 'center',
     width: 'fit-content',
     height: 'fit-content',
-    padding: '$1',
-    margin: 0,
-    border: '1px solid $accentBorder',
-    br: '$2'
+    padding: 0,
+    margin: 0
 })
 
 interface DatePickerFieldProps<T extends DateValue> extends SpectrumDatePickerProps<T>  {
-    inputClassName?: string,
-    hideValidationIcon?: boolean,
+    inputClassName?: string;
+    hideValidationIcon?: boolean;
 }
 
 
-export function DatePickerField<T extends DateValue>(props: DatePickerFieldProps<T>) {
-    const { isDisabled, isRequired, isReadOnly, inputClassName, ...otherProps } = props
+export const DatePickerField = <T extends DateValue>(props: DatePickerFieldProps<T>) => {
+    const {
+        isDisabled, 
+        isRequired, 
+        isReadOnly, 
+        inputClassName,
+        ...rest
+    } = props
+    
+    const ref = useRef()
     const { locale } = useLocale()
+    const state: DatePickerFieldState = useDatePickerFieldState({ 
+        ...props, 
+        locale, 
+        createCalendar 
+    })
 
-    const ref: MutableRefObject<HTMLDivElement> = useRef<HTMLDivElement>()
-    const state: DatePickerFieldState = useDatePickerFieldState({ ...props, locale, createCalendar })
     const { fieldProps } = useDateField(props, state, ref)
 
     return (
-        <StyledField {...fieldProps} ref={ref}>
+        <StyledField 
+            {...fieldProps} 
+            ref={ref}
+        >
             {state.segments.map((segment: DateSegment, i: number) => (
                 <DatePickerSegment
-                    key={i}
+                    key={`segment-${i}`}
                     segment={segment}
                     state={state}
                     isDisabled={isDisabled}

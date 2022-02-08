@@ -29,19 +29,21 @@ const init = (): DatePickerProps<DateValue> => {
     return datePickerState
 }
 
-const DatePickerInstance = ({ props }: { props: DatePickerProps<DateValue> }) => (
-    <DatePicker<DateValue> {...props} />
-);
+export const DatePickerInstance = () => {
+    const { state } = StateFactory<DatePickerProps<DateValue>>(init)
+
+    return <DatePicker<DateValue> {...state} />
+}
 
 const ExampleDatePicker = () => {
-    const { state } = StateFactory<DatePickerProps<DateValue>>(init)
+   
 
     return (
         <ExampleBase
             heading={'DatePicker'}
-            description={'DatePicker description here'}
+            description={''}
             icon={<CalendarIcon />}
-            component={<DatePickerInstance props={state} />}
+            component={<DatePickerInstance />}
             controls={[]}
         />
     )

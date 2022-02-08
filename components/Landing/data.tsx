@@ -10,6 +10,7 @@ import { AsyncInstance } from '@/components/Async/examples'
 import { TableViewInstance } from '@/components/Table/examples'
 // import { SelectorInstance } from '@/components/Selector/examples'
 import { InputInstance } from '@/components/TextField/examples'
+import { DatePickerInstance } from '@/components/DatePicker/examples'
 import { AvatarInstance } from '@/components/Avatar/examples'
 import { CheckboxInstance } from '@/components/Checkbox/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
@@ -151,6 +152,11 @@ export const showcases: IShowcase[] = [{
         name: 'Count Up', 
         description: '',
         icon: <NumberFieldIcon /> 
+    }, {
+        element: <DatePickerInstance />,
+        name: 'Date Picker',
+        description: '',
+        icon: <MonthlyCalendarIcon /> 
     }, {
         element: <DialogInstance defaultOpen={false} />,
         name: 'Dialog',

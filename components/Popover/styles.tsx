@@ -20,7 +20,6 @@ export const StyledOverlay = styled('div', {
 
 export const StyledOverlayContents = styled(Flex, {
     appearance: 'none',
-    userSelect: 'none',
     overflow: 'hidden', 
     whiteSpace: 'wrap',
 
@@ -69,7 +68,8 @@ export const StyledOverlayContents = styled(Flex, {
 
 export const StyledOverlayDescription = styled('div', {
     fontSize: '$2', 
-    fontFamily: '$mono',
+    fontFamily: '$plexsans',
+    userSelect: 'none',
     m: '$1',
     p: 0,
     color: '$accentTextContrast'
@@ -77,13 +77,55 @@ export const StyledOverlayDescription = styled('div', {
 
 export const StyledOverlayHeading = styled(H3, { 
     fontFamily: '$jetbrains',
+    userSelect: 'none',
     fontSize: '$3',
     m: '$1',
     color: '$accentText'
 })
-// 
-// export const StyledOverlayWrapper = styled('div', {
-    // m: '$1',
-    // p: '$1',
-    // color: '$accentText'
-// })
+
+export const StyledOverlayBody = styled('div', {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    gap: '$2',
+
+    padding: '$1'
+})
+
+export const StyledOverlayContainer = styled('div', {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    gap: '$2',
+    border: '0px solid transparent',
+    borderRadius: '$2',
+    margin: 0,
+    padding: 0,
+    bc: '$white1',
+    color: '$black1',
+
+    variants: {
+        padded: {
+            true: {
+                padding: '$2',
+                borderWidth: '1px',
+                borderColor: '$accentBorder',
+                color: '$accentText',
+                fontSize: '$1',
+                fontFamily: '$jetbrains'
+            },
+            false: null
+        }
+    },
+    defaultVariants: {
+        padded: false
+    }
+})
+
+
+
+
+
+

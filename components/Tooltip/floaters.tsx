@@ -1,12 +1,12 @@
-import { useEffect, useRef } from 'react'
-import { useFloating, shift, offset, flip, arrow, getScrollParents } from '@floating-ui/react-dom'
-import { useInteractions } from '@/hooks/useInteractions'
+import { useFocusRing } from '@react-aria/focus'
+import { useHover } from '@react-aria/interactions'
+
 
 import { 
-    StyledTooltipArrow,
-    StyledTooltipContent, 
-    StyledTooltipTrigger,
-    StyledTooltipContainer
+    StyledArrow,
+    StyledContent, 
+    StyledTrigger,
+    StyledContainer
 } from './styles'
 
 const TRIGGER_CONTENT = 'Hover me!'
@@ -15,124 +15,70 @@ const TOOLTIP_CONTENT = `The evil rabbit jumped over the fence`
 type FloatingTooltipProps = {
     tooltipPlacement?: 'left' | 'top' | 'bottom' | 'right'; 
     isOpen?: boolean;
+    autoFocus?: boolean; 
 }
 
 export const FloatingTooltip = ({ 
-    tooltipPlacement = 'top',
-    isOpen = true
+    tooltipPlacement = 'bottom',
+    isOpen,
+    isDisabled = false,
+    autoFocus = false
 }: FloatingTooltipProps) => {
-    const arrowRef = useRef<HTMLDivElement | null>(null)
 
-    const { interactionProps, ...interactionStates } = useInteractions({
-        isDisabled: false
-    })
-    const { isHovered, isFocused, isPressed, ...rest } = interactionStates
+    const { hoverProps, isHovered } = useHover({ isDisabled })
+    const { isFocused, isFocusVisible, focusProps } = useFocusRing({ isWithin: true })
 
     const {
-        x, 
-        y, 
-        reference, 
-        floating, 
-        strategy, 
-        update, 
-        refs,
+        triggerRef,
+        floatingRef,
+        arrowRef,
+        tooltipLef,
+        tooltipTop,
+        arrowLeft,
+        arrowTop,
+        arrowOffset,
         placement,
-        middlewareData: { 
-            arrow: { 
-                x: arrowX, 
-                y: arrowY,
-                centerOffset: arrowCenterOffset
-            } = {} 
-        }
-    }= useFloating({
-        placement: tooltipPlacement,
-        middleware: [
-            offset(6), 
-            flip(), 
-            shift({ padding: 5 }), 
-            arrow({ 
-                element: arrowRef 
-            })
-        ] 
-    })
+        strategy,
+        update,
+        staticSide,
+        tooltipSize
+    } = useTooltip({ placement: tooltipPlacement, isDisabled })
 
-    useEffect(() => {
-        if (!refs.reference.current || !refs.floating.current) {
-          return
-        }
-     
-        const parents = [
-          ...getScrollParents(refs.reference.current),
-          ...getScrollParents(refs.floating.current),
-        ]
-     
-        parents.forEach((parent) => {
-          parent.addEventListener('scroll', update)
-          parent.addEventListener('resize', update)
-        })
-     
-        return () => {
-          parents.forEach((parent) => {
-            parent.removeEventListener('scroll', update)
-            parent.removeEventListener('resize', update)
-          })
-        }
-    }, [refs.reference, refs.floating, update])
-
-    const staticSide = {
-        top: 'bottom',
-        right: 'left',
-        bottom: 'top',
-        left: 'right',
-    }[placement.split('-')[0]]
-
-    const tooltipSize = {
-        height: '50px', 
-        width: '200px'
-    }
+    const mergedProps = {...mergeProps(hoverProps, focusProps)}
 
     return (
         <>
-            <StyledTooltipTrigger 
-                {...interactionProps} 
-                {...interactionStates}
-                ref={reference}
-            > 
+            <StyledTooltipTrigger {...mergedProps} ref={triggerRef}> 
                 {TRIGGER_CONTENT} 
             </StyledTooltipTrigger>
 
-            <StyledTooltipContainer
-                isVisible={isHovered || isPressed || isFocused || isOpen}
-                ref={floating}
+            <StyledContainer
+                isVisible={isHovered || isFocused || isOpen}
+                ref={floatingRef}
                 css={{
                     position: 'absolute',
-                    top: y ?? '',
-                    left: x ?? '',
+                    top: tooltipTop,
+                    left: tooltipLeft,
                     ...tooltipSize          
                 }}
             >
-                <StyledTooltipContent 
-                    css={{  
-                        height: `calc(${tooltipSize.height} - $2)`,
-                        width: `calc(${tooltipSize.width} - $4)`
-                    }}
-                >
+                <StyledTooltipContent css={{ height: tooltipHeight, width: tooltipWidth }}>
                     {TOOLTIP_CONTENT}
                 </StyledTooltipContent>
 
                 <StyledTooltipArrow 
                     ref={arrowRef} 
-                    placement={tooltipPlacement}
+                    placement={placement}
                     css={{ 
                         position: 'absolute',
-                        left: arrowX != null ? `${arrowX}px` : '',
-                        top: arrowY != null ? `${arrowY}px` : '',
+                        top: arrowTop,
+                        left: arrowLeft,
                         right: '',
                         bottom: '',
                         [staticSide]: '-4px',
                     }} 
                 />
-            </StyledTooltipContainer>  
+            </StyledContainer>  
         </>
     )
 }

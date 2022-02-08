@@ -57,6 +57,8 @@ const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>,
     const { isFocused, isFocusVisible, focusProps } = useFocusRing({ within: true, isTextInput, autoFocus })
 
     const codifiedVariant = `${shapeMap[shape]}${sizeMap[size]}` as unknown as VariantProps<typeof StyledButton>['code']
+    
+    const showOnlySpinner = isLoading && shape === 'circular' 
 
     return (
         <span {...focusProps}>
@@ -72,10 +74,14 @@ const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>,
                 isFocusVisible={isFocused || isFocusVisible}
                 ref={buttonRef}
             >
-                <InlineFlex size={size} isLoading={isLoading}> 
-                    {isTextInput ? <Text> {children} </Text> : children} 
-                    {isLoading && <Spinner size={spinnerSizeMap[size]} />} 
-                </InlineFlex>
+                {showOnlySpinner ? (
+                    <Spinner size={spinnerSizeMap[size]} />
+                ) : (
+                    <InlineFlex size={size} isLoading={isLoading}> 
+                        {isTextInput ? <Text> {children} </Text> : children} 
+                        {isLoading && <Spinner size={spinnerSizeMap[size]} />} 
+                    </InlineFlex>
+                )}
             </StyledButton>
         </span>
     )
