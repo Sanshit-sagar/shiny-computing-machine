@@ -3,7 +3,7 @@ import StateFactory from '@/utils/StateFactory'
 import { ExampleBase } from '@/components/ExampleBase'
 
 import { Switch } from './index'
-import { SwitchProps } from './interfaces'
+import { SwitchProps } from './types'
 import { SwitchIcon } from '@radix-ui/react-icons'
 
 const init = (): SwitchProps => {

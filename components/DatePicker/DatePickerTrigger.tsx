@@ -20,9 +20,9 @@ export function DatePickerTrigger({ dir = 'ltr', children, ...props }) {
 
     return (
         <div>
-            <Button {...buttonProps} ref={ref}>
+            <button {...buttonProps} ref={ref}>
                <> {props.label} </> <CalendarIcon /> 
-            </Button>
+            </button>
 
             {state.isOpen && (
                 <Popoup
@@ -45,7 +45,7 @@ const Popoup = ({ children, onClose, shouldCloseOnBlur = true, isDismissable = t
 
     return (
         <FocusScope restoreFocus contain={false}>
-            <div {...overlayProps} ref={overlayRef} style={{ zIndex: 200, display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'stretch', gap: 0 }}>
+            <div {...overlayProps} ref={overlayRef}>
                 <DismissButton onDismiss={props.onClose} />
                     {children}
                 <DismissButton onDismiss={props.onClose} />

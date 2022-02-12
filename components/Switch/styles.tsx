@@ -1,116 +1,389 @@
-import { styled } from '../../stitches.config'
+import { styled, CSS } from 'stitches.config'
 
-export const StyledSwitch = styled('input', {
-    WebkitAppearance: 'none',
-    MozAppearance: 'none',
-    flexShrink: 0,
-    fontFamily: '$hack',
 
-    height: '24px',
-    width: '44px',
-
-    outline: 'none',
-    display: 'inline-block',
-    position: 'relative',
+export const Checker = styled('label', {
+    display: 'block',
+    fontSize: '2em',
+    height: '1em',
+    padding: 0,
     margin: 0,
+    width: '2.5em',
+    boxSizing: 'content-box',
+
+    borderRadius: '20px',
+    transition: 'transform 0.4s ease',
     cursor: 'pointer',
 
-    br: '$1',
-    border: '1px solid $accentBorder',
-    bc: '$panelBase',
-    transition: 'background 0.3s, border-color 0.3s, box-shadow 0.3s',
+    variants: {
+        isHovered: {
+            true: {
 
-    $$shadowPrimary: '$colors$accentBg',
-    $$shadowDisabled: '$colors$disabledBg',
-    
-    '&::after': {
-        content: '',
-        display: 'block',
-        position: 'absolute',
-        left: '2px',
-        top: '2px',
-        br: '50%',
-        width: '18px',
-        height: '18px',
-        bc: 'var(--ab, $accentSolid)',
-        transition: 'transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s), box-shadow 0.3s, background 0.3s',
-        transform: 'translateX(var(--x, 0))',
-    },
-
-    '&:checked': {
-        bc: '$accentSolid', 
-        borderColor: '$successBorder',
-        color: 'red',
-        opacity: 1,
-        '--d-t-e': 'cubic-bezier(0.2, 0.85, 0.32, 1.2)',
-        '--ab': '$accentSolid',
-        '--x': '20px',
-
-        '&::after': {
-            bc: '$accentTextContrast'
-        }
-    },
-
-    '&:disabled': {
-        bc: '$disabledBg',
-        color: '$disabledText',
-        borderColor: '$disabledBorder',
-        cursor: 'not-allowed',
-        opacity: 0.65,
-        
-        '& + label': {
-            cursor: 'not-allowed',
-        },
-        '&:not(:checked)': {
-            '&::after': {
-                bc: '$panelSolid',
-                color: '$panelSolid',
-                borderColor: '$panelSolid',
-                cursor: 'not-allowed'
-            }
-        }
-    },
-
-    '&:hover': {
-        '&:not(:disabled)': {
-            '&:not(:checked)': {
-                borderColor: '$accentBorder'
             },
-            boxShadow: '0 2px 20px 3px $$shadowPrimary'
+            false: null
         },
-        '&:disabled': {
-            boxShadow: '0 2px 20px 3px $$shadowDisabled'
+        isFocused: {
+            true: null,
+            false: null
+        },
+        isPressed: {
+            true: {
+                transform: 'scale(0.925)',
+                transitionDuration: '200ms'
+            },
+            false: null
+        },
+        isDisabled: {
+            true: {
+                cursor: 'not-allowed',
+            },
+            false: null
+        },
+        isLoading: {
+            true: null,
+            false: null
+        },
+        showFocusRing: {
+            true: {
+                outline: '2px solid dodgerblue',
+                outlineOffset: '1px'
+            },
+            false: null
+        },
+        direction: {
+            'ltr': {
+
+            },
+            'rtl': {
+
+            }
+        },
+        isValid: {
+            true: {
+            },
+            false: null
+        },
+        isInvalid: {
+            true: {
+            },
+            false: null
         }
     },
+    defaultVariants: {
+        isHovered: false,
+        isFocused: false,
+        isPressed: false, 
+        isDisabled: false,
+        isLoading: false,
+        showFocusRing: false,
+        direction: 'ltr',
+        isValid: false,
+        isInvalid: false
+    }
+})
 
-    '&:focus-visible': {
-        borderColor: '$accentBorder',
-        boxShadow: '0 2px 20px 3px $$shadowPrimary',
+const sharedBgStyles: CSS = {
+    content: "",
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    borderRadius: 'inherit'
+}
+
+export const CheckBg = styled('div', {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    padding: '0.1em',
+    borderRadius: 'inherit',
+    backgroundColor: '$accentBg',
+    border: '1px solid $accentBorder',
+    zIndex: '$0',
+
+    '&::after': {
+        ...sharedBgStyles
+    },
+    '&::before': {
+        ...sharedBgStyles,
+        transition: 'transform 0.4s ease',
+        transform: 'translateY(30%)',
+        transformOrigin: 'bottom center',
+        background: '$accentLine',
+        filter: 'blur(0.25em)',
+        opacity: 0.2,
+        zIndex: '$min'
     },
 
     variants: {
-        shape: {
-            '0': {
-                borderRadius: 0,
+        isHovered: {
+            true: {
+                backgroundColor: '$accentBgHover'
             },
-            '1': {
-                borderRadius: '$1',
+            false: null
+        },
+        isFocused: {
+            true: {
+                '&::before': {
+                    transform: 'translateY(0) scale(0.9)',
+                    opacity: 0.2
+                }
             },
-            '2': {
-                borderRadius: '$2'
+            false: null
+        },
+        isPressed: {
+            true: null,
+            false: null
+        },
+        isChecked: {
+            true: {
+                '&::after': {
+                    background: 'transparent'
+                }
             },
-            '3': {
-                borderRadius: '$3'
+            false: {
+                '&::after': {
+                    background: 'transparent'
+                }
+            }
+        },
+        isDisabled: {
+            true: {
+
             },
-            '4': {
-                borderRadius: '$4'
+            false: null
+        },
+        isLoading: {
+            true: {
+
             },
-            '5': {
-                borderRadius: '$5'
+            false: null
+        },
+        direction: {
+            'ltr': {
+
+            },
+            'rtl': {
+
+            }
+        },
+        isValid: {
+            true: {
+            },
+            false: null
+        },
+        isInvalid: {
+            true: {
+            },
+            false: null
+        }
+    },
+    defaultVariants: {
+        isHovered: false,
+        isFocused: false,
+        isPressed: false, 
+        isDisabled: false,
+        isLoading: false,
+        direction: 'ltr',
+        isValid: false,
+        isInvalid: false
+    }
+})
+
+export const Checkmark = styled('div', {
+    height: '0.75em',
+    width: '0.75em',
+    margin: 0,
+    padding: 0,
+    borderRadius: 'inherit',
+    aspectRatio: '1/1',
+    transition: 'transform 0.4s ease',
+    transform: 'translateX(-0.4em)',
+    zIndex: '$max',
+
+    '& svg': {
+        display: 'block',
+        background: 'transparent',
+        transform: 'translateX(0.4em)',
+        borderRadius: 'inherit',
+        transition: `
+            background-color 0.4s ease, 
+            transform 0.4s ease
+        `,
+        '& path': {
+            fill: 'none',
+            stroke: '$accentText',
+            strokeWidth: 15,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+            strokeDasharray: '90 90',
+            strokeDashoffset: '90',
+            transition: 'stroke-dashoffset 133ms linear 133ms'
+        }
+    },
+
+    variants: {
+        isChecked: {
+            true: {
+                transform: 'translate(1.9em)',
+                '& svg': {
+                    background: '$accentSolid',
+                    transform: 'translate(-.4em)',
+
+                    '& path': {
+                        strokeDashoffset: 0
+                    }
+                }
+            },
+            false: {
+                '& svg': {
+                    background: '$accentBgSubtle',
+                    border: '1px solid $accentBorder'
+                }
+            }
+        },
+        isHovered: {
+            true: {
+                '& svg': {
+                    border: '1px solid $accentBorderHover',
+                    '& path': {
+                        stroke: '$accentTextContrast'
+                    }
+                }
+            },
+            false: null
+        },
+        isFocused: {
+            true: {
+
+            },
+            false: null
+        },
+        isPressed: {
+            true: null,
+            false: null
+        },
+        isDisabled: {
+            true: {
+
+            },
+            false: null
+        },
+        isLoading: {
+            true: {
+
+            },
+            false: null
+        },
+        direction: {
+            'ltr': {
+
+            },
+            'rtl': {
+
+            }
+        },
+        isValid: {
+            true: {
+
+            },
+            false: null
+        },
+        isInvalid: {
+            true: {
+
+            },
+            false: null
+        },
+        isNotValidated: {
+            true: {
+
             }
         }
     },
     defaultVariants: {
-        shape: '5'
+        isChecked: false,
+        isHovered: false,
+        isFocused: false,
+        isPressed: false,
+        isDisabled: false,
+        isLoading: false,
+        direction: 'ltr',
+        isValid: false,
+        isInvalid: false,
+        isNotValidated: true
     }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

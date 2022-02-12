@@ -1,4 +1,5 @@
-import { globalCss } from '../stitches.config' 
+import { globalCss } from 'stitches.config' 
+import { light, dark, dim } from 'styles/themes'
 
 export const cssReset = globalCss({
     body: {

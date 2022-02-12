@@ -100,9 +100,6 @@ export const StyledTabsPanel = styled('div', {
 export const StyledTab = styled('div', {
     appearance: 'none',
     us: 'none',
-
-  
-  
     width: '100%',
     margin: 'auto',
 
@@ -115,8 +112,8 @@ export const StyledTab = styled('div', {
     jc: 'center',
     ai: 'flex-start',
 
-    bc: '$accentBase',
-    color: '$accentText',
+    backgroundColor: 'var(--surface1-dark)',
+    color: 'var(--text1-dark)',
     
     fontSize: '$2',
     fontFamily: '$jetbrains',

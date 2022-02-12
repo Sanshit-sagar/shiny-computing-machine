@@ -8,7 +8,8 @@ import { CarouselInstance } from '@/components/Carousel/examples'
 // import { ToggleableInstance } from '@/components/Toggleable/examples'
 import { AsyncInstance } from '@/components/Async/examples'
 import { TableViewInstance } from '@/components/Table/examples'
-// import { SelectorInstance } from '@/components/Selector/examples'
+import { SplitButtonInstance } from '@/components/SplitButton/examples'
+import { AccessibleTabsInstance } from '@/components/Tab/examples'
 import { InputInstance } from '@/components/TextField/examples'
 import { DatePickerInstance } from '@/components/DatePicker/examples'
 import { AvatarInstance } from '@/components/Avatar/examples'
@@ -111,7 +112,12 @@ export const showcases: IShowcase[] = [{
         name: 'Buttons',
         description: '',
         icon: <ButtonIcon /> 
-    },{
+    }, {
+        element: <SplitButtonInstance />,
+        name: 'Split Button',
+        description: '',
+        icon: <ButtonIcon /> 
+    }, {
         element: <RangeCalendarInstance />,
         name: 'Calendar',
         description: 'every night is a date with this one',
@@ -259,7 +265,7 @@ export const showcases: IShowcase[] = [{
         description: '',
         icon: <TableIcon />
     }, {
-        element: <TabsInstance />,
+        element: <AccessibleTabsInstance />,
         name: 'Tabs',
         description: '',
         icon: <TabsIcon />

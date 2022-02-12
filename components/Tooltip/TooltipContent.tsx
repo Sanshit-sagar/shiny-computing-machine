@@ -1,30 +1,63 @@
-import React from 'react' 
+import { forwardRef, ElementType, ComponentPropsWithoutRef, ElementRef } from 'react' 
+import { CSS } from 'stitches.config'
+ 
+import { 
+    TooltipSpinner,
+    StyledTooltipArrow,
+    StyledTooltipContent, 
+    StyledTooltipContainer
+} from './styles'
 
-import { mergeProps } from '@react-aria/utils'
-import { useTooltip } from '@react-aria/tooltip'
-
-import { StyledTooltipContainer } from './styles'
-import { TooltipProps } from './interfaces'
+import { ScopedProps } from './types'
+import { useTooltipContext } from './TooltipContext'
+import { DEFAULT_NAME, DEFAULT_CONTENT_TAG } from './constants' 
 
 
-const TooltipContent = React.forwardRef<HTMLSpanElement, TooltipProps>(({ 
+const TOOLTIP_CONTENT_NAME = `${DEFAULT_NAME}Content`
+
+interface TooltipContentElement extends ElementRef<typeof DEFAULT_CONTENT_TAG> {}
+interface TooltipContentProps extends ComponentPropsWithoutRef<typeof DEFAULT_CONTENT_TAG> {
+    element?: ElementType<any>; 
+    css?: CSS;
+}
+
+const TooltipContent = forwardRef<TooltipContentElement, TooltipContentProps>(({ 
+    __scopeTooltip,
+    element: Component = 'span',
     children, 
-    state, 
-    isVisible,
-    floatingStyles,
+    css,
     ...props 
-}, floatingRef) => {
-    
-       
-        const { tooltipProps } = useTooltip(rest, state)
+}: ScopedProps<TooltipContentProps>, forwardedRef) => {
 
-        return (
-            <StyledTooltipContainer isVisible={isVisible} ref={floatingRef} css={floatingStyles}>
+    const { 
+        placement, 
+        isLoading, 
+        isVisible, 
+        floatingRef, 
+        arrowRef, 
+        floatingStyles, 
+        arrowStyles 
+    } = useTooltipContext(TOOLTIP_CONTENT_NAME, __scopeTooltip)
+
+    return (
+        <StyledTooltipContainer 
+            isVisible={isVisible} 
+            placement={placement} 
+            ref={floatingRef} 
+            css={floatingStyles}
+        >
+            <StyledTooltipContent>
                 {children}
-            </StyledTooltipContainer>
-        )
-    }
-)
 
-TooltipContent.displayName = 'TooltipContent'
+                {isLoading && (
+                    <TooltipSpinner /> 
+                )}
+            </StyledTooltipContent>
+
+            <StyledTooltipArrow placement={placement} ref={arrowRef} css={arrowStyles} />
+        </StyledTooltipContainer>
+    )
+})
+
+TooltipContent.displayName = TOOLTIP_CONTENT_NAME
 export default TooltipContent

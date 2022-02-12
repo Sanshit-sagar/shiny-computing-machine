@@ -1,12 +1,6 @@
 import { CSS } from 'stitches.config' 
 import { useInteractions } from '@/hooks/useInteractions'
-
-type TooltipStylesCollection = {
-    triggerStyles: CSS;
-    floatingStyles: CSS;
-    contentStyles: CSS;
-    arrowStyles: CSS;
-}
+import { TooltipStyles, TooltipInteractions } from './types'
 
 type InteractionStatesGetterProps = {
     isOpen: boolean;
@@ -15,8 +9,10 @@ type InteractionStatesGetterProps = {
 }
 
 const tooltipSize = {
-    height: '50px', 
-    width: '200px'
+    height: 'fit-content', 
+    width: 'fit-content', 
+    maxHeight: '50px',
+    maxWidth: '250px'
 }
 
 const DEFAULT_PLACEMENT = 'top'
@@ -35,21 +31,11 @@ export const getStaticSide = (placement) => {
     }
 }
 
-export const getTooltipStyles = ({
-    placement,
-    strategy, 
-    arrowX,
-    arrowY,
-    x,
-    y
-}): TooltipStylesCollection => {
+export const getTooltipStyles = ({ placement, strategy, arrowX, arrowY, x, y }): TooltipStyles => {
     
     const staticSide = getStaticSide(placement)
 
-
-    const triggerStyles: CSS = {
-
-    }
+    const triggerStyles: CSS = { }
 
     const floatingStyles: CSS = {
         position: strategy,

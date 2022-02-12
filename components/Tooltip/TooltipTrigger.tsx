@@ -1,69 +1,37 @@
-import React, { ReactElement, forwardRef, Ref, ElementType } from 'react' 
+import { forwardRef, ElementType, ElementRef, ComponentPropsWithoutRef } from 'react'
+import { CSS } from 'stitches.config'
 
-import { mergeProps } from '@react-aria/utils'
-import { useTooltipTrigger } from '@react-aria/tooltip'
-import { useTooltipTriggerState } from '@react-stately/tooltip'
+import { ScopedProps } from './types'
+import { useTooltipContext } from './TooltipContext'
+import { DEFAULT_NAME, DEFAULT_TRIGGER_TAG } from './constants' 
 
-import TooltipContent from './TooltipContent'
-import { useInteractions } from '@/hooks/useInteractions'
-import { FocusableRef, useFocusableRef } from '@/utils/useRefs'
-import { TooltipTriggerProps, TooltipTriggerState } from './interfaces'
+const TOOLTIP_TRIGGER_NAME = `${DEFAULT_NAME}Trigger`
 
-import {
-    StyledTooltipContainer,
-    StyledTooltipArrow
-} from './styles'
-
-export const ExtTooltipTrigger = ({ 
-    elementType: ElementType = 'button', 
-    placement = 'left',
-    isDisabled = false,
-    isLoading = false,
-    isOpen,
-    content, 
-    children, 
-    ...props  
-}: TooltipTriggerProps, ref: Ref<HTMLElement>) => {
-
-    // const state: TooltipTriggerState = useTooltipTriggerState(props)
-    
-    // const { tooltipProps, triggerProps } = useTooltipTrigger(props, state, buttonRef)
-    const {
-        triggerRef,
-        floatingRef,
-        arrowRef,
-        triggerStyles,
-        floatingStyles,
-        contentStyles,
-        arrowStyles,
-        isVisible,
-        interactionProps,  
-        ...rest
-    } = useTooltip({ placement, isDisabled, isLoading, isOpen })
-
-    // const buttonRef = useFocusableRef<HTMLElement>(ref) 
-
-    return (
-        <span style={{ position: 'relative' }}>
-
-            <ElementType {...interactionProps} {...rest} ref={triggerRef} css={triggerStyles}>
-                {children}
-            </ElementType>
-
-          
-            <StyledTooltipContainer isVisible={isVisible} ref={floatingRef} css={floatingStyles}>
-                <TooltipContent css={contentStyles}> {content} </TooltipContent>
-                <StyledTooltipArrow placement={placement} ref={arrowRef} css={arrowStyles} />
-            </StyledTooltipContainer>
-        
-        </span>
-    )
+interface TooltipTriggerElement extends ElementRef<typeof DEFAULT_TRIGGER_TAG> {}
+interface TooltipTriggerProps extends ComponentPropsWithoutRef<typeof DEFAULT_TRIGGER_TAG> {
+    element?: ElementType<any>; 
+    css?: CSS;
 }
 
-ExtTooltipTrigger.displayName = 'TooltipTrigger'
+export const TooltipTrigger = forwardRef<TooltipTriggerElement, TooltipTriggerProps>(({ 
+    __scopeTooltip,
+    element: Component = 'button', 
+    children, 
+    ...rest  
+}: ScopedProps<TooltipTriggerProps>, forwardedRef) => {
 
-const TooltipTrigger = forwardRef(ExtTooltipTrigger) as <T extends ElementType = 'button'>(
-    props: TooltipTriggerProps & { ref?: Ref<HTMLElement> }
-) => ReactElement
+    const { 
+        interactionProps, 
+        triggerRef, 
+        triggerStyles 
+    } = useTooltipContext(TOOLTIP_TRIGGER_NAME, __scopeTooltip)
 
+    return (
+        <Component {...interactionProps} {...rest} ref={triggerRef} css={triggerStyles}>
+            {children}
+        </Component>
+    )
+})
+
+TooltipTrigger.displayName = 'TooltipTrigger'
 export default TooltipTrigger

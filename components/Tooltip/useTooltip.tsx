@@ -1,31 +1,11 @@
 import { useEffect, useRef } from 'react' 
-import {
-    useFloating,
-    shift,
-    flip,
-    arrow,
-    getScrollParents,
-  } from '@floating-ui/react-dom';
+import { useFloating, shift, flip, offset, arrow, getScrollParents } from '@floating-ui/react-dom'
 import { getTooltipStyles, getInteractionStates } from './utils'
+import { UseTooltipProps, UseTooltipReturnValue } from './types'
 
+export const useTooltip = (props: UseTooltipProps): UseTooltipReturnValue => {
+    const { placement = 'right', isDisabled = false, isLoading = false, isOpen } = props 
 
-interface UseTooltipProps {
-    placement: 'left' | 'top' | 'bottom' | 'right';
-    isDisabled: boolean;
-    isLoading: boolean;
-    isOpen: boolean; 
-    offset?: number; 
-    shift?: number; 
-}
-
-export const useTooltip = ({ 
-    placement: tooltipPlacement,
-    isDisabled,
-    isLoading,
-    isOpen, 
-    offset = 10,
-    shift = 5
-}: UseTooltipProps) => {
     const arrowRef = useRef<HTMLDivElement>()
 
     const {
@@ -36,14 +16,9 @@ export const useTooltip = ({
         strategy, 
         update, 
         refs,
-        middlewareData: { 
-            arrow: { 
-                x: arrowX, 
-                y: arrowY
-            } = {} 
-        }
+        middlewareData: { arrow: { x: arrowX, y: arrowY } = {} }  
     }= useFloating({
-        placement: 'right',
+        placement,
         middleware: [
             offset(6), 
             flip(), 
