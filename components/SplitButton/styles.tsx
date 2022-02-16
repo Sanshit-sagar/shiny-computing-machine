@@ -13,10 +13,14 @@ const cssVariables: CSS = {
     '--border': '1px solid var(--theme-border)',
     '--radius': '6px',
     '--in-speed': '500ms',
-    '--out-speed': '100ms'
+    '--out-speed': '100ms',
+
+    touchAction: 'manipulation',
+    userSelect: 'none',
+    WebkitTapHighlightColor: 'transparent'
 }
 
-export const StyledSplitButton = styled('button', {
+export const GuiMainButton = styled('button', {
     ...cssVariables, 
 
     cursor: 'pointer',
@@ -24,23 +28,26 @@ export const StyledSplitButton = styled('button', {
     background: 'none',
     overflow: 'hidden',
     border: 'none',
+    borderRadius: '6px 0px 0px 6px',
 
     display: 'inline-flex',
     alignItems: 'center',
-    flexWrap: 'nowrap',
     gap: '1ch',
+    flexWrap: 'nowrap',
     whiteSpace: 'nowrap',
 
-    fontFamily: 'inherit',
-    fontStyle: 'inherit',
-    fontWeight: 500,
+    fontSize: '13px',
+    fontFamily: '$jetbrains',
+    fontStyle: 'normal',
+    fontWeight: 300,
 
-    paddingBlock: '1ch',
-    paddingInline: '1.75ch',
+    textAlign: 'center',
+    textShadow: 'hsl(220 75% 40%)',
+    padding: '6px 12px',
 
     color: 'var(--ontheme)',
     outlineColor: 'var(--theme)',
-    outlineOffset: '-2px',
+    outlineOffset: '-5px',
 
     '&:hover': {
         background: 'var(--theme-hover)',
@@ -62,66 +69,60 @@ export const StyledSplitButton = styled('button', {
     },
     '&:active': {
         background: 'var(--theme-active)'
-    },
-
-    '& svg': {
-        inlineSize: '2ch',
-        boxSizing: 'content-box',
-        strokeLinecap: 'round',
-        strokeLinejoin: 'round',
-        strokeWidth: '2px'
     }
 })
 
 
-export const StyledSplitButtonContainer = styled('div', {
+export const GuiPopupButton = styled('span', {
     ...cssVariables,
 
+    inlineSize: '4ch',
+    cursor: 'pointer',
+    position: 'relative',
     display: 'inline-flex',
-    borderRadius: 'var(--radius)',
-    background: 'var(--theme)',
-    color: 'var(--ontheme)',
-    fill: 'var(--ontheme)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderInlineStart: 'var(--border)',
+    borderRadius: '0 var(--radius) var(--radius) 0',
 
-    touchAction: 'manipulation',
-    userSelect: 'none',
-    WebkitTapHighlightColor: 'transparent',
-
-    '& > button': {
-        borderEndStartRadius: 'var(--radius)',
-        borderStartStartRadius: 'var(--radius)',
-
-        '& svg': {
-            fill: 'none',
-            stroke: 'var(--ontheme)'
+    '@supports (border-start-start-radius: 1px)': {
+        borderInlineStart : 'var(--border)',
+        borderStartEndRadius: 'var(--radius)',
+        borderEndEndRadius: 'var(--radius)'
+    },
+    '&:is(:hover,:focus-visible)': {
+        background: 'var(--theme-hover)'
+    },
+    '&:focus': {
+        outline: 'none'
+    },
+    '&:active': {
+        background: 'var(--theme-active)'
+    },
+    '&:focus-within': {
+        '& > svg': {
+            transitionDuration: 'var(--in-speed)',
+            transform: 'rotateZ(.5turn)'
+        },
+        '& > .gui-popup': {
+            transitionDuration: 'var(--in-speed)',
+            opacity: 1,
+            transform: 'translateY(0)',
+            pointerEvents: 'auto'
         }
     },
-
-    '@media (prefers-color-scheme: light)': {
-        '& > button': {
-            textShadow: '0 1px 0 var(--theme-active)' 
-        }, 
-        '& button:is(:focus-visible)': {
-            textShadow: '0 1px 0 var(--theme-active)'
-        }, 
-        '& button:is(:hover)': {
-            textShadow: '0 1px 0 var(--theme-active)'
+    '@media(prefers-reduced-motion: no-preference)': {
+        '& > svg': {
+            transition: 'transform var(--out-speed) ease'
         },
-        '& button:is(:focus-visible) > svg': {
-            filter: 'dropShadow(0 1px 0 var(--theme-active))'
-        },
-        '& button:is(:hover) > svg': {
-            filter: 'dropShadow(0 1px 0 var(--theme-active))'
-        },
-        [`& > ${StyledSplitButton}`]: {
-            '& > svg': {
-                filter: 'dropShadow(0 1px 0 var(--theme-active))'
-            }
+        '& > .gui-popup': {
+            transform: 'translateY(5px)',
+            transition: 'all var(--out-speed) ease'
         }
     }
 })
 
-export const StyledPopupList = styled('ul', {
+export const GuiPopup = styled('ul', {
     ...cssVariables,
 
     '--shadow': '220 70% 15%',
@@ -130,31 +131,50 @@ export const StyledPopupList = styled('ul', {
     pointerEvents: 'none',
 
     position: 'absolute',
-    bottom: '80%',
-    left: '-1.5ch',
-    width: 'fit-content',
+    insetBlockEnd: '80%',
+    insetInlineStart: '-1.5ch',
 
     listStyleType: 'none',
     background: 'var(--popupbg)',
     color: 'var(--theme-text)',
-    paddingInline: 0,
-    paddingBlock: '.5ch',
+
+    padding: '4.53516px 0px',
 
     borderRadius: 'var(--radius)',
     overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
-    fontSize: '.9em',
+
     transition: 'opacity var(--out-speed) ease',
 
     boxShadow: `
-        0 -2px 5px 0 hsl(220 70% 15% / calc(6%)),
-        0 1px 1px -2px hsl(220 70% 15% / calc(11%)),
-        0 2px 2px -2px hsl(220 70% 15% / calc(13%)),
-        0 5px 5px -2px hsl(220 70% 15% / calc(14%)),
+        0 -2px 5px 0 hsl(220 70% 15% / 6%),
+        0 1px 1px -2px hsl(220 70% 15% / 11%),
+        0 2px 2px -2px hsl(220 70% 15% / 13%),
+        0 5px 5px -2px hsl(220 70% 15% / 14%),
         0 9px 9px -2px hsl(220 70% 15% / calc(var(--shadow-strength) + 14%)),
         0 16px 16px -2px hsl(220 70% 15% / calc(var(--shadow-strength) + 20%))
     `,
+
+    '&:focus': {
+        outline: 'none'
+    },
+
+    '@media (prefers-color-scheme: dark)': {
+        '--shadowStrength': '5%',
+        '--shadow': '220 3% 2%',
+
+        '& button:not(:focus-visible, :hover)': {
+            textShadow: '0 1px 0 var(--ontheme)'
+        },
+        '& button:not(:focus-visible, :hover) > svg': {
+            filter: 'drop-shadow(0 1px 0 var(--ontheme))'
+        }
+    },
+
+    '@media (width <= 400px)': {
+        insetInlineStart: '-200%'
+    },
 
     '& svg': {
         fill: 'var(--popupbg)',
@@ -168,18 +188,6 @@ export const StyledPopupList = styled('ul', {
     '& button': {
         color: 'var(--theme-text)',
         width: '100%',
-    },
-
-    '@media (prefers-color-scheme: dark)': {
-        '--shadowStrength': '5%',
-        '--shadow': '220 3% 2%',
-
-        '&:not(:focus-visible, :hover)': {
-            textShadow: '0 1px 0 var(--ontheme)'
-        },
-        '&:not(:focus-visible, :hover) > svg': {
-            filter: 'drop-shadow(0 1px 0 var(--ontheme))'
-        }
     },
 
     variants: {
@@ -201,99 +209,44 @@ export const StyledPopupList = styled('ul', {
     }
 })
 
-type PopupElement = ElementRef<HTMLUListElement>
-type PopupProps = ComponentPropsWithoutRef<typeof StyledPopupList> & VariantProps<typeof StyledPopupList> & {
+type PopupElement = ElementRef<typeof HTMLUListElement>
+type PopupProps = ComponentPropsWithoutRef<typeof GuiPopup> & VariantProps<typeof GuiPopup> & {
     css?: CSS; 
 }
 
-const ForwardedPopupList = forwardRef<PopupElement, PopupProps>(({
+const ForwardedGuiPopup = forwardRef<PopupElement, PopupProps>(({
     isVisible,
     ...props
 }, forwardedRef) => (
-    <StyledPopupList 
+    <GuiPopup 
         aria-hidden={isVisible.toString()} 
         isVisible={isVisible}
         {...props}
         ref={forwardedRef} 
     />  
 ))
-export const PopupList = ForwardedPopupList
-
-export const StyledPopupButton = styled('span', {
-    ...cssVariables,
-
-    inlineSize: '4ch',
-    cursor: 'pointer',
-    position: 'relative',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderInlineStart: 'var(--border)',
-
-    borderStartEndRadius: 'var(--radius)',
-    borderEndEndRadius: 'var(--radius)',
-    borderRadius: '0 var(--radius) var(--radius) 0',
-
-    '@supports (border-start-start-radius: 1px)': {
-        borderInlineStart : 'var(--border)',
-        borderStartEndRadius: 'var(--radius)',
-        borderEndEndRadius: 'var(--radius)'
-    },
-
-    '&:hover': {
-        background: 'var(--theme-hover)'
-    },
-    '&:focus-within': {
-        background: 'var(--theme-hover)',
-        '& > svg': {
-            transitionDuration: 'var(--in-speed)',
-            transform: 'rotateZ(.5turn)'
-        },
-        [`& > ${StyledPopupList}`]: {
-            transitionDuration: 'var(--in-speed)',
-            opacity: 1,
-            transform: 'translateY(0)',
-            pointerEvents: 'auto'
-        }
-    },
-    '&:focus': {
-        outline: 'none'
-    },
-    '&:active': {
-        background: 'var(--theme-active)'
-    },
-    '@media(prefers-reduced-motion: no-preference)': {
-        '& > svg': {
-            transition: 'transform var(--out-speed) ease'
-        },
-        '& > ul': {
-            transform: 'translateY(5px)',
-            transition: 'all var(--out-speed) ease'
-        }
-    }
-})
+export const GuiPopupList = ForwardedGuiPopup
 
 const StyledListItemButton = styled('button', {
     ...cssVariables,
 
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '9.35px',
 
     color: 'var(--theme-text)',
     background: 'var(--ontheme)',
-
-    fontFamily: 'inherit',
-    fontSize: '$1',
+    
+    fontSize: '14.4px',
     fontWeight: 500,
-   
-    padding: '$3 $6',
+    fontFamily: '$plexsans',
+
+    gap: '9.35px',
+    padding: '11.69px 23.39px',
     textAlign: 'center',
 
     '&:hover': {
         background: 'var(--theme-hover)'
     },
-
     variants: {
         isSelected: {
             true: {
@@ -302,7 +255,7 @@ const StyledListItemButton = styled('button', {
         }
     },
     defaultVariants: {
-        isSelected: false
+        isSelected: false   
     }
 })
 
@@ -313,7 +266,7 @@ type PopupListItemProps = {
     isSelected: boolean; 
 }
 
-export const StyledPopupListItem = ({ children, id, handleClick, isSelected }: PopupListItemProps) => (
+export const GuiPopupItem = ({ children, id, handleClick, isSelected }: PopupListItemProps) => (
     <li> 
         <StyledListItemButton 
             tabIndex={0} 
@@ -324,3 +277,62 @@ export const StyledPopupListItem = ({ children, id, handleClick, isSelected }: P
         </StyledListItemButton> 
     </li>
 )
+
+
+
+export const GuiSplitButton = styled('div', {
+    ...cssVariables,
+
+    display: 'inline-flex',
+    borderRadius: 'var(--radius)',
+    background: 'var(--theme)',
+    color: 'var(--ontheme)',
+    fill: 'var(--ontheme)',
+
+    userSelect: 'none',
+    touchAction: 'manipulation',
+    WebkitTapHighlightColor: 'transparent',
+
+    '&:focus': {
+        outline: '2px solid dodgerblue',
+        outlineOffset: '2px',
+    },
+
+    '& > button': {
+        borderEndStartRadius: 'var(--radius)',
+        borderStartStartRadius: 'var(--radius)',
+        '& svg': {
+            fill: 'none',
+            stroke: 'var(--ontheme)'
+        },
+        '@supports (border-start-start-radius: 1px)': {
+            borderEndStartRadius: 'var(--radius)',
+            borderStartStartRadius: 'var(--radius)'
+        }
+    },
+
+    '@media (prefers-color-scheme: light)': {
+        '& > button': {
+            textShadow: '0 1px 0 var(--theme-active)' 
+        }, 
+        '& button:is(:focus-visible, :hover)': {
+            textShadow: '0 1px 0 var(--theme-active)',
+            '& svg': {
+                filter: 'dropShadow(0 1px 0 var(--theme-active))'
+            }
+        }, 
+        [`& > ${GuiPopupButton}`]: {
+            '& > svg': {
+                filter: 'dropShadow(0 1px 0 var(--theme-active))'
+            }
+        }
+    },
+
+    '& svg': {
+        inlineSize: '2ch',
+        boxSizing: 'content-box',
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round',
+        strokeWidth: '2px'
+    }
+})

@@ -10,8 +10,8 @@ import ListBoxSection from './Section'
 
 const ListBox = (props: ListBoxProps) => {
     const ref = useRef<HTMLUListElement>(null)
+    
     const { listBoxRef = ref, state } = props
-
     const { listBoxProps } = useListBox(props, state, listBoxRef)
 
     return (

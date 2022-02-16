@@ -9,6 +9,7 @@ import {
 import Option from './Option'
 import { SectionProps } from './interfaces'
 
+
 const ListBoxSection = ({ section, state }: SectionProps) => {
 
     const { itemProps, headingProps, groupProps } = useListBoxSection({ 
@@ -17,21 +18,19 @@ const ListBoxSection = ({ section, state }: SectionProps) => {
     })
 
     return (
-        <>
-            <StyledSection {...itemProps}>
-                {section.rendered && (
-                    <StyledSectionHeading {...headingProps}>
-                        {section.rendered}
-                    </StyledSectionHeading>
-                )}
-                <StyledSectionList {...groupProps}>
-                    {[...section.childNodes].map((node) => (
-                        <Option key={node.key} item={node} state={state} />
-                    ))}
-                </StyledSectionList>
-            </StyledSection>
+        <StyledSection {...itemProps}>
+            {section.rendered && (
+                <StyledSectionHeading {...headingProps}>
+                    {section.rendered}
+                </StyledSectionHeading>
+            )}
 
-        </>
+            <StyledSectionList {...groupProps}>
+                {[...section.childNodes].map((node) => (
+                    <Option key={node.key} item={node} state={state} />
+                ))}
+            </StyledSectionList>
+        </StyledSection>
     )
 }
 

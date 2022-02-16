@@ -1,10 +1,10 @@
 import { ReactNode, useState } from 'react' 
 import {
-    PopupList,
-    StyledSplitButton,
-    StyledPopupButton,
-    StyledPopupListItem,
-    StyledSplitButtonContainer
+    GuiSplitButton,
+    GuiMainButton,
+    GuiPopupButton, 
+    GuiPopupList,
+    GuiPopupItem,
 } from './styles'
 
 import { 
@@ -13,6 +13,8 @@ import {
     ScheduleIcon, 
     CaretDownIcon 
 } from '@/components/Icons'
+
+import { useHover } from '@react-aria/interactions'
 
 type PopupItem = { text: string; icon: ReactNode; }
 
@@ -25,19 +27,19 @@ const items: PopupItem[] = [
 export const SplitButton = () => {
     const [selected, setSelected] = useState<number | undefined>(undefined)
     const [isVisible, setVisible] = useState<boolean>(false)
+    const { hoverProps, isHovered } = useHover({ isDisabled: false })
     
     const select = (index: number) => {
-        alert('hihi')
         setSelected((prev) => (prev === undefined || prev !== index) ? index : undefined)
     }
     
     const toggle = () => setVisible((prev) => !prev) 
 
     return (
-        <StyledSplitButtonContainer>
-            <StyledSplitButton> Send {selected || '~'} </StyledSplitButton>
+        <GuiSplitButton {...hoverProps}>
+            <GuiMainButton> Send </GuiMainButton>
 
-            <StyledPopupButton 
+            <GuiPopupButton 
                 aria-haspopup="true" 
                 aria-expanded="false" 
                 title="Open for more actions"
@@ -45,9 +47,9 @@ export const SplitButton = () => {
             > 
                 <CaretDownIcon />
 
-                <PopupList isVisible={isVisible}>
+                <GuiPopupList isVisible={isHovered}>
                     {items.map((item: PopupItem, index: number) => (
-                        <StyledPopupListItem 
+                        <GuiPopupItem 
                             key={`popup-list-item-${index}`} 
                             id={index}
                             handleClick={select}
@@ -55,11 +57,11 @@ export const SplitButton = () => {
                         > 
                             {item.icon} 
                             {item.text} 
-                        </StyledPopupListItem>
+                        </GuiPopupItem>
                     ))}
-                </PopupList>
+                </GuiPopupList>
 
-            </StyledPopupButton>
-        </StyledSplitButtonContainer>
+            </GuiPopupButton>
+        </GuiSplitButton>
     )
 }

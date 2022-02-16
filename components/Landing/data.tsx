@@ -33,6 +33,8 @@ import { ProgressBarInstance } from '@/components/ProgressBar/examples'
 import { PopoverInstance } from '@/components/Popover/examples'
 import { RadioButtonInstance } from '@/components/RadioGroup/examples'
 import { SearchInstance } from '@/components/Search/examples'
+import { SearchBarInstance } from '@/components/Searchbar/examples'
+
 import { SelectInstance } from '@/components/Select/examples'
 import { SliderInstance } from '@/components/Slider/examples' 
 import { SpinnerInstance } from '@/components/Spinner/examples'
@@ -230,7 +232,7 @@ export const showcases: IShowcase[] = [{
         description: 'WANTED for killing the video star',
         icon: <RadioListIcon /> 
     }, {
-        element: <SearchInstance />,
+        element: <SearchBarInstance />,
         name: 'Search',
         description: '',
         icon: <MagnifyingGlassIcon />

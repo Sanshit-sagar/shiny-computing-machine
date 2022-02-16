@@ -7,7 +7,11 @@ import { IOptionContext, DescriptionProps } from './interfaces'
 const Description = ({ children }: DescriptionProps) => {
     const { descriptionProps } = useContext<IOptionContext>(OptionContext)
 
-    return <StyledDescription {...descriptionProps}> {children} </StyledDescription> 
+    return (
+        <StyledDescription {...descriptionProps}> 
+            {children} 
+        </StyledDescription> 
+    )
 } 
 
 Description.displayName = 'Description'

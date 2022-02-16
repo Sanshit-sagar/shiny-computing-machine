@@ -56,11 +56,13 @@ export function SearchAutocomplete<T extends object>(props: ComboBoxProps<T>) {
                     <MagnifyingGlassIcon aria-hidden="true" />
                 </StyledPrefix>
 
-                <StyledInput {...inputProps} ref={inputRef} />
+                <StyledInput {...searchInputProps} ref={inputRef} />
                
-               
-                <StyledSuffix {...buttonProps} ref={clearButtonRef} isVisible={state.inputValue !== ''}>
-                   
+                <StyledSuffix 
+                    {...buttonProps} 
+                    isVisible={state.inputValue !== ''}
+                    ref={clearButtonRef} 
+                >
                     <Cross2Icon />
                 </StyledSuffix> 
 
