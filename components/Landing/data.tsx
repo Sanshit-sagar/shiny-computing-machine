@@ -5,7 +5,8 @@ import { BreadcrumbsInstance } from '@/components/Breadcrumbs/examples'
 import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 
-// import { ToggleableInstance } from '@/components/Toggleable/examples'
+import { ToggleableInstance } from '@/components/Toggleable/examples'
+import { AriaAccordionInstance } from '@/components/AriaAccordion/examples'
 import { AsyncInstance } from '@/components/Async/examples'
 import { TableViewInstance } from '@/components/Table/examples'
 import { SplitButtonInstance } from '@/components/SplitButton/examples'
@@ -85,7 +86,7 @@ import {
 } from '@/components/Icons'
 
 export const showcases: IShowcase[] = [{
-        element: <AccordionInstance />,
+        element: <AriaAccordionInstance />,
         name: 'Accordion',
         description: 'did it strike a-cord-in your heart?',
         icon: <CollapseIcon />

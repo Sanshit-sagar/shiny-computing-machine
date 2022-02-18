@@ -4,9 +4,6 @@ import { AccordionToggleProps } from './interfaces'
 import { AccordionTitle, AccordionButton } from './styles'
 import { useAccordionContext, useAccordionClick } from './utils'
 
-import useAccordion from '@/hooks/collections/Collapsible/useCollapsible'
-import useAccordionItem from '@/hooks/collections/Collapsible/useCollapsibleItem'
-
 
 const AccordionToggle = ({ 
     element: Component = 'div', 
@@ -15,7 +12,6 @@ const AccordionToggle = ({
     children, 
     ...props 
 }: AccordionToggleProps) => {      
-   
 
     const { activeEventKey } = useAccordionContext()
     const accordionClick = useAccordionClick(eventKey, onClick)

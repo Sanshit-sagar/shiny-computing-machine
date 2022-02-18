@@ -1,19 +1,20 @@
-import { HTMLAttributes } from 'react' 
+import { HTMLAttributes, Key } from 'react' 
 import { Node } from '@react-types/shared'
+import { CollectionBase, Expandable } from '@react-types/shared'
 
-export type CollapsibleProps<T> = {
-    item: Node<T>
+export interface AccordionProps<T> extends CollectionBase<T>, Expandable {
+    
 }
 
-export type CollapsibleAria = {
-    collapsibleProps: HTMLAttributes<HTMLElement>;
+export type AccordionItemProps<T> = {
+    item: Node<T>;
 }
 
-export type CollapsibleItemAria = {
+export type AccordionAria = {
+    accordionProps: HTMLAttributes<HTMLElement>;
+}
+
+export type AccordionItemAria = {
     buttonProps: HTMLAttributes<HTMLButtonElement>;
     regionProps: HTMLAttributes<HTMLElement>;
-}
-
-export type CollapsibleItemProps<T> = {
-    item: Node<T>;
 }

@@ -12,6 +12,8 @@ export interface ValueBase<T, C = T> {
 }
 
 export interface InputBase {
+    value?: string;
+    name?: string; 
     isDisabled?: boolean;
     isReadOnly?: boolean;
 }
@@ -22,17 +24,18 @@ export interface SelectionBase<T, C = T> {
     onChange?: (value: C) => void
 }
 
-export interface Validation {
+export interface ValidationBase {
     validationState?: ValidationState;
     isRequired?: boolean;
 }
+export interface Validation extends ValidationBase {}
 
 export interface HelperTextProps {
     errorMessage?: string;
     description?: string;
 }
 
-export interface FieldsetProps extends Validation, HelperTextProps {
+export interface FieldsetProps extends ValidationBase, HelperTextProps {
     isDisabled?: boolean;
     showErrorIcon?: boolean;  
 }

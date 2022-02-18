@@ -2,11 +2,13 @@ import { RefObject } from 'react'
 
 import { TreeState } from '@react-stately/tree'
 import { useSelectableList } from '@react-aria/selection'
-import { CollapsibleProps, CollapsibleAria } from './types'
+import { AccordionProps, AccordionAria } from './types'
 
-const useCollapsible = <
-    T extends object
->(props: CollapsibleProps<T>, state: TreeState<T>, ref: RefObject<HTMLButtonElement>): CollapsibleAria => {
+const useAccordion = <T extends object>(
+    props: AccordionProps<T>, 
+    state: TreeState<T>, 
+    ref: RefObject<HTMLDivElement>
+): AccordionAria => {
 
     const { listProps } = useSelectableList({ 
         ...props, 
@@ -16,7 +18,7 @@ const useCollapsible = <
     })
 
     return {
-        collapsibleProps: {
+        accordionProps: {
             ...listProps,
             tabIndex: undefined
         }
@@ -24,7 +26,7 @@ const useCollapsible = <
 }
 
 
-export default useCollapsible
+export default useAccordion
 
 
 

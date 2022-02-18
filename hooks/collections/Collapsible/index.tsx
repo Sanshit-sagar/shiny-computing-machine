@@ -1,2 +1,2 @@
-export * from './useCollapsible'
-export * from './useCollapsibleItem'
+export * from './useAccordion'
+export * from './useAccordionItem'

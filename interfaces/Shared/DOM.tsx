@@ -3,6 +3,7 @@ export interface DOMProps {
 }
 
 export interface FocusableDOMProps {
+    autoFocus?: boolean;
     excludeFromTabOrder?: boolean; 
 }
 
