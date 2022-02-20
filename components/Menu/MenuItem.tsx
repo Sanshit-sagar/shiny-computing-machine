@@ -5,30 +5,45 @@ import { useMenuItem } from '@react-aria/menu'
 import { useFocusRing } from '@react-aria/focus'
 import { useHover } from '@react-aria/interactions'
 
+import { StyledMenuItem } from './styles'
+import type { MenuItemProps } from './types'
 
-export const MenuItem = ({ item, state, onAction, onClose, autoFocus = false, isDisabled = false }) => {
+export const MenuItem = <T extends object>(props: MenuItemProps<T>) => {
+
+    const { 
+        item, 
+        state, 
+        onAction, 
+        onClose,
+    } = props
+
     const itemRef = useRef<HTMLLIElement | null>(null)
+
+    const isDisabled = state.disabledKeys.has(item.key)
+    const isFocused = state.selectionManager.focusedKey === item.key
 
     const { menuItemProps } = useMenuItem({
         key: item.key,
-        isDisabled: item.isDisabled,
+        isDisabled,
         onAction,
         onClose
     }, state, itemRef)
 
 
     const { isHovered, hoverProps } = useHover({ isDisabled })
-    const { isFocused, isFocusVisible, focusProps } = useFocusRing({
-        within: true,
-        isTextInput: false,
-        autoFocus
-    })
 
-    const mergedProps = mergeProps(menuItemProps, hoverProps, focusProps)
+    const mergedProps = mergeProps(menuItemProps, hoverProps)
 
     return (
-        <li {...mergedProps} ref={itemRef}>
+        <StyledMenuItem 
+            {...mergedProps} 
+            isHovered={isHovered}
+            isFocused={isFocused}
+            isFocusVisible={isFocused}
+            isDisabled={isDisabled}
+            ref={itemRef}
+        >
             {item.rendered}
-        </li>
+        </StyledMenuItem>
     )
 }

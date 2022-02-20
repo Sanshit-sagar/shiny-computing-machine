@@ -5,9 +5,15 @@ import { useMenuTrigger } from '@react-aria/menu'
 import { useMenuTriggerState } from '@react-stately/menu'
 
 import { MenuPopup } from './MenuPopup'
-import { MenuButtonProps, MenuTriggerState } from './types'
+import { MenuButtonProps, AriaMenuOptions, MenuTriggerState } from './types'
 
-export const MenuButton = (props: MenuButtonProps) => {
+import { StyledMenuButton } from './styles'
+import { ChevronDownIcon } from '@radix-ui/react-icons'
+import { useInteractions } from '@/hooks/useInteractions'
+
+import { mergeProps } from '@react-aria/utils'
+
+export const MenuButton = <T extends object>(props: MenuButtonProps & AriaMenuOptions<T>) => {
     const {
         trigger = 'press',
         align = 'start',
@@ -27,12 +33,16 @@ export const MenuButton = (props: MenuButtonProps) => {
         onPress: () => state.toggle(state.focusStrategy)
     }, buttonRef)
 
+    const { interactionProps, ...interactionStates } = useInteractions({ })
+    const mergedProps = mergeProps(buttonProps, interactionProps)
+
     return (
         <div>
-            <button {...buttonProps} ref={buttonRef}>
+            <StyledMenuButton {...mergedProps} {...interactionStates} ref={buttonRef}>
                 {props.label}
-                <span aria-hidden="true">▼</span>
-            </button>
+                <MenuButtonArrow />
+            </StyledMenuButton>
+
             {state.isOpen && (
                 <MenuPopup
                     {...props}
@@ -44,3 +54,11 @@ export const MenuButton = (props: MenuButtonProps) => {
         </div>
     )
 }
+
+export const MenuButtonArrow = () => (
+    <span aria-hidden="true">
+        <ChevronDownIcon /> 
+    </span>
+)
+
+MenuButtonArrow.displayName = 'MenuButtonArrow'

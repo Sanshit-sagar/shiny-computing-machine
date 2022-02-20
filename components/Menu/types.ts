@@ -1,4 +1,8 @@
-import { Key, ReactNode } from "react"
+import { Key, ReactNode } from 'react'
+
+import { Node } from '@react-types/shared'
+import { TreeState } from '@react-stately/tree'
+
 import { DOMProps } from "@/interfaces/Shared"
 import { CollectionChildren } from "@/interfaces/Collections"
 
@@ -49,18 +53,33 @@ export interface AriaOptions {
 }
 
 export type SelectionMode = 'none' | 'first' | 'last';
-export interface AriaMenuOptions<T> extends DOMProps, AriaOptions {
+export interface AriaMenuOptions<T> extends DOMProps, Partial<AriaOptions> {
     // keyboardDelegate: KeyboardDelegate;
     children: CollectionChildren<T>;
-    isVirtualized: boolean;
-    autoFocus: boolean | FocusStrategy;
-    shouldFocusWrap: boolean;
-    onAction: (key: Key) => void;
-    items: Iterable<T>;
-    disabledKeys: Iterable<Key>;
-    selectionMode: SelectionMode;
-    disallowEmptySelection: boolean;
+    isVirtualized?: boolean;
+    autoFocus?: boolean | FocusStrategy;
+    shouldFocusWrap?: boolean;
+    onAction?: (key: Key) => void;
+    items?: Iterable<T>;
+    disabledKeys?: Iterable<Key>;
+    selectionMode?: SelectionMode;
+    disallowEmptySelection?: boolean;
     selectedKeys?: Iterable<any> | 'all';
     defaultSelectedKeys?: Iterable<any> | 'all';
-    onSelectionChange: (keys: Selection) => void;
+    onSelectionChange?: (keys: Selection) => void;
 }
+
+export type MenuItemProps<T> = {
+    item: Node<T>;
+    state: TreeState<T>;
+    onAction?: (key: Key) => void;
+    onClose?: () => void;
+}
+
+
+export type MenuSectionProps<T> = {
+    section: Node<T>;
+    state: TreeState<T>;
+    onAction: (key: Key) => void; 
+}
+
