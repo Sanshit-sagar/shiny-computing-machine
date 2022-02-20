@@ -2,6 +2,7 @@ import { forwardRef, ElementType, ElementRef, ComponentPropsWithoutRef } from 'r
 import { CSS } from 'stitches.config'
 
 import { ScopedProps } from './types'
+import { StyledTooltipTrigger } from './styles'
 import { useTooltipContext } from './TooltipContext'
 import { DEFAULT_NAME, DEFAULT_TRIGGER_TAG } from './constants' 
 
@@ -15,7 +16,7 @@ interface TooltipTriggerProps extends ComponentPropsWithoutRef<typeof DEFAULT_TR
 
 export const TooltipTrigger = forwardRef<TooltipTriggerElement, TooltipTriggerProps>(({ 
     __scopeTooltip,
-    element: Component = 'button', 
+    element: Component = StyledTooltipTrigger, 
     children, 
     ...rest  
 }: ScopedProps<TooltipTriggerProps>, forwardedRef) => {

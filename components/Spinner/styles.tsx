@@ -2,35 +2,29 @@ import { styled } from '../../stitches.config'
 import { spin, ripple } from 'styles/keyframes/index'
 
 
-export const StyledSpinner = styled('div', {
+export const StyledSpinner = styled('div', {    
+    appearance: 'none',
+    userSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
 
-    '@property': {
+    display: 'inline-flex',
+    margin: '0em',
+    padding: '0em',
+    aspectRatio: '1 / 1',
 
-    },
-
-    d: 'inline-block',
-    m: '$1',
-    p: 0,
-
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: '$accentBg',
-    borderLeftColor: '$accentSolid',
-    '&:hover': {
-        borderLeftColor: '$accentBorderHover',
-    },
-
+    border: '1px solid $accentText',
+    borderLeftColor: '$accentTextContrast',
 
     variants: {
         size: {
-            1: { size: '14px', borderWidth: '0.5px' },
-            2: { size: '16px', borderWidth: '0.75px' },
-            3: { size: '20px', borderWidth: '1px' },
-            4: { size: '24px', borderWidth: '1.25px' },
-            5: { size: '28px', borderWidth: '1.5px' },
-            6: { size: '36px', borderWidth: '2px' },
-            7: { size: '44px', borderWidth: '2.5px' },
-            8: { size: '52px', borderWidth: '3px' }
+            1: { height: '14px', width: '14px' },
+            2: { height: '16px', width: '16px' },
+            3: { height: '20px', width: '20px' },
+            4: { height: '24px', width: '24px' },
+            5: { height: '28px', width: '28px' },
+            6: { height: '36px', width: '36px' },
+            7: { height: '44px', width: '44px' },
+            8: { height: '52px', width: '52px' }
         },
         speed: {
             1: { animation: `${spin} 4000ms linear infinite`  },
@@ -40,17 +34,18 @@ export const StyledSpinner = styled('div', {
             5: { animation: `${spin} 500ms linear infinite` }
         },
         radius: {
-            1: { br: '25%' },
-            2: { br: '40%' },
-            3: { br: '60%' },
-            4: { br: '80%' },
+            0: { br: '0%' },
+            1: { br: '10%' },
+            2: { br: '25%' },
+            3: { br: '50%' },
+            4: { br: '75%' },
             5: { br: '100%' }
         }
     },
     defaultVariants: {
-        size: '2',
-        speed: '5',
-        radius: '5'
+        size: '3',
+        speed: '3',
+        radius: '3'
     }
 })
 

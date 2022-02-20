@@ -16,15 +16,22 @@ export interface AccordionRootProps<T> {
 }
 
 export interface AccordionState<T> {
-    selectedKey: Key;
-    selectedItem: Node<T>;
-    collection: Collection<Node<T>>;
-    disabledKeys: Set<Key>;
-    selectionManager: SelectionManager;
-    setSelectedKey: (key: Key) => void;
+    selectedKey?: Key;
+    selectedItem?: Node<T>;
+    collection?: Collection<Node<T>>;
+    disabledKeys?: Set<Key>;
+    selectionManager?: SelectionManager;
+    setSelectedKey?: (key: Key) => void;
 }
 
-export interface IAccordionContext<T> extends AccordionState<T> {
-    activePanelDims: DOMRect;
-    setActivePanelDims: Dispatch<SetStateAction<Partial<DOMRect>>>; 
+export interface IAccordionContext<T> extends AccordionState<T>, Pick<Collection<Node<T>>, 'size'> {
+    activePanelDims?: DOMRect;
+    setActivePanelDims?: Dispatch<SetStateAction<Partial<DOMRect>>>; 
+}
+
+export interface IAccordionItemContext<T> extends Node<T> {
+    key: Key;
+    isSelected: boolean; // change to isExpanded
+    isDisabled: boolean;
+
 }

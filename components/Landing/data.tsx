@@ -6,6 +6,7 @@ import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 
 import { ToggleableInstance } from '@/components/Toggleable/examples'
+import { MenuButtonInstance } from '@/components/Menu/examples'
 import { AriaAccordionInstance } from '@/components/AriaAccordion/examples'
 import { AsyncInstance } from '@/components/Async/examples'
 import { TableViewInstance } from '@/components/Table/examples'
@@ -95,6 +96,11 @@ export const showcases: IShowcase[] = [{
         name: 'Input',
         description: '',
         icon: <TextInputIcon />
+    }, {
+        element: <MenuButtonInstance />,
+        name: 'MenuButton',
+        description: '',
+        icon: <ButtonIcon />
     }, {
         element: <AsyncInstance />,
         name: 'Async',

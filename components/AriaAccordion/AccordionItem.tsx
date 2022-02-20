@@ -1,5 +1,4 @@
-import { useRef, Key, cloneElement, useEffect } from 'react' 
-import { styled, CSS } from 'stitches.config'
+import { Key, cloneElement, Children } from 'react' 
 
 import { Node } from '@react-types/shared'
 import { useAccordionContext } from './utils'
@@ -7,76 +6,40 @@ import { useAccordionContext } from './utils'
 import { AccordionIcon } from './AccordionIcon'
 import { AccordionHeader } from './AccordionHeader'
 import { AccordionPanel } from './AccordionPanel'
-
-import { useResizeObserver } from '@/hooks/useResizeObserver'
-
-import { PlusIcon, MinusIcon } from '@radix-ui/react-icons'
-import { ResizableContainer } from '@/components/Resizable'
+import { StyledAccordionItem } from './styles'
+import { findByType } from '../Article/utils'
 
 interface AccordionItemProps<T> {
     key: Key;
     item: Node<T>; 
+    index: number; 
 }
 
-const AccordionItem = <T extends object>({ item }: AccordionItemProps<T>) => {
+const AccordionItem = <T extends object>({ item, index }: AccordionItemProps<T>) => {
 
-    const { selectedKey, setSelectedKey, activePanelDims, disabledKeys } = useAccordionContext()
-   
-    const isSelected = selectedKey !== null && selectedKey === item.key
-    const isDisabled = disabledKeys.has(item.key)
-
-    const { title, children, openIcon = <PlusIcon />, closeIcon = <MinusIcon /> } = item.props
+    const { selectedKey, disabledKeys } = useAccordionContext()
+  
+    const contextValue = {
+        isSelected: selectedKey !== null && selectedKey === item.key,
+        isDisabled: disabledKeys.has(item.key),
+        title: item.props.title,
+        content: findByType(item.props.children, AccordionHeader)
+    }
 
     return (
-        <ResizableContainer 
-            css={{ 
-                ...accordionContainerCss, 
-                x: activePanelDims.x, 
-                y: activePanelDims.y,
-                height: isSelected ? `${50 + activePanelDims.height}px` : `50px`,
-            }}
-        >
-            <AccordionHeader item={item}> 
-                {title} 
-                <AccordionIcon 
-                    opened={openIcon} 
-                    closed={closeIcon}
-                    isSelected={isSelected}
-                    isDisabled={isDisabled} 
-                />
+        <StyledAccordionItem>
+            <AccordionHeader item={item} index={index}> 
+                {item.props.title} 
+                <AccordionIcon item={item} />
             </AccordionHeader>
-            {isSelected && (
-                <AccordionPanel item={item}> 
-                    {cloneElement(children)}
+            {contextValue.isSelected && (
+                <AccordionPanel item={item} index={index}> 
+                    {cloneElement(contextValue.content)}
                 </AccordionPanel> 
             )}
-        </ResizableContainer>
+        </StyledAccordionItem>
     )
 }
 
 export default AccordionItem
 AccordionItem.displayName = 'AccordionItem'
-
-
-const accordionContainerCss: CSS = {
-    appearance: 'none',
-    userSelect: 'none',
-    WebkitTapHighlightColor: 'transparent',
-    whiteSpace: 'nowrap',
-    margin: 0,
-
-    width: '300px',
-
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    gap: '0em',
-
-    border: '1px solid $black3',
-    borderRadius: '$2',
-
-    transition: '0.3s',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
-}

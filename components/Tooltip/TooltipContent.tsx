@@ -41,12 +41,13 @@ const TooltipContent = forwardRef<TooltipContentElement, TooltipContentProps>(({
 
     return (
         <StyledTooltipContainer 
+            isLoading={isLoading}
             isVisible={isVisible} 
             placement={placement} 
             ref={floatingRef} 
             css={floatingStyles}
         >
-            <StyledTooltipContent>
+            <StyledTooltipContent isLoading={isLoading}>
                 {children}
 
                 {isLoading && (

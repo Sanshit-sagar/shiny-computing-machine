@@ -16,7 +16,7 @@ export const TriggerMenuExample = () => {
     const handleSelectionChange = (keys: Selection) => setSelectedKeys(keys)
 
     return (
-        <MenuTrigger isOpen={true}>
+        <MenuTrigger>
             <Menu 
                 items={actionsAndAlignments} 
                 onAction={handleAction}

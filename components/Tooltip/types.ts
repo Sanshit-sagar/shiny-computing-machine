@@ -1,7 +1,7 @@
 import { RefObject, HTMLAttributes } from 'react'
 import { CSS } from 'stitches.config' 
 import { Scope } from '@/hooks/createContextScope'
-import { OpenableDOMProps } from '@/interfaces/Shared'
+
 
 export type ScopedProps<P> = P &  { __scopeTooltip?: Scope; }
 // 
@@ -10,6 +10,12 @@ export type ScopedProps<P> = P &  { __scopeTooltip?: Scope; }
     // open: (immediate: boolean) => void;
     // close: (immediate: boolean) => void;
 // }
+
+export interface OpenableDOMProps {
+    isOpen?: boolean;
+    defaultOpen?: boolean;
+    onOpenChange?: (isOpen: boolean) => void;
+}
 
 export type TooltipDefaultProps = Partial<{
     placement: 'left' | 'top' | 'bottom' | 'right';

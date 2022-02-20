@@ -26,14 +26,7 @@ export const AriaAccordionInstance = () => {
                 > 
                     <div>
                         <label> {item.name} </label>
-                        <span 
-                            style={{ 
-                                height: item.description.startsWith('Description') ? '100px' : '300px', 
-                                backgroundColor: item.description.startsWith('Description') ? 'yellow' : 'red'   
-                            }}
-                        > 
-                            {item.description} 
-                        </span> 
+                        <span> {item.description} </span> 
                     </div>
                 </Accordion.Item>
             )}

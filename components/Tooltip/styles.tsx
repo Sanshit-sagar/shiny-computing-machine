@@ -1,7 +1,6 @@
 import React, { forwardRef, ReactNode } from 'react'
 import { styled, VariantProps, CSS } from 'stitches.config'
 
-import { Flex } from '@/components/Flex'
 import { Spinner } from '@/components/Spinner/Spinner'
 
 import {
@@ -11,12 +10,10 @@ import {
     slideRightAndFade
 } from 'styles/keyframes'
 
-
-const animationDuration = '0.3s'
-const animationFunction = 'cubic-bezier(0.16, 1, 0.3, 1)'
-
 const StyledTrigger = styled('button', {
-    border: '1px solid black',
+    backgroundColor: '$black1',
+    color: '$white1',
+    border: '1px solid $white1',
     padding: '$2',
     borderRadius: '$2',
 
@@ -27,16 +24,18 @@ const StyledTrigger = styled('button', {
     variants: {
         isHovered: {
             true: {
-                backgroundColor: '$black3',
-                color: '$white3'
+                backgroundColor: '$white1',
+                color: '$black1',
+                borderColor: '$black1'
             },
-            false: {
-                backgroundColor: '$black1',
-                color: '$white1'
-            }
+            false: null
         },
         isFocused: {
-            true: {},
+            true: {
+                backgroundColor: '$white1',
+                color: '$black1',
+                borderColor: '$black1'
+            },
             false: {}
         },
         isPressed: {
@@ -51,48 +50,91 @@ const StyledTrigger = styled('button', {
     }
 })
 
-const arrowBorder = '1px solid rgba(240,240,240,0.2)'
 
 export const StyledArrow = styled('div', {
-    zIndex: 100,
-    bc: 'inherit',
+    position: 'absolute',
     height: '8px',
     width: '8px',
-    
-    borderLeft: `${arrowBorder}`,
-    borderBottom: `${arrowBorder}`,
+    zIndex: 100,
 
+    backgroundColor: 'inherit',
+    borderLeft: '1px solid $accentBorder',
+    borderBottom: '1px solid $accentBorder',
+
+    borderRadius: '0.1em',
+    
     variants: {
         placement: {
-            'top': { transform: 'rotate(-45deg)' },
-            'bottom': { transform: 'rotate(135deg)' },
-            'left': { transform: 'rotate(45deg)'  },
-            'right': { transform: 'rotate(225deg)' }
+            'top': { transform: 'rotate(-45deg)', right: '35%', bottom: '0em'  },
+            'bottom': { transform: 'rotate(135deg)', right: '35%', top: '0em' },
+            'left': { transform: 'rotate(225deg)', right: '0em', top: '35%'  },
+            'right': { transform: 'rotate(45deg)', left: '0em', top: '35%' }
         }
     },
     defaultVariants: {
         placement: 'top'
     }
 })
- 
-export const StyledTooltip = styled('div', {
-    appearance: 'none',
-    userSelect: 'none',
-    whiteSpace: 'pre-line',
-    pointerEvents: 'none',
 
-    display: 'block',
+export const StyledContent = styled('div', {
+    position: 'relative',
+    top: 0,
+    left: 0,
+    height: 'inherit',
+    width: 'inherit',
     padding: '$1',
     margin: '0em',
 
-    backgroundColor: '$black1',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'nowrap',
+    verticalAlign: 'center',
+    textAlign: 'center',
 
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: 'transparent',
+    whiteSpace: 'break-line',
+    pointerEvents: 'none',
+    visibility: 'inherit', 
+    opacity: 'inherit', 
+    overflow: 'hidden', 
+
+    textOverflow: 'ellipsis',
+    fontSize: '$2',
+    fontFamily: '$plexsans',
+    fontWeight: 'normal',
+    lineHeight: '$1',
+    fontVariant: 'tabular',
+
+    color: '$accentTextContrast',
+
+    variants: {
+        isLoading: {
+            true: {
+                justifyContent: 'space-between',
+                gap: '$1'
+            },
+            false: {
+                justifyContent: 'center',
+                gap: '$2'
+            }
+        }
+    },
+    defaultVariants: {
+        isLoading: false
+    }
+})
+
+const StyledContainer = styled('div', {
+    all: 'unset',
+    margin: '0em',
+    padding: '0.25em 0.15em',
+
+    width: 'fit-content', 
+    height: 'fit-content', 
+
+    backgroundColor: '$accentLine',
+    border: '1px solid $accentBorder',
     borderRadius: '$2',
-
-    willChange: 'transform, opacity',
 
     variants: {
         isVisible: {
@@ -105,50 +147,30 @@ export const StyledTooltip = styled('div', {
                 opacity: 0
             }
         },
+        isLoading: {
+            true: {
+                minWidth: '200px',
+                maxWidth: '275px',
+                minHeight: '27.5px',
+            },
+            false: {
+                minWidth: '150px',
+                maxWidth: '225px',
+                minHeight: '20px'
+            }
+        },
         placement: {
-            top: { animation: `${slideUpAndFade} ${animationDuration} ${animationFunction}` },
-            bottom: { animation: `${slideDownAndFade} ${animationDuration} ${animationFunction}` },
-            left: { animation: `${slideLeftAndFade} ${animationDuration} ${animationFunction}` },
-            right: { animation: `${slideRightAndFade} ${animationDuration} ${animationFunction}` }
+            top: { animation: `${slideUpAndFade} 300ms ease` },
+            bottom: { animation: `${slideDownAndFade} 300ms ease` },
+            left: { animation: `${slideLeftAndFade} 300ms ease` },
+            right: { animation: `${slideRightAndFade} 300ms ease` }
         }
     },
     defaultVariants: {
         isVisible: false,
-        placement: 'top'
+        isLoading: false,
+        placement: 'right'
     }
-})
-
-export const StyledContent = styled('span', {
-    position: 'relative',
-    top: 0,
-    left: 0,
-    width: 'fit-content', 
-    height: 'fit-content', 
-    minWidth: '125px',
-    padding: '0em',
-    margin: '0em',
-
-    whiteSpace: 'break-line',
-    visibility: 'inherit', 
-    opacity: 'inherit', 
-    overflow: 'hidden', 
-
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    gap: '0em',
-    flexWrap: 'wrap',
-    textOverflow: 'ellipsis',
-    textAlign: 'center',
-    varticalAlign: 'middle',
-
-    fontSize: '$2',
-    fontFamily: '$plexsans',
-    fontWeight: 'normal',
-    lineHeight: '$2',
-    fontVariant: 'tabular',
-    color: '$white1'
 })
 
 const StyledRoot = styled('span', {
@@ -160,9 +182,9 @@ export const StyledTooltipRoot = forwardRef<HTMLSpanElement, RootProps>((props, 
     <StyledRoot {...props} ref={forwardedRef} />
 ))
 
-type ContainerProps  =  VariantProps<typeof StyledTooltip> & { css?: CSS; children: ReactNode; } 
+type ContainerProps  =  VariantProps<typeof StyledContainer> & { css?: CSS; children: ReactNode; } 
 export const StyledTooltipContainer = forwardRef<HTMLDivElement, ContainerProps>((props, forwardedRef) => (
-    <StyledTooltip id="tooltip" role="tooltip" {...props} ref={forwardedRef} />
+    <StyledContainer id="tooltip" role="tooltip" {...props} ref={forwardedRef} />
 ))
 
 type TriggerProps  =  VariantProps<typeof StyledTrigger> & { css?: CSS; children: ReactNode; }
@@ -172,7 +194,7 @@ export const StyledTooltipTrigger = forwardRef<HTMLButtonElement, TriggerProps>(
 
 type ContentProps = VariantProps<typeof StyledTrigger> & { css?: CSS; children: ReactNode; }
 export const StyledTooltipContent = forwardRef<HTMLSpanElement, ContentProps>((props, forwardedRef) => (
-    <StyledContent {...props} ref={forwardedRef} /> 
+    <StyledContent id="tooltip" role="tooltip" {...props} ref={forwardedRef} /> 
 ))
 
 type ArrowProps  =  VariantProps<typeof StyledArrow> & { css?: CSS; }
@@ -180,18 +202,6 @@ export const StyledTooltipArrow = forwardRef<HTMLDivElement, ArrowProps>((props,
     <StyledArrow id="arrow" {...props} ref={forwardedRef} />     
 ))
 
-StyledTooltipArrow.toString = () => '.styled-tooltip-arrow';
+StyledTooltipArrow.toString = () => '.styled-tooltip-arrow'
 
-const StyledSpinnerContainer = styled(Flex, {
-    fd: 'row', 
-    jc: 'flex-end',
-    ai: 'center',
-    gap: 0, 
-    ml: '$2' 
-})
-
-export const TooltipSpinner = () => (
-    <StyledSpinnerContainer>
-        <Spinner size='1' /> 
-    </StyledSpinnerContainer>
-)
+export const TooltipSpinner = () =>  <Spinner size='3' radius='3' speed='3' /> 

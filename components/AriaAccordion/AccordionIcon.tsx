@@ -1,12 +1,14 @@
 import { forwardRef, ReactNode, RefObject, ElementRef, ComponentPropsWithoutRef} from 'react' 
 import { CSS } from 'stitches.config'
 
+import { useAccordionContext } from './utils'
+import { PlusIcon, MinusIcon } from '@radix-ui/react-icons'
+import { Node } from '@react-types/shared'
+import { StyledIcon } from './styles'
+
 interface AccordionIconProps {
     id?: string;
-    opened?: ReactNode | HTMLOrSVGElement;
-    closed?: ReactNode | HTMLOrSVGElement;
-    isSelected: boolean;
-    isDisabled: boolean; 
+    item: Node<any>;
 }
 
 const DEFAULT_TAG = 'span'
@@ -16,25 +18,27 @@ type IconProps = Omit<ComponentPropsWithoutRef<typeof DEFAULT_TAG>, keyof Accord
     children?: ReactNode; 
 }
 
-export const AccordionIcon = forwardRef<IconElement, IconProps>(({ 
-    id, 
-    opened = '-', 
-    closed = '+',
-    isSelected,
-    isDisabled
-}, ref: RefObject<HTMLSpanElement>) => {
+export const AccordionIcon = forwardRef<IconElement, IconProps>((props, ref: RefObject<HTMLSpanElement>) => {
+    const { id, item } = props
+
+    const { openIcon = <PlusIcon />, closeIcon =<MinusIcon /> } = item.props 
+
+    const { selectedKey, disabledKeys } = useAccordionContext()
+
+    const isSelected = selectedKey !== null && selectedKey === item.key
+    const isDisabled = disabledKeys.has(item.key)
 
     return (
-        <span 
+        <StyledIcon 
             id={`accordion-icon-${id}`}
             className="Accordion-icon" 
             aria-hidden="true"
             ref={ref}
-        > 
-            {isDisabled ? closed : isSelected ? opened : closed} 
-        </span>
+            isSelected={isSelected}
+        >
+            {isSelected ? openIcon : closeIcon}
+        </StyledIcon> 
     )
 })
 
 AccordionIcon.displayName = 'AccordionIcon'
- 

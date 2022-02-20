@@ -1,68 +1,50 @@
 
-import { useState, HTMLAttributes } from 'react';
-import { useHover, useFocusWithin, usePress } from '@react-aria/interactions'
+import { HTMLAttributes } from 'react'
 import { mergeProps } from '@react-aria/utils'
+import { useFocusRing } from '@react-aria/focus'
+import { useHover, usePress } from '@react-aria/interactions'
 
 import { PressEvent, HoverEvent } from '@/interfaces/Interactions'
 
 export interface InteractionProps {
     isDisabled?: boolean; 
     isLoading?: boolean;
+    autoFocus?: boolean; 
     focusType?: 'visible' | 'within' | 'target';
 }
+type IsHoveredType = Pick<ReturnType<typeof useHover>, 'isHovered'>
+type isFocusedType = Pick<ReturnType<typeof useFocus>, 'isFocused'>
 
-export interface InteractionResult {
+export interface InteractionResult extends Required<InteractionProps> {
     isFocused: boolean;
     isHovered: boolean;
     isPressed: boolean;
-    isDisabled: boolean; 
-    isLoading: boolean; 
     interactionProps: HTMLAttributes<HTMLElement>;
 }
 
+const pressNoop = (_event: PressEvent) => {}
+const hoverNoop = (_event: HoverEvent) => {}
 
 export const useInteractions = ({ 
     isDisabled = false, 
     isLoading = false,
+    autoFocus = false,
     focusType = 'within'
 }: InteractionProps): InteractionResult => {
 
-    const [isFocused, setFocus] = useState<boolean>(false);
-    const [pressInfo, setPressInfo] = useState<PressEvent | undefined>(undefined);
-    const [hoverInfo, setHoverInfo] = useState<HoverEvent | undefined>(undefined);
-
-    const handlePressChange = (event: PressEvent) =>  setPressInfo({ ...event });
-    const handleHoverChange = (event: HoverEvent) =>  setHoverInfo({ ...event });
-
-    let { focusWithinProps } = useFocusWithin({
-        isDisabled,
-        onFocusWithinChange: (isFocusWithin: boolean) => setFocus(isFocusWithin)
-    });
-
-    let { pressProps, isPressed } = usePress({
-        isDisabled,
-        onPressStart: (event: PressEvent) => handlePressChange(event),
-        onPressEnd: (event: PressEvent) => handlePressChange(event)
-    }); 
-
-    let { hoverProps, isHovered } = useHover({
-        isDisabled,
-        onHoverStart: (event: HoverEvent) => handleHoverChange(event),
-        onHoverEnd: (event: HoverEvent) => handleHoverChange(event)
-    }); 
-
-    const interactionProps: HTMLAttributes<HTMLElement> = mergeProps(
-        pressProps, 
-        hoverProps,
-        focusWithinProps,
-    )
+    const { focusProps, isFocused, isFocusVisible } = useFocusRing({ within: focusType === 'within', autoFocus })
+    const { pressProps, isPressed } = usePress({ isDisabled, onPressStart: pressNoop, onPressEnd: pressNoop }) 
+    const { hoverProps, isHovered } = useHover({ isDisabled, onHoverStart: hoverNoop, onHoverEnd: hoverNoop }) 
 
     return {
-        isFocused,
-        isPressed,
         isHovered,
+        isFocused: isFocused || isFocusVisible,
+        isFocusVisible,
+        isPressed,
         isDisabled,
         isLoading,
-        interactionProps
+        autoFocus, 
+        focusType,
+        interactionProps: mergeProps(pressProps, hoverProps, focusProps)
     };
 }

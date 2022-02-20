@@ -1,10 +1,7 @@
 import { Children, ReactNode, ReactElement } from 'react' 
 
 
-const findByType = (
-    children:  ReactNode | ReactElement | ReactElement[], 
-    component: ReactNode | ReactElement | JSX.Element
-) => {
+const findByType = (children: ReactNode, component) => {
     const result = []
     const type   = [component.displayName] || [component.name]
 
