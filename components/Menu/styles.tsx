@@ -149,29 +149,28 @@ export const StyledMenuItem = styled('li', {
             },
             false: null
         },
-        isFocusVisible: {
-            true: {
-                outline: '2px solid hsl(204, 100%, 40%)',
-                outlineOffset: '2px'
-            },
-            false: null
-        },
         isDisabled: {
             true: {
                 opacity: 0.25
             },
             false: null
+        },
+        isSelected: {
+            true: {
+                backgroundColor: 'hsl(104,100%, 40%)',
+                color: 'hsl(0, 0%, 100%)'
+            }
         }
     },
     defaultVariants: {
         isHovered: false,
         isFocused: false,
-        isFocusVisible: false,
-        isDisabled: false
+        isDisabled: false,
+        isSelected: false
     }
 })
 
-export const StyledMenuSeparator = styled('div', {
+export const StyledMenuSeparator = styled('li', {
     borderWidth: '1px 0 0',
     borderColor: 'currentColor',
 

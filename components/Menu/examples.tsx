@@ -1,3 +1,4 @@
+import { useState } from 'react' 
 import { MenuButton } from './MenuButton'
 import { MenuSeparator } from './MenuSeparator'
 
@@ -17,23 +18,35 @@ const actionableItems: ActionableItem[] = [
     { id: 3, key: 'report', title: 'Report', kbd: 'r' }
 ]
 
-export const MenuButtonInstance = () => (
-    <MenuButton 
-        label="Actions" 
-        items={actionableItems} 
-        defaultSelectedKeys={[]} 
-        disabledKeys={[]} 
-        disallowEmptySelection={true}
-    >
-        {(item: ActionableItem) => (
-            <Item key={item.key} title={item.title}>
-                <div>
-                    <label> {item.title} </label>
-                    {item.kbd && (
-                        <kbd> {item.kbd} </kbd>
-                    )}
-                </div>
-            </Item>
-        )}
-    </MenuButton>
-)
+export const MenuButtonInstance = () => {
+    const [selectedKeys, setSelectedKeys] = useState<Iterable<any>>(['share'])
+    
+    const handleSelectionChange = (selection) => {
+        alert('changed!!')
+        setSelectedKeys(selection)
+    }
+
+    return (
+        <MenuButton 
+            label="Actions" 
+            items={actionableItems} 
+            selectedKeys={selectedKeys}
+            onSelectionChange={handleSelectionChange}
+            disabledKeys={['edit']} 
+            disallowEmptySelection={false}
+            closeOnSelect={true}
+            onAction={(key) => console.log(key)} 
+        >
+            {(item: ActionableItem) => (
+                <Item key={item.key} title={item.title}>
+                    <div>
+                        <label> {item.title} </label>
+                        {item.kbd && (
+                            <kbd> {item.kbd} </kbd>
+                        )}
+                    </div>
+                </Item>
+            )}
+        </MenuButton>
+    )
+}

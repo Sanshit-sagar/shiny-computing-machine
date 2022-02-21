@@ -6,7 +6,7 @@ import type { MenuSectionProps } from './types'
 import { MenuSeparator } from './MenuSeparator' 
 import { MenuItem } from './MenuItem'
 
-const MenuSection = <T extends object>({ section, state, onAction }: MenuSectionProps<T>) => {
+export const MenuSection = <T extends object>({ section, state, onAction }: MenuSectionProps<T>) => {
 
     const { itemProps, headingProps, groupProps } = useMenuSection({
         heading: section.rendered,
@@ -43,3 +43,6 @@ const MenuSection = <T extends object>({ section, state, onAction }: MenuSection
     )
     
 }
+
+
+MenuSection.displayName = 'MenuSection'

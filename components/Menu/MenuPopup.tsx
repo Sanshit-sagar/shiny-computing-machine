@@ -1,33 +1,36 @@
-import { useRef } from 'react'
+import { useRef, HTMLAttributes } from 'react'
 
 import { FocusScope } from '@react-aria/focus'
 import { useOverlay, DismissButton } from '@react-aria/overlays'
 import { Menu } from './Menu'
+import type { MenuPopupProps } from './types'
 
-interface MenuPopupProps {
-    domProps: DOMProps;
-    
-}
+const noop = () => {}
 
-export const MenuPopup = ({ domProps, ...props }: MenuPopupProps) => {
-    // const menuRef = useRef<HTMLUListElement | null>(null)
+export const MenuPopup = ({ 
+    onClose = noop, 
+    autoFocus = false, 
+    ...props 
+}: MenuPopupProps) => {
+
     const overlayRef = useRef<HTMLDivElement | null>(null)
 
     const { overlayProps } = useOverlay({
-        onClose: props.onClose,
+        onClose,
         shouldCloseOnBlur: true,
         isDismissable: true,
-        isOpen: false
+        isKeyboardDismissDisabled: false,
     }, overlayRef)
 
     return (
         <FocusScope restoreFocus>
             <div {...overlayProps} ref={overlayRef}>
-                <DismissButton onDismiss={props.onClose} /> 
-
-                
-                <DismissButton onDismiss={props.onClose} /> 
+                <DismissButton onDismiss={onClose} /> 
+                    <Menu onClose={onClose} autoFocus={autoFocus} {...props} /> 
+                <DismissButton onDismiss={onClose} /> 
             </div>
         </FocusScope>
     )
 }
+
+MenuPopup.displayName = 'MenuPopup'

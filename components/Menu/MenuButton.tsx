@@ -1,19 +1,22 @@
-import { useRef } from 'react'
+import { useRef, forwardRef, RefObject, ReactElement } from 'react'
 
 import { useButton } from '@react-aria/button'
 import { useMenuTrigger } from '@react-aria/menu'
 import { useMenuTriggerState } from '@react-stately/menu'
 
 import { MenuPopup } from './MenuPopup'
+import { MenuButtonArrow } from './MenuButtonArrow'
 import { MenuButtonProps, AriaMenuOptions, MenuTriggerState } from './types'
 
 import { StyledMenuButton } from './styles'
-import { ChevronDownIcon } from '@radix-ui/react-icons'
 import { useInteractions } from '@/hooks/useInteractions'
 
 import { mergeProps } from '@react-aria/utils'
 
-export const MenuButton = <T extends object>(props: MenuButtonProps & AriaMenuOptions<T>) => {
+export const AriaMenuButton = <T extends object>(
+    props: MenuButtonProps & AriaMenuOptions<T>, 
+    ref: RefObject<HTMLButtonElement>
+) => {
     const {
         trigger = 'press',
         align = 'start',
@@ -23,9 +26,17 @@ export const MenuButton = <T extends object>(props: MenuButtonProps & AriaMenuOp
         ...rest
     } = props
 
-    const buttonRef = useRef<HTMLButtonElement | null>(null)
 
-    const state: MenuTriggerState = useMenuTriggerState(props)
+    const buttonRef = useRef<HTMLButtonElement | null>(null)
+    if(!ref) {
+        ref = buttonRef
+    }
+
+    const state: MenuTriggerState = useMenuTriggerState({ 
+        ...props, 
+        closeOnSelect: true 
+    })
+    
     const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, buttonRef)
 
     const { buttonProps } = useButton({
@@ -55,10 +66,8 @@ export const MenuButton = <T extends object>(props: MenuButtonProps & AriaMenuOp
     )
 }
 
-export const MenuButtonArrow = () => (
-    <span aria-hidden="true">
-        <ChevronDownIcon /> 
-    </span>
-)
+const _MenuButton = forwardRef(AriaMenuButton) as <T>(props: MenuButtonProps & AriaMenuOptions<T> & { 
+    ref?: RefObject<HTMLButtonElement> 
+}) => ReactElement
 
-MenuButtonArrow.displayName = 'MenuButtonArrow'
+export { _MenuButton as MenuButton }

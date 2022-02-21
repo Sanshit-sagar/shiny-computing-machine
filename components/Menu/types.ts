@@ -5,6 +5,7 @@ import { TreeState } from '@react-stately/tree'
 
 import { DOMProps } from "@/interfaces/Shared"
 import { CollectionChildren } from "@/interfaces/Collections"
+import { Selection } from '@react-types/shared'
 
 export type FocusStrategy = 'first' | 'last'
 export interface MenuTriggerState {
@@ -52,8 +53,9 @@ export interface AriaOptions {
     'aria-details': string; 
 }
 
-export type SelectionMode = 'none' | 'first' | 'last';
+export type SelectionMode = 'none' | 'single' | 'multiple';
 export interface AriaMenuOptions<T> extends DOMProps, Partial<AriaOptions> {
+    onClose: () => void
     // keyboardDelegate: KeyboardDelegate;
     children: CollectionChildren<T>;
     isVirtualized?: boolean;
@@ -66,12 +68,17 @@ export interface AriaMenuOptions<T> extends DOMProps, Partial<AriaOptions> {
     disallowEmptySelection?: boolean;
     selectedKeys?: Iterable<any> | 'all';
     defaultSelectedKeys?: Iterable<any> | 'all';
-    onSelectionChange?: (keys: Selection) => void;
+    onSelectionChange?: (keys: Selection) => any;
 }
 
 export type MenuItemProps<T> = {
+    key: Key; 
     item: Node<T>;
     state: TreeState<T>;
+    isDisabled?: boolean;
+    isSelected?: boolean;
+    closeOnSelect?: boolean;
+    isVirtualized?: boolean;
     onAction?: (key: Key) => void;
     onClose?: () => void;
 }
@@ -83,3 +90,7 @@ export type MenuSectionProps<T> = {
     onAction: (key: Key) => void; 
 }
 
+export interface MenuPopupProps {
+    autoFocus?: boolean | FocusStrategy;
+    onClose?: () => void; 
+}

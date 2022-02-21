@@ -13,7 +13,7 @@ export type LabelPosition = 'top' | 'side'
 
 export type FocusStrategy = 'first' | 'last'
 export type SelectionBehavior = 'replace' | 'toggle'
-export type SelectionMode = 'none' | 'multiple' | 'single'
+export type SelectionMode = 'none' | 'single' | 'multiple'
 export type Selection = 'all' | Set<Key>
 
 export type Axis = 'top' | 'left' | 'bottom' | 'right'

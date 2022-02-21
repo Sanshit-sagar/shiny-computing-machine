@@ -1,38 +1,37 @@
+import { HTMLAttributes, ComponentProps, forwardRef, ReactElement } from 'react'
 
-import { MenuItem } from './MenuItem'
 import { StyledMenu } from './styles'
-import { MenuSeparator } from './MenuSeparator'
+import { AriaMenuOptions } from './types'
+import { MenuItem } from './MenuItem'
+import { MenuSection } from './MenuSection'
 
-import { SpectrumMenuProps } from '@react-types/menu'
+import { useDOMRef } from '@/utils/useRefs'
 
-
-import { useMenu } from '@react-aria/menu'
+import { DOMRef } from '@react-types/shared'
 import { useTreeState } from '@react-stately/tree'
-import { mergeProps } from '@react-aria/utils'
+import { useMenu } from '@react-aria/menu'
+import { useSyncRef } from '@react-aria/utils'
 
 
-type MenuProps<T> =  SpectrumMenuProps<T> 
+const DEFAULT_TAG = 'ul'
+type MenuProps<T> =  AriaMenuOptions<T> & ComponentProps<typeof DEFAULT_TAG>
 
-const MenuList = <T extends object>(props: MenuProps<T>, ref: DOMRef<HTMLUListElement>) => {
-    const contextProps = useContext(MenuContext)
-    const completeProps = { ...mergeProps(contextProps, props)}
+export const AriaMenu = <T extends object>(props: MenuProps<T>, ref: DOMRef<HTMLUListElement>) => {
+     
     const domRef = useDOMRef<HTMLUListElement>(ref)
-        
-
-    useSyncRef(contextProps, domRef)
-
     const state = useTreeState({ ...props, selectionMode: 'none' })
-    const { menuProps } = useMenu(props, state, menuRef)
+    const { menuProps } = useMenu(props, state, domRef)
 
     return (
-        <StyledMenu {...mergedProps} ref={menuRef}>
+        <StyledMenu {...menuProps} ref={domRef}>
             {[...state.collection].map((item) => {
+
                 if(item.type === 'section') return (
                    <MenuSection
                         key={item.key}
-                        item={item}
+                        section={item}
                         state={state}
-                        onAction={onAction}
+                        onAction={props.onAction}
                     />
                 )
 
@@ -42,7 +41,6 @@ const MenuList = <T extends object>(props: MenuProps<T>, ref: DOMRef<HTMLUListEl
                         item={item}
                         state={state}
                         onAction={props.onAction}
-                        onClose={props.onClose} 
                     />
                 )
 
@@ -56,5 +54,6 @@ const MenuList = <T extends object>(props: MenuProps<T>, ref: DOMRef<HTMLUListEl
     )
 }
 
-{/* // let { menuProps } = useMenu(completeProps, state, domRef) */}
-{/* const state = useTreeState(completeProps) */}
+
+const _Menu = forwardRef(AriaMenu) as <T>(props: MenuProps<T> & { ref?: DOMRef<HTMLUListElement> }) => ReactElement
+export { _Menu as Menu }
