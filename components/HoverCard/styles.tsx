@@ -124,17 +124,53 @@ export const StyledContent = styled('div', {
     }
 })
 
+const cssVars: CSS = {
+    '--popover-min-width':  '150px',
+    '--popover-max-width':  '200px',
+    '--popover-min-height': '25px',
+    '--popover-max-height': '25px',
+
+    '--loading-spinner-size-1': '25px',
+    '--loading-spinner-size-2': '50px',
+    '--loading-spinner-size-3': '75px',
+
+    '--popover-active-loading-spinner': '--loading-spinner-size-2',
+
+    '--popover-min-width-loading': 'calc(var(--popover-min-width) + var(var(--popover-active-loading-spinner)))',
+    '--popover-max-width-loading': 'calc(var(--popover-max-width) + var(var(--popover-active-loading-spinner)))',
+    '--popover-min-height-loading': 'calc(var(--popover-max-width) + 7.5px)',
+    '--popover-max-height-loading': 'calc(var(--popover-max-width) + 7.5px)',
+
+    '--popover-margin-x': '0em',
+    '--popover-margin-y': '0em',
+    '--popover-padding-x': '0.25em',
+    '--popover-padding-y': '0.15em',
+
+    '--popover-border-width': '0.075em',
+    '--popover-border-style': 'solid',
+    '--popover-border-color': '$colors$accentBorder',
+    '--popover-border-radius': '$sizes$2',
+
+}
+
 const StyledContainer = styled('div', {
+    ...cssVars,
+
     all: 'unset',
-    margin: '0em',
-    padding: '0.25em 0.15em',
+    margin: 'var(--popover-margin-x) var(--popover-margin-y)',
+    padding: 'var(--popover-padding-x) var(--popover-padding-y)',
+
 
     width: 'fit-content', 
-    height: 'fit-content', 
+    height: 'fit-content',
+    minWidth: 'var(--popover-min-width)',
+    maxWidth: 'var(--popover-max-width)',
+    minHeight: 'var(--popover-min-height)',
+    maxHeight: 'var(--popover-max-height)',
 
     backgroundColor: '$accentLine',
-    border: '1px solid $accentBorder',
-    borderRadius: '$2',
+    border: 'var(--popover-border-width) var(--popover-border-style) var(--popover-border-color)',
+    borderRadius: 'var(--popover-border-radius)',
 
     variants: {
         isVisible: {
@@ -149,15 +185,12 @@ const StyledContainer = styled('div', {
         },
         isLoading: {
             true: {
-                minWidth: '200px',
-                maxWidth: '275px',
-                minHeight: '27.5px',
+                minWidth: 'var(--popover-min-width-loading)',
+                maxWidth: 'var(--popover-max-width-loading)',
+                minHeight: 'var(--popover-min-height-loading)',
+                maxHeight: 'var(--popover-max-height-loading)'
             },
-            false: {
-                minWidth: '150px',
-                maxWidth: '225px',
-                minHeight: '20px'
-            }
+            false: null
         },
         placement: {
             top: { animation: `${slideUpAndFade} 300ms ease` },
@@ -178,30 +211,30 @@ const StyledRoot = styled('span', {
 })
 
 type RootProps = VariantProps<typeof StyledRoot> & { css?: CSS; children: ReactNode;  }
-export const StyledTooltipRoot = forwardRef<HTMLSpanElement, RootProps>((props, forwardedRef) => (
+export const StyledPopoverRoot = forwardRef<HTMLSpanElement, RootProps>((props, forwardedRef) => (
     <StyledRoot {...props} ref={forwardedRef} />
 ))
 
 type ContainerProps  =  VariantProps<typeof StyledContainer> & { css?: CSS; children: ReactNode; } 
-export const StyledTooltipContainer = forwardRef<HTMLDivElement, ContainerProps>((props, forwardedRef) => (
-    <StyledContainer id="tooltip" role="tooltip" {...props} ref={forwardedRef} />
+export const StyledPopoverContainer = forwardRef<HTMLDivElement, ContainerProps>((props, forwardedRef) => (
+    <StyledContainer id="Popover" role="Popover" {...props} ref={forwardedRef} />
 ))
 
 type TriggerProps  =  VariantProps<typeof StyledTrigger> & { css?: CSS; children: ReactNode; }
-export const StyledTooltipTrigger = forwardRef<HTMLButtonElement, TriggerProps>((props, forwardedRef) => (
-    <StyledTrigger id="button" aria-describedby="tooltip" {...props} ref={forwardedRef} />      
+export const StyledPopoverTrigger = forwardRef<HTMLButtonElement, TriggerProps>((props, forwardedRef) => (
+    <StyledTrigger id="button" aria-describedby="Popover" {...props} ref={forwardedRef} />      
 ))
 
 type ContentProps = VariantProps<typeof StyledContent> & { css?: CSS; children: ReactNode; }
-export const StyledTooltipContent = forwardRef<HTMLSpanElement, ContentProps>((props, forwardedRef) => (
-    <StyledContent id="tooltip" role="tooltip" {...props} ref={forwardedRef} /> 
+export const StyledPopoverContent = forwardRef<HTMLSpanElement, ContentProps>((props, forwardedRef) => (
+    <StyledContent id="Popover" role="Popover" {...props} ref={forwardedRef} /> 
 ))
 
 type ArrowProps  =  VariantProps<typeof StyledArrow> & { css?: CSS; }
-export const StyledTooltipArrow = forwardRef<HTMLDivElement, ArrowProps>((props, forwardedRef) => (
+export const StyledPopoverArrow = forwardRef<HTMLDivElement, ArrowProps>((props, forwardedRef) => (
     <StyledArrow id="arrow" {...props} ref={forwardedRef} />     
 ))
 
-StyledTooltipArrow.toString = () => '.styled-tooltip-arrow'
+StyledPopoverArrow.toString = () => '.styled-Popover-arrow'
 
-export const TooltipSpinner = () =>  <Spinner size='3' radius='3' speed='3' /> 
+export const PopoverSpinner = () =>  <Spinner size='3' radius='3' speed='3' /> 

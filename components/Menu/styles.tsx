@@ -6,8 +6,8 @@ const cssVariables: CSS = {
     '--menu-button-line-height': '1.5rem',
     '--menu-button-border-radius': '0.25rem',
 
-    '--menu-button-background': 'hsl(200, 100%, 40%)',
-    '--menu-button-background-hover': 'hsl(204, 100%, 32%)',
+    '--menu-button-background': 'hsl(204, 100%, 40%)',
+    '--menu-button-background-hover': 'hsl(204, 100%, 45%)',
     '--menu-button-foreground': 'hsl(0, 0%, 100%)',
 
     '--menu-button-opacity': 1,
@@ -17,7 +17,7 @@ const cssVariables: CSS = {
 
     '@media(:prefers-colors-scheme: dark)': {
         '--menu-button-background': 'hsl(200, 100%, 40%)',
-        '--menu-button-background-hover': 'hsl(204, 100%, 32%)',
+        '--menu-button-background-hover': 'hsl(204, 100%, 45%)',
         '--menu-button-foreground': 'hsl(0, 0%, 100%)',
     }
 }
@@ -26,49 +26,71 @@ export const StyledMenuButton = styled('button', {
     ...cssVariables, 
 
     display: 'flex',
-    height: '2.5rem',
+    height: 'fit-content',
+    minHeight: '1.75rem',
+    maxHeight: '3rem',
     cursor: 'pointer',
 
     alignItems: 'center',
     justifyContent: 'center',
     gap: '0.25rem',
 
+    borderWidth: '0.05rem',
     borderRadius: '0.5rem',
-    borderStyle: 'none',
+    borderStyle: 'solid',
 
-    backgroundColor: 'var(--menu-button-background)',
+    color: '$accentText',
+    borderColor: '$accentBorder',
+    backgroundColor: '$accentBg',
     
-    paddingLeft: '1rem',
-    paddingRight: '1rem',
     fontSize: '1rem',
     lineHeight: '1.5rem',
+    padding: '0.5rem 1.0rem',
 
-    color: 'var(--menu-button-foreground)',
     opacity: 'var(--menu-button-opacity)',
+
+    outline: '2px solid transparent',
+    outlineOffset: '2px',
 
     variants: {
         isHovered: {
             true: {
-                backgroundColor: 'var(--menu-button-background-hover)',
+                backgroundColor: '$accentBgHover',
+                borderColor: '$accentBorderHover',
+                color: '$accentTextContrast'
             },
             false: null
         },
         isFocused: {
             true: {
-
+                backgroundColor: '$accentBgActive',
+                borderColor: '$accentFocusRing',
+                color: '$accentTextContrast'
             },
             false: null
         },
         isFocusVisible: {
             true: {
-                outline: '2px solid var(--outline-color)',
+                outline: '2px solid hsl(204, 100%, 45%)',
                 outlineOffset: '2px'
+            },
+            false: null
+        },
+        isPressed: {
+            true: {
+
             },
             false: null
         },
         isDisabled: {
             true: {
                 opacity: 'var(--menu-button-opacity-disabled)'
+            },
+            false: null
+        },
+        isLoading: {
+            true: {
+
             },
             false: null
         }
@@ -137,15 +159,14 @@ export const StyledMenuItem = styled('li', {
     variants: {
         isHovered: {
             true: {
-                backgroundColor: 'hsl(204, 100%, 40%)',
-                color: 'hsl(0, 0%, 100%)'
+                backgroundColor: 'hsl(204, 25%, 27%)'
             },
             false: null
         },
         isFocused: {
             true: {
-                backgroundColor: 'hsl(204, 100%, 40%)',
-                color: 'hsl(0, 0%, 100%)'
+                
+                
             },
             false: null
         },
@@ -178,4 +199,30 @@ export const StyledMenuSeparator = styled('li', {
     marginBottom: '0.5rem',
     height: '0px',
     opacity: 0.25
+})
+
+export const StyledMenuSection = styled('li', {
+    margin: '0em',
+    padding: '0em',
+    outline: 'none',
+    border: 'none',
+    background: 'transparent',
+    height: 'fit-content',
+    width: 'inherit',
+    overflow: 'hidden'
+})
+
+export const StyledMenuSectionHeading = styled('span', {
+    fontSize: '1.1em', 
+    fontWeight: 'normal', 
+    pl: '0.2rem',
+    pr: '0.5rem',
+    pt: '0.05rem',
+    pb: '0.1rem',
+
+})
+
+export const StyledMenuSectionGroup = styled('ul', {
+    listStyleType: 'none',
+    padding: '0em'
 })

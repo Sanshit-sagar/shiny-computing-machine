@@ -1,55 +1,63 @@
-import { useRef, forwardRef, RefObject, ReactElement } from 'react'
+import { useRef, forwardRef, ReactElement } from 'react'
 
+import { mergeProps } from '@react-aria/utils'
 import { useButton } from '@react-aria/button'
 import { useMenuTrigger } from '@react-aria/menu'
 import { useMenuTriggerState } from '@react-stately/menu'
 
-import { MenuPopup } from './MenuPopup'
-import { MenuButtonArrow } from './MenuButtonArrow'
-import { MenuButtonProps, AriaMenuOptions, MenuTriggerState } from './types'
-
-import { StyledMenuButton } from './styles'
+import { useDOMRef } from '@/utils/useRefs'
+import { DOMRef } from '@/interfaces/Shared'
 import { useInteractions } from '@/hooks/useInteractions'
 
-import { mergeProps } from '@react-aria/utils'
+import { MenuPopup } from './MenuPopup'
+import { MenuContext } from './MenuContext'
+import { MenuButtonArrow } from './MenuButtonArrow'
+
+import { StyledMenuButton } from './styles'
+import { MenuButtonProps, MenuProps, MenuTriggerState } from './types'
 
 export const AriaMenuButton = <T extends object>(
-    props: MenuButtonProps & AriaMenuOptions<T>, 
-    ref: RefObject<HTMLButtonElement>
+    props: MenuButtonProps & MenuProps<T>, 
+    ref: DOMRef<HTMLButtonElement>
 ) => {
     const {
-        trigger = 'press',
         align = 'start',
+        trigger = 'press',
         direction = 'bottom',
-        closeOnSelect = true,
+        closeOnSelect,
         shouldFlip = true,
+        children,
         ...rest
     } = props
 
+    const domRef = useDOMRef(ref)
+    const triggerRef = useRef<HTMLButtonElement>() 
+   
 
-    const buttonRef = useRef<HTMLButtonElement | null>(null)
-    if(!ref) {
-        ref = buttonRef
+    const menuTriggerRef = domRef || triggerRef   
+
+    const state: MenuTriggerState = useMenuTriggerState(props)
+    
+    const { menuTriggerProps, menuProps } = useMenuTrigger({ type: 'menu' }, state, menuTriggerRef)
+    const { interactionProps, ...interactionStates } = useInteractions({ focusType: 'within', isDisabled: false })
+  
+
+    const { buttonProps } = useButton({ 
+        onPress: (_event) => state.toggle(state.focusStrategy) 
+    }, menuTriggerRef)
+
+    const mergedProps = mergeProps(menuTriggerProps, buttonProps, interactionProps)
+
+    const menuContext = {
+        ...menuProps,
+        onClose: state.close,
+        closeOnSelect,
+        autoFocus: state.focusStrategy || true
     }
 
-    const state: MenuTriggerState = useMenuTriggerState({ 
-        ...props, 
-        closeOnSelect: true 
-    })
-    
-    const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, buttonRef)
-
-    const { buttonProps } = useButton({
-        ...menuTriggerProps,
-        onPress: () => state.toggle(state.focusStrategy)
-    }, buttonRef)
-
-    const { interactionProps, ...interactionStates } = useInteractions({ })
-    const mergedProps = mergeProps(buttonProps, interactionProps)
-
     return (
-        <div>
-            <StyledMenuButton {...mergedProps} {...interactionStates} ref={buttonRef}>
+        <MenuContext.Provider value={menuContext}>
+            <StyledMenuButton {...mergedProps} {...interactionStates} ref={menuTriggerRef}>
                 {props.label}
                 <MenuButtonArrow />
             </StyledMenuButton>
@@ -62,12 +70,12 @@ export const AriaMenuButton = <T extends object>(
                     onClose={() => state.close()}
                 />
             )}
-        </div>
+        </MenuContext.Provider>
     )
 }
 
-const _MenuButton = forwardRef(AriaMenuButton) as <T>(props: MenuButtonProps & AriaMenuOptions<T> & { 
-    ref?: RefObject<HTMLButtonElement> 
+const _MenuButton = forwardRef(AriaMenuButton) as <T>(props: MenuButtonProps & MenuProps<T> & { 
+    ref?: DOMRef<HTMLButtonElement> 
 }) => ReactElement
 
 export { _MenuButton as MenuButton }

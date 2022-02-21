@@ -1,8 +1,8 @@
-import { useState } from 'react' 
+import { Key, useState } from 'react' 
 import { MenuButton } from './MenuButton'
 import { MenuSeparator } from './MenuSeparator'
 
-import { Item } from '@react-stately/collections'
+import { Item, Section } from '@react-stately/collections'
 
 type ActionableItem = {
     id: number;
@@ -12,41 +12,40 @@ type ActionableItem = {
 }
 
 const actionableItems: ActionableItem[] = [
-    { id: 0, key: 'edit', title: 'Edit', kbd: 'e' },
-    { id: 1, key: 'share', title: 'Share', kbd: 's' },
+    { id: 0, key: 'edit', title: 'Edit' },
+    { id: 1, key: 'share', title: 'Share' },
     { id: 2, key: 'delete', title: 'Delete' },
-    { id: 3, key: 'report', title: 'Report', kbd: 'r' }
+    { id: 3, key: 'report', title: 'Report' }
 ]
 
 export const MenuButtonInstance = () => {
-    const [selectedKeys, setSelectedKeys] = useState<Iterable<any>>(['share'])
+    const [disabledKeys, setDisabledKeys] = useState<Set<string>>(new Set<string>('edit'))
+    const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set<string>())
     
-    const handleSelectionChange = (selection) => {
-        alert('changed!!')
-        setSelectedKeys(selection)
-    }
+    const handleSelectionChange = (selection) => setSelectedKeys(selection)
 
     return (
-        <MenuButton 
-            label="Actions" 
-            items={actionableItems} 
-            selectedKeys={selectedKeys}
-            onSelectionChange={handleSelectionChange}
-            disabledKeys={['edit']} 
-            disallowEmptySelection={false}
-            closeOnSelect={true}
-            onAction={(key) => console.log(key)} 
-        >
-            {(item: ActionableItem) => (
-                <Item key={item.key} title={item.title}>
-                    <div>
-                        <label> {item.title} </label>
-                        {item.kbd && (
-                            <kbd> {item.kbd} </kbd>
-                        )}
-                    </div>
-                </Item>
-            )}
+        <MenuButton label="Actions" selectedKeys={[]} onSelectionChange={handleSelectionChange}>
+            <Section title="Section 1">
+                <Item key="section1-item1">One</Item>
+                <Item key="section1-item2">Two</Item>
+                <Item key="section1-item3">Three</Item>
+            </Section>
+            <Section title="Section 2">
+                <Item key="section2-item1">One</Item>
+                <Item key="section2-item2">Two</Item>
+                <Item key="section2-item3">Three</Item>
+            </Section>
         </MenuButton>
     )
 }
+
+
+// selectionMode="multiple" 
+// selectedKeys={selectedKeys}
+// disabledKeys={disabledKeys} 
+// onSelectionChange={handleSelectionChange}
+// disallowEmptySelection={true}
+// closeOnSelect={true}
+// shouldFocusWrap={false}
+// isVirtualized={false}

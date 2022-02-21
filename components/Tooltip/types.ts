@@ -4,12 +4,6 @@ import { Scope } from '@/hooks/createContextScope'
 
 
 export type ScopedProps<P> = P &  { __scopeTooltip?: Scope; }
-// 
-// export interface TooltipTriggerState {
-    // isOpen: boolean;
-    // open: (immediate: boolean) => void;
-    // close: (immediate: boolean) => void;
-// }
 
 export interface OpenableDOMProps {
     isOpen?: boolean;

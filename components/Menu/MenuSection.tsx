@@ -6,11 +6,17 @@ import type { MenuSectionProps } from './types'
 import { MenuSeparator } from './MenuSeparator' 
 import { MenuItem } from './MenuItem'
 
-export const MenuSection = <T extends object>({ section, state, onAction }: MenuSectionProps<T>) => {
+import { 
+    StyledMenuSection,
+    StyledMenuSectionHeading,
+    StyledMenuSectionGroup
+} from './styles'
+
+export const MenuSection = <T extends object>({ item, state, onAction }: MenuSectionProps<T>) => {
 
     const { itemProps, headingProps, groupProps } = useMenuSection({
-        heading: section.rendered,
-        'aria-label': section['aria-label']
+        heading: item.rendered,
+        'aria-label': item['aria-label']
     })
 
     const { separatorProps } = useSeparator({
@@ -19,17 +25,17 @@ export const MenuSection = <T extends object>({ section, state, onAction }: Menu
     
     return (
         <Fragment>
-            {section.key !== state.collection.getFirstKey() && (
+            {item.key !== state.collection.getFirstKey() && (
                 <MenuSeparator {...separatorProps} /> 
             )}
-            <li {...itemProps}>
-                {section.rendered && (
-                    <span {...headingProps} style={{ fontSize: '1.1em', fontWeight: 'bold', padding: '2px 5px' }}>
-                        {section.rendered}
-                    </span>
+            <StyledMenuSection {...itemProps}>
+                {item.rendered && (
+                    <StyledMenuSectionHeading {...headingProps}>
+                        {item.rendered}
+                    </StyledMenuSectionHeading>
                 )}
-                <ul {...groupProps} style={{ padding: 0, listStyle: 'none' }}>
-                    {[...section.childNodes].map((node) => (
+                <StyledMenuSectionGroup {...groupProps}>
+                    {[...item.childNodes].map((node) => (
                         <MenuItem 
                             key={node.key} 
                             item={node} 
@@ -37,8 +43,8 @@ export const MenuSection = <T extends object>({ section, state, onAction }: Menu
                             onAction={onAction} 
                         />
                     ))}
-                </ul>
-            </li>
+                </StyledMenuSectionGroup>
+            </StyledMenuSection>
         </Fragment>
     )
     
