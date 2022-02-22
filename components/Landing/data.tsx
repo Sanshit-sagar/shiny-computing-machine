@@ -5,6 +5,8 @@ import { BreadcrumbsInstance } from '@/components/Breadcrumbs/examples'
 import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
 
+
+import { PopoverInstance } from '@/components/HoverCard/examples'
 import { ToggleableInstance } from '@/components/Toggleable/examples'
 import { MenuButtonInstance } from '@/components/Menu/examples'
 import { AriaAccordionInstance } from '@/components/AriaAccordion/examples'
@@ -32,7 +34,7 @@ import { NumberFieldInstance } from '@/components/NumberField/examples'
 import { CodeInputInstance } from '@/components/CodeInput/examples'
 import { OrderedListInstance } from '@/components/OrderedList/examples'
 import { ProgressBarInstance } from '@/components/ProgressBar/examples'
-import { PopoverInstance } from '@/components/Popover/examples'
+// import { PopoverInstance } from '@/components/Popover/examples'
 import { RadioButtonInstance } from '@/components/RadioGroup/examples'
 import { SearchInstance } from '@/components/Search/examples'
 import { SearchBarInstance } from '@/components/Searchbar/examples'
@@ -116,6 +118,11 @@ export const showcases: IShowcase[] = [{
         name: 'Breadcrumbs',
         description: 'soft flaky crumbles',
         icon: <TabsIcon /> 
+    },  {
+        element: <PopoverInstance />,
+        name: 'Popover',
+        description: '',
+        icon: <PopoverIcon /> 
     }, {
         element: <ButtonsInstance />,
         name: 'Buttons',
@@ -223,11 +230,6 @@ export const showcases: IShowcase[] = [{
         name: 'Ordered List',
         description: '',
         icon: <ListIcon />
-    }, {
-        element: <PopoverInstance />,
-        name: 'Popover',
-        description: '',
-        icon: <PopoverIcon /> 
     }, {
         element: <ProgressBarInstance />,
         name: 'ProgressBar',

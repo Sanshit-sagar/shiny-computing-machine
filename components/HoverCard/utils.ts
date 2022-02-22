@@ -10,9 +10,7 @@ type InteractionStatesGetterProps = {
 
 const popoverSize = {
     height: 'fit-content', 
-    width: 'fit-content', 
-    maxHeight: '50px',
-    maxWidth: '250px'
+    width: '300px'
 }
 
 const DEFAULT_PLACEMENT = 'top'
@@ -20,7 +18,7 @@ const staticSideMap = {
     top: 'bottom',
     right: 'left',
     bottom: 'top',
-    left: 'right',
+    left: 'right'
 }
 
 export const getStaticSide = (placement) => {
@@ -41,8 +39,8 @@ export const getPopoverStyles = ({ placement, strategy, arrowX, arrowY, x, y }):
         position: strategy,
         top:  y ?? '',
         left:  x ?? '',
-        height: `calc(${popoverSize.height} - $2)`,
-        width: `calc(${popoverSize.width} - $4)`
+        height: `${popoverSize.height}`,
+        width: `${popoverSize.width}`
     }
 
     const arrowStyles: CSS = {
@@ -71,9 +69,9 @@ export const getInteractionStates = ({
     isOpen, 
     isDisabled = false,
     isLoading = false 
-}: InteractionStatesGetterProps) => {
+}: InteractionStatesGetterProps): PopoverInteractions => {
 
-    const { interactionProps, isHovered, isFocused, isPressed, ...rest } = useInteractions({
+    const { interactionProps, isHovered, isFocused, isFocusVisible, isPressed, ...rest } = useInteractions({
         isDisabled,
         isLoading
     })
@@ -81,8 +79,10 @@ export const getInteractionStates = ({
     return {
         interactionProps,
         isHovered, 
-        isFocused, 
+        isFocused,
+        isFocusVisible, 
         isPressed,
-        isVisible: !isDisabled && (isHovered || isFocused || isPressed || isOpen)
+        isVisible: !isDisabled && (isHovered || isFocused || isPressed || isOpen),
+        ...rest
     }
 }

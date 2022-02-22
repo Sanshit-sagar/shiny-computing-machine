@@ -16,7 +16,7 @@ interface PopoverTriggerProps extends ComponentPropsWithoutRef<typeof DEFAULT_TR
 
 export const PopoverTrigger = forwardRef<PopoverTriggerElement, PopoverTriggerProps>(({ 
     __scopePopover,
-    element: Component = StyledPopoverTrigger, 
+    element: Component = 'div', 
     children, 
     ...rest  
 }: ScopedProps<PopoverTriggerProps>, forwardedRef) => {

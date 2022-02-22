@@ -9,7 +9,9 @@ export const usePopover = (props: UsePopoverProps): UsePopoverReturnValue => {
         placement = 'right', 
         isDisabled = false, 
         isLoading = false, 
-        isOpen 
+        isOpen,
+        offset: offsetDistance = 6,
+        crossOffset: crossOffsetDistance
     } = props 
 
     const arrowRef = useRef<HTMLDivElement>()
@@ -26,8 +28,8 @@ export const usePopover = (props: UsePopoverProps): UsePopoverReturnValue => {
     }= useFloating({
         placement,
         middleware: [
-            offset(6), 
-            flip(), 
+            offset(offsetDistance), 
+            // flip(), 
             shift({ padding: 5 }), 
             arrow({ 
                 element: arrowRef 

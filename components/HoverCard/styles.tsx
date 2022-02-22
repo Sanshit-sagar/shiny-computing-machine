@@ -1,7 +1,5 @@
-import React, { forwardRef, ReactNode } from 'react'
+import React, { forwardRef, ElementType, ReactNode, ComponentProps } from 'react'
 import { styled, VariantProps, CSS } from 'stitches.config'
-
-import { Spinner } from '@/components/Spinner/Spinner'
 
 import {
     slideDownAndFade,
@@ -10,125 +8,23 @@ import {
     slideRightAndFade
 } from 'styles/keyframes'
 
-const StyledTrigger = styled('button', {
-    backgroundColor: '$black1',
-    color: '$white1',
-    border: '1px solid $white1',
-    padding: '$2',
-    borderRadius: '$2',
-
-    fontSize: '$2',
-    fontFamily: '$plexsans',
-    lineHeight: 1,
-
-    variants: {
-        isHovered: {
-            true: {
-                backgroundColor: '$white1',
-                color: '$black1',
-                borderColor: '$black1'
-            },
-            false: null
-        },
-        isFocused: {
-            true: {
-                backgroundColor: '$white1',
-                color: '$black1',
-                borderColor: '$black1'
-            },
-            false: {}
-        },
-        isPressed: {
-            true: {},
-            false: {}
-        }
-    },
-    defaultVariants: {
-        isHovered: false,
-        isFocused: false,
-        isPressed: false
-    }
-})
-
-
-export const StyledArrow = styled('div', {
-    position: 'absolute',
-    height: '8px',
-    width: '8px',
-    zIndex: 100,
-
-    backgroundColor: 'inherit',
-    borderLeft: '1px solid $accentBorder',
-    borderBottom: '1px solid $accentBorder',
-
-    borderRadius: '0.1em',
-    
-    variants: {
-        placement: {
-            'top': { transform: 'rotate(-45deg)', right: '35%', bottom: '0em'  },
-            'bottom': { transform: 'rotate(135deg)', right: '35%', top: '0em' },
-            'left': { transform: 'rotate(225deg)', right: '0em', top: '35%'  },
-            'right': { transform: 'rotate(45deg)', left: '0em', top: '35%' }
-        }
-    },
-    defaultVariants: {
-        placement: 'top'
-    }
-})
-
-export const StyledContent = styled('div', {
-    position: 'relative',
-    top: 0,
-    left: 0,
-    height: 'inherit',
-    width: 'inherit',
-    padding: '$1',
-    margin: '0em',
-
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'nowrap',
-    verticalAlign: 'center',
-    textAlign: 'center',
-
-    whiteSpace: 'break-line',
-    pointerEvents: 'none',
-    visibility: 'inherit', 
-    opacity: 'inherit', 
-    overflow: 'hidden', 
-
-    textOverflow: 'ellipsis',
-    fontSize: '$2',
-    fontFamily: '$plexsans',
-    fontWeight: 'normal',
-    lineHeight: '$1',
-    fontVariant: 'tabular',
-
-    color: '$accentTextContrast',
-
-    variants: {
-        isLoading: {
-            true: {
-                justifyContent: 'space-between',
-                gap: '$1'
-            },
-            false: {
-                justifyContent: 'center',
-                gap: '$2'
-            }
-        }
-    },
-    defaultVariants: {
-        isLoading: false
-    }
-})
 
 const cssVars: CSS = {
+    '--popover-background': '$colors$white1',
+    '--popover-background-disabled': '$colors$disabledBg',
+    '--popover-background-hover': '$colors$accentBgHover',
+    '--popover-background-active': '$colors$accentBgActive',
+    '--popover-background-loading': 'var(--popover-background)',
+
+    '--popover-border-width': '0.075em',
+    '--popover-border-style': 'solid',
+    '--popover-border-color': '$colors$accentBorder',
+    '--popover-border-radius': '$sizes$2',
+
     '--popover-min-width':  '150px',
     '--popover-max-width':  '200px',
-    '--popover-min-height': '25px',
-    '--popover-max-height': '25px',
+    '--popover-min-height': '300px',
+    '--popover-max-height': '600px',
 
     '--loading-spinner-size-1': '25px',
     '--loading-spinner-size-2': '50px',
@@ -143,34 +39,72 @@ const cssVars: CSS = {
 
     '--popover-margin-x': '0em',
     '--popover-margin-y': '0em',
-    '--popover-padding-x': '0.25em',
-    '--popover-padding-y': '0.15em',
+    '--popover-padding-x': '0.35em',
+    '--popover-padding-y': '0.25em',
 
-    '--popover-border-width': '0.075em',
-    '--popover-border-style': 'solid',
-    '--popover-border-color': '$colors$accentBorder',
-    '--popover-border-radius': '$sizes$2',
-
+    '--popover-box-shadow': '$colors$white1'
 }
 
-const StyledContainer = styled('div', {
+export const FollowButton = styled('button', {
+    position: 'absolute',
+    top: '1rem',
+    right: '1rem',
+
+    width: '80px',
+    height: '36px',
+
+    cursor: 'pointer',
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: '$accentBorder',
+    borderRadius: '9999px',
+
+    backgroundColor: 'rgba(215, 219, 220, 1.0)',
+    color: 'rgba(31, 37, 42, 1.0)',
+
+    padding: '0px 16px',
+
+    fontSize: '15px',
+    lineHeight: '20px',
+    fontWeight: 700,
+
+    textAlign: 'center',
+
+    $$shadowColor: '$colors$black3',
+    boxShadow: '0px 0px 2px $$shadowColor',
+
+    '&:hover': {
+        filter: 'drop-shadow(0px 0px 3px $$shadowColor)'
+    }
+})
+
+export const StyledCard = styled('div', {
     ...cssVars,
 
-    all: 'unset',
-    margin: 'var(--popover-margin-x) var(--popover-margin-y)',
-    padding: 'var(--popover-padding-x) var(--popover-padding-y)',
+    position: 'relative',
 
+    padding: '0em',
+    margin: '0em',
+    zIndex: 999,
 
-    width: 'fit-content', 
-    height: 'fit-content',
-    minWidth: 'var(--popover-min-width)',
-    maxWidth: 'var(--popover-max-width)',
-    minHeight: 'var(--popover-min-height)',
-    maxHeight: 'var(--popover-max-height)',
+    backgroundColor: 'inherit',
 
-    backgroundColor: '$accentLine',
-    border: 'var(--popover-border-width) var(--popover-border-style) var(--popover-border-color)',
-    borderRadius: 'var(--popover-border-radius)',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: 'transparent',
+    outline: '2px solid transparent',
+    outlineOffset: '2px',
+
+    $$popoverShadow: '$colors$black1',
+    filter: 'drop-shadow(0 2px 3px $$popoverShadow)',
+    borderRadius: '20px',
+    
 
     variants: {
         isVisible: {
@@ -183,12 +117,10 @@ const StyledContainer = styled('div', {
                 opacity: 0
             }
         },
-        isLoading: {
+        isFocusVisible: {
             true: {
-                minWidth: 'var(--popover-min-width-loading)',
-                maxWidth: 'var(--popover-max-width-loading)',
-                minHeight: 'var(--popover-min-height-loading)',
-                maxHeight: 'var(--popover-max-height-loading)'
+                outline: '2px solid dodgerblue',
+                outlineOffset: '2px'
             },
             false: null
         },
@@ -197,44 +129,115 @@ const StyledContainer = styled('div', {
             bottom: { animation: `${slideDownAndFade} 300ms ease` },
             left: { animation: `${slideLeftAndFade} 300ms ease` },
             right: { animation: `${slideRightAndFade} 300ms ease` }
+        },
+        color: {
+            accent: { bc: '$accentSolid', color: '$infoTextContrast' },
+            info: { bc: '$infoSolid', color: '$infoText' },
+            dark: { bc: '$white1', color: '$black1' },
+            light: { bc: '$black1', color: '$white1' },
+            default: { bc: '$white1', color: '$black1' }
         }
     },
     defaultVariants: {
         isVisible: false,
-        isLoading: false,
-        placement: 'right'
+        isFocusVisible: false,
+        placement: 'left',
+        color: 'accent'
     }
 })
 
-const StyledRoot = styled('span', {
+
+const StyledRoot = styled('div', {
     position: 'relative'
 })
 
 type RootProps = VariantProps<typeof StyledRoot> & { css?: CSS; children: ReactNode;  }
-export const StyledPopoverRoot = forwardRef<HTMLSpanElement, RootProps>((props, forwardedRef) => (
+export const StyledPopoverRoot = forwardRef<HTMLDivElement, RootProps>((props, forwardedRef) => (
     <StyledRoot {...props} ref={forwardedRef} />
 ))
 
-type ContainerProps  =  VariantProps<typeof StyledContainer> & { css?: CSS; children: ReactNode; } 
-export const StyledPopoverContainer = forwardRef<HTMLDivElement, ContainerProps>((props, forwardedRef) => (
-    <StyledContainer id="Popover" role="Popover" {...props} ref={forwardedRef} />
+type CardProps = VariantProps<typeof StyledCard> & { css?: CSS; children: ReactNode; } 
+export const StyledPopoverCard = forwardRef<HTMLDivElement, CardProps>((props, forwardedRef) => (
+    <StyledCard id="Popover" role="Popover" {...props} ref={forwardedRef} />
 ))
 
-type TriggerProps  =  VariantProps<typeof StyledTrigger> & { css?: CSS; children: ReactNode; }
-export const StyledPopoverTrigger = forwardRef<HTMLButtonElement, TriggerProps>((props, forwardedRef) => (
-    <StyledTrigger id="button" aria-describedby="Popover" {...props} ref={forwardedRef} />      
-))
+export const StyledPopoverTrigger = styled('a', {
+    all: 'unset',
+    cursor: 'pointer',
+    borderRadius: '100%',
+    display: 'inline-block',
 
-type ContentProps = VariantProps<typeof StyledContent> & { css?: CSS; children: ReactNode; }
-export const StyledPopoverContent = forwardRef<HTMLSpanElement, ContentProps>((props, forwardedRef) => (
-    <StyledContent id="Popover" role="Popover" {...props} ref={forwardedRef} /> 
-))
+    '&:focus': { 
+        boxShadow: `0 0 0 2px white` 
+    }
+})
 
-type ArrowProps  =  VariantProps<typeof StyledArrow> & { css?: CSS; }
-export const StyledPopoverArrow = forwardRef<HTMLDivElement, ArrowProps>((props, forwardedRef) => (
-    <StyledArrow id="arrow" {...props} ref={forwardedRef} />     
-))
+export const StyledPopoverImage = styled('img', {
+    display: 'block',
 
-StyledPopoverArrow.toString = () => '.styled-Popover-arrow'
+    backgroundColor: 'white',
+    border: '1px',
+    borderRadius: '100%',
 
-export const PopoverSpinner = () =>  <Spinner size='3' radius='3' speed='3' /> 
+    variants: {
+        size: {
+            normal: { 
+                width: 45, 
+                height: 45 
+            },
+            large: { 
+                width: 60, 
+                height: 60 
+            }
+        }
+    },
+    defaultVariants: {
+      size: 'normal'
+    }
+})
+
+
+export const StyledPopoverText = styled('div', {
+    margin: 0,
+
+    fontSize: '15px',
+    lineHeight: '20px',
+
+    variants: {
+        faded: {
+            true: { 
+                color: '$gray'
+            }
+        },
+        bold: {
+            true: { 
+                color: '$accentText',
+                fontWeight: 500 
+            }
+        }
+    },
+})
+
+export const PopoverTrigger = forwardRef<HTMLAnchorElement, ComponentProps<typeof StyledPopoverTrigger> & { as: ElementType<any>; }>(
+    ({ href, target, rel, as, ...rest }, forwardedRef) => {
+        return (
+            <StyledPopoverTrigger 
+                href={href} 
+                target={target} 
+                rel={rel} 
+                as={as} 
+                {...rest} 
+                ref={forwardedRef} 
+            />
+        )
+    }
+)
+PopoverTrigger.displayName = 'PopoverTrigger'
+
+export const PopoverImage = forwardRef<HTMLImageElement, ComponentProps<typeof StyledPopoverImage> & { as: ElementType<any>; }>(
+    ({ src, ...rest }, forwardedRef) => (
+        <StyledPopoverImage src={src} {...rest} ref={forwardedRef} /> 
+    )
+)
+PopoverImage.displayName = 'PopoverImage'
+

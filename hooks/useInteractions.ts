@@ -12,11 +12,10 @@ export interface InteractionProps {
     autoFocus?: boolean; 
     focusType?: 'visible' | 'within' | 'target';
 }
-type IsHoveredType = Pick<ReturnType<typeof useHover>, 'isHovered'>
-type isFocusedType = Pick<ReturnType<typeof useFocus>, 'isFocused'>
 
 export interface InteractionResult extends Required<InteractionProps> {
     isFocused: boolean;
+    isFocusVisible: boolean; 
     isHovered: boolean;
     isPressed: boolean;
     interactionProps: HTMLAttributes<HTMLElement>;
@@ -38,7 +37,7 @@ export const useInteractions = ({
 
     return {
         isHovered,
-        isFocused: isFocused || isFocusVisible,
+        isFocused: isFocused,
         isFocusVisible,
         isPressed,
         isDisabled,

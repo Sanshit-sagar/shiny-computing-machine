@@ -1,7 +1,7 @@
 import { RefObject, HTMLAttributes } from 'react'
 import { CSS } from 'stitches.config' 
 import { Scope } from '@/hooks/createContextScope'
-
+import type { Placement } from './constants'
 
 export type ScopedProps<P> = P &  { __scopePopover?: Scope; }
 
@@ -12,7 +12,7 @@ export interface OpenableDOMProps {
 }
 
 export type PopoverDefaultProps = Partial<{
-    placement: 'left' | 'top' | 'bottom' | 'right';
+    placement: Placement; 
     isDisabled: boolean;
     isLoading: boolean;
     delayMs: number; 
@@ -20,15 +20,13 @@ export type PopoverDefaultProps = Partial<{
 
 export interface PopoverProps extends OpenableDOMProps, PopoverDefaultProps {}
 
-export interface PopoverInteractions {
+export interface PopoverInteractions extends Pick<PopoverProps, 'isLoading' | 'isDisabled'> {
     interactionProps: HTMLAttributes<HTMLElement>;
     isHovered: boolean;
     isFocused: boolean;
     isFocusVisible: boolean;
     isPressed: boolean;
     isVisible: boolean; 
-    isDisabled: boolean;
-    isLoading: boolean; 
 }
 
 export interface PopoverStyles {
@@ -44,7 +42,11 @@ export interface PopoverRefs {
     arrowRef: RefObject<HTMLDivElement>;
 }
 
-export interface UsePopoverProps extends Pick<PopoverProps, 'isDisabled' | 'isLoading' | 'isOpen' | 'placement'> {}
+export interface UsePopoverProps extends Pick<PopoverProps, 'isDisabled' | 'isLoading' | 'isOpen' | 'placement'> {
+    offset?: number;
+    crossOffset?: number;
+}
+
 export interface UsePopoverReturnValue extends PopoverInteractions, PopoverStyles, PopoverRefs {}
 export interface PopoverInteractionsProps extends Required<Omit<PopoverProps, 'placement'>> {}
 export interface PopoverInteractionsReturnValue extends PopoverInteractions {}

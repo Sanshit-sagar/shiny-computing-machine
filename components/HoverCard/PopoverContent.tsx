@@ -1,17 +1,14 @@
 import { forwardRef, ElementType, ComponentPropsWithoutRef, ElementRef } from 'react' 
 import { CSS } from 'stitches.config'
  
-import { 
-    PopoverSpinner,
-    StyledPopoverArrow,
-    StyledPopoverContent, 
-    StyledPopoverContainer
-} from './styles'
+import { StyledPopoverCard } from './styles'
+import { useInteractions } from '@/hooks/useInteractions'
 
 import { ScopedProps } from './types'
 import { usePopoverContext } from './PopoverContext'
 import { DEFAULT_NAME, DEFAULT_CONTENT_TAG } from './constants' 
 
+import  PopoverArrow from './PopoverArrow'
 
 const POPOVER_CONTENT_NAME = `${DEFAULT_NAME}Content`
 
@@ -35,28 +32,24 @@ const PopoverContent = forwardRef<PopoverContentElement, PopoverContentProps>(({
         isVisible, 
         popoverRef, 
         arrowRef, 
-        floatingStyles, 
+        popoverStyles, 
         arrowStyles 
     } = usePopoverContext(POPOVER_CONTENT_NAME, __scopePopover)
 
+    const { interactionProps, isFocusVisible, ...interactionsStates } = useInteractions({ isLoading })
+
     return (
-        <StyledPopoverContainer 
-            isLoading={isLoading}
+        <StyledPopoverCard 
             isVisible={isVisible} 
+            isFocusVisible={isFocusVisible}
             placement={placement} 
-            ref={floatingRef} 
-            css={floatingStyles}
+            ref={popoverRef} 
+            css={popoverStyles}
         >
-            <StyledPopoverContent isLoading={isLoading}>
-                {children}
-
-                {isLoading && (
-                    <PopoverSpinner /> 
-                )}
-            </StyledPopoverContent>
-
-            <StyledPopoverArrow placement={placement} ref={arrowRef} css={arrowStyles} />
-        </StyledPopoverContainer>
+           
+            {children}
+            <PopoverArrow placement={placement} ref={arrowRef} css={arrowStyles} />
+        </StyledPopoverCard>
     )
 })
 
