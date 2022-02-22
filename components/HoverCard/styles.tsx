@@ -125,10 +125,18 @@ export const StyledCard = styled('div', {
             false: null
         },
         placement: {
-            top: { animation: `${slideUpAndFade} 300ms ease` },
-            bottom: { animation: `${slideDownAndFade} 300ms ease` },
-            left: { animation: `${slideLeftAndFade} 300ms ease` },
-            right: { animation: `${slideRightAndFade} 300ms ease` }
+            'top': { animation: `${slideUpAndFade} 300ms ease` },
+            'top-start': { },
+            'top-end': { },
+            'bottom': { animation: `${slideDownAndFade} 300ms ease` },
+            'bottom-start': { },
+            'bottom-end': { },
+            'left': { animation: `${slideLeftAndFade} 300ms ease` },
+            'left-start': { },
+            'left-end': { },
+            'right': { animation: `${slideRightAndFade} 300ms ease` },
+            'right-start': { },
+            'right-end': { }
         },
         color: {
             accent: { bc: '$accentSolid', color: '$infoTextContrast' },

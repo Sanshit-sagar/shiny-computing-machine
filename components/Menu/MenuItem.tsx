@@ -43,11 +43,21 @@ export function AriaMenuItem<T>(props: MenuItemProps<T>) {
         'aria-label': item['aria-label']
     }, state, itemRef)
 
-    const { interactionProps, ...interactionStates } = useInteractions({ isDisabled })
+    const { isHovered, hoverProps } = useHover({ isDisabled })
+    const { isFocused, isFocusVisible, focusProps } = useFocusRing({ within: true })
 
     return (
-        
-        <StyledMenuItem {...mergeProps(menuItemProps, interactionProps)} {...interactionStates} ref={itemRef}>
+        <StyledMenuItem 
+            {...menuItemProps} 
+            {...focusProps} 
+            {...hoverProps}
+            isHovered={isHovered}
+            isFocused={isFocused}
+            isFocusVisible={isFocusVisible}
+            isSelected={isSelected}
+            isDisabled={isDisabled}
+            ref={itemRef}
+        >
             {item.rendered}
         </StyledMenuItem>
     )

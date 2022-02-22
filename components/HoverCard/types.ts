@@ -27,6 +27,7 @@ export interface PopoverInteractions extends Pick<PopoverProps, 'isLoading' | 'i
     isFocusVisible: boolean;
     isPressed: boolean;
     isVisible: boolean; 
+    isOpen: boolean; 
 }
 
 export interface PopoverStyles {
@@ -52,4 +53,8 @@ export interface PopoverInteractionsProps extends Required<Omit<PopoverProps, 'p
 export interface PopoverInteractionsReturnValue extends PopoverInteractions {}
 
 export interface PopoverState extends PopoverProps, PopoverRefs, PopoverInteractions, PopoverStyles {}
-export interface IPopoverContext extends PopoverState {}
+
+export interface IPopoverContext extends PopoverState {
+    triggerProps: HTMLAttributes<HTMLElement>; 
+    menuProps: HTMLAttributes<HTMLElement>;
+}

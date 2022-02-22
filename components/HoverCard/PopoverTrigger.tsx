@@ -1,8 +1,10 @@
 import { forwardRef, ElementType, ElementRef, ComponentPropsWithoutRef } from 'react'
 import { CSS } from 'stitches.config'
 
+import { mergeProps } from '@react-aria/utils'
+import { useButton } from '@react-aria/button'
+
 import { ScopedProps } from './types'
-import { StyledPopoverTrigger } from './styles'
 import { usePopoverContext } from './PopoverContext'
 import { DEFAULT_NAME, DEFAULT_TRIGGER_TAG } from './constants' 
 
@@ -16,19 +18,26 @@ interface PopoverTriggerProps extends ComponentPropsWithoutRef<typeof DEFAULT_TR
 
 export const PopoverTrigger = forwardRef<PopoverTriggerElement, PopoverTriggerProps>(({ 
     __scopePopover,
-    element: Component = 'div', 
+    element: Component = 'button', 
     children, 
     ...rest  
 }: ScopedProps<PopoverTriggerProps>, forwardedRef) => {
 
     const { 
-        interactionProps, 
+        triggerProps, 
         triggerRef, 
-        triggerStyles 
+        triggerStyles,
+        state
     } = usePopoverContext(POPOVER_TRIGGER_NAME, __scopePopover)
+  
+    const { buttonProps } = useButton({ 
+        onPress: (_event) => state.toggle(state.focusStrategy) 
+    }, triggerRef)
+
+    const mergedProps = mergeProps(triggerProps, buttonProps, rest)
 
     return (
-        <Component {...interactionProps} {...rest} ref={triggerRef} css={triggerStyles}>
+        <Component {...mergedProps} ref={triggerRef} css={triggerStyles}>
             {children}
         </Component>
     )

@@ -83,6 +83,7 @@ export const getInteractionStates = ({
         isFocusVisible, 
         isPressed,
         isVisible: !isDisabled && (isHovered || isFocused || isPressed || isOpen),
+        isOpen,
         ...rest
     }
 }

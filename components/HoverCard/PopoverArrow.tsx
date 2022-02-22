@@ -49,9 +49,17 @@ export const StyledArrow = styled('div', {
     variants: {
         placement: {
             'top': { transform: 'rotate(-45deg)', right: '40%', bottom: '0%'  },
+            'top-start': { },
+            'top-end': { },
             'bottom': { transform: 'rotate(135deg)', right: '40%', top: '0%' },
+            'bottom-start': { },
+            'bottom-end': { },
             'left': { transform: 'rotate(225deg)', right: '0%', top: '47.5%'  },
-            'right': { transform: 'rotate(45deg)', left: '0%', top: '47.5%' }
+            'left-start': { },
+            'left-end': { },
+            'right': { transform: 'rotate(45deg)', left: '0%', top: '47.5%' },
+            'right-start': { },
+            'right-end': { }
         }
     },
     defaultVariants: {

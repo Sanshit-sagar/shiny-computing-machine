@@ -165,8 +165,13 @@ export const StyledMenuItem = styled('li', {
         },
         isFocused: {
             true: {
-                
-                
+                backgroundColor: 'orange'
+            },
+            false: null
+        },
+        isFocusVisible: {
+            true: {
+                backgroundColor: 'purple',
             },
             false: null
         },
@@ -186,6 +191,7 @@ export const StyledMenuItem = styled('li', {
     defaultVariants: {
         isHovered: false,
         isFocused: false,
+        isFocusVisible: false,
         isDisabled: false,
         isSelected: false
     }
