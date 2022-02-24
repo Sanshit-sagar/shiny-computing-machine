@@ -60,11 +60,11 @@ export const TwitterHoverCardClone = () => (
 )
 
 export const PopoverWithLoader = () => (
-    <Popover.Root isLoading={false} isDisabled={false} placement="left">
+    <Popover.Root isLoading={false} isDisabled={false} placement="top">
         <Popover.Trigger element={PopoverTrigger} href="https://twitter.com/argyleink" target="_blank" rel="noreferrer noopener">
             <PopoverImage src="https://avatars.githubusercontent.com/u/1134620?v=4" />
         </Popover.Trigger> 
-        <Popover.Content>
+        <Popover.Content color="dark">
             <TwitterHoverCardClone /> 
         </Popover.Content>
     </Popover.Root>

@@ -1,43 +1,51 @@
-import { useState } from 'react' 
+import { Key, useState, ReactNode } from 'react' 
 import { MenuButton } from './MenuButton'
 
 import { Item, Section } from '@react-stately/collections'
 
+import { DotFilledIcon, CheckIcon } from '@radix-ui/react-icons' 
+
+import MenuItem from './index'
+
 type ActionableItem = {
     id: number;
-    key: string;
+    key?: Key;
+    textValue: string; 
+    icon: ReactNode | null;
     title: string; 
-    kbd?: string; 
+    kbd?: string | null; 
 }
 
-const actionableItems: ActionableItem[] = [
-    { id: 0, key: 'edit', title: 'Edit' },
-    { id: 1, key: 'share', title: 'Share' },
-    { id: 2, key: 'delete', title: 'Delete' },
-    { id: 3, key: 'report', title: 'Report' }
+const newItemsMenu: ActionableItem[] = [
+    { id: 0, textValue: 'newTab', icon: <CheckIcon />, title: 'New Tab', kbd: '⌘ T' },
+    { id: 1, textValue: 'newWindow', icon: <CheckIcon />, title: 'New Window', kbd: '⌘ W' },
+    { id: 2, textValue: 'newPrivateWindow', icon: <DotFilledIcon />, title: 'New Private Window', kbd: '⌘ I' }
 ]
 
 export const MenuButtonInstance = () => {
-    const [disabledKeys, setDisabledKeys] = useState<Set<string>>(new Set<string>(['edit']))
-    const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set<string>([]))
+    const [disabledKeys, setDisabledKeys] = useState<Set<Key>>(new Set<Key>(['cut']))
+    const [selectedKeys, setSelectedKeys] = useState<Set<Key>>(new Set<Key>([]))
     
     const handleSelectionChange = (selection) => setSelectedKeys(selection)
 
     return (
-        <>
-            <MenuButton 
-                label="Actions" 
-                selectedKeys={selectedKeys} 
-                onSelectionChange={handleSelectionChange}
-                disabledKeys={disabledKeys}
-                onAction={alert}
-            >
-                <Item key="one">One</Item>
-                <Item key="two">Two</Item>
-                <Item key="three">Three</Item>
-            </MenuButton>
-            <p>{[...selectedKeys].length}</p> 
-        </>
+        <MenuButton 
+            label="New" 
+            selectionMode="multiple"
+            selectedKeys={selectedKeys} 
+            onSelectionChange={handleSelectionChange}
+            disabledKeys={disabledKeys}
+            items={newItemsMenu}
+        >
+            
+                {(item) => (
+                    <MenuItem.Root textValue={item.textValue} key={item.key}>
+                        <MenuItem.Indicator> {item.icon} </MenuItem.Indicator> 
+                        <MenuItem.Title> {item.title} </MenuItem.Title>
+                        <MenuItem.Shortcut> {item.kbd} </MenuItem.Shortcut>
+                    </MenuItem.Root>
+                )}
+        </MenuButton>
     )
 }
 

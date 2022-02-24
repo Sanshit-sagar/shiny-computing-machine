@@ -3,10 +3,7 @@ import { styled, VariantProps, CSS } from 'stitches.config'
 import * as Radix from '@radix-ui/react-primitive'
 
 export const StyledNav = styled('nav', {
-    padding: '$3',
-    border: '1px solid $accentBorder',
-    bc: '$accentBase',
-    br: '$2'
+    padding: '$2'
 })
 
 export const OrderedList = styled('ol', {

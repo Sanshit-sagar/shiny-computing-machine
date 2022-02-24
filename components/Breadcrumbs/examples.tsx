@@ -3,23 +3,24 @@ import { ExampleBase } from '@/components/ExampleBase'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
 
 import Breadcrumbs from './Breadcrumbs'
-import { FolderOpenIcon, FolderIcon } from '@/components/Icons'
+import { FolderOpenIcon } from '@/components/Icons'
 
 const noop = () => {}
 
 export const BreadcrumbsInstance = () => (
     <Breadcrumbs.Root>
-
-        <Breadcrumbs.Item onPress={noop}> 
-            <FolderIcon /> Folder 1 
+        <Breadcrumbs.Item onPress={noop}>
+            <FolderOpenIcon />
         </Breadcrumbs.Item>
         <Breadcrumbs.Item onPress={noop}> 
-            <FolderIcon /> Folder 2 
+            Folder 1 
+        </Breadcrumbs.Item>
+        <Breadcrumbs.Item onPress={noop}> 
+            Folder 2 
         </Breadcrumbs.Item>
         <Breadcrumbs.Item> 
-            <FolderOpenIcon /> Folder 3 
+            Folder 3 
         </Breadcrumbs.Item>
-
     </Breadcrumbs.Root>
 )
 

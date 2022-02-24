@@ -20,14 +20,13 @@ export type PopoverDefaultProps = Partial<{
 
 export interface PopoverProps extends OpenableDOMProps, PopoverDefaultProps {}
 
-export interface PopoverInteractions extends Pick<PopoverProps, 'isLoading' | 'isDisabled'> {
+export interface PopoverInteractions extends Pick<PopoverProps, 'isLoading' | 'isDisabled' | 'isOpen'> {
     interactionProps: HTMLAttributes<HTMLElement>;
     isHovered: boolean;
     isFocused: boolean;
     isFocusVisible: boolean;
     isPressed: boolean;
     isVisible: boolean; 
-    isOpen: boolean; 
 }
 
 export interface PopoverStyles {
@@ -46,6 +45,8 @@ export interface PopoverRefs {
 export interface UsePopoverProps extends Pick<PopoverProps, 'isDisabled' | 'isLoading' | 'isOpen' | 'placement'> {
     offset?: number;
     crossOffset?: number;
+    height: number;
+    width: number; 
 }
 
 export interface UsePopoverReturnValue extends PopoverInteractions, PopoverStyles, PopoverRefs {}
@@ -54,7 +55,8 @@ export interface PopoverInteractionsReturnValue extends PopoverInteractions {}
 
 export interface PopoverState extends PopoverProps, PopoverRefs, PopoverInteractions, PopoverStyles {}
 
-export interface IPopoverContext extends PopoverState {
+export interface IPopoverContext {
     triggerProps: HTMLAttributes<HTMLElement>; 
     menuProps: HTMLAttributes<HTMLElement>;
+    state: PopoverState;
 }

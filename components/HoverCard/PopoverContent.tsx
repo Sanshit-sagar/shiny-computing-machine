@@ -1,5 +1,5 @@
 import { forwardRef, cloneElement, ElementType, Children, ComponentPropsWithoutRef, ElementRef } from 'react' 
-import { CSS } from 'stitches.config'
+import { CSS, VariantProps } from 'stitches.config'
 
 import { DismissButton, useOverlay } from '@react-aria/overlays'
 import { FocusScope } from '@react-aria/focus'
@@ -18,6 +18,7 @@ interface PopoverContentElement extends ElementRef<typeof DEFAULT_CONTENT_TAG> {
 interface PopoverContentProps extends ComponentPropsWithoutRef<typeof DEFAULT_CONTENT_TAG> {
     element?: ElementType<any>; 
     onClose?: () => void; 
+    color?: Pick<VariantProps<typeof StyledPopoverCard>, 'color'>['color']; 
     css?: CSS;
 }
 
@@ -26,6 +27,7 @@ const PopoverContent = forwardRef<PopoverContentElement, PopoverContentProps>(({
     element: Component = DEFAULT_CONTENT_TAG,
     children, 
     onClose = () => {},
+    color = 'default',
     css,
     ...props 
 }: ScopedProps<PopoverContentProps>, forwardedRef) => {
@@ -55,6 +57,7 @@ const PopoverContent = forwardRef<PopoverContentElement, PopoverContentProps>(({
                 isVisible={isVisible} 
                 placement={placement} 
                 ref={popoverRef} 
+                color={color}
                 css={popoverStyles}
             >
                 <DismissButton onDismiss={onClose} /> 

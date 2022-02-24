@@ -101,10 +101,10 @@ export const StyledCard = styled('div', {
     outline: '2px solid transparent',
     outlineOffset: '2px',
 
-    $$popoverShadow: '$colors$black1',
-    filter: 'drop-shadow(0 2px 3px $$popoverShadow)',
+    // $$popoverShadow: '$colors$black1',
+    // filter: 'drop-shadow(0 2px 3px $$popoverShadow)',
+
     borderRadius: '20px',
-    
 
     variants: {
         isVisible: {
@@ -143,14 +143,14 @@ export const StyledCard = styled('div', {
             info: { bc: '$infoSolid', color: '$infoText' },
             dark: { bc: '$white1', color: '$black1' },
             light: { bc: '$black1', color: '$white1' },
-            default: { bc: '$white1', color: '$black1' }
+            default: { bc: 'transparent' }
         }
     },
     defaultVariants: {
         isVisible: false,
         isFocusVisible: false,
         placement: 'left',
-        color: 'accent'
+        color: 'default'
     }
 })
 

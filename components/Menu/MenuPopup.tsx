@@ -7,7 +7,10 @@ import type { MenuPopupProps } from './types'
 
 const noop = () => {}
 
-export const MenuPopup = ({ onClose = noop, ...props }: MenuPopupProps) => {
+export const MenuPopup = ({ 
+    onClose = noop, 
+    ...props 
+}: MenuPopupProps) => {
 
     const overlayRef = useRef<HTMLDivElement | null>(null)
 

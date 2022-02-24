@@ -11,7 +11,9 @@ export const usePopover = (props: UsePopoverProps): UsePopoverReturnValue => {
         isLoading = false, 
         isOpen,
         offset: offsetDistance = 6,
-        crossOffset: crossOffsetDistance
+        crossOffset: crossOffsetDistance,
+        height = 150,
+        width = 125,
     } = props 
 
     const arrowRef = useRef<HTMLDivElement>()
@@ -29,7 +31,7 @@ export const usePopover = (props: UsePopoverProps): UsePopoverReturnValue => {
         placement,
         middleware: [
             offset(offsetDistance), 
-            // flip(), 
+            flip(), 
             shift({ padding: 5 }), 
             arrow({ 
                 element: arrowRef 
@@ -63,7 +65,7 @@ export const usePopover = (props: UsePopoverProps): UsePopoverReturnValue => {
         update
     ])
 
-    const popoverStyles = getPopoverStyles({ x, y, arrowX, arrowY, placement, strategy })
+    const popoverStyles = getPopoverStyles({ x, y, arrowX, arrowY, placement, strategy, height, width })
     const interactionStates = getInteractionStates({ isDisabled, isLoading, isOpen })
 
     return {

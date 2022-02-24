@@ -104,54 +104,73 @@ export const StyledMenuButton = styled('button', {
 })
 
 const menuCssVars: CSS = {
-    '--menu-padding': '0.5rem',
-    '--menu-shadow': 'drop-shadow(0 4px 6px rgba(0, 0, 0, 15%))',
+    '--menu-padding': '0.45rem',
+    '--menu-shadow': 'drop-shadow(0 2px 3px rgba(0, 0, 0, 15%))',
     '--menu-outline-color': 'transparent',
     '--menu-color': 'hsl(204, 10%, 10%)',
     '--menu-background': 'hsl(204, 20%, 100%)',
     '--menu-border': 'hsl(204, 20%, 88%)',
 
     '@media(prefers-color-scheme: dark)': {
-        '--menu-border': 'hsl(204, 3%, 32%)',
-        '--menu-background': 'hsl(204, 3%, 20%)',
-        '--menu-color': 'hsl(0, 0%, 100%)',
-        '--menu-shadow': 'drop-shadow(0 4px 6px rgba(0, 0, 0, 30%))'
+        '--menu-border': 'rgba(24,28,36, 1.0)',
+        '--menu-background': 'rgba(15,16,17, 1.0)',
+        '--menu-background-hover': 'rgba(37,39,43, 1.0)',
+        '--menu-color': 'rgba(240,240,240, 1.0)',
+        '--menu-shadow': 'drop-shadow(0 2px 3px rgba(24, 36, 50, 1))'
     }
 }
 
 export const StyledMenu = styled('ul', {
     ...menuCssVars,
 
-    minWidth: '180px',
-
+    minWidth: 220,
     position: 'relative',
-    zIndex: 50,
+    zIndex: 999,
 
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: '0.5rem',
+
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: 'var(--menu-border-color)',
-    backgroundColor: 'var(--menu-background)',
+    borderColor: 'var(--menu-border)',
+    borderRadius: 6,
 
-    padding: 'var(--menu-padding)',
-    color: 'var(--menu-color)',
-    outline: '2px solid var(--menu-outline-color)',
-    outlineOffset: '2px',
+    backgroundColor: '$white1',
 
-    filter: 'var(--menu-shadow)'
+    padding: 3,
+    color: '$black1',
+
+    boxShadow: `
+        0px 10px 38px -10px rgba(233, 232, 231, 0.65),
+        0px 10px 20px -15px rgba(232, 232, 231, 0.8)
+    `,
+    '@media (prefers-reduced-motion: no-preference)': {
+        animationDuration: '400ms',
+        animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        willChange: 'transform, opacity'
+    }
 })
 
 export const StyledMenuItem = styled('li', {
-    display: 'flex',
+    all: 'unset',
+
+    fontSize: 13,
+    lineHeight: 1,
+
+    position: 'relative',
+    userSelect: 'none',
     cursor: 'default',
     scrollMargin: '0.5rem',
+    height: 25,
 
+    backgroundColor: '$white1',
+
+    display: 'flex',
     alignItems: 'center',
-    gap: '0.5rem',
-    borderRadius: '0.25rem',
-    padding: '0.5rem',
+
+    borderRadius: 3,
+    padding: '0 5px',
+    paddingLeft: 25,
 
     outline: '2px solid transparent',
     outlineOffset: '2px',
@@ -159,32 +178,34 @@ export const StyledMenuItem = styled('li', {
     variants: {
         isHovered: {
             true: {
-                backgroundColor: 'hsl(204, 25%, 27%)'
+                backgroundColor: '$infoSolid',
+                color: '$infoTextContrast'
             },
             false: null
         },
         isFocused: {
-            true: {
-                backgroundColor: 'orange'
-            },
+            true: null,
             false: null
         },
         isFocusVisible: {
             true: {
-                backgroundColor: 'purple',
+                outline: '2px solid dodgerblue',
+                outlineOffset: '2px'
             },
             false: null
         },
         isDisabled: {
             true: {
-                opacity: 0.25
+                opacity: 0.25,
+                pointerEvents: 'none',
+                cursor: 'not-allowed',
             },
             false: null
         },
         isSelected: {
             true: {
-                backgroundColor: 'hsl(104,100%, 40%)',
-                color: 'hsl(0, 0%, 100%)'
+                backgroundColor: 'hsl(50, 75%, 100%)',
+                color: 'hsl(0, 0%, 0%)'
             }
         }
     },
@@ -207,6 +228,24 @@ export const StyledMenuSeparator = styled('li', {
     opacity: 0.25
 })
 
+export const StyledRightSlot = styled('div', {
+    marginLeft: 'auto',
+    paddingLeft: 20,
+    color: 'var(--menu-color)',
+
+    variants: {
+        isFocusVisible: {
+            true: {
+                color: '$white1'
+            },
+            false: null
+        }
+    },
+    defaultVariants: {
+        isFocusVisible: false
+    }
+})
+
 export const StyledMenuSection = styled('li', {
     margin: '0em',
     padding: '0em',
@@ -224,8 +263,7 @@ export const StyledMenuSectionHeading = styled('span', {
     pl: '0.2rem',
     pr: '0.5rem',
     pt: '0.05rem',
-    pb: '0.1rem',
-
+    pb: '0.1rem'
 })
 
 export const StyledMenuSectionGroup = styled('ul', {

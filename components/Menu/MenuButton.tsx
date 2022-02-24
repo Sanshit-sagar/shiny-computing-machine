@@ -14,7 +14,7 @@ import { MenuContext } from './MenuContext'
 import { MenuButtonArrow } from './MenuButtonArrow'
 
 import { StyledMenuButton } from './styles'
-import { MenuButtonProps, MenuProps, MenuTriggerState } from './types'
+import { MenuProps, MenuButtonProps, MenuTriggerState } from './types'
 
 import Popover from '@/components/HoverCard'
 
@@ -57,18 +57,26 @@ export const AriaMenuButton = <T extends object>(
         autoFocus: state.focusStrategy || true
     }
 
-    const CustomMenuButton = ({ children }) => (
-        <StyledMenuButton {...mergedProps} {...interactionStates} ref={menuTriggerRef}>
-            {children}
-        </StyledMenuButton>
-    )
+    // const CustomMenuButton = ({ children }) => (
+        // <StyledMenuButton {...mergedProps} {...interactionStates} ref={menuTriggerRef}>
+            {/* {children} */}
+        {/* </StyledMenuButton> */}
+    // )
 
     return (
         <MenuContext.Provider value={menuContext}>
-            <Popover.Root isDisabled={false} isLoading={false} placement="right" isOpen={true}>
-                <Popover.Trigger element={StyledMenuButton}>
-                     {props.label}
-                     <MenuButtonArrow />
+            <Popover.Root 
+                height={225}
+                width={175}
+                isDisabled={false} 
+                isLoading={false} 
+                isOpen={true}
+                offset={10}
+                placement="bottom" 
+            >
+                <Popover.Trigger {...mergedProps} element={StyledMenuButton}>
+                    {props.label}
+                    <MenuButtonArrow />
                 </Popover.Trigger>
 
                 <Popover.Content>

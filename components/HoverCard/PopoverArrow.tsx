@@ -40,9 +40,9 @@ export const StyledArrow = styled('div', {
     width: '12px',
     zIndex: 1,
 
-    backgroundColor: 'inherit',
-    borderLeft: '2px solid $white1',
-    borderBottom: '2px solid $white1',
+    backgroundColor: 'rgba(31, 37, 42, 1.0)',
+    borderLeft: '2px solid rgba(31, 37, 42, 1.0)',
+    borderBottom: '2px solid rgba(31, 37, 42, 1.0)',
 
     borderRadius: '1px',
     

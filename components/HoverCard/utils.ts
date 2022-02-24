@@ -8,9 +8,9 @@ type InteractionStatesGetterProps = {
     isLoading?: boolean; 
 }
 
-const popoverSize = {
-    height: 'fit-content', 
-    width: '300px'
+const popoverSize: { height: number; width: number; } = {
+    height: 225, 
+    width: 300
 }
 
 const DEFAULT_PLACEMENT = 'top'
@@ -29,7 +29,16 @@ export const getStaticSide = (placement) => {
     }
 }
 
-export const getPopoverStyles = ({ placement, strategy, arrowX, arrowY, x, y }): PopoverStyles => {
+export const getPopoverStyles = ({ 
+    placement, 
+    strategy,
+    arrowX, 
+    arrowY, 
+    x, 
+    y,
+    height = '225px',
+    width = '300px'
+}): PopoverStyles => {
     
     const staticSide = getStaticSide(placement)
 
@@ -39,8 +48,8 @@ export const getPopoverStyles = ({ placement, strategy, arrowX, arrowY, x, y }):
         position: strategy,
         top:  y ?? '',
         left:  x ?? '',
-        height: `${popoverSize.height}`,
-        width: `${popoverSize.width}`
+        height: height,
+        width: `${width}px`
     }
 
     const arrowStyles: CSS = {

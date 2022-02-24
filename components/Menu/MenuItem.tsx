@@ -1,4 +1,4 @@
-import { useRef, forwardRef, RefObject, ReactElement } from 'react'
+import { useRef, forwardRef, cloneElement, RefObject, ReactNode, ReactElement } from 'react'
 
 import { mergeProps } from '@react-aria/utils'
 import { useMenuItem } from '@react-aria/menu' 
@@ -9,31 +9,22 @@ import { useMenuContext } from './utils'
 import { StyledMenuItem } from './styles'
 import type { MenuItemProps } from './types'
 
-import { useInteractions } from '@/hooks/useInteractions'
-
-export function AriaMenuItem<T>(props: MenuItemProps<T>) {
-
-    const { 
-        item, 
-        state, 
-        isVirtualized,
-        onAction, 
-    } = props
-
-    const {
-        onClose,
-        closeOnSelect
-    } = useMenuContext()
-
-    const { rendered, key } = item
+export function AriaMenuItem<T>({
+    item, 
+    state, 
+    isVirtualized,
+    onAction, 
+    children
+}: MenuItemProps<T> & { children: ReactNode; }) {
 
     const itemRef = useRef<HTMLLIElement | null>(null)
-
-    const isDisabled = state.disabledKeys.has(item.key)
     const isSelected = state.selectionManager.selectedKeys.has(item.key)
+    const isDisabled = state.disabledKeys.has(item.key)
+
+    const { onClose, closeOnSelect } = useMenuContext()
 
     const { labelProps, menuItemProps, descriptionProps, keyboardShortcutProps } = useMenuItem({
-        key,
+        key: item.key,
         onClose,
         onAction,
         isSelected,
@@ -43,22 +34,23 @@ export function AriaMenuItem<T>(props: MenuItemProps<T>) {
         'aria-label': item['aria-label']
     }, state, itemRef)
 
-    const { isHovered, hoverProps } = useHover({ isDisabled })
-    const { isFocused, isFocusVisible, focusProps } = useFocusRing({ within: true })
+    const [prefix, title, shortcut] = item.rendered
+    
+    const itemPrefix = cloneElement(prefix, {}) 
+    const itemTitle = cloneElement(title, labelProps)
+    const itemShortcut = cloneElement(shortcut, keyboardShortcutProps)
+
+    const { hoverProps, isHovered } = useHover({ isDisabled })
+    const { focusProps, ...focusStates } = useFocusRing({ within: true })
+    const mergedProps = mergeProps(menuItemProps, hoverProps, focusProps)
+
+    const menuStates = { isHovered, isSelected, isDisabled, ...focusStates }
 
     return (
-        <StyledMenuItem 
-            {...menuItemProps} 
-            {...focusProps} 
-            {...hoverProps}
-            isHovered={isHovered}
-            isFocused={isFocused}
-            isFocusVisible={isFocusVisible}
-            isSelected={isSelected}
-            isDisabled={isDisabled}
-            ref={itemRef}
-        >
-            {item.rendered}
+        <StyledMenuItem {...mergedProps} {...menuStates} ref={itemRef}>
+            <> {itemPrefix} </> 
+            <> {itemTitle} </>
+            <> {itemShortcut} </>
         </StyledMenuItem>
     )
 }
