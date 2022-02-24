@@ -66,8 +66,8 @@ export const AriaMenuButton = <T extends object>(
     return (
         <MenuContext.Provider value={menuContext}>
             <Popover.Root 
-                height={225}
-                width={175}
+                height={500}
+                width={300}
                 isDisabled={false} 
                 isLoading={false} 
                 isOpen={true}

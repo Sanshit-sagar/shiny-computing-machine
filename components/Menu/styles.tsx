@@ -123,7 +123,7 @@ const menuCssVars: CSS = {
 export const StyledMenu = styled('ul', {
     ...menuCssVars,
 
-    minWidth: 220,
+    minWidth: 215,
     position: 'relative',
     zIndex: 999,
 
@@ -161,16 +161,20 @@ export const StyledMenuItem = styled('li', {
     userSelect: 'none',
     cursor: 'default',
     scrollMargin: '0.5rem',
-    height: 25,
+
+    height: 27.5,
 
     backgroundColor: '$white1',
 
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'stretch',
 
     borderRadius: 3,
     padding: '0 5px',
     paddingLeft: 25,
+    letterSpacing: '-0.35px',
+    wordSpacing: '0px',
 
     outline: '2px solid transparent',
     outlineOffset: '2px',
@@ -204,8 +208,8 @@ export const StyledMenuItem = styled('li', {
         },
         isSelected: {
             true: {
-                backgroundColor: 'hsl(50, 75%, 100%)',
-                color: 'hsl(0, 0%, 0%)'
+                backgroundColor: '$infoSolid',
+                color: '$infoTextContrast'
             }
         }
     },
@@ -222,9 +226,8 @@ export const StyledMenuSeparator = styled('li', {
     borderWidth: '1px 0 0',
     borderColor: 'currentColor',
 
-    marginTop: '0.5rem',
-    marginBottom: '0.5rem',
-    height: '0px',
+    height: 1,
+    margin: 5, 
     opacity: 0.25
 })
 
@@ -258,12 +261,14 @@ export const StyledMenuSection = styled('li', {
 })
 
 export const StyledMenuSectionHeading = styled('span', {
-    fontSize: '1.1em', 
-    fontWeight: 'normal', 
-    pl: '0.2rem',
-    pr: '0.5rem',
-    pt: '0.05rem',
-    pb: '0.1rem'
+    
+    paddingLeft: 25,
+    fontSize: 12,
+    lineHeight: '22px',
+    color: '$black3',
+    letterSpacing: 'normal',
+
+    margin: '0em',
 })
 
 export const StyledMenuSectionGroup = styled('ul', {

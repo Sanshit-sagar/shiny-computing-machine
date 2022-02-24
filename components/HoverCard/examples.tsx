@@ -20,9 +20,6 @@ const StyledTwitterCard = styled('div', {
     flexDirection: 'column',
     gap: '0.5rem',
 
-   
-   
-
     borderColor: 'inherit',
     borderWidth: '1px',
     borderStyle: 'solid',

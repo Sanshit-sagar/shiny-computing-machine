@@ -9,42 +9,61 @@ import MenuItem from './index'
 
 type ActionableItem = {
     id: number;
-    key?: Key;
-    textValue: string; 
+    name: string; 
     icon: ReactNode | null;
-    title: string; 
     kbd?: string | null; 
+    items?: ActionableItem[]; 
 }
 
-const newItemsMenu: ActionableItem[] = [
-    { id: 0, textValue: 'newTab', icon: <CheckIcon />, title: 'New Tab', kbd: '⌘ T' },
-    { id: 1, textValue: 'newWindow', icon: <CheckIcon />, title: 'New Window', kbd: '⌘ W' },
-    { id: 2, textValue: 'newPrivateWindow', icon: <DotFilledIcon />, title: 'New Private Window', kbd: '⌘ I' }
+const items: ActionableItem[] = [
+    { 
+        id: 0,
+        name: '',
+        items: [
+            { id: 1, icon: <CheckIcon />, name: 'New Window', kbd: '⌘ W' },
+            { id: 2, icon: <DotFilledIcon />, name: 'New Private Window', kbd: '⌘ I' },
+            { id: 3, icon: <CheckIcon />, name: 'New Tab', kbd: '⌘ T', childNodes: [
+                { id: 8, icon: <DotFilledIcon />, name: 'Open Workspace from File...', kbd: '' }
+            ]},
+        ]
+    },
+    { 
+        id: 4, 
+        name: 'Section two', 
+        items: [
+            { id: 5, icon: <CheckIcon />, name: 'item5', kbd: '⌘ d' },
+            { id: 6, icon: <DotFilledIcon />, name: 'item6', kbd: '⌘ a' },
+            { id: 7, icon: <CheckIcon />, name: 'item7', kbd: '⌘ f'  },
+        ]
+    }
 ]
 
 export const MenuButtonInstance = () => {
-    const [disabledKeys, setDisabledKeys] = useState<Set<Key>>(new Set<Key>(['cut']))
+    const [disabledKeys, setDisabledKeys] = useState<Set<Key>>(new Set<Key>([]))
     const [selectedKeys, setSelectedKeys] = useState<Set<Key>>(new Set<Key>([]))
     
     const handleSelectionChange = (selection) => setSelectedKeys(selection)
 
     return (
         <MenuButton 
-            label="New" 
+            label="Options" 
             selectionMode="multiple"
             selectedKeys={selectedKeys} 
             onSelectionChange={handleSelectionChange}
             disabledKeys={disabledKeys}
-            items={newItemsMenu}
+            items={items}
         >
-            
-                {(item) => (
-                    <MenuItem.Root textValue={item.textValue} key={item.key}>
-                        <MenuItem.Indicator> {item.icon} </MenuItem.Indicator> 
-                        <MenuItem.Title> {item.title} </MenuItem.Title>
-                        <MenuItem.Shortcut> {item.kbd} </MenuItem.Shortcut>
-                    </MenuItem.Root>
-                )}
+            {(section) => (
+                <Section key={section.name} title={section.name} items={section.items}>
+                    {(item) => (
+                        <Item key={item.name} textValue={item.name} childItems={item.childNodes}>
+                            <MenuItem.Indicator> {item.icon} </MenuItem.Indicator> 
+                            <MenuItem.Title> {item.name} </MenuItem.Title>
+                            <MenuItem.Shortcut> {item.kbd} </MenuItem.Shortcut>
+                        </Item>
+                    )}
+                </Section>
+            )}
         </MenuButton>
     )
 }

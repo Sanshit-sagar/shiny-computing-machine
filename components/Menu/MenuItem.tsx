@@ -9,6 +9,8 @@ import { useMenuContext } from './utils'
 import { StyledMenuItem } from './styles'
 import type { MenuItemProps } from './types'
 
+import { MenuSubmenuTrigger } from './MenuSubmenuTrigger'
+
 export function AriaMenuItem<T>({
     item, 
     state, 
@@ -33,18 +35,31 @@ export function AriaMenuItem<T>({
         closeOnSelect,
         'aria-label': item['aria-label']
     }, state, itemRef)
+ 
 
     const [prefix, title, shortcut] = item.rendered
     
-    const itemPrefix = cloneElement(prefix, {}) 
+    const itemPrefix = cloneElement(prefix) 
     const itemTitle = cloneElement(title, labelProps)
-    const itemShortcut = cloneElement(shortcut, keyboardShortcutProps)
+    const itemShortcut = cloneElement(shortcut, keyboardShortcutProps) 
 
     const { hoverProps, isHovered } = useHover({ isDisabled })
     const { focusProps, ...focusStates } = useFocusRing({ within: true })
+
     const mergedProps = mergeProps(menuItemProps, hoverProps, focusProps)
 
     const menuStates = { isHovered, isSelected, isDisabled, ...focusStates }
+
+    if(item.hasChildNodes) return (
+        <MenuSubmenuTrigger 
+            item={item} 
+            state={state} 
+            prefix={itemPrefix} 
+            title={itemTitle} 
+            menuProps={mergedProps} 
+            ref={itemRef}
+        />
+    )
 
     return (
         <StyledMenuItem {...mergedProps} {...menuStates} ref={itemRef}>
