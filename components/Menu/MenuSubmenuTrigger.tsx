@@ -1,13 +1,7 @@
-import { useRef, forwardRef, cloneElement, RefObject, ReactElement, HTMLAttributes, ReactNode } from 'react'
-import { VariantProps, CSS } from 'stitches.config'
-
+import { useRef, forwardRef, ReactElement, HTMLAttributes, ReactNode } from 'react'
 import { Node } from '@react-types/shared' 
 
-import { ArrowRightIcon } from '@radix-ui/react-icons'
 import { TreeState } from '@react-stately/tree'
-
-import { useHover } from '@react-aria/interactions'
-import { useFocusRing } from '@react-aria/focus'
 import { mergeProps } from '@react-aria/utils'
 
 import { useInteractions } from '@/hooks/useInteractions'
@@ -25,7 +19,7 @@ import { DOMRef } from '@/interfaces/Shared'
 import { TriangleRightIcon } from '@radix-ui/react-icons'
 
 
-type MenuSubmenuTriggerProps = {
+type MenuSubmenuTriggerProps<T> = {
     item: Node<T>; 
     state: TreeState<T>; 
     menuProps: HTMLAttributes<HTMLElement>; 

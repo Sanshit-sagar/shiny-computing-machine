@@ -2,38 +2,37 @@ import { Key, useState, ReactNode } from 'react'
 import { MenuButton } from './MenuButton'
 
 import { Item, Section } from '@react-stately/collections'
-
 import { DotFilledIcon, CheckIcon } from '@radix-ui/react-icons' 
 
 import MenuItem from './index'
 
 type ActionableItem = {
     id: number;
+    icon?: ReactNode | null;
     name: string; 
-    icon: ReactNode | null;
     kbd?: string | null; 
-    items?: ActionableItem[]; 
+    childNodes?: ActionableItem[]; 
 }
 
+// childNodes: [{ id: 8, icon: <DotFilledIcon />, name: 'Open Workspace from File...', kbd: '' }]}]},
 const items: ActionableItem[] = [
     { 
         id: 0,
         name: '',
         items: [
-            { id: 1, icon: <CheckIcon />, name: 'New Window', kbd: '⌘ W' },
-            { id: 2, icon: <DotFilledIcon />, name: 'New Private Window', kbd: '⌘ I' },
-            { id: 3, icon: <CheckIcon />, name: 'New Tab', kbd: '⌘ T', childNodes: [
-                { id: 8, icon: <DotFilledIcon />, name: 'Open Workspace from File...', kbd: '' }
-            ]},
+            { id: 1, icon: null, name: 'Undo',                  kbd: '↑⌘Z'  },
+            { id: 2, icon: null, name: 'Redo',                  kbd: '⌘Z'   },
         ]
-    },
-    { 
-        id: 4, 
-        name: 'Section two', 
+    }, { 
+        id: 3, 
+        name: '', 
         items: [
-            { id: 5, icon: <CheckIcon />, name: 'item5', kbd: '⌘ d' },
-            { id: 6, icon: <DotFilledIcon />, name: 'item6', kbd: '⌘ a' },
-            { id: 7, icon: <CheckIcon />, name: 'item7', kbd: '⌘ f'  },
+            { id: 4, icon: null, name: 'Cut',                   kbd: '⌘X'   },
+            { id: 5, icon: null, name: 'Copy',                  kbd: '⌘C'   },
+            { id: 6, icon: null, name: 'Paste',                 kbd: '⌘V'   },
+            { id: 7, icon: null, name: 'Paste and Match Style', kbd: '↑⌘V'  },
+            { id: 8, icon: null, name: 'Delete',                kbd: ''     },
+            { id: 9, icon: null, name: 'Select All',            kbd: '⌘A'   }
         ]
     }
 ]
