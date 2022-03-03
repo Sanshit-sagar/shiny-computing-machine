@@ -8,28 +8,29 @@ export const StyledSidebar = styled('div', {
     listStyleType: 'none',
     scroll: 'smooth',
 
-    m: 0,
+    mt: '0.75%',
     p: '$2',
     outline: 'none',
 
     width: '325px',
     minWidth: '325px',
-    height: '100%',
+    height: '97.5%',
 
     d: 'flex',
     fd: 'column',
     jc: 'space-between',
     ai: 'stretch',
     gap: '$2',
-  
     
     br: 0,
+    btrr: '$2',
+    bbrr: '$2',
     oy: 'scroll',
     ox: 'hidden',
 
-    bc: 'transparent',
+    bc: '$accentBase',
     border: '1px solid transparent',
-    borderRightColor: '$accentBorder',
+    borderRightColor: 'transparent',
 
     '&::-webkit-scrollbar': {
         width: '0.35em',
@@ -82,7 +83,7 @@ export const StyledBottomArea = styled('div', {
 export const StyledSidebarItem = styled('div', {
     listStyleType: 'none',
     m: 0,
-    pr: '$1',
+    p: 0,
 
     d: 'flex',
     fd: 'row',
@@ -90,40 +91,23 @@ export const StyledSidebarItem = styled('div', {
     ai: 'center',
     gap: 0,
 
-    width: '95%',
+    width: '100%',
     border: '1px solid transparent',
     outline: '0',
     br: '$2',
 
+    bc: 'transparent',
     '&:hover': {
-        bc: '$black3',
-        color: '$white3',
+        bc: '$accentBgHover',
+        '& a': {
+            color: '$accentTextContrast',
+            textDecoration: 'underline'
+        }
     },
-    '&:active': {
-        bc: '$black3',
-        color: '$white3'
-    },
-    '&:focus': {
-        outline: '1px solid $accentFocusRing'
-    },
-
     variants: {
         isSelected: {
             true: {
-                bc: '$successBg',
-
-                color: '$successText',
-                '&:hover': {
-                    bc: '$successBgHover',
-                    color: '$successTextContrast',
-                },
-                '&:active': {
-                    bc: '$successBgActive',
-                    color: '$successTextContrast'
-                },
-                '&:focus': {
-                    outline: '1px solid $infoFocusRing'
-                }
+           
             }
         },
         isDisabled: {
@@ -140,7 +124,7 @@ export const StyledSidebarItem = styled('div', {
         },
         isExpanded: {
             true: {
-                // opacity: 1
+    
             }
         },
         hasChildNodes: {
@@ -161,21 +145,19 @@ export const StyledSidebarItem = styled('div', {
             isExpanded: true,
             hasChildNodes: true,
             css: {
-                bc: '$black3',
-                color: '$white3',
-                borderLeft: '3px solid $white1',
-                '&:hover': {
-                    bc: '$black3',
-                    color: '$white3',
-                    borderColor: 'transparent'
+                borderLeft: '3px solid $infoSolid',
+                bc: '$infoBase',
+                '& a': {
+                    color: '$infoText'
                 },
-                '&:active': {
-                    bc: '$black3',
-                    color: '$white1',
-                    borderColor: 'transparent'
+                '&:hover': {
+                    bc: '$infoBg',
+                    '& a': {
+                        color: '$infoTextContrast'
+                    }
                 }
             }
-        }
+        },
     ],
     defaultVariants: {
         isSelected: false,
@@ -203,10 +185,10 @@ export const StyledSidebarAnchor = styled('a', {
 
     fontFamily: '$jetbrains',
     fontSize: '$3',
-    fontWeight: 300,
+    fontWeight: 400,
     fontStyle: 'normal',
     textDecoration: 'none',
-    color: '$white1',
+    color: '$accentText',
 
     wordBreak: 'break-word',
     hyphens: 'auto',
@@ -215,29 +197,7 @@ export const StyledSidebarAnchor = styled('a', {
     transition: `
         background-color 0.4s ease-in-out,
         color 0.4s ease-in-out
-    `,
-
-    '&:hover': {
-        // color: '$accentText'
-    },
-    '&:active': {
-        // color: '$accentTextContrast',
-    },
-    '&:focus': {
-        outline: 'none',
-    },
-    '&focus-ring': {
-        content: "''",
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        border: '1px solid transparent',
-        '&::before': {
-            borderColor: '$accentFocusRing'
-        }
-    }
+    `
 })
 
 export const StyledHeader = styled('div', {
@@ -264,8 +224,7 @@ export const StyledHeader = styled('div', {
 })
 
 export const SectionHeading = styled('span', {
-    color: '$white1',
-    lineHeight: '$1',
+   
     p: 0,
    
     textAlign: 'start',
@@ -273,8 +232,11 @@ export const SectionHeading = styled('span', {
     fontSize: '$3',
     fontWeight: 300,
     fontStyle: 'normal',
-    letterSpacing: '',
-    textTransform: 'uppercase'
+    
+    letterSpacing: '$2',
+    lineHeight: '$1',
+    textTransform: 'uppercase',
+    color: '$accentTextContrast'
 })
 
 

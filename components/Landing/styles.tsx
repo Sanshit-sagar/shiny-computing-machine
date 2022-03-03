@@ -1,22 +1,22 @@
+import { ReactNode } from 'react' 
 import { styled } from 'stitches.config'
-
 
 export const StyledGallery = styled('div', {
     position: 'absolute',
     bottom: 0,
     right: 0,
     width: '1100px',
-    height: '92.5%',
-    p: 0,
-    mx: '$2',
-    my: '$1',
+    height: '95%',
+    p: '$1',
+    m: '$1',
 
-    bc: 'transparent',
+    bc: '$accentBase',
     br: '$6',
     
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
-    gridGap: '$2',
+    gridGap: '$4',
+    justifyContent: 'center',
 
     flexWrap: 'wrap',
     whiteSpace: 'wrap',
@@ -62,15 +62,15 @@ export const StyledWrapper = styled('div', {
 
     height: '450px', 
     width: '525px',
-    p: '0',
+    p: '0em',
+    m: '0em',
     
     boxSizing: 'border-box',
     border: '1px solid',
     br: '$6',
-    my: '$3',
 
-    bc: '$white3',
-    color: '$accentTextContrast',
+    backgroundColor: '$accentBg',
+    color: '$accentText',
     borderColor: '$accentBorder',
     
     willChange: 'background, opacity',
@@ -81,7 +81,8 @@ export const StyledWrapper = styled('div', {
     jc: 'space-between',
     ai: 'stretch',
     gap: 0,
-    zIndex: 0
+    zIndex: 0,
+    outline: 'none'
 })
 
 export const StyledDisplay = styled('div', {
@@ -92,9 +93,6 @@ export const StyledDisplay = styled('div', {
     fd: 'column',
     ai: 'center',
     gap: 0,
-
-    bc: 'transparent',
-    color: '$accentTextContrast',
 
     border: '1px solid',
     borderColor: 'transparent',
@@ -196,6 +194,12 @@ export const StyledContent = styled('div', {
     zIndex: 200,
     position: 'relative',
     padding: '20px 20px 30px',
+
+    display: 'flex',
+    fd: 'column',
+    jc: 'center',
+    ai: 'center',
+    gap: 0
 })
 
 export const StyledTitle = styled('span', {
@@ -229,7 +233,9 @@ export const StyledCard = styled('button', {
     flexShrink: '0',
     width: '515px',
     textAlign: 'left',
-    backgroundColor: '$black1',
+
+    bc: 'red',
+   
     borderRadius: '8px',
     cursor: 'pointer',
     boxShadow: `

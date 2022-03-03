@@ -1,6 +1,8 @@
 import { ExampleBase } from '@/components/ExampleBase'
 import { AvatarIcon } from '@radix-ui/react-icons'
 
+import MaskedAvatar from './variants'
+
 import Avatar from '@/components/Avatar'
 
 const alt = 'Sanshit Sagar'
@@ -20,7 +22,7 @@ export const AvatarWithImageAndFallback = () => (
     </Avatar.Root>
 )
 
-export const AvatarInstance = () => <AvatarWithImageAndFallback /> 
+export const AvatarInstance = () => <MaskedAvatar /> 
 
 const ExampleAvatarGroup = () => {
 

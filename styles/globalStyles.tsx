@@ -1,7 +1,13 @@
 import { globalCss } from 'stitches.config' 
 import { light, dark, dim } from 'styles/themes'
 
+
 export const cssReset = globalCss({
+    html: {
+        boxSizing: 'border-box',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale',
+    },
     body: {
         WebkitFontSmoothing: 'antialiased',
         MozOsxFontSmoothing: 'grayscale',
@@ -44,11 +50,14 @@ export const cssReset = globalCss({
         textTransform: 'capitalize'
     },
     button: {
-        fontFamily: '$jetbrains',
-        fontWeight: 400,
-        fontStyle: 'regular',
-        fontSize: '13px',
-        lineHeight: 1
+        boxSizing: 'border-box',
+        fontSize: '1.5rem',
+        textDecoration: 'none',
+        border: 'none',
+        background: 'transparent',
+        fontFamily: 'inherit',
+        padding: 0,
+        cursor: 'pointer'
     },
     pre: {
         fontFamily: '$jetbrains',
@@ -65,6 +74,15 @@ export const cssReset = globalCss({
         color: '$accentText',
         cursor: 'pointer'
     }, 
+    '& *': {
+        boxSizing: 'inherit',
+        '&::before': {
+            boxSizing: 'inherit'
+        },
+        '&::after': {
+            boxSizing: 'inherit'
+        }
+    },
     '.token.parameter': { color: '$accentSolid' },
     '.token.imports': { color: '$accentSolid' },
     '.token.plain': { color: '$accentSolid' },

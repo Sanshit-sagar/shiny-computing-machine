@@ -42,7 +42,6 @@ export const AriaMenuButton = <T extends object>(
     
     const { menuTriggerProps, menuProps } = useMenuTrigger({ type: 'menu' }, state, menuTriggerRef)
     const { interactionProps, ...interactionStates } = useInteractions({ focusType: 'within', isDisabled: false })
-  
 
     const { buttonProps } = useButton({ 
         onPress: (_event) => state.toggle(state.focusStrategy) 
@@ -57,26 +56,17 @@ export const AriaMenuButton = <T extends object>(
         autoFocus: state.focusStrategy || true
     }
 
-    // const CustomMenuButton = ({ children }) => (
-        // <StyledMenuButton {...mergedProps} {...interactionStates} ref={menuTriggerRef}>
-            {/* {children} */}
-        {/* </StyledMenuButton> */}
-    // )
-
     return (
         <MenuContext.Provider value={menuContext}>
             <Popover.Root 
-                height={500}
-                width={300}
                 isDisabled={false} 
                 isLoading={false} 
-                isOpen={true}
-                offset={10}
+                isOpen={state.isOpen}
+                offset={8}
                 placement="bottom" 
             >
-                <Popover.Trigger {...mergedProps} element={StyledMenuButton}>
+                <Popover.Trigger {...mergedProps} {...interactionStates} element={StyledMenuButton}>
                     {props.label}
-                    <MenuButtonArrow />
                 </Popover.Trigger>
 
                 <Popover.Content>

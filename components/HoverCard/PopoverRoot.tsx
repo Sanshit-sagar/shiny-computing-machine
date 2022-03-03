@@ -30,8 +30,8 @@ const PopoverRoot = forwardRef<PopoverRootElement, PopoverRootProps>(({
     isDisabled = false,
     isLoading = false,
     children, 
-    height = 260,
-    width = 300,
+    height = 10,
+    width = 10,
     offset,
     ...props
 }: ScopedProps<PopoverRootProps>, forwardedRef) => {

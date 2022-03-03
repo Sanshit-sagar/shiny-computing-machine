@@ -76,7 +76,9 @@ export const StyledButton = styled('button', {
 
     margin: '0rem',
     padding: '0.5em 0.25em',
-    backgroundColor: '$accentBg',
+    backgroundColor: '$accentBase',
+    color: '$accentText',
+
 
     display: 'flex',
     flexDirection: 'row',
@@ -111,8 +113,8 @@ export const StyledButton = styled('button', {
         },
         isHovered: {
             true: {
-                backgroundColor: '$accentBgHover',
-                color: '$accentTextContrast',
+                backgroundColor: '$accentTextContrast',
+                color: '$accentBase',
                 borderColor: '$accentBorderHover'
             },
             false: null
@@ -121,7 +123,7 @@ export const StyledButton = styled('button', {
             true: {
                 backgroundColor: '$accentBgActive',
                 color: '$accentTextContrast',
-                borderColor: '$accentFocusRing'
+                borderColor: '$accentBorderActive'
             },
             false: null
         },
@@ -202,7 +204,7 @@ export const StyledTitle = styled('span', {
     alignItems: 'center',
     gap: '0em',
 
-    color: '$black1',
+    color: 'inherit',
     fontSize: '$3',
     fontFamily: '$plexsans',
     fontStyle: 'normal',
@@ -218,13 +220,13 @@ export const StyledTitle = styled('span', {
     variants: {
         isHovered: {
             true: {
-                color: '$black1'
+                color: 'inherit'
             },
             false: null
         },
         isFocused: {
             true: {
-               color: '$black1'
+               color: 'inherit'
             },
             false: null
         },

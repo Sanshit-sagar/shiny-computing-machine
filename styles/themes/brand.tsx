@@ -1,19 +1,4 @@
-
-type Hue = number;
-type Saturation = number;
-type Lightness = number; 
-
-type Foundation = Required<{
-    hue: Hue | `${Hue}`;
-    saturation: `${Saturation}%`;
-    lightness: `${Lightness}%`;
-}>
-
-type FoundationCss = Required<{
-    '--brand-hue': Foundation['hue'];
-    '--brand-saturation': Foundation['saturation'];
-    '--brand-lightness': Foundation['lightness'];
-}>
+import type { Foundation, FoundationCss } from './types'
 
 const brandToCssVars = (foundation: Foundation): FoundationCss => {
     return {
@@ -36,12 +21,4 @@ export {
     brandToCssVars,
     brand_01,
     defaultBrand
-}
-
-export type {
-    Hue,
-    Saturation,
-    Lightness,
-    Foundation,
-    FoundationCss
 }

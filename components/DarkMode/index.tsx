@@ -1,12 +1,11 @@
 import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import { darkModeAtom, updateModeAtom, updateThemeAtom, activeThemeNameAtom } from '@/atoms/darkMode'
 
-import PButton from '@/components/Button'
 import { 
     MoonIcon, 
-    SunIcon, 
-    HomeIcon 
+    SunIcon 
 } from '@radix-ui/react-icons'
+import { Flex } from '@/components/Flex' 
 
 
 export const DarkMode = () => {
@@ -16,16 +15,13 @@ export const DarkMode = () => {
     const isDark = useAtomValue(darkModeAtom)
 
     return (
-        <PButton.Root radius="3">
-            <PButton.Prefix variant="outlined" elementType={'a'} href={'/'}>
-                <HomeIcon />
-            </PButton.Prefix>
-            <PButton.Base variant="outlined" onPress={updateTheme}>
+        <Flex>
+            <button onClick={updateTheme}>
                 {themeName}
-            </PButton.Base>
-            <PButton.Suffix variant="outlined" onPress={updateMode}>
+            </button>
+            <button onClick={updateMode}>
                 {isDark ? <MoonIcon /> : <SunIcon />}
-            </PButton.Suffix>
-        </PButton.Root>
+            </button>
+        </Flex>
     )
 }

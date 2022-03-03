@@ -46,7 +46,7 @@ export const MenuButtonInstance = () => {
     return (
         <MenuButton 
             label="Options" 
-            selectionMode="multiple"
+            selectionMode="single"
             selectedKeys={selectedKeys} 
             onSelectionChange={handleSelectionChange}
             disabledKeys={disabledKeys}

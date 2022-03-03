@@ -5,8 +5,8 @@ import StateFactory from '@/utils/StateFactory'
 import { ExampleBase } from '@/components/ExampleBase'
 import Fieldset from '@/components/Fieldset'
 
-import TextInput from './index'
 import { TextInputProps } from './interfaces'
+import TextInput from './variants'
 
 const init = (): TextInputProps => {
     const initState: TextInputProps = {
@@ -34,16 +34,7 @@ const init = (): TextInputProps => {
 export const TextInputInstance = () => {
     const{ state } = StateFactory<TextInputProps>(init)
 
-    return (
-        <Fieldset.Root validationState="valid">
-            <Fieldset.Label> Element Name </Fieldset.Label>
-            <Fieldset.Icon> <InputIcon /> </Fieldset.Icon> 
-            <TextInput {...state} />
-            <Fieldset.Description> Look through a peiodic table to find examples </Fieldset.Description> 
-            <Fieldset.ErrorMessage> That's not a valid element </Fieldset.ErrorMessage> 
-            <Fieldset.SuccessMessage> Yes! that's definitely valid  </Fieldset.SuccessMessage>
-        </Fieldset.Root>
-    )
+    return <TextInput />
 }
 
 const ExampleTextInput = () => {

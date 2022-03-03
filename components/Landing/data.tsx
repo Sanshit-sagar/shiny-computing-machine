@@ -1,11 +1,11 @@
 
 import { AccordionInstance } from '@/components/Accordion/examples'
-import { ButtonsInstance } from '@/components/Buttons/examples'
+
+import { AvatarInstance, AvatarPairInstance, AvatarStackInstance } from '@/components/AvatarGroup/examples'
+import { ButtonInstance } from '@/components/Button/examples'
 import { BreadcrumbsInstance } from '@/components/Breadcrumbs/examples'
 import { RangeCalendarInstance } from '@/components/Calendar/examples'
 import { CarouselInstance } from '@/components/Carousel/examples'
-
-
 import { PopoverInstance } from '@/components/HoverCard/examples'
 import { ToggleableInstance } from '@/components/Toggleable/examples'
 import { MenuButtonInstance } from '@/components/Menu/examples'
@@ -15,8 +15,9 @@ import { TableViewInstance } from '@/components/Table/examples'
 import { SplitButtonInstance } from '@/components/SplitButton/examples'
 import { AccessibleTabsInstance } from '@/components/Tab/examples'
 import { InputInstance } from '@/components/TextField/examples'
+import { TextInputInstance } from '@/components/TextInput/examples'
 import { DatePickerInstance } from '@/components/DatePicker/examples'
-import { AvatarInstance } from '@/components/Avatar/examples'
+// import { AvatarInstance } from '@/components/Avatar/examples'
 import { CheckboxInstance } from '@/components/Checkbox/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
 import { ColorSliderInstance } from '@/components/ColorSlider/examples'
@@ -46,7 +47,7 @@ import { SwitchInstance } from '@/components/Switch/examples'
 import { StarRatingInstance } from '@/components/StarRating/examples'
 import { TabsInstance } from '@/components/Tabs/examples'
 import { TextAreaInstance } from '@/components/TextArea/examples'
-import { TextInputInstance } from '@/components/TextInput/examples'
+
 import { TooltipInstance } from '@/components/Tooltip/examples'
 import { TreeInstance } from '@/components/TreeView/examples'
 
@@ -94,212 +95,44 @@ export const showcases: IShowcase[] = [{
         description: 'did it strike a-cord-in your heart?',
         icon: <CollapseIcon />
     }, {
-        element: <InputInstance />,
-        name: 'Input',
-        description: '',
-        icon: <TextInputIcon />
-    }, {
-        element: <MenuButtonInstance />,
-        name: 'MenuButton',
-        description: '',
-        icon: <ButtonIcon />
-    }, {
-        element: <AsyncInstance />,
-        name: 'Async',
-        description: '',
-        icon: <HourglassIcon /> 
-    }, {
-        element: <AvatarInstance />,
+        element: <AvatarPairInstance />,
         name: 'Avatar',
         description: '',
-        icon: <AvatarIcon />
+        icon: <AvatarIcon />   
     }, {
         element: <BreadcrumbsInstance />,
         name: 'Breadcrumbs',
-        description: 'soft flaky crumbles',
-        icon: <TabsIcon /> 
-    },  {
-        element: <PopoverInstance />,
-        name: 'Popover',
         description: '',
-        icon: <PopoverIcon /> 
+        icon: <LinkIcon />
     }, {
-        element: <ButtonsInstance />,
-        name: 'Buttons',
+        element: <ButtonInstance />,
+        name: 'Button', 
         description: '',
-        icon: <ButtonIcon /> 
-    }, {
-        element: <SplitButtonInstance />,
-        name: 'Split Button',
-        description: '',
-        icon: <ButtonIcon /> 
+        icon: <ButtonIcon />
     }, {
         element: <RangeCalendarInstance />,
         name: 'Calendar',
-        description: 'every night is a date with this one',
-        align: 'start',
+        description: '',
         icon: <MonthlyCalendarIcon />
-    }, {
-        element: <CarouselInstance />,
-        name: 'Carousel',
-        description: 'really cares to sell itself',
-        icon: <CarouselIcon />  
-    }, {
-        element: <CheckboxInstance />,
-        name: 'Checkbox',
-        description: 'Checkbox anotha one',
-        icon: <CheckboxIcon />
     }, {
         element: <CheckboxGroupInstance />,
         name: 'Checkbox Group',
-        description: 'checks all the boxes',
-        icon: <CheckboxIcon />
-    }, {
-        element: <ChipInstance />,
-        name: 'Chip',
         description: '',
-        icon: <ButtonIcon />  
+        icon: <CheckboxIcon /> 
     }, {
-        element: <ColorSliderInstance />,
-        name: 'Color Slider',
+        element: <TextInputInstance />,
+        name: 'Input',
         description: '',
-        icon: <ColorPaletteIcon />
-    }, {
-        element: <ComboBoxInstance />,
-        name: 'Combo Box', 
-        description: '',
-        icon: <ComboBoxIcon />
-    }, {
-        element: <CountUpInstance />,
-        name: 'Count Up', 
-        description: '',
-        icon: <NumberFieldIcon /> 
-    }, {
-        element: <DatePickerInstance />,
-        name: 'Date Picker',
-        description: '',
-        icon: <MonthlyCalendarIcon /> 
-    }, {
-        element: <DialogInstance defaultOpen={false} />,
-        name: 'Dialog',
-        description: '',
-        icon: <DialogIcon /> 
-    }, {
-        element: <InlineCodeInstance />,
-        name: 'Inline Code', 
-        description: '',
-        icon: <InlineCodeIcon /> 
-    }, {
-        element: <InlineEditInstance />,
-        name: 'Inline Edit',
-        description: ``,
-        icon: <InlineEditIcon /> 
-    }, {
-        element: <KbdInstance />,
-        name: 'Kbd',
-        description: '',
-        icon: <KeyboardIcon />
-     }, {
-        element: <LinkInstance />,
-        name: 'Link',
-        description: '',
-        icon: <LinkIcon />
-     }, {
-        element: <MenewInstance />,
-        name: 'Menu',
-        description: 'much better than the old one',
-        align: 'start',
-        icon: <DropdownMenuIcon />
-    }, {
-        element: <NumberFieldInstance />,
-        name: 'NumberField',
-        description: '',
-        icon: <NumberFieldIcon />
-    }, {
-        element: <MultiToggleInstance />,
-        name: 'MultiToggle',
-        description: 'cause one toggle wasnt enough',
-        icon: <TabsIcon />
-    }, {
-        element: <CodeInputInstance />,
-        name: 'Pin Code',
-        description: '',
-        icon: <KeyIcon />
-    }, {
-        element: <OrderedListInstance />,
-        name: 'Ordered List',
-        description: '',
-        icon: <ListIcon />
-    }, {
-        element: <ProgressBarInstance />,
-        name: 'ProgressBar',
-        description: '',
-        icon: <GuageIcon />
-    }, {
-        element: <RadioButtonInstance />,
-        name: 'Radio Group',
-        description: 'WANTED for killing the video star',
-        icon: <RadioListIcon /> 
-    }, {
-        element: <SearchBarInstance />,
-        name: 'Search',
-        description: '',
-        icon: <MagnifyingGlassIcon />
-    }, {
-        element: <SelectInstance />,
-        name: 'Select',
-        description: '',
-        icon: <SelectIcon />
-    }, {
-        element: <SliderInstance />,
-        name: 'Slider',
-        description: '',
-        icon: <SliderGroupIcon /> 
-    }, {
-        element: <SpinnerInstance />,
-        name: 'Spinner',
-        description: '',
-        icon: <HourglassIcon />,
-    }, {
-        element: <StarRatingInstance />,
-        name: 'Star Rating',
-        description: `Killed on video by the Radio back in '52`,
-        icon: <HalfStarIcon />,
+        icon: <TextInputIcon />
     }, {
         element: <SwitchInstance />,
         name: 'Switch',
         description: '',
         icon: <SwitchIcon /> 
     }, {
-        element: <TableViewInstance />,
-        name: 'Table',
-        description: '',
-        icon: <TableIcon />
-    }, {
-        element: <AccessibleTabsInstance />,
-        name: 'Tabs',
-        description: '',
-        icon: <TabsIcon />
-    }, {
-        element: <TextAreaInstance />,
-        name: 'Text Area',
-        description: '',
-        icon: <TextAreaIcon />
-    }, {
-        element: <TextInputInstance />,
-        name: 'Text Input',
-        description: 'text goes in, poo comes out',
-        icon: <TextInputIcon /> 
-    },{
         element: <TooltipInstance />,
         name: 'Tooltip',
-        description: 'Cooltip: hover the button for a tooltip',
-        icon: <TooltipIcon /> 
-    }, {
-        element: <TreeInstance />,
-        name: 'Tree',
         description: '',
-        icon: <TreeIcon />
-    }
-]
+        icon: <TooltipIcon />
+}]
 

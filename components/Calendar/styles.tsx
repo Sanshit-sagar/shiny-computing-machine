@@ -1,6 +1,5 @@
 import React, { ComponentProps } from 'react'
 import { styled, VariantProps, CSS } from '../../stitches.config'
-import { primaryVariant, outlinedVariant } from '@/components/Button/variants'
 
 export const Controls = styled('div', {
     height: 'fit-content',
@@ -39,11 +38,8 @@ const CalendarWrapper = styled('div', {
     fd: 'column', 
     jc: 'flex-start', 
     ai: 'stretch', 
-
-    p: '$2',
+    p: 0,
     m: 0,
-
-    bc: 'transparent',
     border: 'none',
     outline: 'none'
 })
@@ -77,7 +73,7 @@ export const StyledCell = styled('span', {
     aspectRatio: '1',
     my: '1px',
 
-    color: '$light1',
+    color: '$accentText',
     border: '1px solid transparent',
     outline: 'none',
 
@@ -87,29 +83,23 @@ export const StyledCell = styled('span', {
     variants: {
         isHovered: {
             true: {
-                br: '50%',
-                width: '36px',
-                height: '36px',
-                aspectRatio: '1',
-                bc: '$accentBgSubtle',
-                color: '$accentTextContrast',
+                borderColor: '#2260ff',
+                br: '$2',
                 cursor: 'pointer'
             },
             false: null,
         },
         isFocused: {
             true: {
-                bc: '$accentBgActive', 
-                color: '$accentTextContrast',
-                borderColor: '1px solid $accentFocusRing',
-                cursor: 'grabbing'
+                borderColor: '#2260ff',
+                br: '$2'
             },
             false: null,
         },
         isPressed: {
             true: {
-                bc: '$accentSolid', 
-                color: '$accentTextContrast',
+                bc: '$infoSolid', 
+                color: '$infoTextContrast',
                 cursor: 'grabbing'
             },
             false: null
@@ -154,41 +144,35 @@ export const StyledCell = styled('span', {
         },
         isToday: {
             true: {
-                br: '50%',
                 width: '36px',
                 height: '36px',
-                aspectRation: '1',
                 border: '1px solid $accentBorder',
-                color: '$black1'
+                br: '$2',
+                color: '$accentTextContrast'
             }
         },
         isSelected: {
             true: {
-                bc: '$accentLine',
+                bc: '$infoBgHover',
                 color: '$accentTextContrast',
-                border: '0',
+                borderColor: 'transparent',
+                borderRadius: '0em'
             },
             false: null
         },
         isSelectionStart: {
             true: {
-                bc: '$accentLine',
-                color: '$accentTextContrast',
-                border: '0',
-                br: '50%',
-                btrr: '0',
-                bbrr: '0'
+                borderRadius: '0em',
+                bblr: '$2',
+                btlr: '$2'
             },
             false: null
         },
         isSelectionEnd: {
             true: {
-                bc: '$accentLine',
-                color: '$accentTextContrast',
-                border: '0',
-                br: '50%',
-                btlr: '0',
-                bblr: '0'
+                borderRadius: '0em',
+                bbrr: '$2',
+                btrr: '$2'
             },
             false: null
         },

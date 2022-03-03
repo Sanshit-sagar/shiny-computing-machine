@@ -1,16 +1,32 @@
 import { 
     DOMProps, 
     SelectionBase,
-    ReadableDOMProps, 
-    LabelableDOMProps, 
     FocusableDOMProps,  
     ValidationState
 } from '@/interfaces/Shared'
-import { CheckBg, Checker, Checkmark } from './styles'
+import { CSS } from 'stitches.config'
 
+export interface SwitchAriaProps {
+    'aria-label': string;
+    'aria-labelledby': string;
+    'aria-describedby': string;
+    'role': string;
+}
 
-export interface SwitchProps extends DOMProps, ReadableDOMProps, FocusableDOMProps, LabelableDOMProps, SelectionBase<boolean> {
+export interface ToggleState extends SelectionBase<boolean> {}
+
+export interface SwitchOwnProps {
+    css?: CSS; 
+}
+
+export interface SwitchProps extends DOMProps, ToggleState, SwitchOwnProps, Partial<SwitchAriaProps> {
     isDisabled?: boolean;
     isLoading?: boolean;
+    isRequired?: boolean; 
     validationState?: ValidationState;
 }
+
+export interface ISwitchContext extends SwitchProps {
+    
+}
+// excludeFromTabOrder, autoFocus, 

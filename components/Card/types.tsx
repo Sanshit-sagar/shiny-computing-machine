@@ -1,6 +1,7 @@
 import { CSS, VariantProps } from 'stitches.config'
 import { ElementType, ReactNode } from 'react'
 import { StyledCardWrapper } from './styles'
+import type { Scope } from '@/hooks/createContextScope'
 
 export interface CardComposition {
     Header?: React.FC<{ className?: string }>;
@@ -8,6 +9,7 @@ export interface CardComposition {
     Heading?: React.FC<{ className?: string }>;
     Description?: React.FC<{ className?: string }>;
 }
+
 
 export interface CardProps extends CardComposition, VariantProps<typeof StyledCardWrapper> {
     element?: ElementType;
@@ -18,11 +20,10 @@ export interface CardProps extends CardComposition, VariantProps<typeof StyledCa
     css?: CSS;
 }
 
-export interface CardState {
-    hasHeader?: boolean; 
-    hasTitle?: boolean;
-    title?: string; 
-    hasSubtitle?: boolean;
-    subtitle?: string; 
+export type ICardContext = {
+    
 }
 
+export type ScopedProps<P> = P & { 
+    __scopeCard?: Scope; 
+}

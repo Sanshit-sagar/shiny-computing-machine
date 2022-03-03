@@ -8,7 +8,7 @@ import { CodeBlock } from '@/components/CodeBlock/Code'
 import { InlineCode } from '@/components/InlineCode'
 import { Checkbox } from '@/components/Checkbox/CheckboxRoot'
 import { Slider } from '@/components/Slider/Slider'
-import { Switch } from '@/components/Switch'
+import { Switch } from '@/components/Switch/SwitchRoot'
 import {
     Title,
     Subtitle,

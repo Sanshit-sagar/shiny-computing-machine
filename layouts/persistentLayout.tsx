@@ -17,7 +17,7 @@ interface PersistentLayoutProps {
 const StyledLayoutContainer = styled('div', {
     height: '100vh', 
     width: '100%',
-    bc: '$black1',  
+    bc: '$accentBase',  
 
     d: 'flex', 
     fd: 'column', 
@@ -27,21 +27,11 @@ const StyledLayoutContainer = styled('div', {
 })
 
 const StyledDemos = styled('div', {
-
-})
-
-const StyledHeader = styled('div', {
-    height: '50px',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row', 
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    gap: '$3'
+    
 })
 
 const StyledBody = styled('div', {
-    height: 'calc(100vh - 50px)',
+    height: '100%',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -72,15 +62,10 @@ const PersistentLayout = ({ children }: PersistentLayoutProps) => {
    
     return ( 
     
-        <StyledLayoutContainer>
-            <StyledHeader>
-                <HeaderNavbar />
-            </StyledHeader> 
+        <StyledLayoutContainer className={activeThemeClass}>
             <StyledBody>
                 <SidebarInstance />
-                <StyledDemos className={activeThemeClass}> 
-                    {children} 
-                </StyledDemos>
+                <StyledDemos> {children} </StyledDemos>
             </StyledBody>
         </StyledLayoutContainer>
     )

@@ -1,152 +1,254 @@
-import React from 'react'
-import { styled } from '../../stitches.config'
-import { Boop } from '@/components/Animated'
+import { styled, CSS, VariantProps } from 'stitches.config'
 
-export const StyledAvatar = styled('div', {
+const AVATAR_URI = `https://github.com/jonrohan.png?v=3&s=56`
+
+const vars: CSS = {
+    '--size': '48px',
+    '--background-color': '$colors$accentBase',
+    '--border-radius': '$sizes$1',
+    '--border-width': '1px',
+    '--border-style': 'solid',
+    '--border-color': '$colors$accentBase',
+    '--shadow-color': 'var(--border-color)',
+
+    '--color-canvas': '#22272e',
+    '--color-avatar-stack-fade': '#d1d5da',
+    '--color-avatar-stack-fade-more': '#e1e4e8',
+    '--color-avatar-child-shadow': '-1px -1px 0 var(--shadow-color)'
+}
+
+const StyledAvatar = styled('img', {
+    ...vars,
+
+    display: 'inline-block',
+    overflow: 'hidden',
+    lineHeight: '$1',
+    verticalAlign: 'middle',
+    backgroundColor: 'var(--background-color)',
+    borderWidth: 'var(--border-width)',
+    borderStyle: 'var(--border-style)',
+    borderColor: 'var(--border-color)',
+    borderRadius: 'var(--border-radius)',
+    flexShrink: 0,
+
+    height: 'var(--size)',
+    width: 'var(--size)',
+    padding: '0em',
+    margin: '0em',
+    boxShadow: 'var(--box-shadow)',
+
+    '&.avatar-more': {
+        zIndex: 1,
+        marginRight: 0,
+        background: 'var(--canvas-color)',
+
+        '&::before': {
+            position: 'absolute',
+            display: 'block',
+            height: 'var(--size)',
+            content: '',
+            borderRadius: 'var(--border-radius)',
+            outline: 'var(--border-width) var(--border-style) var(--border-color)',
+            background: 'var(--color-avatar-stack-fade-more)',
+            width: '14px'
+        },
+        '&::after': {
+            position: 'absolute',
+            display: 'block',
+            height: 'var(--size)',
+            content: '',
+            borderRadius: 'var(--border-radius)',
+            outline: 'var(--border-width) var(--border-style) var(--border-color)',
+            width: '14px',
+            background: 'var(--color-avatar-stack-fade)'
+        }
+    },
+
     variants: {
-        'size': {
-            '1': { size: '10px' },
-            '2': { size: '20px' },
-            '3': { size: '30px' },
-            '4': { size: '40px' },
-            '5': { size: '50px' },
-            '6': { size: '60px' },
-            '7': { size: '70px' },
-            '8': { size: '80px' },
-            '9': { size: '90px' },
-            '10': { size: '100px' },
-            '11': { size: '110px' },
-            '12': { size: '120px' },
-            '13': { size: '130px' },
-            '14': { size: '140px' },
-            '15': { size: '150px' },
-            '16': { size: '160px' },
-            '17': { size: '170px' },
-            '18': { size: '180px' },
-            '19': { size: '190px' },
-            '20': { size: '200px' },
+        linked: {
+            true: {
+                float: 'left',
+                lineHeight: '$1'
+            },
+            false: null
         },
-        'gradient': {
-            'stripe': { linearGradient: 'to right, #1fa2ff, #12d8fa, #a6ffcb' },
-            'flare': { linearGradient: 'to right, #f12711, #f5af19'},
-            'default': { linearGradient: '19deg, #21D4FD 0%, #B721FF 100%' },
-            'sublime-light': { linearGradient: 'to right, #fc5c7d, #6a82fb'},
-            'blurry-beach': { linearGradient: 'to right, #d53369, #cbad6d' },
-            'bighead': { linearGradient: 'to right, #c94b4b, #4b134f' },
-            'vanusa': { linearGradient: 'to right, #da4453, #89216b' },
-            'velvet-sun': { linearGradient: 'to right, #e1eec3, #f05053'},
-            'argon': { linearGradient: 'to right, #03001e, #7303c0, #ec38bc, #fdeff9' },
-            'celestial': { linearGradient: 'to right, #c33764, #1d2671' },
-            'relay': { linearGradient: 'to right, #3a1c71, #d76d77, #ffaf7b' },
-            'crystal-clear': { linearGradient: 'to right, #159957, #155799' },
-            'ibiza-sunset': { linearGradient: 'to right, #ee0979, #ff6a00' },
-            'fresh-turboscent': { linearGradient: 'to right, #f1f2b5, #135058' },
-            'cheer-up-emo-kid': { linearGradient: 'to right, #556270, #ff6b6b' },
-            'starfall': { linearGradient: 'to right, #f0c27b, #4b1248' },
-            'nelson': { linearGradient: 'to right, #f2709c, #ff9472' },
-            'forever-lost': { linearGradient: 'to right, #5d4157, #a8caba' },
-            'influenza': { linearGradient: 'to right, #c04848, #480048' },
-            'jshine': { linearGradient: 'to right, #12c2e9, #c471ed, #f64f59' },
-            'calm-darya': { linearGradient: 'to right, #5f2c82, #49a09d' },
-            'titanium': { linearGradient: 'to right, #283048, #859398' },
-            'pinky': { linearGradient: 'to right, #dd5e89, #f7bb97' },
-            'purple-paradise': { linearGradient: 'to right, #1d2b64, #f8cdda' },
-            'horizon': { linearGradient: 'to right, #003973, #e5e5be' },
-            'noon-to-dusk': { linearGradient: 'to right, #ff6e7f, #bfe9ff' },
+        grouped: {
+            true: {
+                display: 'inline-block',
+                marginBottom: '3px'
+            },
+            false: null
         },
-        'radius': {
-            'none': { br: 0 },
-            'small':{ br: '$1' },
-            'medium':{ br: '$5' },
-            'large': { br: '$9' },
-            'round': { br: '$round' }
+        relation: {
+            'parent': {
+                position: 'relative'
+            },
+            'child': {
+                display: 'inline-flex',
+                position: 'absolute',
+                right: '-15%',
+                bottom: '-9%',
+                height: 'calc(var(--size) * 0.40)',
+                width: 'calc(var(--size) * 0.40)',
+                backgroundColor: 'transparent',
+                borderRadius: 'var(--border-radius)',
+                boxShadow: 'var(--color-avatar-child-shadow)'
+            },
+            'none': null
         }
     },
     defaultVariants: {
-        size: '15',
-        gradient: 'fresh-turboscent',
-        radius: 'round'
+        linked: false,
+        grouped: false,
+        relation: 'none'
     }
 })
 
 
-export type AvatarProps = React.ComponentProps<typeof StyledAvatar>
+const StyledAvatarStack = styled('div', {
+    ...vars,
 
+    position: 'relative',
+    height: 'var(--size)', 
+    minWidth: 'calc(var(--size) * 3)',
 
-const replies = [
-    { id: '1', photo: '🐶' },
-    { id: '2', photo: '🐱' },
-    { id: '3', photo: '🐰' },
-    { id: '4', photo: '🐭' },
-    { id: '5', photo: '🐹' },
-    { id: '6', photo: '🦊' },
-    { id: '7', photo: '🐻' },
-    { id: '8', photo: '🐼' },
-    { id: '9', photo: '🐨' }
-]
+    variants: {
+        size: {
+            '2': {
+                minWidth: '36px'
+            },
+            '3+': {
+                minWidth: '46px'
+            }
+        }
+    }
+})
 
-const Avatar = styled('div', {
-    background: 'linear-gradient(90deg,#ffa0ae 0%,#aacaef 75%)',
-    height: '50px',
-    width: '50px',
-    borderRadius: '50%',
-    border: '3px solid #4C79DF',
+const StyledAvatarPair = styled('div', {
+    display: 'inline-flex'
+})
+ 
+const StyledAvatarBody = styled('div', {
+    ...vars,
+
+    position: 'absolute',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    fontSize: '38px',
+    background: 'var(--canvas-color)',
+
+    '&.avatar': {
+        position: 'relative',
+        zIndex: 2,
+        display: 'flex',
+        width: 'var(--size)',
+        height: 'var(--size)',
+
+        boxSizing: 'content-box',
+        marginRight: '-11px',
+
+        backgroundColor: 'pink',
+        borderRight: 'var(--border-width) var(--border-style) var(--border-color)',
+        borderRadius: '$1',
+
+        boxShadow: 'none',
+        transition: 'margin 300ms ease',
+
+        '&:first-child': {
+            zIndex: 3
+        },
+        '&:last-child': {
+            zIndex: 1,
+            borderRight: '0em'
+        },
+
+        '& img': {
+            borderRadius: '$1'
+        },
+
+        '&:nth-child(n+4)': {
+            display: 'none',
+            opacity: 0
+        }
+    },
+
+    '&:hover': {
+        '&.avatar': {
+            marginRight: '3px',
+
+            '&:nth-child(n+4)': {
+                display: 'flex',
+                opacity: 1
+            }
+        },
+
+        '&.avatar-more': {
+            display: 'none !important'
+        }
+    }
 })
-Avatar.displayName = 'avatar'
-Avatar.toString = () => '.avatar'
 
-const AvatarList = styled('ul', {
-    display: 'flex',
-    flexWrap: 'wrap',
-    marginLeft: '0px',
-    marginBottom: '8px',
-    marginTop: '15px'
+const StyledCircleBadge = styled('div', {
+    // TODO
 })
-AvatarList.displayName = 'avatar-list'
-AvatarList.toString = () => '.avatar-list'
 
-const AvatarItem = styled('li', {
-    listStyle: 'none',
-    marginRight: '-10px'
-})
-AvatarItem.displayName = 'avatar-item'
-AvatarItem.toString = () => '.avatar-item'
+type AvatarVariantProps = VariantProps<typeof StyledAvatar> 
 
-const AvatarEmoji = styled('span', {
-    paddingRight: 0
-})
-AvatarEmoji.displayName = 'avatar-emoji'
-AvatarEmoji.toString = () => '.avatar-emoji'
-
-interface IAvatar {
-    src?: string;
-    fallback?: string;
-    alt?: string;
-    delay?: string; 
-};
-
-interface AvatarDatum {
-    id: string;
-    photo: React.ReactNode | string; 
+export type AvatarProps = {
+    linked: AvatarVariantProps['linked'];
+    grouped: AvatarVariantProps['grouped'];
+    relation: AvatarVariantProps['relation'];
+    src: string; 
+    alt: string; 
 }
 
-export const AvatarGroup = () => (
-    <AvatarList>
-        {replies.map((item: AvatarDatum, index: number) => (
-            <Boop rotation={30} timing={150}>
-                <AvatarItem key={`item-indexed-${index}`}>
-                    <Avatar>
-                        <AvatarEmoji role="img"> 
-                            {item.photo} 
-                        </AvatarEmoji>
-                    </Avatar>
-                </AvatarItem>
-            </Boop>
-        ))}
-    </AvatarList>
-)
+export const Avatar = (props) => {
+    const defaultAvatarProps: AvatarProps & { className: string; } = {
+        src: `https://github.com/jonrohan.png?v=3&s=56`,
+        alt: '@octocat',
+        linked: false,
+        grouped: true,
+        relation: 'none',
+        className: "avatar"
+    }
+
+    return <StyledAvatar {...defaultAvatarProps} {...props} /> 
+}
+Avatar.displayName = 'Avatar'
+
+export const AvatarPair = () => {
+
+    return (
+        <StyledAvatarPair css={{ position: 'relative' }}>
+            <StyledAvatar 
+                className="avatar" 
+                alt="jonrohan" 
+                src="https://github.com/jonrohan.png?v=3&s=48" 
+                grouped={false} 
+                linked={false} 
+                relation="parent"
+            />
+            <StyledAvatar
+                className="avatar" 
+                alt="josh"
+                src="https://github.com/josh.png?v=3&s=40"  
+                grouped={false} 
+                linked={false} 
+                relation="child"
+            />
+        </StyledAvatarPair>
+    )
+}
+AvatarPair.displayName = 'AvatarPair'
+
+export const AvatarStack = () => {
+
+    return (
+        <StyledAvatarStack size='3+'>
+            <StyledAvatarBody aria-label="octocat, octocat and octocat">  
+                <Avatar className="avatar" />
+                <Avatar className="avatar" />
+                <Avatar className="avatar" />
+            </StyledAvatarBody>
+        </StyledAvatarStack>
+    )
+}
+AvatarStack.displayName = 'AvatarStack'

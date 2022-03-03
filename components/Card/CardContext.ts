@@ -1,7 +1,14 @@
-import { createContext } from 'react'
-import { CardState} from './interfaces'
+import type { ICardContext } from './types'
 
-export const CardContext = createContext<CardState | null>(
-    null
-)
+import { DEFAULT_NAME } from './constants'
+import { createContextScope } from '@/hooks/createContextScope'
 
+const [createCardContext, createCardScope] = createContextScope(DEFAULT_NAME)
+const [CardProvider, useCardContext] = createCardContext<ICardContext>(DEFAULT_NAME)
+
+export {
+    CardProvider,
+    useCardContext,
+    createCardScope,
+    createCardContext
+}

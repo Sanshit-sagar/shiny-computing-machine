@@ -23,46 +23,50 @@ const cssVariables: CSS = {
 }
 
 export const StyledMenuButton = styled('button', {
-    ...cssVariables, 
-
-    display: 'flex',
-    height: 'fit-content',
-    minHeight: '1.75rem',
-    maxHeight: '3rem',
+    appearance: 'none',
+    whiteSpace: 'nowrap',
+    verticalAlign: 'middle',
     cursor: 'pointer',
+    userSelect: 'none',
+ 
+    textDecoration: 'none',
+    textAlign: 'center',
 
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '0.25rem',
+    position: 'relative',
 
-    borderWidth: '0.05rem',
-    borderRadius: '0.5rem',
+    display: 'inline-block',
+    padding: '6px 16px',
+    lineHeight: '20px',
+
+    fontFamily: 'inherit',
+    fontWeight: 300,
+    fontSize: '$2',
+
+    borderWidth: '1px',
     borderStyle: 'solid',
+    borderColor: '#1b1f24',
+    borderRadius: '6px',
 
-    color: '$accentText',
-    borderColor: '$accentBorder',
-    backgroundColor: '$accentBg',
-    
-    fontSize: '1rem',
-    lineHeight: '1.5rem',
-    padding: '0.5rem 1.0rem',
+    boxShadow: '0px 1px 0px 0px #1b1f24',
+    backgroundColor: '#f3f4f6',
+    color: '#ffffff',
 
-    opacity: 'var(--menu-button-opacity)',
-
-    outline: '2px solid transparent',
-    outlineOffset: '2px',
+    outline: 'none',
 
     variants: {
         isHovered: {
             true: {
-                backgroundColor: '$accentBgHover',
-                borderColor: '$accentBorderHover',
-                color: '$accentTextContrast'
+                textDecoration: 'none',
+
+                backgroundColor: '#0969da',
+                borderColor: '#1b1f24',
+                color: '#ffffff'
             },
             false: null
         },
         isFocused: {
             true: {
+                outline: 'none',
                 backgroundColor: '$accentBgActive',
                 borderColor: '$accentFocusRing',
                 color: '$accentTextContrast'
@@ -84,7 +88,12 @@ export const StyledMenuButton = styled('button', {
         },
         isDisabled: {
             true: {
-                opacity: 'var(--menu-button-opacity-disabled)'
+                cursor: 'not-allowed',
+                pointerEvents: 'none',
+
+                '& svg': {
+                    opacity: 0.6
+                }
             },
             false: null
         },

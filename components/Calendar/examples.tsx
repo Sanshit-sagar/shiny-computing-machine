@@ -18,10 +18,12 @@ const CalendarWrapper = styled('div', {
     flexGrow: '1 1 auto',
     flexShrink: '1 1 auto',
 
-    bc: '$white1',
-    border: '1px solid $white2',
-    color: '$black1',
-    br: '$4',
+    padding: '$3',
+
+    bc: '$accentPanel',
+    border: '1.25px solid $accentBorder',
+    color: '$accentText',
+    br: '$3',
     outline: 'none'
 })
 

@@ -2,7 +2,7 @@
 import StateFactory from '@/utils/StateFactory'
 import { ExampleBase } from '@/components/ExampleBase'
 
-import { Switch } from './index'
+import SwitchRoot from './SwitchRoot'
 import { SwitchProps } from './types'
 import { SwitchIcon } from '@radix-ui/react-icons'
 
@@ -10,10 +10,11 @@ const init = (): SwitchProps => {
     const switchProps = {
         isReadOnly: false,
         isDisabled: false,
+        isLoading: false,
         isRequired: false,
         isSelected: false,
         onChange: (value) => alert(`New value is ${value.toString()}`),
-        label: 'Switch'
+        label: ''
     }
     return switchProps
 }
@@ -26,7 +27,7 @@ export const SwitchInstance = () => {
         onChange: (value: boolean) => update('isSelected', value)
     }
     
-    return <Switch {...mutableState} />
+    return <SwitchRoot {...mutableState} />
 }
 
 const ExampleSwitch = () => {

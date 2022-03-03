@@ -8,7 +8,10 @@ interface MenuButtonArrowProps<T> {
     children?: ReactNode;
 }
 
-const AriaMenuButtonArrow = <T extends object>(props: MenuButtonArrowProps<T>, ref: RefObject<HTMLSpanElement>) => (
+const AriaMenuButtonArrow = <T extends object>(
+    props: MenuButtonArrowProps<T>, 
+    ref: RefObject<HTMLSpanElement>
+) => (
     <span aria-hidden="true" {...props}>
         <ChevronDownIcon /> 
     </span>

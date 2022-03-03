@@ -4,14 +4,16 @@ import { styled, CSS } from 'stitches.config'
 export const Checker = styled('label', {
     display: 'block',
     fontSize: '2em',
-    height: '1em',
+    height: '2em',
     padding: 0,
     margin: 0,
-    width: '2.5em',
+    width: '4.4em',
     boxSizing: 'content-box',
-
-    borderRadius: '20px',
-    transition: 'transform 0.4s ease',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+   
+    borderRadius: '999px',
+    transition: 'transform 300ms cubic-bezier(.23,1,.32,1)',
     cursor: 'pointer',
 
     variants: {
@@ -27,8 +29,8 @@ export const Checker = styled('label', {
         },
         isPressed: {
             true: {
-                transform: 'scale(0.925)',
-                transitionDuration: '200ms'
+                transform: 'scale(0.95)',
+                transition: 'transform 300ms cubic-bezier(.23,1,.32,1)'
             },
             false: null
         },
@@ -81,39 +83,98 @@ export const Checker = styled('label', {
     }
 })
 
-const sharedBgStyles: CSS = {
-    content: "",
+
+export const InnerContentWrapper = styled('div', {
     position: 'absolute',
+    width: 'calc(2em - $2 - 4px)',
+    height: 'calc(2em - $2 - 4px)',
     top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    borderRadius: 'inherit'
-}
+    bottom: 2,
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    lineHeight: 0,
+    opacity: 0,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+
+    verticalAlign: 'middle',
+    
+    transition: 'opacity 300ms cubic-bezier(.23,1,.32,1)',
+
+    variants: {
+        isChecked: {
+            true: {
+                opacity: 1,
+                left: '5%'
+            },
+            false: {
+                opacity: 1,
+                right: '5%'
+            }
+        }
+    },
+    defaultVariants: {
+        isChecked: false
+    }
+})
+
+export const InnerContent = styled('span', {
+    position: 'relative',
+    height: 'inherit',
+    width: 'inherit',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    textOverflow: 'clip',
+    textDecoration: 'none',
+
+   
+    fontWeight: 500,
+
+    '& svg': {
+        height: '50%',
+        width: '50%',
+        strokeWidth: '0.5px',
+        aspectRatio: '1 / 1',
+
+    },
+
+    variants: {
+        isChecked: {
+            true: {
+                '& svg': {
+                    stroke: 'green',
+                    color: 'green',
+                    fill: 'currentColor'
+                }
+            },
+            false: {
+                '& svg': {
+                    stroke: 'red',
+                    color: 'red',
+                    fill: 'currentColor'
+                }
+            }
+        }
+    },
+    defaultVariants: {
+        isChecked: false
+    }
+})
 
 export const CheckBg = styled('div', {
     position: 'relative',
     width: '100%',
     height: '100%',
-    padding: '0.1em',
+    padding: '0.2em',
     borderRadius: 'inherit',
-    backgroundColor: '$accentBg',
-    border: '1px solid $accentBorder',
+   
+    border: '2px solid $accentBorder',
     zIndex: '$0',
 
-    '&::after': {
-        ...sharedBgStyles
-    },
-    '&::before': {
-        ...sharedBgStyles,
-        transition: 'transform 0.4s ease',
-        transform: 'translateY(30%)',
-        transformOrigin: 'bottom center',
-        background: '$accentLine',
-        filter: 'blur(0.25em)',
-        opacity: 0.2,
-        zIndex: '$min'
-    },
+    backgroundColor: '$accentBg',
 
     variants: {
         isHovered: {
@@ -125,8 +186,8 @@ export const CheckBg = styled('div', {
         isFocused: {
             true: {
                 '&::before': {
-                    transform: 'translateY(0) scale(0.9)',
-                    opacity: 0.2
+                    // transform: 'translateY(0) scale(0.9)',
+                    // opacity: 0.2
                 }
             },
             false: null
@@ -137,15 +198,11 @@ export const CheckBg = styled('div', {
         },
         isChecked: {
             true: {
-                '&::after': {
-                    background: 'transparent'
-                }
+                backgroundColor: '$infoBase',
+                color: '$infoTextContrast',
+                borderColor: '$infoBorder'
             },
-            false: {
-                '&::after': {
-                    background: 'transparent'
-                }
-            }
+            false: {}
         },
         isDisabled: {
             true: {
@@ -191,29 +248,29 @@ export const CheckBg = styled('div', {
 })
 
 export const Checkmark = styled('div', {
-    height: '0.75em',
-    width: '0.75em',
+    height: '1.5em',
+    width: '1.5em',
     margin: 0,
     padding: 0,
     borderRadius: 'inherit',
     aspectRatio: '1/1',
-    transition: 'transform 0.4s ease',
-    transform: 'translateX(-0.4em)',
-    zIndex: '$max',
+    transform: 'translateX(-0.8em)',
+    transition: 'transform 400ms cubic-bezier(.23, 1,.32,1)',
+    zIndex: 999,
 
     '& svg': {
         display: 'block',
         background: 'transparent',
-        transform: 'translateX(0.4em)',
+        transform: 'translateX(0.8em)',
         borderRadius: 'inherit',
         transition: `
-            background-color 0.4s ease, 
-            transform 0.4s ease
+            background-color 400ms cubic-bezier(.23,1,.32,1), 
+            transform 400ms cubic-bezier(.23,1,.32,1)
         `,
         '& path': {
             fill: 'none',
             stroke: '$accentText',
-            strokeWidth: 15,
+            strokeWidth: '5px',
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
             strokeDasharray: '90 90',
@@ -225,13 +282,15 @@ export const Checkmark = styled('div', {
     variants: {
         isChecked: {
             true: {
-                transform: 'translate(1.9em)',
+                transform: 'translate(2.8em)',
                 '& svg': {
-                    background: '$accentSolid',
+                    background: '$infoSolid',
+                    border: '1px solid $accentBorder',
                     transform: 'translate(-.4em)',
 
                     '& path': {
-                        strokeDashoffset: 0
+                        strokeDashoffset: 0,
+                        stroke: '$accentText'
                     }
                 }
             },

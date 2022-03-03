@@ -12,8 +12,8 @@ export const usePopover = (props: UsePopoverProps): UsePopoverReturnValue => {
         isOpen,
         offset: offsetDistance = 6,
         crossOffset: crossOffsetDistance,
-        height = 150,
-        width = 125,
+        height,
+        width,
     } = props 
 
     const arrowRef = useRef<HTMLDivElement>()
