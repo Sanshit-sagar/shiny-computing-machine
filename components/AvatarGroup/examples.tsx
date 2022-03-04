@@ -1,10 +1,12 @@
 import { ExampleBase } from '@/components/ExampleBase'
 import { AvatarIcon } from '@radix-ui/react-icons'
-import { AvatarStack, Avatar, AvatarPair } from './styles'
+import { Avatar, AvatarPair, AvatarStack } from './index'
+import { BadgeGroup } from './Badge'
 
 export const AvatarInstance = () => <Avatar />
 export const AvatarPairInstance = () => <AvatarPair /> 
 export const AvatarStackInstance = () => <AvatarStack />
+export const BadgeGroupInstance = () => <BadgeGroup /> 
 
 const ExampleAvatarGroup = () => {
 
@@ -16,7 +18,7 @@ const ExampleAvatarGroup = () => {
             component={<AvatarStackInstance />}
             controls={[]}
         />
-    ); 
+    )
 }
 
 export default ExampleAvatarGroup

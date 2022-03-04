@@ -1,8 +1,6 @@
-import { styled, CSS, VariantProps } from 'stitches.config'
+import { styled, CSS } from 'stitches.config'
 
-const AVATAR_URI = `https://github.com/jonrohan.png?v=3&s=56`
-
-const vars: CSS = {
+export const vars: CSS = {
     '--size': '48px',
     '--background-color': '$colors$accentBase',
     '--border-radius': '$sizes$1',
@@ -11,13 +9,13 @@ const vars: CSS = {
     '--border-color': '$colors$accentBase',
     '--shadow-color': 'var(--border-color)',
 
-    '--color-canvas': '#22272e',
-    '--color-avatar-stack-fade': '#d1d5da',
-    '--color-avatar-stack-fade-more': '#e1e4e8',
+    '--color-canvas': '$colors$accentBase',
+    '--color-avatar-stack-fade': '$colors$accentLine',
+    '--color-avatar-stack-fade-more': '$colors$accentBorder',
     '--color-avatar-child-shadow': '-1px -1px 0 var(--shadow-color)'
 }
 
-const StyledAvatar = styled('img', {
+export const StyledAvatar = styled('img', {
     ...vars,
 
     display: 'inline-block',
@@ -37,31 +35,8 @@ const StyledAvatar = styled('img', {
     margin: '0em',
     boxShadow: 'var(--box-shadow)',
 
-    '&.avatar-more': {
-        zIndex: 1,
-        marginRight: 0,
-        background: 'var(--canvas-color)',
-
-        '&::before': {
-            position: 'absolute',
-            display: 'block',
-            height: 'var(--size)',
-            content: '',
-            borderRadius: 'var(--border-radius)',
-            outline: 'var(--border-width) var(--border-style) var(--border-color)',
-            background: 'var(--color-avatar-stack-fade-more)',
-            width: '14px'
-        },
-        '&::after': {
-            position: 'absolute',
-            display: 'block',
-            height: 'var(--size)',
-            content: '',
-            borderRadius: 'var(--border-radius)',
-            outline: 'var(--border-width) var(--border-style) var(--border-color)',
-            width: '14px',
-            background: 'var(--color-avatar-stack-fade)'
-        }
+    '&:hover': {
+        borderColor: '$infoSolid'
     },
 
     variants: {
@@ -104,151 +79,138 @@ const StyledAvatar = styled('img', {
     }
 })
 
+export const StyledAvatarPair = styled('div', {
+    ...vars, 
 
-const StyledAvatarStack = styled('div', {
-    ...vars,
+    display: 'inline-flex'
+})
 
-    position: 'relative',
-    height: 'var(--size)', 
-    minWidth: 'calc(var(--size) * 3)',
 
-    variants: {
-        size: {
-            '2': {
-                minWidth: '36px'
-            },
-            '3+': {
-                minWidth: '46px'
-            }
-        }
+export const StyledAvatarMore = styled('div', {
+    ...vars, 
+
+    zIndex: 1,
+    marginRight: 0,
+    background: 'var(--color-canvas-subtle)',
+
+    '&::before': {
+        position: 'absolute',
+        display: 'block',
+        height: 'var(--size)',
+        content: '',
+        borderRadius: 'var(--border-radius)',
+        outline: 'var(--border-width) var(--border-style) var(--color-canvas-default)',
+        width: 'calc(var(--size) * 0.25)',
+        background: 'var(--color-avatar-stack-fade-more)'
+    },
+    '&::after': {
+        position: 'absolute',
+        display: 'block',
+        height: 'var(--size)',
+        content: '',
+        borderRadius: 'var(--border-radius)',
+        outline: 'var(--border-width) var(--border-style) var(--color-canvas-default)',
+        width: 'calc(var(--size) * 0.50)',
+        background: 'var(--color-avatar-stack-fade)'
     }
 })
 
-const StyledAvatarPair = styled('div', {
-    display: 'inline-flex'
-})
- 
-const StyledAvatarBody = styled('div', {
-    ...vars,
+const sharedStyles: CSS = {
+    position: 'relative',
+    zIndex: 2,
+    display: 'flex',
+    height: 'var(--size)',
+    width: 'var(--size)',
 
-    position: 'absolute',
+    boxSizing: 'content-box',
+    marginRight: '-11px',
+
+    backgroundColor: 'pink',
+    borderRight: 'var(--border-width) var(--border-style) var(--border-color)',
+    borderRadius: 'var(--border-radius)',
+
+    boxShadow: 'none',
+    transition: 'margin 300ms ease',
+
+    '&:first-child': {
+        zIndex: 3
+    },
+
+    '&:last-child': {
+        zIndex: 1,
+        borderRight: '0em'
+    },
+    '& img': {
+        borderRadius: '$1'
+    },
+
+    '&:nth-child(n+2)': {
+        display: 'flex',
+        opacity: 0.7
+    },
+    '&:nth-child(n+3)': {
+        display: 'flex',
+        opacity: 0.4
+    },
+    '&:nth-child(n+4)': {
+        display: 'flex',
+        opacity: 0
+    }
+}
+ 
+export const StyledAvatarBody = styled('div', {
+    ...vars,
     display: 'flex',
     background: 'var(--canvas-color)',
 
-    '&.avatar': {
-        position: 'relative',
-        zIndex: 2,
-        display: 'flex',
-        width: 'var(--size)',
-        height: 'var(--size)',
-
-        boxSizing: 'content-box',
-        marginRight: '-11px',
-
-        backgroundColor: 'pink',
-        borderRight: 'var(--border-width) var(--border-style) var(--border-color)',
-        borderRadius: '$1',
-
-        boxShadow: 'none',
-        transition: 'margin 300ms ease',
-
-        '&:first-child': {
-            zIndex: 3
-        },
-        '&:last-child': {
-            zIndex: 1,
-            borderRight: '0em'
-        },
-
-        '& img': {
-            borderRadius: '$1'
-        },
-
-        '&:nth-child(n+4)': {
-            display: 'none',
-            opacity: 0
-        }
+    [`& ${StyledAvatar}`]: { 
+        ...sharedStyles
     },
-
+  
     '&:hover': {
-        '&.avatar': {
+        [`& ${StyledAvatar}`]: {
             marginRight: '3px',
 
-            '&:nth-child(n+4)': {
+            '&:nth-child(n + 2)': {
                 display: 'flex',
                 opacity: 1
             }
         },
-
-        '&.avatar-more': {
+       
+        [`& ${StyledAvatarMore}`]: {
             display: 'none !important'
         }
     }
+      
 })
 
-const StyledCircleBadge = styled('div', {
-    // TODO
-})
 
-type AvatarVariantProps = VariantProps<typeof StyledAvatar> 
+export const StyledAvatarStack = styled('div', {
+    ...vars,
+    
+    position: 'relative',
+    minWidth: 'calc(var(--size) * 1.3)',
+    height: 'var(--size)',
+    margin: '0em',
+    padding: '0em',
+    alignSelf: 'center',
+    
 
-export type AvatarProps = {
-    linked: AvatarVariantProps['linked'];
-    grouped: AvatarVariantProps['grouped'];
-    relation: AvatarVariantProps['relation'];
-    src: string; 
-    alt: string; 
-}
+    [`& ${StyledAvatarBody}`]: {
+        position: 'absolute',
+    },
 
-export const Avatar = (props) => {
-    const defaultAvatarProps: AvatarProps & { className: string; } = {
-        src: `https://github.com/jonrohan.png?v=3&s=56`,
-        alt: '@octocat',
-        linked: false,
-        grouped: true,
-        relation: 'none',
-        className: "avatar"
+    variants: {
+        size: {
+            '2': {
+                minWidth: 'calc(var(--size) * 1.8)',
+            },
+            '3+': {
+                minWidth: 'calc(var(--size) * 2.3)',
+            }
+        }
+    },
+    defaultVariants: {
+        size: '2'
     }
-
-    return <StyledAvatar {...defaultAvatarProps} {...props} /> 
-}
-Avatar.displayName = 'Avatar'
-
-export const AvatarPair = () => {
-
-    return (
-        <StyledAvatarPair css={{ position: 'relative' }}>
-            <StyledAvatar 
-                className="avatar" 
-                alt="jonrohan" 
-                src="https://github.com/jonrohan.png?v=3&s=48" 
-                grouped={false} 
-                linked={false} 
-                relation="parent"
-            />
-            <StyledAvatar
-                className="avatar" 
-                alt="josh"
-                src="https://github.com/josh.png?v=3&s=40"  
-                grouped={false} 
-                linked={false} 
-                relation="child"
-            />
-        </StyledAvatarPair>
-    )
-}
-AvatarPair.displayName = 'AvatarPair'
-
-export const AvatarStack = () => {
-
-    return (
-        <StyledAvatarStack size='3+'>
-            <StyledAvatarBody aria-label="octocat, octocat and octocat">  
-                <Avatar className="avatar" />
-                <Avatar className="avatar" />
-                <Avatar className="avatar" />
-            </StyledAvatarBody>
-        </StyledAvatarStack>
-    )
-}
-AvatarStack.displayName = 'AvatarStack'
+})

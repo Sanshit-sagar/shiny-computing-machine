@@ -1,40 +1,69 @@
-import { Box } from '@/components/Box' 
-import { StyledAvatar, AvatarProps } from './styles'
+import { VariantProps } from 'stitches.config'
+import { 
+    StyledAvatar, 
+    StyledAvatarBody,
+    StyledAvatarPair, 
+    StyledAvatarMore,
+    StyledAvatarStack
+} from './styles'
 
-interface AvatarGroupProps extends AvatarProps {
-    amount?: number;
+type AvatarVariantProps = VariantProps<typeof StyledAvatar> 
+
+export type AvatarProps = {
+    linked: AvatarVariantProps['linked'];
+    grouped: AvatarVariantProps['grouped'];
+    relation: AvatarVariantProps['relation'];
+    src: string; 
+    alt: string; 
 }
 
-export const Avatar = (props: AvatarProps) => (
-    <StyledAvatar {...props}  />
-);
+export const Avatar = (props) => {
+    const defaultAvatarProps: AvatarProps = {
+        src: `https://github.com/jonrohan.png?v=3&s=48`,
+        alt: '@octocat',
+        linked: false,
+        grouped: true,
+        relation: 'none'
+    }
 
-const DEFAULT_AVATAR_SIZE = 200
-
-
-const rescaleAvatarSize = (defaultSize = 200, index: number): number => {
-    if(index > 10) return 10;
-    if(index <= 0) return 200;
-    return defaultSize - index * 10; 
+    return <StyledAvatar {...defaultAvatarProps} /> 
 }
+Avatar.displayName = 'Avatar'
 
-export const AvatarGroup = ({ 
-    amount = 5, 
-    radius = "round", 
-    gradient = "default", 
-    size = DEFAULT_AVATAR_SIZE 
-}: AvatarGroupProps) => {
+export const AvatarPair = () => {
 
     return (
-        <Box css={{ bc: 'transparent', border: '1px solid black', height: 400, width: 400 }}>
-            {[...Array(amount)].map((value: number, index: number) => (
-                <StyledAvatar 
-                    key={index}
-                    radius={radius}
-                    gradient={gradient}
-                    size={rescaleAvatarSize(200, index)}
-                />  
-            ))}
-        </Box>
-    ); 
+        <StyledAvatarPair css={{ position: 'relative' }}>
+            <StyledAvatar 
+                alt="jonrohan" 
+                src="https://github.com/jonrohan.png?v=3&s=48" 
+                grouped={false} 
+                linked={true} 
+                relation="parent"
+            />
+            <StyledAvatar
+                alt="josh"
+                src="https://github.com/josh.png?v=3&s=40"  
+                grouped={false} 
+                linked={true} 
+                relation="child"
+            />
+        </StyledAvatarPair>
+    )
 }
+AvatarPair.displayName = 'AvatarPair'
+
+export const AvatarStack = () => {
+
+    return (
+        <StyledAvatarStack size='3+'>
+            <StyledAvatarBody aria-label="octocat, octocat and octocat">  
+                <Avatar />
+                <Avatar />
+                <StyledAvatarMore /> 
+                <Avatar />
+            </StyledAvatarBody>
+        </StyledAvatarStack>
+    )
+}
+AvatarStack.displayName = 'AvatarStack'
