@@ -1,5 +1,3 @@
-
-
 import { ElementType, forwardRef, ReactElement } from 'react'
 
 import { mergeProps } from '@react-aria/utils'
@@ -12,11 +10,13 @@ import { StyledButton } from './styles'
 import { AriaButtonProps } from './types'
 import { useFocusableRef } from '@/utils/useRefs'
 
-import { Text } from '@/components/Text'
 import { isTextOnly } from '../Buttons/utils'
 import { FocusableRef } from '@/interfaces/Shared'
 
-const AriaButton = <T extends ElementType = 'button'>(props: AriaButtonProps<T>, ref: FocusableRef<HTMLButtonElement>) => {
+const AriaButton = <T extends ElementType = 'button'>(
+    props: AriaButtonProps<T>, 
+    ref: FocusableRef<HTMLButtonElement>
+) => {
 
     const {
         elementType: Component = 'button',

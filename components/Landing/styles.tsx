@@ -67,7 +67,7 @@ export const StyledWrapper = styled('div', {
     
     boxSizing: 'border-box',
     border: '1px solid',
-    br: '$6',
+    br: '$5',
 
     backgroundColor: '$accentBg',
     color: '$accentText',
@@ -116,14 +116,14 @@ export const StyledDisplay = styled('div', {
 })
 
 export const StyledName = styled('h3', {
-    my: '$3',
-    mx: '$5',
+    my: '$2',
+    mx: '$2',
     p: 0,
 
     fontFamily: '$jetbrains',
-    fontSize: '$7',
+    fontSize: '$5',
     fontStyle: 'normal',
-    fontWeight: 700,
+    fontWeight: '$7',
     fontVariant: 'tabular',
     fontVariantNumeric: 'tabular-nums',
     color: '$accentText',
@@ -233,16 +233,9 @@ export const StyledCard = styled('button', {
     flexShrink: '0',
     width: '515px',
     textAlign: 'left',
-
-    bc: 'red',
    
-    borderRadius: '8px',
+    borderRadius: '$2',
     cursor: 'pointer',
-    boxShadow: `
-        0px 2px 20px rgba(0, 0, 0, 0.12), 
-        0 20px 20px -10px rgba(0, 0, 0, 0.125)
-    `,
-    transition: 'all 0.45s ease',
     
     '&:hover': {
         transform: 'scale(1.04)',

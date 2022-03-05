@@ -217,54 +217,47 @@ export const {
             accentTextContrast: 'rgb(10,10,10)',
 
             accentSelection: 'rgba(7,7,7,1)',
-            accentSelectionText: 'rgba(248,248,248,1)'
+            accentSelectionText: 'rgba(248,248,248,1)',
+
+            tooltipBackground: 'rgba(7,7,7,1.0)',
+            tooltipForeground: 'rgba(248,248,248,1)'
         },    
         space: {
-            0: '1.5px',
-            1: '3px',
-            2: '5px',
-            3: '7.5px',
-            4: '10px',
-            5: '15px',
-            6: '20px',
-            7: '25px',
-            8: '35px',
-            9: '45px',
-            10: '65px',
-            11: '80px',
-            12: '96px',
-            13: '112px',
-            14: '136px',
-            15: '150px'
+            0: '0px',
+            1: '4px',
+            2: '8px',
+            3: '16px',
+            4: '24px',
+            5: '32px',
+            6: '40px',
+            7: '48px',
+            8: '64px',
+            9: '80px',
+            10: '96px',
+            11: '112px',
+            12: '128px',
+            13: '144px',
+            14: '160px',
+            15: '176px'
         },
         fonts: {
-            mono: 'Major Mono Display, monospace',
             jetbrains: 'JetBrains Mono, monospace',
-            ibmplex: 'IBM Plex Sans, sans-serif',
-            untitled: 'Untitled Sans, -apple-system, system-ui, sans-serif',
+            plexsans: 'IBM Plex Sans, sans-serif',
+            untitled: 'Untitled Sans, apple-system, sans-serif',
+            serif: '-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji',
+            monospace: 'ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace'
         },
         fontSizes: {
-            0: '10px',
-            1: '11.5px',
-            2: '12px',
-            3: '13px',
-            4: '15px',
-            5: '17px',
-            6: '19px',
-            7: '21px',
-            8: '24px',
-            9: '30px',
-            10: '36px',
-            11: '54px',
-            12: '72px',
-            13: '90px',
-            14: '108px',
-            15: '120px',
-            16: '144px',
-            17: '168px',
-            18: '192px',
-            19: '220px',
-            20: '260px'
+            0:  '0px',
+            1: '11px',
+            2: '13px',
+            3: '15px',
+            4: '18px',
+            5: '22px',
+            6: '26px',
+            7: '32px',
+            8: '40px',
+            9: '48px'
         },
         fontWeights: {
             1: 100,
@@ -275,19 +268,14 @@ export const {
             6: 600,
             7: 700,
             8: 800,
-            9: 900,
-            10: 1000
+            9: 900
         },
         lineHeights: {
-            1: 1,
+            1: 1.00,
             2: 1.25,
-            3: 1.75,
-            4: 2.25,
-            5: 3,
-            6: 4.25,
-            7: 5.5,
-            8: 7.25,
-            9: 9
+            3: 1.50,
+            4: 2.00,
+            5: 2.50
         },
         letterSpacings: {
             1: '0.025em',
@@ -300,32 +288,26 @@ export const {
             8: '0.50em'
         },
         sizes: {
-            1: '5px',
-            2: '10px',
-            3: '15px',
-            4: '20px',
-            5: '25px',
-            6: '35px',
-            7: '45px',
-            8: '65px',
-            9: '80px',
-            10: '100px',
-            11: '120px',
-            12: '140px',
-            13: '160px',
-            14: '180px',
-            15: '200px'
+            1: '16px',
+            2: '20px',
+            3: '24px',
+            4: '28px',
+            5: '32px',
+            6: '40px',
+            7: '48px',
+            8: '64px',
+            9: '128px'
         },
         borderWidths: {
-            1: '1px',
-            2: '1.5px',
-            3: '2px',
-            4: '2.5px',
-            5: '3px',
-            6: '4px',
-            7: '5px',
-            8: '6px',
-            9: '7.5px'
+            1: '1.25px',
+            2: '2.50px',
+            3: '3.75px',
+            4: '5.00px',
+            5: '6.25px',
+            6: '7.50px',
+            7: '8.75px',
+            8: '10.00px',
+            9: '12.50px'
         },
         borderStyles: {
             solid: 'solid',
@@ -341,25 +323,16 @@ export const {
         },
         radii: {
             0: '0em',
-            1: '3px',
-            2: '5px',
-            3: '7px',
-            4: '9px',
-            5: '11px',
-            6: '15px',
-            7: '19px',
-            8: '23px',
-            9: '27px',
-            10: '35px',
+            1: '4px',
+            2: '6px',
+            3: '8px',
+            4: '12px',
+            5: '20px',
             square: '0%',
             round: '50%',
             pill: '9999px',
         },
         shadows: {
-            spreadAndBlur: `
-                64px 64px 12px 40px rgba(0,0,0,0.4), 
-                12px 12px 0px 8px rgba(0,0,0,0.4)
-            `,
             small: `
                 0.5px 1px 1px hsl(220deg 100% 80% / 0.7)
             `,
@@ -585,6 +558,9 @@ export const blackTheme = createTheme({
         accentFocusRing: 'rgba(6, 76, 178, 1.0)',
 
         accentSelection: 'rgba(248,248,248,1)',
-        accentSelectionText: 'rgba(7,7,7,1)'
+        accentSelectionText: 'rgba(7,7,7,1)',
+
+        tooltipBackground: 'rgba(248,248,248,1)',
+        tooltipForeground: 'rgba(7,7,7,1.0)'
     }
 })

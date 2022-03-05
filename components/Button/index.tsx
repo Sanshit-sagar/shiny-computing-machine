@@ -1,0 +1,18 @@
+import { Button as ButtonBase } from './Button'
+import { withDefaultProps } from '../Buttons/utils'
+import type { AriaButtonProps, DefaultButtonProps } from './types'
+
+export type ButtonBaseProps = Omit<DefaultButtonProps, 'children'>
+
+const defaultProps: ButtonBaseProps = {
+    elementType: 'button',
+    isDisabled: false,
+    isLoading: false,
+    autoFocus: false
+}
+
+export const Button = withDefaultProps<
+    AriaButtonProps<'button'>, 
+    DefaultButtonProps
+>(defaultProps, ButtonBase)
+

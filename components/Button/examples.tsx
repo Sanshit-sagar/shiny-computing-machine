@@ -1,18 +1,4 @@
+import { Button } from '@/components/Button'
 
-import { Button } from './Button'
-import { withDefaultProps } from '../Buttons/utils'
-import type { AriaButtonProps, DefaultButtonProps } from './types'
-import { RocketIcon } from '@/components/Icons'
+export const ButtonInstance = () => <Button> Launch </Button>
 
-const defaultProps: Omit<DefaultButtonProps, 'children'> = {
-    elementType: 'button',
-    isDisabled: false,
-    isLoading: false,
-    autoFocus: false
-}
-
-const DefaultButton = withDefaultProps<AriaButtonProps<'button'>, DefaultButtonProps>(defaultProps, Button)
-
-export const ButtonInstance = () => (
-    <DefaultButton> Launch </DefaultButton>
-)

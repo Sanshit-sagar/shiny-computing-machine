@@ -5,12 +5,8 @@ import { Item, Section } from 'react-stately'
 import Sidebar from './index'
 import { ExampleBase } from '@/components/ExampleBase'
 import { DarkMode } from '@/components/DarkMode'
-import { Flex } from '@/components/Flex'
-import PButton from '@/components/Button'
 import { SearchAutocomplete } from '@/components/Search'
-
 import Label from '@/components/ListBox/Label'
-import Description from '@/components/ListBox/Description'
 
 import { 
     SliderIcon as SidebarIcon,  
@@ -126,7 +122,6 @@ const searchAutoCompleteRenderer = (item: SearchableItem) => (
         <div> {item.icon} </div>
         <div>
             <Label> {item.name} </Label>
-            {/* <Description> {item.tags} </Description>  */}
         </div>
     </Item>
 )

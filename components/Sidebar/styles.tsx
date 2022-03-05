@@ -8,8 +8,8 @@ export const StyledSidebar = styled('div', {
     listStyleType: 'none',
     scroll: 'smooth',
 
-    mt: '0.75%',
-    p: '$2',
+    m: '0.75%',
+    p: '$1',
     outline: 'none',
 
     width: '325px',
@@ -20,7 +20,7 @@ export const StyledSidebar = styled('div', {
     fd: 'column',
     jc: 'space-between',
     ai: 'stretch',
-    gap: '$2',
+    gap: '$1',
     
     br: 0,
     btrr: '$2',
@@ -69,7 +69,7 @@ export const StyledTopArea = styled('div', {
     fd: 'column', 
     jc: 'flex-start', 
     ai: 'stretch',
-    mb: '$6'
+    mb: '$2'
 })
 
 export const StyledBottomArea = styled('div', {
@@ -95,13 +95,13 @@ export const StyledSidebarItem = styled('div', {
     border: '1px solid transparent',
     outline: '0',
     br: '$2',
+    textDecoration: 'none',
 
     bc: 'transparent',
     '&:hover': {
         bc: '$accentBgHover',
         '& a': {
-            color: '$accentTextContrast',
-            textDecoration: 'underline'
+            color: '$accentTextContrast'
         }
     },
     variants: {
@@ -180,12 +180,12 @@ export const StyledSidebarAnchor = styled('a', {
     inlineSize: '100%',
     minBlockSize: '32px',
 
-    p: '$2',
+    p: '$1',
     br: '$2',
 
     fontFamily: '$jetbrains',
-    fontSize: '$3',
-    fontWeight: 400,
+    fontSize: '$2',
+    fontWeight: '$3',
     fontStyle: 'normal',
     textDecoration: 'none',
     color: '$accentText',
@@ -201,7 +201,7 @@ export const StyledSidebarAnchor = styled('a', {
 })
 
 export const StyledHeader = styled('div', {
-    pl: '$2',
+    pl: '$1',
 
     transition: 'all',
     WebkitTransition: 'all',
@@ -224,13 +224,12 @@ export const StyledHeader = styled('div', {
 })
 
 export const SectionHeading = styled('span', {
-   
-    p: 0,
-   
+    p: '$0',
+    mt: '$3',
     textAlign: 'start',
     fontFamily: '$jetbrains',
-    fontSize: '$3',
-    fontWeight: 300,
+    fontSize: '$2',
+    fontWeight: '$3',
     fontStyle: 'normal',
     
     letterSpacing: '$2',
@@ -248,13 +247,12 @@ export const LeftSlot = styled('div', {
     fd: 'row', 
     jc: 'flex-start', 
     ai: 'center', 
-    gap: '$3',
+    gap: '$1',
 
-    px: '$1',
-    py: '$2',
+    p: '$1',
     m: 0,
 })
 
 export const StyledSectionItems = styled('div', {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-    my: '$6',
+    my: '$1',
 })

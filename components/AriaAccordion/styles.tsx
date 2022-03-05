@@ -4,10 +4,11 @@ export const StyledAccordion = styled('div', {
     appearance: 'none',
 
     margin: '0em',
-    padding: '0em',
+    padding: '$1',
 
     border: '2px solid transparent',
-    borderRadius: '$5',
+    borderRadius: '$2',
+    bc: '$tooltipForeground',
 
     width: '100%',
 
@@ -15,7 +16,7 @@ export const StyledAccordion = styled('div', {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'stretch', 
-    gap: '$2',
+    gap: '$1',
 
     variants: {
         isFocused: {
@@ -74,11 +75,11 @@ export const StyledButton = styled('button', {
     width: '100%',
     outline: 'none',
 
-    margin: '0rem',
-    padding: '0.5em 0.25em',
-    backgroundColor: '$accentBase',
+    m: '0rem',
+    py: '$2',
+    px: '$1',
+    backgroundColor: '$accentBgSubtle',
     color: '$accentText',
-
 
     display: 'flex',
     flexDirection: 'row',
@@ -90,46 +91,39 @@ export const StyledButton = styled('button', {
         border: '0'
     },
 
-    border: '1px solid $accentBorder',
-    btlr: '$2',
-    btrr: '$2',
-    bblr: '$2',
-    bbrr: '$2',
+    border: '1.25px solid transparent',
+    borderRadius: '$1',
 
     variants: {
         isFirst: {
-            true: {
-                btlr: '$5',    
-                btrr: '$5'
-            },
+            true: null,
             false: null
         },
         isLast: {
-            true: {
-                bblr: '$5',
-                bbrr: '$5'
-            },
+            true: null,
             false: null
         },
         isHovered: {
             true: {
-                backgroundColor: '$accentTextContrast',
-                color: '$accentBase',
-                borderColor: '$accentBorderHover'
+                backgroundColor: '$accentBgSubtle',
+                color: '$accentTextContrast',
+                borderColor: '$infoSolid'
             },
             false: null
         },
         isFocused: {
             true: {
-                backgroundColor: '$accentBgActive',
+                backgroundColor: '$accentBgSubtle',
                 color: '$accentTextContrast',
-                borderColor: '$accentBorderActive'
+                borderColor: '$infoSolid'
             },
             false: null
         },
         isPressed: {
             true: {
-
+                backgroundColor: '$infoLine',
+                color: '$accentTextContrast',
+                borderColor: '$infoLine'
             },
             false: null
         },
@@ -144,7 +138,9 @@ export const StyledButton = styled('button', {
             true: {
                 bblr: '0em',
                 bbrr: '0em',
-                borderBottomColor: 'transparent'
+                borderBottomColor: '$infoBgHover',
+                color: '$infoTextHover',
+                bc: '$infoBgHover'
             },
             false: null
         },
@@ -163,13 +159,19 @@ export const StyledButton = styled('button', {
             isHovered: true,
             isSelected: true,
             css: {
+                bc: '$infoBgHover',
+                color: '$infoTextContrast',
+                borderColor: '$infoBgHover',
                 borderBottomColor: 'transparent'
             }
         },
         {
-            isHovered: true,
+            isFocused: true,
             isSelected: true,
             css: {
+                bc: '$infoBgHover',
+                color: '$infoTextContrast',
+                borderColor: '$infoBgHover',
                 borderBottomColor: 'transparent'
             }
         }
@@ -195,8 +197,10 @@ export const StyledTitle = styled('span', {
 
     width: '100%',
     height: '100%',
-    margin: '0em',
-    padding: '$2',
+    m: '0em',
+
+    px: '$2',
+    py: '$1',
 
     display: 'inline-flex',
     flexDirection: 'row',
@@ -205,15 +209,15 @@ export const StyledTitle = styled('span', {
     gap: '0em',
 
     color: 'inherit',
-    fontSize: '$3',
-    fontFamily: '$plexsans',
+    fontSize: '$2',
+    fontFamily: '$jetbrains',
     fontStyle: 'normal',
-    fontWeight: 300,
+    fontWeight: '$3',
     verticalAlign: 'start',
     textOverflow: 'ellipsis',
     textDecoration: 'none',
 
-    border: '1px solid transparent',
+    border: '1.25px solid transparent',
     borderRadius: 'inherit',
     outline: 'none',
     
@@ -269,29 +273,27 @@ export const StyledHeading = styled('h3', {
 })
 
 export const StyledPanel = styled('section', {
-    margin: '0em',
-    padding: '1em 1.5em',
-    background: '$accentBg',
+    m: '0em',
+    px: '$2',
+    pt: '$1',
+    pb: '$2',
+    background: '$infoBgHover',
 
     btrr: '0em', 
     btlr: '0em',
-    bblr: '$3', 
-    bbrr: '$3', 
+    bblr: '$2', 
+    bbrr: '$2', 
 
+    fontSize: '$2',
+    fontFamily: '$jetbrains',
 
     variants: {
         isFirst: {
-            true: {
-                bblr: '$3',
-                bbrr: '$3'
-            },
+            true: null,
             false: null
         },
         isLast: {
-            true: {
-                bblr: '$5',
-                bbrr: '$5'
-            },
+            true: null,
             false: null
         },
         isSelected: {
@@ -302,7 +304,7 @@ export const StyledPanel = styled('section', {
                 pointerEvents: 'all',
                 height: 'fit-content',
                 overflow: 'hidden',
-                border: '1px solid $accentBorder',
+                border: '1px solid $infoBgHover',
                 borderTopColor: 'transparent'
             },
             false: {
@@ -338,7 +340,6 @@ export const StyledIcon = styled('span', {
     userSelect: 'none',
     pointerEvents: 'none',
     
-
     border: 'none',
     outline: 'none',
 

@@ -16,6 +16,7 @@ import { SplitButtonInstance } from '@/components/SplitButton/examples'
 import { AccessibleTabsInstance } from '@/components/Tab/examples'
 import { InputInstance } from '@/components/TextField/examples'
 import { TextInputInstance } from '@/components/TextInput/examples'
+import { TooltipInstance } from '@/components/Tooltipped/examples'
 import { DatePickerInstance } from '@/components/DatePicker/examples'
 // import { AvatarInstance } from '@/components/Avatar/examples'
 import { CheckboxInstance } from '@/components/Checkbox/examples'
@@ -47,8 +48,9 @@ import { SwitchInstance } from '@/components/Switch/examples'
 import { StarRatingInstance } from '@/components/StarRating/examples'
 import { TabsInstance } from '@/components/Tabs/examples'
 import { TextAreaInstance } from '@/components/TextArea/examples'
+import { PopperInstance } from '@/components/Popper/examples'
 
-import { TooltipInstance } from '@/components/Tooltip/examples'
+// import { TooltipInstance } from '@/components/Tooltip/examples'
 import { TreeInstance } from '@/components/TreeView/examples'
 
 import { ShapeInstances } from '@/components/Shape/examples'
@@ -134,5 +136,11 @@ export const showcases: IShowcase[] = [{
         name: 'Tooltip',
         description: '',
         icon: <TooltipIcon />
-}]
+    }, {
+        element: <PopperInstance />,
+        name: 'Popover',
+        description: '',
+        icon: <PopoverIcon />
+    }
+]
 

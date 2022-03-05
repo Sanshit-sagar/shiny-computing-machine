@@ -1,8 +1,7 @@
-import { CSS, styled } from 'stitches.config'
-
+import { CSS } from 'stitches.config'
 
 const vars: CSS = {
-    '--color-neutral-emphasis-plus': ''
+    '--tooltip-background': '$colors$tooltipBackground'
 }
 
 ///////////////////////////////////////
@@ -21,7 +20,7 @@ const bottomBeforeSharedStyles: CSS = {
     right: '50%',
     bottom: '-7px',
     marginRight: '-6px',
-    borderBottomColor: 'var(--color-neutral-emphasis-plus)'
+    borderBottomColor: 'var(--tooltip-background)'
 }
 
 const bottom_TooltipStyles: CSS = {
@@ -34,20 +33,29 @@ const bottom_TooltipStyles: CSS = {
 
 const bottomLeft_TooltipStyles: CSS = {
     '&::after': {
-        ...bottomAfterSharedStyles,
-        right: 'auto',
-        left: '50%',
-        marginLeft: '$3'
+        top: '100%',
+        right: '50%',
+        marginTop: '6px',
+        marginRight: '16px'
     },
-    '&::before': bottomBeforeSharedStyles
+    '&::before': {
+        ...bottomBeforeSharedStyles,
+        left: '1%'
+    }
 }
 
 const bottomRight_TooltipStyles: CSS = {
     '&::after': {
-        ...bottomAfterSharedStyles,
-        marginRight: '$3'
+        top: '100%',
+        left: '50%',
+        right: 'auto',
+        marginTop: '6px',
+        marginLeft: '16px'
     },
-    '&::before': bottomBeforeSharedStyles
+    '&::before': {
+        ...bottomBeforeSharedStyles,
+        right: '1%'
+    }
 }
 
 ///////////////////////////////////////
@@ -65,7 +73,7 @@ const topBeforeSharedStyles: CSS = {
     right: '50%',
     bottom: 'auto',
     marginRight: '-6px',
-    borderTopColor: 'var(--color-neutral-emphasis-plus)'
+    borderTopColor: 'var(--tooltip-background)'
 }
 
 const top_TooltipStyles: CSS = {
@@ -78,16 +86,27 @@ const top_TooltipStyles: CSS = {
 
 const topLeft_TooltipStyles: CSS = {
     '&::after': {
-        right: 'auto',
-        left: '50%',
-        marginLeft: '6px'
+        ...topAfterSharedStyles,
+        left: 'auto',
+        right: '50%',
+        marginRight: '16px'
     },
-    '&::before': topBeforeSharedStyles
+    '&::before': {
+        ...topBeforeSharedStyles,
+        left: '1%'
+    }
 }
 
 const topRight_TooltipStyles: CSS = {
     '&::after': {
-        marginRight: '6px'
+        ...topAfterSharedStyles,
+        right: 'auto',
+        left: '50%',
+        marginLeft: '16px'
+    },
+    '&::before': {
+        ...topBeforeSharedStyles,
+       right: '1%'
     }
 }
 
@@ -97,10 +116,17 @@ const topRight_TooltipStyles: CSS = {
 const left_tooltipStyles: CSS = {
     ...vars,
     '&::after': {
-
+        right: '100%',
+        bottom: '50%',
+        marginRight: '6px',
+        transform: 'translateY(50%)'
     },
     '&::before': {
-
+        top: '50%',
+        bottom: '50%',
+        left: '-7px',
+        marginTop: '-6px',
+        borderLeftColor: 'var(--tooltip-background)'
     }
 }
 
@@ -110,10 +136,17 @@ const left_tooltipStyles: CSS = {
 const right_tooltipStyles: CSS = {
     ...vars,
     '&::after': {
-
+        bottom: '50%',
+        left: '100%',
+        marginLeft: '6px',
+        transform: 'translateY(50%)'
     },
     '&::before': {
-
+        top: '50%',
+        right: '-7px',
+        bottom: '50%',
+        marginTop: '-6px',
+        borderRightColor: 'var(--tooltip-background)'
     }
 }
 

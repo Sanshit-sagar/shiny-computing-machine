@@ -25,7 +25,6 @@ export const AriaAccordionInstance = () => {
                     title={item.name}
                 > 
                     <div>
-                        <label> {item.name} </label>
                         <span> {item.description} </span> 
                     </div>
                 </Accordion.Item>
