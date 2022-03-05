@@ -26,11 +26,20 @@ export const AvatarStackInstance = () => (
     <AvatarStack>
         <AvatarStack.Item src="https://avatars.githubusercontent.com/primer" alt="@primer" rounded={true} />
         <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
-        <AvatarStack.Item src="https://avatars.githubusercontent.com/primer" alt="@primer" rounded={true} />
+        <AvatarStack.Item src="https://avatars.githubusercontent.com/primer" alt="@primer" squared={true} />
         <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
+         <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
     </AvatarStack>
-)
+)   
+
 export const BadgeGroupInstance = () => <BadgeGroup /> 
+
+export const AvatarStories = () => (
+    <Flex css={{ width: '325px', fd: 'row', jc: 'space-between', ai: 'stretch' }}>
+        <AvatarStackInstance />
+        <BadgeGroupInstance />
+    </Flex>
+)
 
 const ExampleAvatarGroup = () => {
 

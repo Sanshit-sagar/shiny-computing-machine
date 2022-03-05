@@ -543,13 +543,13 @@ export const blackTheme = createTheme({
     colors: {
         ...sharedDarkColors,
 
-        accentBase: 'rgba(14,14,14,1.0)',
-        accentBgSubtle: 'rgba(14,14,14,1.0)',
-        accentBg: 'rgba(22,22,22,1.0)',
-        accentBgHover: 'rgba(22,22,22,1.0)',
+        accentBase: 'rgba(4,4,4,1.0)',
+        accentBgSubtle: 'rgba(7,7,7,1.0)',
+        accentBg: 'rgba(14,14,14,1.0)',
+        accentBgHover: 'rgba(17,17,17,1.0)',
         accentBgActive: 'rgba(22,22,22,1)',
         accentLine: 'rgba(27,27,27,1)',
-        accentBorder: 'rgba(28,28,28,1)', 
+        accentBorder: 'rgba(34,34,34,1)', 
         accentBorderHover: 'rgba(56,56,56,1)',
         accentBorderActive: 'rgba(64,64,64,1)',
         accentSolid: 'rgba(32,32,32,1)',

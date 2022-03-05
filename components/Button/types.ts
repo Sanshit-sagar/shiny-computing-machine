@@ -8,7 +8,7 @@ import {
     PressEvents 
 } from '@/interfaces/Interactions'
 import { DOMProps } from '@/interfaces/Shared'
-import { StyledButton } from './styles'
+import { StyledButtonBase } from './variants'
 
 interface ButtonEventHandlerProps extends PressEvents, HoverEvents, FocusEvents, KeyboardEvents {}
 
@@ -46,20 +46,23 @@ export interface GenericButtonProps<T> {
     type: never;
 }
 
-
 export interface SharedButtonProps {
     autoFocus?: boolean;
     children?: ReactNode; 
     isDisabled?: boolean;
     isLoading?: boolean; 
     excludeFromTabOrder?: boolean; 
+    prefix?: ReactNode | HTMLOrSVGElement;
+    suffix?: ReactNode | HTMLOrSVGElement;
 }
 
 export interface ButtonBaseProps extends DOMProps, ButtonEventHandlerProps, ButtonAriaProps, SharedButtonProps {}
 export type DiscriminatedButtonProps<T> = ButtonAsLinkProps | ButtonAsButtonProps | GenericButtonProps<T>
-export type ButtonVariantProps = VariantProps<typeof StyledButton> 
+
+export type ButtonVariantProps = Partial<Omit<
+    VariantProps<typeof StyledButtonBase>, 
+    'iconOnly' | 'isFocusVisible'
+>>
 
 export type AriaButtonProps<T extends ElementType> = ButtonBaseProps & DiscriminatedButtonProps<T> & ButtonVariantProps
-
-
 export type DefaultButtonProps = ButtonAsButtonProps & SharedButtonProps & ButtonVariantProps

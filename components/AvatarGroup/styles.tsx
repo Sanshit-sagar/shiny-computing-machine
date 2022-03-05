@@ -2,7 +2,7 @@ import { styled, CSS } from 'stitches.config'
 
 
 export const avatarVariables: CSS = {
-    '--size': '48px',
+    '--size': '64px',
     '--background-color': '$colors$transparent',
     '--border-radius': '$radii$rounded',
     '--border-width': '2px',

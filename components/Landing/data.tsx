@@ -1,7 +1,7 @@
 
 import { AccordionInstance } from '@/components/Accordion/examples'
 
-import { AvatarInstance, AvatarPairInstance, AvatarStackInstance, BadgeGroupInstance } from '@/components/AvatarGroup/examples'
+import { AvatarStories, AvatarInstance, AvatarPairInstance, AvatarStackInstance, BadgeGroupInstance } from '@/components/AvatarGroup/examples'
 import { ButtonInstance } from '@/components/Button/examples'
 import { BreadcrumbsInstance } from '@/components/Breadcrumbs/examples'
 import { RangeCalendarInstance } from '@/components/Calendar/examples'
@@ -97,7 +97,7 @@ export const showcases: IShowcase[] = [{
         description: 'did it strike a-cord-in your heart?',
         icon: <CollapseIcon />
     }, {
-        element: <AvatarStackInstance />,
+        element: <AvatarStories />,
         name: 'Avatar',
         description: '',
         icon: <AvatarIcon />   

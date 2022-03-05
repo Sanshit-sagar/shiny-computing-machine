@@ -8,7 +8,11 @@ const defaultProps: ButtonBaseProps = {
     elementType: 'button',
     isDisabled: false,
     isLoading: false,
-    autoFocus: false
+    autoFocus: false,
+    size: 'medium',
+    style: 'default',
+    prefix: null,
+    suffix: null
 }
 
 export const Button = withDefaultProps<

@@ -1,83 +1,84 @@
-import { ReactNode, Children, cloneElement, isValidElement } from 'react'
-import { styled, CSS } from 'stitches.config'
+import { ReactNode, Children, cloneElement, isValidElement, Fragment } from 'react'
+import { styled, CSS, VariantProps } from 'stitches.config'
 import { useLocale } from '@react-aria/i18n'
 
 import { avatarVariables, StyledAvatar } from './styles'
 import type { AvatarProps } from './types'
+import { Avatar } from './Avatar'
 
+export const StyledAvatarMore = styled('div', {
+    ...avatarVariables, 
 
-export const StyledAvatarStack = styled('div', {
-    ...avatarVariables,
-    
-    position: 'relative',
-    display: 'flex',
-    height: 'var(--size)',
-    margin: '0em',
-    padding: '0em',
+    zIndex: 1,
+    marginRight: 0,
+    background: 'var(--color-canvas-subtle)',
 
-    alignItems: 'center',
-    
-    variants: {
-        size: {
-            '1': {
-                minWidth: 'calc(var(--size) * 1.0)',
-            },
-            '2': {
-                minWidth: 'calc(var(--size) * 1.5)',
-            },
-            '3': {
-                minWidth: 'calc(val(--size) * 1.9)'
-            }
-        },
-        direction: {
-            'ltr': { justifyContent: 'flex-start' },
-            'rtl': { justifyContent: 'flex-end' }
-        }
+    '&::before': {
+        position: 'absolute',
+        display: 'block',
+        height: 'var(--size)',
+        content: '',
+        borderRadius: 'var(--border-radius)',
+        outline: 'var(--border-width) var(--border-style) var(--color-canvas-default)',
+        width: 'calc(var(--size) * 0.25)',
+        background: 'var(--color-avatar-stack-fade-more)'
     },
-    defaultVariants: {
-        size: '3',
-        direction: 'ltr'
+    '&::after': {
+        position: 'absolute',
+        display: 'block',
+        height: 'var(--size)',
+        content: '',
+        borderRadius: 'var(--border-radius)',
+        outline: 'var(--border-width) var(--border-style) var(--color-canvas-default)',
+        width: 'calc(var(--size) * 0.50)',
+        background: 'var(--color-avatar-stack-fade)'
     }
 })
 
-export const StyledAvatarItem = styled(StyledAvatar, {
-    '--tf': 'ease-in-out',
-    '--shadow-color': '$colors$accentText',
+const sharedStyles: CSS = {
+    ...avatarVariables,
 
-    flexShrink: 0,
+    position: 'relative',
+    zIndex: 2,
+    display: 'flex',
     height: 'var(--size)',
     width: 'var(--size)',
-    boxShadow: '0 0 0 1px var(--shadow-color)',
-    position: 'relative',
-    overflow: 'hidden',
-    transition: `
-        margin 300s var(--tf), 
-        opacity 300ms var(--tf), 
-        visibility 300ms var(--tf), 
-        box-shadow 200ms var(--tf)
-    `,
 
     boxSizing: 'content-box',
-    
+    marginRight: '-11px',
+
+    backgroundColor: 'pink',
+    borderRight: 'var(--border-width) var(--border-style) var(--border-color)',
+    borderRadius: 'var(--border-radius)',
+
+    boxShadow: 'none',
+    transition: 'margin 300ms ease',
 
     '&:first-child': {
+        display: 'flex',
         marginLeft: '0em',
         zIndex: 10
     },
     '&:nth-child(n + 2)': {
-        marginLeft: '-11px',
+        display: 'flex',
+        marginLeft: '-19px',
         zIndex: 9
     },
     '&:nth-child(n + 3)': {
-        marginLeft: '-17px',
+        display: 'flex',
+        marginLeft: '-22px',
         opacity: 0.55,
         zIndex: 8
     },
     '&:nth-child(n + 4)': {
+        display: 'flex',
+        marginLeft: '-25px',
         opacity: 0.40,
         zIndex: 7
     },
     '&:nth-child(n + 5)': {
+        display: 'flex',
+        marginLeft: '-28px',
         opacity: 0.25,
         zIndex: 6
     },
@@ -86,121 +87,122 @@ export const StyledAvatarItem = styled(StyledAvatar, {
         opacity: 0,
         zIndex: 0
     },
-
-    variants: {
-        direction: {
-            'ltr': null,
-            'rtl': {
-                marginLeft: '0 !important',
-
-                '&:first-child': {
-                    marginRight: '0em'
-                },
-                '&:nth-child(n + 2)': {
-                    marginRight: '-11px'
-                },
-                '&:nth-child(n + 3)': {
-                    marginRight: '-17px'
-                }
-            }
-        }
-    },
-    defaultVariants: {
-        direction: 'ltr'
-    }
-})
-
+    
+}
+ 
 export const StyledAvatarBody = styled('div', {
     ...avatarVariables,
-
-    position: 'absolute',
     display: 'flex',
-    width: '38px',
+    background: 'var(--canvas-color)',
 
+    [`& ${StyledAvatar}`]: { 
+        ...sharedStyles
+    },
+  
     '&:hover': {
-        width: 'auto',
+        [`& ${StyledAvatar}`]: {
+            marginRight: '3px',
 
-        [`& ${StyledAvatarItem}`]: {
-            marginLeft: '$1',
-            opacity: '100%',
-            visibility: 'visible',
-            boxShadow: '0 0 0 4px var(--shadow-color)',
-
-            '&:first-child': {
-                marginLeft: '0em'
+            '&:nth-child(n + 2)': {
+                display: 'flex',
+                opacity: 1
             }
+        },
+       
+        [`& ${StyledAvatarMore}`]: {
+            display: 'none !important'
         }
+    }
+      
+})
+
+export const StyledAvatarStack = styled('div', {
+    ...avatarVariables,
+    
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+
+    height: 'var(--size)',
+    margin: '0em',
+    padding: '0em',
+    alignSelf: 'center',
+
+    [`& ${StyledAvatarBody}`]: {
+        position: 'absolute',
     },
 
     variants: {
-        direction: {
-            'ltr': { 
-                flexDirection: 'row' 
+        size: {
+            1: {
+                minWidth: 'calc(var(--size) * 1.3)'
             },
-            'rtl': { 
-                flexDirection: 'row-reverse',
-
-                '&:hover': {
-                    [`& ${StyledAvatarItem}`]: {
-                        marginRight: '$1 !important',
-                        marginLeft: '0 !important',
-                        
-                        '&::first-child': {
-                            marginRight: '0em !important'
-                        }
-                    }
-                }
+            2: {
+                minWidth: 'calc(var(--size) * 1.8)'
             },
+            3: {
+                minWidth: 'calc(var(--size) * 2.3)'
+            }
         }
     },
     defaultVariants: {
-        direction: 'ltr'
+        size: '2'
     }
 })
 
+
+type AvatarStackProps = { 
+    children: ReactNode; 
+}
+
 const AvatarStackItem = (props: AvatarProps) => (
-    <StyledAvatarItem {...props} /> 
+    <Avatar {...props} /> 
 )
-AvatarStackItem.displayName.= 'AvatarStackItem'
+AvatarStackItem.displayName = 'AvatarStackItem'
 
-type AvatarStackProps = {
-    children: ReactNode[];
-    css?: CSS; 
-}
-
-const transformChildren = (children: ReactNode) => {
-    return Children.map(children, (child, index) => {
-        if(!isValidElement(child)) return child
-
-        return cloneElement(child, {
-            key: `avatar-item-${index}`,
-            index, 
-            ...child.props
-        })
-    })
-}
-
-const AvatarStack = ({ children, css }: AvatarStackProps) => {
-    const { direction } = useLocale()
+const AvatarStack = ({ children }: AvatarStackProps) => {
+    const { direction } = useLocale() // TODO
 
     const count = Children.count(children)
-    const stackSize: '1' | '2' | '3' = String(Math.min(Math.max(count, 1), 3))
+    const stackSize = Math.min(Math.max(count, 1), 3) as unknown as VariantProps<typeof StyledAvatarStack>['size']
 
     return (
-        <StyledAvatarStack size={stackSize} direction="ltr" css={{ ...css }}>
-            <StyledAvatarBody direction={direction}>
-                {transformChildren(children)}
+        <StyledAvatarStack size={stackSize}>
+            <StyledAvatarBody>
+                {Children.map(children, (child, index: number) => {
+                    if(!isValidElement(child)) return child
+            
+                    if(index === 2) {
+                        return (
+                            <Fragment key={`avatar-stack-item-${index}`}>
+                                <StyledAvatarMore /> 
+                                <Fragment> 
+                                    {cloneElement(child, {
+                                        index
+                                    })} 
+                                </Fragment>
+                            </Fragment>
+                        )
+                    }
+
+                    return cloneElement(child, {
+                        squared: true,
+                        rounded: false,
+                        key: `avatar-stack-item-${index}`,
+                        index
+                    })
+                })}
             </StyledAvatarBody>
         </StyledAvatarStack>
     )
 }
-
 AvatarStack.Item = AvatarStackItem
+
 AvatarStack.displayName = 'AvatarStack'
 
-
 export {
-    AvatarStack
+    AvatarStack,
+    AvatarStackItem
 }
 
 export type {
