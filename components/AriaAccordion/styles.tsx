@@ -6,7 +6,7 @@ export const StyledAccordion = styled('div', {
     margin: '0em',
     padding: '$1',
 
-    border: '2px solid transparent',
+    border: '1.25px solid transparent',
     borderRadius: '$2',
     bc: '$tooltipForeground',
 
@@ -94,6 +94,8 @@ export const StyledButton = styled('button', {
     border: '1.25px solid transparent',
     borderRadius: '$1',
 
+    transition: 'all 300ms ease',
+
     variants: {
         isFirst: {
             true: null,
@@ -105,25 +107,25 @@ export const StyledButton = styled('button', {
         },
         isHovered: {
             true: {
-                backgroundColor: '$accentBgSubtle',
-                color: '$accentTextContrast',
-                borderColor: '$infoSolid'
+                bc: '$accentBgHover',
+                color: '$accentText',
+                borderColor: '#2260ff',
             },
             false: null
         },
         isFocused: {
             true: {
-                backgroundColor: '$accentBgSubtle',
+                backgroundColor: '$accentBgHover',
                 color: '$accentTextContrast',
-                borderColor: '$infoSolid'
+                borderColor: '#2260ff'
             },
             false: null
         },
         isPressed: {
             true: {
-                backgroundColor: '$infoLine',
+                backgroundColor: '#2260ff',
                 color: '$accentTextContrast',
-                borderColor: '$infoLine'
+                borderColor: '#2260ff'
             },
             false: null
         },
@@ -136,11 +138,12 @@ export const StyledButton = styled('button', {
         },
         isSelected: {
             true: {
+                bc: '#2260ff',
+                borderColor: '#2260ff',
+                color: '$accentTextContrast',
                 bblr: '0em',
-                bbrr: '0em',
-                borderBottomColor: '$infoBgHover',
-                color: '$infoTextHover',
-                bc: '$infoBgHover'
+                bbrr: '0em'
+               
             },
             false: null
         },
@@ -159,9 +162,9 @@ export const StyledButton = styled('button', {
             isHovered: true,
             isSelected: true,
             css: {
-                bc: '$infoBgHover',
+                bc: '#2260ff',
                 color: '$infoTextContrast',
-                borderColor: '$infoBgHover',
+                borderColor: '#2260ff',
                 borderBottomColor: 'transparent'
             }
         },
@@ -169,9 +172,9 @@ export const StyledButton = styled('button', {
             isFocused: true,
             isSelected: true,
             css: {
-                bc: '$infoBgHover',
+                bc: '#2260ff',
                 color: '$infoTextContrast',
-                borderColor: '$infoBgHover',
+                borderColor: '#2260ff',
                 borderBottomColor: 'transparent'
             }
         }
@@ -287,6 +290,9 @@ export const StyledPanel = styled('section', {
     fontSize: '$2',
     fontFamily: '$jetbrains',
 
+    transition: 'all 300ms ease',
+    transitionDelay: '300ms',
+
     variants: {
         isFirst: {
             true: null,
@@ -304,7 +310,9 @@ export const StyledPanel = styled('section', {
                 pointerEvents: 'all',
                 height: 'fit-content',
                 overflow: 'hidden',
-                border: '1px solid $infoBgHover',
+                bc: '#2260ff',
+                borderColor: '#2260ff',
+                color: '$accentTextContrast',
                 borderTopColor: 'transparent'
             },
             false: {

@@ -79,11 +79,11 @@ const StyledCheckboxTile = styled('span', {
         position: 'absolute',
         display: 'block',
 
-        width: '1.25em',
-        height: '1.25em',
-        border: '2px solid #b5bfd9',
+        width: '$3',
+        height: '$3',
+        border: '1.25px solid #b5bfd9',
         backgroundColor: '$accentBg',
-        borderRadius: '50%',
+        borderRadius: '$1',
 
         top: '0.25rem',
         left: '0.25rem',
@@ -102,7 +102,7 @@ const StyledCheckboxTile = styled('span', {
         borderColor: '#2260ff',
 
         '&::before': {
-            transform: 'scale(1)',
+            transform: 'scale(1.0)',
             opacity: 1
         }
     },

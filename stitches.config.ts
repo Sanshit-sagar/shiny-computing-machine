@@ -220,7 +220,9 @@ export const {
             accentSelectionText: 'rgba(248,248,248,1)',
 
             tooltipBackground: 'rgba(7,7,7,1.0)',
-            tooltipForeground: 'rgba(248,248,248,1)'
+            tooltipForeground: 'rgba(248,248,248,1)',
+
+            transparent: 'transparent'
         },    
         space: {
             0: '0px',
@@ -328,9 +330,9 @@ export const {
             3: '8px',
             4: '12px',
             5: '20px',
-            square: '0%',
-            round: '50%',
-            pill: '9999px',
+            squared: '$3',
+            rounded: '50%',
+            ovular: '9999px',
         },
         shadows: {
             small: `
@@ -561,6 +563,8 @@ export const blackTheme = createTheme({
         accentSelectionText: 'rgba(7,7,7,1)',
 
         tooltipBackground: 'rgba(248,248,248,1)',
-        tooltipForeground: 'rgba(7,7,7,1.0)'
+        tooltipForeground: 'rgba(7,7,7,1.0)',
+
+        transparent: 'transparent'
     }
 })
