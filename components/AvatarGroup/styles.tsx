@@ -53,7 +53,6 @@ export const StyledAvatar = styled('img', {
         }
     },
     defaultVariants: {
-        relation: 'none',
         squared: true,
         rounded: false
     }

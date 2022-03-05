@@ -124,7 +124,7 @@ export const StyledBadgeGroup = styled('div', {
 
 const DEFAULT_TAG = 'img' 
 
-export interface BadgeProps extends HTMLAttributes<typeof StyledBadge> {
+export interface BadgeProps {
     size?:  VariantProps<typeof StyledBadge>['size']; 
     element?: ElementType<any>;
     css?: CSS; 

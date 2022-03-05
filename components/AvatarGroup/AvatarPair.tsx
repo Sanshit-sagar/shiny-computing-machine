@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, ReactElement } from 'react' 
+import { Children, cloneElement, isValidElement } from 'react' 
 import { styled } from 'stitches.config'
 import { avatarVariables, StyledAvatar } from './styles'
 import type { AvatarProps } from './types'
@@ -46,7 +46,10 @@ AvatarChild.displayName = 'AvatarChild'
 
 
 type AvatarPairProps = { 
-    children: [AvatarParent, AvatarChild];
+    children: [
+        typeof AvatarParent, 
+        typeof AvatarChild
+    ];
 }
 
 export const AvatarPair = ({ children, ...props }: AvatarPairProps) => {

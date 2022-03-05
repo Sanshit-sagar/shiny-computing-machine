@@ -1,7 +1,10 @@
-import { ReactNode, Children, cloneElement, isValidElement, ReactElement, ElementType } from 'react'
+import { ReactNode, Children, cloneElement, isValidElement } from 'react'
 import { styled, CSS } from 'stitches.config'
-import { avatarVariables, StyledAvatar } from './styles'
 import { useLocale } from '@react-aria/i18n'
+
+import { avatarVariables, StyledAvatar } from './styles'
+import type { AvatarProps } from './types'
+
 
 export const StyledAvatarStack = styled('div', {
     ...avatarVariables,
@@ -17,13 +20,13 @@ export const StyledAvatarStack = styled('div', {
     variants: {
         size: {
             '1': {
-                minWidth: 'var(--size)',
+                minWidth: 'calc(var(--size) * 1.0)',
             },
             '2': {
-                minWidth: '30px',
+                minWidth: 'calc(var(--size) * 1.5)',
             },
-            '3+': {
-                minWidth: '38px'
+            '3': {
+                minWidth: 'calc(val(--size) * 1.9)'
             }
         },
         direction: {
@@ -32,15 +35,10 @@ export const StyledAvatarStack = styled('div', {
         }
     },
     defaultVariants: {
-        size: '2',
+        size: '3',
         direction: 'ltr'
     }
 })
-
-// borderRight: 'var(--border-width) var(--border-style) var(--border-color)',
-// borderRadius: 'var(--border-radius)',
-// boxSizing: 'content-box',
-// marginRight: '-11px',
 
 export const StyledAvatarItem = styled(StyledAvatar, {
     '--tf': 'ease-in-out',
@@ -58,9 +56,9 @@ export const StyledAvatarItem = styled(StyledAvatar, {
         visibility 300ms var(--tf), 
         box-shadow 200ms var(--tf)
     `,
-    
+
     boxSizing: 'content-box',
-    marginRight: '-11px',
+    
 
     '&:first-child': {
         marginLeft: '0em',
@@ -76,7 +74,6 @@ export const StyledAvatarItem = styled(StyledAvatar, {
         zIndex: 8
     },
     '&:nth-child(n + 4)': {
-        marginLeft: '-var(--size)',
         opacity: 0.40,
         zIndex: 7
     },
@@ -104,9 +101,6 @@ export const StyledAvatarItem = styled(StyledAvatar, {
                 },
                 '&:nth-child(n + 3)': {
                     marginRight: '-17px'
-                },
-                '&:nth-child(n + 4)': {
-                    marginRight: '-var(--size)'
                 }
             }
         }
@@ -164,9 +158,14 @@ export const StyledAvatarBody = styled('div', {
     }
 })
 
+const AvatarStackItem = (props: AvatarProps) => (
+    <StyledAvatarItem {...props} /> 
+)
+AvatarStackItem.displayName.= 'AvatarStackItem'
+
 type AvatarStackProps = {
     children: ReactNode[];
-    css: CSS; 
+    css?: CSS; 
 }
 
 const transformChildren = (children: ReactNode) => {
@@ -181,11 +180,11 @@ const transformChildren = (children: ReactNode) => {
     })
 }
 
-export const AvatarStack = ({ children, css, ...props }: AvatarStackProps) => {
+const AvatarStack = ({ children, css }: AvatarStackProps) => {
     const { direction } = useLocale()
 
     const count = Children.count(children)
-    const stackSize = count >= 3 ? '3+' : `${Math.max(count, 1)}`
+    const stackSize: '1' | '2' | '3' = String(Math.min(Math.max(count, 1), 3))
 
     return (
         <StyledAvatarStack size={stackSize} direction="ltr" css={{ ...css }}>
@@ -194,4 +193,16 @@ export const AvatarStack = ({ children, css, ...props }: AvatarStackProps) => {
             </StyledAvatarBody>
         </StyledAvatarStack>
     )
+}
+
+AvatarStack.Item = AvatarStackItem
+AvatarStack.displayName = 'AvatarStack'
+
+
+export {
+    AvatarStack
+}
+
+export type {
+    AvatarStackProps
 }
