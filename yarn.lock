@@ -493,6 +493,11 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-context" "0.1.1"
 
+"@radix-ui/react-polymorphic@^0.0.14":
+  "integrity" "sha512-9nsMZEDU3LeIUeHJrpkkhZVxu/9Fc7P2g2I3WR+uA9mTbNC3hGaabi0dV6wg0CfHb+m4nSs1pejbE/5no3MJTA=="
+  "resolved" "https://registry.npmjs.org/@radix-ui/react-polymorphic/-/react-polymorphic-0.0.14.tgz"
+  "version" "0.0.14"
+
 "@radix-ui/react-primitive@^0.1.1":
   "integrity" "sha512-65GCHeDV/ikicXKR2rLSO6w+dyUQwSG2J1JD2qm4suK1259nTuRvPsPBrbhZpoXWQKj2drMZfhhclXVfzwW1Kw=="
   "resolved" "https://registry.npmjs.org/@radix-ui/react-primitive/-/react-primitive-0.1.1.tgz"

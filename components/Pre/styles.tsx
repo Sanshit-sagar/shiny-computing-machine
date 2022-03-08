@@ -7,16 +7,62 @@ const StyledPre = styled(DEFAULT_TAG, {
     appearance: 'none',
 
     maxHeight: '300px',
-    maxWidth: '400px',
+    maxWidth: '450px',
 
-    overflow: 'hidden',
+    overflow: 'scroll',
+
+    textOverflow: 'ellipsis',
+
     whiteSpace: 'pre',
     wordBreak: 'break-word',
 
-    margin: '0em',
-    padding: '$2 $3',
+    margin: '$0',
+    padding: '$0',
+
+    border: '1px solid $accentBorder',
     borderRadius: '$4',
-    background: '#171827',
+    background: '$accentBase',
+
+    scrollbarWidth: 'none',
+
+     '&::-webkit-scrollbar': {
+        margin: '$0',
+        padding: '$0',
+        backgroundColor: 'transparent',
+        border: 'none',
+        outline: 'none',
+        size: '0.25em',
+
+        '&:hover': {
+            backgroundColor: 'transparent'
+        }
+    },
+    '&::-webkit-scrollbar-track': {
+        bc: '$transparent',
+ 
+        border: 'none',
+        outline: 'none',
+
+        '&:hover': {
+            bc: '$accentBg'
+        },
+        '&:active': {
+
+        }
+    },
+    '&::-webkit-scrollbar-thumb': {
+        bc: '$accentText',
+        border: 'none',
+        outline: 'none',
+        br: '$1',
+
+        '&:hover': {
+            bc: '$accentTextContrast'
+        },
+        '&:active': {
+            bc: '$accentTextContrast',
+        }
+    },
 
     code: {
         fontFamily: '$flow',

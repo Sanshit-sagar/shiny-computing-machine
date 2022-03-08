@@ -1,6 +1,6 @@
 import { ElementType, ComponentPropsWithRef, forwardRef } from 'react'
-import { styled, CSS } from 'stitches.config' 
-import { Box } from '@/components/Box'
+import { CSS } from 'stitches.config' 
+import { StyledDivider } from './Styles'
 
 const DEFAULT_TAG = 'li'
 
@@ -17,16 +17,6 @@ const Divider = forwardRef<DividerElement, DividerProps>(({
 }: DividerProps, forwardedRef) => (
     <StyledDivider as={Component} aria-hidden="true" css={css} {...rest} ref={forwardedRef} />
 ))
-
-const StyledDivider = styled(Box, {
-    '--divider-height': '1px',
-
-    height: 'var(--divider-height)',
-    backgroundColor: '$accentLine',
-    marginTop: 'calc(var(--divider-height) - 1px)',
-    marginBottom: 'calc(2 * var(--divider-height))',
-    listStyle: 'none'
-})
 
 export {
     Divider
