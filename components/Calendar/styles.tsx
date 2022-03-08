@@ -12,7 +12,7 @@ export const Controls = styled('div', {
     gap: 0,
 
     p: 0,
-    m: '$2',
+    m: '$1',
 
     border: 0,
     outline: 0
@@ -33,13 +33,14 @@ export const CellWrapper = styled('td', {
 });
 
 const CalendarWrapper = styled('div', {
-    height: '300px',
+    height: '325px',
     d: 'flex', 
     fd: 'column', 
     jc: 'flex-start', 
     ai: 'stretch', 
     p: 0,
     m: 0,
+    mb: '$1',
     border: 'none',
     outline: 'none'
 })
@@ -264,7 +265,7 @@ export const HeaderText = styled('span', {
 export const StyledHeader = styled('th', {
     textAlign: 'center',
     m: 0,
-    p: '$1 $2',
+    p: '$1',
 
     border: 'none',
     color: '$accentText',
@@ -272,8 +273,7 @@ export const StyledHeader = styled('th', {
     fontFamily: '$jetbrains',
     fontVariant: 'tabular',
     fontVariantNumeric: 'tabular-nums',
-    fontSize: '$2',
-
+    fontSize: '$1',
 
     variants: {
         size: {

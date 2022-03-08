@@ -31,7 +31,7 @@ const MonthHeading = ({ state, month, index }: MonthHeaderProps) => {
     )
 
     return (
-        <Subheading css={{ fontFamily: '$jetbrains', fontSize: '$5', mt: 0, mb: '$3', p: 0 }}> 
+        <Subheading css={{ fontFamily: '$jetbrains', fontSize: '$4', mt: 0, mb: '$2', ml: '$1', p: 0 }}> 
             {monthStr} 
         </Subheading>
     )

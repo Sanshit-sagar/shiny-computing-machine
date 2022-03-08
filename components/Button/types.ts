@@ -59,10 +59,7 @@ export interface SharedButtonProps {
 export interface ButtonBaseProps extends DOMProps, ButtonEventHandlerProps, ButtonAriaProps, SharedButtonProps {}
 export type DiscriminatedButtonProps<T> = ButtonAsLinkProps | ButtonAsButtonProps | GenericButtonProps<T>
 
-export type ButtonVariantProps = Partial<Omit<
-    VariantProps<typeof StyledButtonBase>, 
-    'iconOnly' | 'isFocusVisible'
->>
+export type ButtonVariantProps =  VariantProps<typeof StyledButtonBase> 
 
 export type AriaButtonProps<T extends ElementType> = ButtonBaseProps & DiscriminatedButtonProps<T> & ButtonVariantProps
 export type DefaultButtonProps = ButtonAsButtonProps & SharedButtonProps & ButtonVariantProps

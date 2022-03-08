@@ -1,47 +1,55 @@
-import React, { useRef, ReactNode } from 'react'
+import React, { Fragment, useRef, ReactNode } from 'react'
 import { useBreadcrumbItem } from '@react-aria/breadcrumbs'
-import { mergeProps } from '@react-aria/utils'
+import { useId, mergeProps } from '@react-aria/utils'
 
-import { useInteractions } from '@/hooks/useInteractions'
 import { ListItemWrapper, BreadcrumbLink, BreadcrumbHeading } from './styles' 
 import { AriaBreadcrumbItemProps } from './interfaces'
 import BreadcrumbIcon from './BreadcrumbsIcon'
 
-function BreadcrumbsItem(props: AriaBreadcrumbItemProps) {
+import { useFocusRing } from '@react-aria/focus'
+import { useHover, usePress } from '@react-aria/interactions'
+
+
+function BreadcrumbsItem({
+    element: Component = 'li',
+    icon = 'SLASH',
+    ...props
+}: AriaBreadcrumbItemProps) {
+
     const ref = useRef<HTMLAnchorElement>()
     const { itemProps } = useBreadcrumbItem(props, ref)
 
-    const { interactionProps, ...interactionStates } = useInteractions({ 
-        isDisabled: props.isDisabled 
-    })
+    const { hoverProps, isHovered } = useHover({ isDisabled: props.isDisabled })
+    const { focusProps, isFocusVisible, isFocused } = useFocusRing({ isTextInput: true, within: true, autoFocus: false })
+    const { pressProps, isPressed } = usePress(props)
+
+    const mergedProps = mergeProps(hoverProps, focusProps, pressProps)
+    const states = { isHovered, isPressed, isFocused, isFocusVisible, isDisabled: props.isDisabled }
 
     let breadcrumbContent: ReactNode
 
     if(props.isCurrent) {
         breadcrumbContent = (
-            <BreadcrumbHeading {...mergeProps(interactionProps, itemProps)} ref={ref}>
+            <BreadcrumbHeading ref={ref} isCurrent={props.isCurrent}>
                 {props.children}
             </BreadcrumbHeading>
-
-        )} else { 
-            breadcrumbContent = (
-            <>
-                <BreadcrumbLink
-                    {...mergeProps(interactionProps, itemProps)}
-                    ref={ref}
-                    href={props.href}
-                    isCurrent={props.isCurrent}
-                    {...interactionStates}
-                >
+        )
+    } else { 
+        breadcrumbContent = (
+            <Fragment key={`breadcrumb-item-${useId()}`}>
+                <BreadcrumbLink {...itemProps} ref={ref} href={props.href} {...states}>
                     {props.children}
                 </BreadcrumbLink>
-                {!props.isCurrent && (
-                    <BreadcrumbIcon isCurrent={props.isCurrent} aria-hidden="true" /> 
-                )}
-            </>
-        )}
-   
-    return <ListItemWrapper> {breadcrumbContent} </ListItemWrapper>
+                <BreadcrumbIcon isCurrent={props.isCurrent} {...states} aria-hidden="true" icon={icon} /> 
+            </Fragment>
+        )
+    }
+
+    return (
+        <ListItemWrapper as={Component} {...mergedProps}> 
+            {breadcrumbContent}
+        </ListItemWrapper>
+    )
 }
 
 export default BreadcrumbsItem

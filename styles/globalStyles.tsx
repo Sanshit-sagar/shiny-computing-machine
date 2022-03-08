@@ -34,14 +34,14 @@ export const cssReset = globalCss({
         color: '$accentText'
     },
     span: {
-        fontFamily: '$ibmplex',
+        fontFamily: '$plexsans',
         fontWeight: 300,
         fontStyle: 'normal',
         fontSize: '$1',
         lineHeight: 1
     },
     label: {
-        fontFamily: '$ibmplex',
+        fontFamily: '$plexsans',
         fontWeight: 200,
         fontStyle: 'extra-light',
         fontSize: '13px',
@@ -67,7 +67,7 @@ export const cssReset = globalCss({
         lineHeight: 1,
     },
     a: {
-        fontFamily: '$ibmplex',
+        fontFamily: '$plexsans',
         fontSize: '$1',
         fontWeight: 200,
         fontStyle: 'italics',

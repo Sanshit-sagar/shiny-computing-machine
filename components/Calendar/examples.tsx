@@ -10,7 +10,9 @@ import { ExampleBase } from '@/components/ExampleBase'
 import { CalendarIcon } from '@radix-ui/react-icons'
 
 const CalendarWrapper = styled('div', {
-    height: '340px',
+    position: 'relative',
+
+    height: '350px',
     d: 'flex',
     fd: 'column',
     jc: 'flex-start',
@@ -18,12 +20,13 @@ const CalendarWrapper = styled('div', {
     flexGrow: '1 1 auto',
     flexShrink: '1 1 auto',
 
-    padding: '$3',
+    py: '$3',
+    px: '$2',
 
-    bc: '$accentPanel',
+    bc: '$accentBase',
     border: '1.25px solid $accentBorder',
     color: '$accentText',
-    br: '$3',
+    br: '$2',
     outline: 'none'
 })
 
@@ -64,7 +67,7 @@ export const RangeCalendarInstance = ({ useRange = true }: { useRange?: boolean 
     return (
         <CalendarWrapper>
             <CalendarInstance state={state} useRange={useRange} />
-            <Flex css={{ position: 'relative', bottom: '10px', right: '10px', fd: 'row', jc: 'flex-end', ai: 'center', mb: '$2' }}>
+            <Flex css={{ position: 'absolute', bottom: '12.5px', right: '12.5px' }}>
                 <MeridianToggle /> 
             </Flex>
         </CalendarWrapper>

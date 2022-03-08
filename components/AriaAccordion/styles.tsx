@@ -213,12 +213,14 @@ export const StyledTitle = styled('span', {
 
     color: 'inherit',
     fontSize: '$2',
-    fontFamily: '$jetbrains',
+    fontFamily: '$flow',
     fontStyle: 'normal',
     fontWeight: '$3',
     verticalAlign: 'start',
     textOverflow: 'ellipsis',
     textDecoration: 'none',
+
+    
 
     border: '1.25px solid transparent',
     borderRadius: 'inherit',
@@ -288,7 +290,7 @@ export const StyledPanel = styled('section', {
     bbrr: '$2', 
 
     fontSize: '$2',
-    fontFamily: '$jetbrains',
+    fontFamily: '$flow',
 
     transition: 'all 300ms ease',
     transitionDelay: '300ms',

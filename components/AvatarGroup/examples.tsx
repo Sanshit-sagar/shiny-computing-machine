@@ -28,16 +28,17 @@ export const AvatarStackInstance = () => (
         <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
         <AvatarStack.Item src="https://avatars.githubusercontent.com/primer" alt="@primer" squared={true} />
         <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
-         <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
+        <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
+        <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
+        <AvatarStack.Item src="https://avatars.githubusercontent.com/github" alt="@github" squared={true} />
     </AvatarStack>
 )   
 
 export const BadgeGroupInstance = () => <BadgeGroup /> 
 
 export const AvatarStories = () => (
-    <Flex css={{ width: '325px', fd: 'row', jc: 'space-between', ai: 'stretch' }}>
+    <Flex css={{ width: '325px', fd: 'row', jc: 'center' }}>
         <AvatarStackInstance />
-        <BadgeGroupInstance />
     </Flex>
 )
 

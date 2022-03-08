@@ -10,7 +10,6 @@ export const StyledAvatarMore = styled('div', {
     ...avatarVariables, 
 
     zIndex: 1,
-    marginRight: 0,
     background: 'var(--color-canvas-subtle)',
 
     '&::before': {
@@ -35,17 +34,30 @@ export const StyledAvatarMore = styled('div', {
     }
 })
 
+const visibleAvatarItemStyles: CSS = {
+    visibility: 'visible',
+    display: 'flex',
+    opacity: 1
+}
+const hiddenAvatarItemStyles: CSS = {
+    visibility: 'hidden',
+    display: 'none',
+    opacity: 0,
+    zIndex: 0
+}
+
 const sharedStyles: CSS = {
     ...avatarVariables,
 
     position: 'relative',
-    zIndex: 2,
+    zIndex: 10,
+
     display: 'flex',
     height: 'var(--size)',
     width: 'var(--size)',
 
     boxSizing: 'content-box',
-    marginRight: '-11px',
+    
 
     backgroundColor: 'pink',
     borderRight: 'var(--border-width) var(--border-style) var(--border-color)',
@@ -54,59 +66,58 @@ const sharedStyles: CSS = {
     boxShadow: 'none',
     transition: 'margin 300ms ease',
 
+    marginLeft:'0px',
+    marginRight: '0px',
+
     '&:first-child': {
-        display: 'flex',
+        ...visibleAvatarItemStyles,
         marginLeft: '0em',
         zIndex: 10
     },
     '&:nth-child(n + 2)': {
-        display: 'flex',
-        marginLeft: '-19px',
+        ...visibleAvatarItemStyles,
+        marginLeft: '-30px',
+        opacity: 0.90,
         zIndex: 9
     },
     '&:nth-child(n + 3)': {
-        display: 'flex',
-        marginLeft: '-22px',
-        opacity: 0.55,
+        ...visibleAvatarItemStyles,
+        marginLeft: '-35px',
+        opacity: 0.80,
         zIndex: 8
     },
     '&:nth-child(n + 4)': {
-        display: 'flex',
-        marginLeft: '-25px',
-        opacity: 0.40,
+        ...visibleAvatarItemStyles,
+        marginLeft: '-40px',
+        opacity: 0.75,
         zIndex: 7
     },
     '&:nth-child(n + 5)': {
-        display: 'flex',
-        marginLeft: '-28px',
-        opacity: 0.25,
+        ...visibleAvatarItemStyles,
+        marginLeft: '-45px',
+        opacity: 0.70,
         zIndex: 6
     },
-    '&:nth-child(n + 6)': {
-        visibility: 'hidden',
-        opacity: 0,
-        zIndex: 0
-    },
+    '&:nth-child(n + 6)': hiddenAvatarItemStyles,
     
 }
  
 export const StyledAvatarBody = styled('div', {
-    ...avatarVariables,
     display: 'flex',
-    background: 'var(--canvas-color)',
-
-    [`& ${StyledAvatar}`]: { 
-        ...sharedStyles
-    },
+    background: '$transparent',
+    [`& ${StyledAvatar}`]: sharedStyles,
   
     '&:hover': {
         [`& ${StyledAvatar}`]: {
             marginRight: '3px',
-
-            '&:nth-child(n + 2)': {
-                display: 'flex',
-                opacity: 1
-            }
+            '&:first-child': { ...visibleAvatarItemStyles, zIndex: 10 },
+            '&:nth-child(n + 2)': { ...visibleAvatarItemStyles, zIndex: 9 },
+            '&:nth-child(n + 3)': { ...visibleAvatarItemStyles, zIndex: 8 },
+            '&:nth-child(n + 4)': { ...visibleAvatarItemStyles, zIndex: 7 },
+            '&:nth-child(n + 5)': { ...visibleAvatarItemStyles, zIndex: 6 },
+            '&:nth-child(n + 6)': { ...visibleAvatarItemStyles, zIndex: 5 },
+            '&:nth-child(n + 7)': { ...visibleAvatarItemStyles, zIndex: 2 },
+            '&:last-child': { ...visibleAvatarItemStyles, zIndex: 1 }
         },
        
         [`& ${StyledAvatarMore}`]: {
@@ -118,31 +129,22 @@ export const StyledAvatarBody = styled('div', {
 
 export const StyledAvatarStack = styled('div', {
     ...avatarVariables,
-    
+
     position: 'relative',
     display: 'flex',
     flexDirection: 'row',
-
     height: 'var(--size)',
     margin: '0em',
     padding: '0em',
     alignSelf: 'center',
 
-    [`& ${StyledAvatarBody}`]: {
-        position: 'absolute',
-    },
+    [`& ${StyledAvatarBody}`]: { position: 'absolute' },
 
     variants: {
         size: {
-            1: {
-                minWidth: 'calc(var(--size) * 1.3)'
-            },
-            2: {
-                minWidth: 'calc(var(--size) * 1.8)'
-            },
-            3: {
-                minWidth: 'calc(var(--size) * 2.3)'
-            }
+            1: { minWidth: 'calc(var(--size) * 1.3)' },
+            2: { minWidth: 'calc(var(--size) * 1.8)' },
+            3: { minWidth: 'calc(var(--size) * 2.3)' }
         }
     },
     defaultVariants: {

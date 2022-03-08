@@ -17,9 +17,12 @@ import { AccessibleTabsInstance } from '@/components/Tab/examples'
 import { InputInstance } from '@/components/TextField/examples'
 import { TextInputInstance } from '@/components/TextInput/examples'
 import { TooltipInstance } from '@/components/Tooltipped/examples'
+import { CodeBlockInstance } from '@/components/Pre/examples'
+
 import { DatePickerInstance } from '@/components/DatePicker/examples'
 // import { AvatarInstance } from '@/components/Avatar/examples'
 import { CheckboxInstance } from '@/components/Checkbox/examples'
+import { ContextMenuInstance } from '@/components/ActionList/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
 import { ColorSliderInstance } from '@/components/ColorSlider/examples'
 import { ComboBoxInstance } from '@/components/ComboBox/examples'
@@ -47,9 +50,11 @@ import { SpinnerInstance } from '@/components/Spinner/examples'
 import { SwitchInstance } from '@/components/Switch/examples'
 import { StarRatingInstance } from '@/components/StarRating/examples'
 import { TabsInstance } from '@/components/Tabs/examples'
-import { TextAreaInstance } from '@/components/TextArea/examples'
+// import { TextAreaInstance } from '@/components/TextArea/examples'
 import { PopperInstance } from '@/components/Popper/examples'
 
+import { TextAreaInstance } from '@/components/AriaTextArea/examples'
+import { SlidingTabsInstance } from '@/components/SlidingTabs/examples'
 // import { TooltipInstance } from '@/components/Tooltip/examples'
 import { TreeInstance } from '@/components/TreeView/examples'
 
@@ -112,6 +117,11 @@ export const showcases: IShowcase[] = [{
         description: '',
         icon: <ButtonIcon />
     }, {
+        element: <ContextMenuInstance />,
+        name: 'ActionList',
+        description: '',
+        icon: <ListIcon />
+    }, {
         element: <RangeCalendarInstance />,
         name: 'Calendar',
         description: '',
@@ -131,6 +141,21 @@ export const showcases: IShowcase[] = [{
         name: 'Switch',
         description: '',
         icon: <SwitchIcon /> 
+    }, {
+        element: <SlidingTabsInstance />,
+        name: 'SlidingTabs',
+        description: '',
+        icon: <TabsIcon />
+    }, {
+        element: <TextAreaInstance />,
+        name: 'Text Area',
+        description: '',
+        icon: <TextAreaIcon /> 
+    }, {
+        element: <CodeBlockInstance />,
+        name: 'Code Block',
+        description: '',
+        icon: <InlineCodeIcon /> 
     }, {
         element: <TooltipInstance />,
         name: 'Tooltip',

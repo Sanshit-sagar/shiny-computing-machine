@@ -52,7 +52,7 @@ type AvatarPairProps = {
     ];
 }
 
-export const AvatarPair = ({ children, ...props }: AvatarPairProps) => {
+const AvatarPair = ({ children, ...props }: AvatarPairProps) => {
 
     const avatars = Children.map(children, (child, index) => {
         if(!isValidElement(child)) 
@@ -75,4 +75,3 @@ export const AvatarPair = ({ children, ...props }: AvatarPairProps) => {
 AvatarPair.Parent = AvatarParent
 AvatarPair.Child = AvatarChild
 
-AvatarPair.displayName = 'AvatarPair'

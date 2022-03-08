@@ -5,15 +5,19 @@ import { useButton } from '@react-aria/button'
 import { useFocusRing } from '@react-aria/focus'
 import { useHover } from '@react-aria/interactions'
 
-import { AriaButtonProps } from './types'
-import { StyledButtonBase, prefixStyles, suffixStyles, buttonFontStyles } from './variants'
-
-import { Box } from '@/components/Box'
+import { Flex } from '@/components/Flex'
 import { Text } from '@/components/Text'
 import { useFocusableRef } from '@/utils/useRefs'
 import { FocusableRef } from '@/interfaces/Shared'
 import { isTextOnly } from '@/components/Buttons/utils'
 
+import { AriaButtonProps } from './types'
+import { 
+    StyledButton,
+    buttonSuffixStyles, 
+    buttonPrefixStyles,
+    buttonTextStyles 
+} from './styles'
 
 const AriaButton = <T extends ElementType = 'button'>(
     props: AriaButtonProps<T>, 
@@ -42,23 +46,23 @@ const AriaButton = <T extends ElementType = 'button'>(
     const states = { isHovered, isFocused, isFocusVisible, isPressed, isDisabled, isLoading } 
 
     return (
-        <StyledButtonBase as={Component} {...mergedProps} {...states} {...rest} role="button" ref={buttonRef}>
+        <StyledButton {...mergedProps} {...states} {...rest} role="button" ref={buttonRef}>
             {PrefixIcon && (
-                <Box as="span" data-component="prefix" css={prefixStyles}>
+                <Flex css={buttonPrefixStyles}>
                     {PrefixIcon} 
-                </Box>
+                </Flex>
             )}
 
-            <Text as="span" data-component="text" css={buttonFontStyles}>
+            <Text as="span" css={buttonTextStyles}>
                 {children}
             </Text>
 
             {SuffixIcon && (
-                <Box as="span" data-component="suffix" css={suffixStyles}>
+                <Flex css={buttonSuffixStyles}>
                     {SuffixIcon} 
-                </Box>
+                </Flex>
             )}
-        </StyledButtonBase>
+        </StyledButton>
     )
 }
 

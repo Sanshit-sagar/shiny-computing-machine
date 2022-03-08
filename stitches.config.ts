@@ -201,8 +201,8 @@ export const {
         colors: {
             ...sharedColors,
 
-            accentBase: 'rgba(224,227,231)',
-            accentBgSubtle: 'rgba(224,227,231)',
+            accentBase: 'rgba(252,252,252)',
+            accentBgSubtle: 'rgba(245,245,245)',
             accentBg: 'rgb(236,238,240)',
             accentBgHover: 'rgb(241,242,244)',
             accentBgActive: 'rgb(241,242,244)',
@@ -245,6 +245,7 @@ export const {
         fonts: {
             jetbrains: 'JetBrains Mono, monospace',
             plexsans: 'IBM Plex Sans, sans-serif',
+            flow: 'Flow Rounded, cursive',
             untitled: 'Untitled Sans, apple-system, sans-serif',
             serif: '-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji',
             monospace: 'ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace'

@@ -1,5 +1,5 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { getCssText } from '../stitches.config';
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { getCssText } from 'stitches.config'
 
 class MyDocument extends Document {
     static async getInitialProps(ctx) {
@@ -15,7 +15,7 @@ class MyDocument extends Document {
         }
 
         return (
-            <Html lang="en">
+            <Html lang="en-US">
                 <Head>  
                     <meta name="robots" content="follow, index" />
                     <meta name="description" content={meta.description} />
@@ -28,20 +28,10 @@ class MyDocument extends Document {
                     <meta name="twitter:title" content={meta.title} />
                     <meta name="twitter:description" content={meta.description} />
                     <meta name="twitter:image" content={meta.image} />
-                    <meta charSet="utf-8"     
-                /> 
+                    <meta charSet="utf-8" />
+                 
                     <link 
                         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap" 
-                        rel="stylesheet" 
-                    />
-
-                    <link 
-                        href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" 
-                        rel="stylesheet"
-                    />
-
-                    <link 
-                        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
                         rel="stylesheet" 
                     />
 
@@ -50,11 +40,17 @@ class MyDocument extends Document {
                         rel="stylesheet"
                     />
 
+                    <link 
+                        href="https://fonts.googleapis.com/css2?family=Flow+Rounded&display=swap" 
+                        rel="stylesheet"
+                    />
+
                     <style 
                         id='stitches'
                         dangerouslySetInnerHTML={{ __html: getCssText() }} 
                     />
                 </Head>
+
                 <body>
                     <Main />
                     <NextScript />

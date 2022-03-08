@@ -5,6 +5,7 @@ import {
     ElementType,
     JSXElementConstructor 
 } from 'react'
+import { strEnum } from '@/interfaces/Guards'
 
 export type BreadcrumbElement = ReactElement<any, string | JSXElementConstructor<any>>
 
@@ -28,7 +29,11 @@ export interface AriaBreadcrumbProps {
     'aria-details'?: string; 
 }
 
-// TODO: add press event props below (onPressUp, onPressDown, onPressChange(isPressed: boolean) => void) etc.. 
+
+export const Separators = strEnum([ 'CHEVRON' , 'ARROW', 'TRIANGLE', 'CARET', 'THICK_ARROW', 'SLASH' ])
+export type Separator = keyof typeof Separators
+
+
 export interface AriaBreadcrumbItemProps {
     id?: string; 
     isCurrent?: boolean;
@@ -37,4 +42,6 @@ export interface AriaBreadcrumbItemProps {
     elementType?: string;    // def = 'a'
     onPress?: () => void; 
     href?: string; 
+    icon?: Separator;
+    element: ElementType<any>;
 };

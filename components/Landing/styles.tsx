@@ -12,7 +12,7 @@ export const StyledGallery = styled('div', {
 
     bc: '$accentBase',
     br: '$6',
-    
+
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
     gridGap: '$4',
@@ -56,9 +56,11 @@ export const StyledGallery = styled('div', {
 })
 
 export const StyledWrapper = styled('div', {
+    position: 'relative',
     userSelect: 'none',
     appearance: 'none',
     WebkitHighlight: 'transparent',
+    overflow: 'hidden',
 
     height: '450px', 
     width: '525px',
@@ -66,10 +68,10 @@ export const StyledWrapper = styled('div', {
     m: '0em',
     
     boxSizing: 'border-box',
-    border: '1px solid',
-    br: '$5',
+    border: '1px solid $accentBorder',
+    borderRadius: '15px',
 
-    backgroundColor: '$accentBg',
+    backgroundColor: '$accentBase',
     color: '$accentText',
     borderColor: '$accentBorder',
     
