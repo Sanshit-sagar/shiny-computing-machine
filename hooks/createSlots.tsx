@@ -1,12 +1,20 @@
-import { useState, useCallback, useEffect, useRef, useContext, createContext, ReactNode } from 'react' 
+import { 
+    useRef,
+    useState, 
+    useEffect, 
+    useContext, 
+    useCallback,
+    createContext, 
+    ReactNode 
+} from 'react' 
 
-export const useForceUpdate = () => {
+const useForceUpdate = () => {
     const [, rerender] = useState({})
     return useCallback(() => rerender({}), [])
 }
 
-
 const createSlots = <SlotNames extends string>(slotNames: SlotNames[]) => {
+
     type Slots = {
         [key in SlotNames]?: ReactNode;
     }
@@ -85,4 +93,7 @@ const createSlots = <SlotNames extends string>(slotNames: SlotNames[]) => {
     return { Slots, Slot }
 }
 
-export default createSlots
+export {
+    createSlots,
+    useForceUpdate
+}

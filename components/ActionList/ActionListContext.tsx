@@ -9,9 +9,7 @@ type ContextProps = {
     afterSelect?: (...args: any[]) => unknown; 
 }
 
-const ActionListContainerContext = createContext<ContextProps>({
-    
-})
+const ActionListContainerContext = createContext<ContextProps>({ })
 
 
 export {

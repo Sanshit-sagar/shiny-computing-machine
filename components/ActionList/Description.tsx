@@ -2,6 +2,7 @@ import React from 'react'
 import { CSS } from 'stitches.config'
 
 import { Box } from '@/components/Box'
+
 import { Truncate } from './Truncate'
 import { Slot, ItemContext } from './Item'
 

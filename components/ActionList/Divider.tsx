@@ -1,6 +1,6 @@
 import { ElementType, ComponentPropsWithRef, forwardRef } from 'react'
 import { CSS } from 'stitches.config' 
-import { StyledDivider } from './Styles'
+import { StyledDivider } from './Styled'
 
 const DEFAULT_TAG = 'li'
 

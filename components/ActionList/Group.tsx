@@ -4,12 +4,12 @@ import { CSS } from 'stitches.config'
 import { useSSRSafeId } from '@react-aria/ssr'
 
 import { Box } from '@/components/Box'
-import { ListContext, ListProps } from './List'
 
-import { ListProps } from './List' 
+import { ListContext } from './List'
+import type { ListProps } from './List' 
+
 import { AriaRole } from './types'
-
-import { StyledHeader, StyledGroup } from './styles'
+import { StyledHeader, StyledGroup } from './Styled'
 
 interface GroupProps {
     variant?: 'subtle' | 'filled'; 

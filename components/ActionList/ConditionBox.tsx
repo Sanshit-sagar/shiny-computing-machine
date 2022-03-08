@@ -1,11 +1,11 @@
-import { ReactNode } from 'react'
+import { Fragment, ReactNode, ComponentProps } from 'react'
 import { CSS } from 'stitches.config' 
 import { Box } from '@/components/Box' 
 
-interface ConditionBoxProps extends ComponentProps<typeof Box> {
+type ConditionBoxProps = ComponentProps<typeof Box> & {
     if: boolean;
-    css: CSS;
-    children: ReactNode; 
+    css?: CSS;
+    children?: ReactNode; 
 }
 
 const ConditionBox = ({ if: condition, children, css, ...rest }: ConditionBoxProps) => {

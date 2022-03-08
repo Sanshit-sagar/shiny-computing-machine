@@ -1,11 +1,9 @@
-import { ElementType, createContext, useContext } from 'react'
+import { ElementType, forwardRef, createContext, useContext } from 'react'
 import { CSS } from 'stitches.config' 
 
-import { ForwardRefComponent } from '@radix-ui/react-polymorphic'
-
 import { AriaRole } from './types'
-import { StyledListBox } from './styles'
-import { ActionListContainerContext} from './ActionListContainerContext'
+import { StyledListBox } from './Styled'
+import { ActionListContainerContext} from './ActionListContext'
 
 interface ListProps {
     variant?: 'inset' | 'full';
@@ -17,13 +15,13 @@ interface ListProps {
 
 const DEFAULT_TAG = 'ul'
 
-type ListContextProps = Pick<ListProps,  'variant' | 'selectionVariant' | 'showDividers' | 'role'>
+type ListContextProps = Pick<ListProps, 'variant' | 'selectionVariant' | 'showDividers' | 'role'>
 type ListElement = ElementType<typeof DEFAULT_TAG> 
 
 const ListContext = createContext<ListContextProps>({})
 
-const List = forwardedRef<ListElement, ListProps>(({
-    variant = 'inset',
+const List = forwardRef<ListElement, ListProps>(({
+    variant = 'inset' as Pick<ListProps, 'variant'>,
     selectionVariant,
     showDividers = false,
     role,

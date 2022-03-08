@@ -1,12 +1,7 @@
-import { AnchorHTMLAttributes } from 'react'
+import { AnchorHTMLAttributes, ElementRef, forwardRef } from 'react'
 
-import { Link } from './Link'
 import { Item, ItemProps } from './Item'
-
-import { mergeProps } from '@react-aria/utils'
-import { ForwardRefComponent } from '@radix-ui/react-polymorphic'
-
-import { StyledLink } from './Styles'
+import { StyledLink } from './Styled'
 
 type LinkProps = {
     download?: string;
@@ -23,7 +18,11 @@ type LinkProps = {
 const DEFAULT_TAG = 'a'
 
 type LinkItemElement = ElementRef<typeof DEFAULT_TAG>
-interface LinkItemProps extends Pick<ItemProps, 'children' | 'css'>, LinkProps {}
+type ListItemOwnProps = {
+    element: ElementRef<any>;   
+}
+
+interface LinkItemProps extends Pick<ItemProps, 'children' | 'css'>, LinkProps, ListItemOwnProps {}
 
 const LinkItem = forwardRef<LinkItemElement, LinkItemProps>(
     ({ as: Component, css, ...props }, forwardedRef) => {

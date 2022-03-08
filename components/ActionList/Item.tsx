@@ -1,15 +1,19 @@
-import React, { useContext, forwardRef, ReactNode, Fragment } from 'react' 
+import React, { useContext, useCallback, forwardRef, ReactNode, Fragment, ElementType } from 'react' 
 import { CSS } from 'stitches.config' 
 
 import { useSSRSafeId } from '@react-aria/ssr'
+import { createSlots } from '@/hooks/createSlots'
 
-import { ListContext } from './List'
-import { GroupContext } from './Group'
+import { ListContext, ListProps } from './List'
+import { GroupContext, GroupProps } from './Group'
 import { ActionListContainerContext } from './ActionListContext'
 
+import { Box } from '@/components/Box'
+import { Selection } from './Selection'
 import { ConditionBox } from './ConditionBox'
-import { StyledListItem, StyledDividerContainer } from './styles'
-import { createSlots } from '@/hooks/createSlots'
+
+import { AriaRole } from './types' 
+import { StyledListItem, StyledDividerContainer } from './Styled'
 
 const DEFAULT_TAG = 'li'
 
@@ -24,6 +28,7 @@ type ItemProps = {
     disabled?: boolean;
     children?: ReactNode; 
     _PrivateItemWrapper: ReactNode | ItemRenderer;
+    css?: CSS; 
 }
 
 interface ItemContext extends Pick<ItemProps, 'variant' | 'disabled'> {
@@ -45,7 +50,8 @@ const Item = forwardRef<ItemElement, ItemProps>(({
     disabled = false,
     selected = undefined,
     onSelect = (_event) => {},
-    css = {}
+    css = {},
+    ...props
 }, forwardedRef) => {
 
     const { variant: listVariant, showDividers, selectionVariant: listSelectionVariant } = useContext(ListContext)
@@ -76,6 +82,12 @@ const Item = forwardRef<ItemElement, ItemProps>(({
         }
     }, [onSelect, disabled, afterSelect])
 
+    let selectionVariant: ListProps['selectionVariant'] | GroupProps['selectionVariant']
+    if (typeof groupSelectionVariant !== 'undefined') {
+        selectionVariant = groupSelectionVariant
+    } else {
+        selectionVariant = listSelectionVariant
+    }
 
     let itemRole: ItemRole['role']
     if(container === 'ActionMenu' || container === 'DropdownMenu') {
@@ -86,13 +98,6 @@ const Item = forwardRef<ItemElement, ItemProps>(({
         } else {
             itemRole = 'menuitem'
         }
-    }
-
-    let selectionVariant: ListProps['selectionVariant'] | GroupProps['selectionVariant']
-    if (typeof groupSelectionVariant !== 'undefined') {
-        selectionVariant = groupSelectionVariant
-    } else {
-        selectionVariant = listSelectionVariant
     }
 
     return (

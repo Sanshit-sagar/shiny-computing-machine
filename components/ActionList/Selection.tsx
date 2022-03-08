@@ -3,14 +3,14 @@ import { useContext } from 'react'
 import { ItemProps } from './Item'
 import { GroupContext, GroupProps } from './Group'
 import { ListContext, ListProps } from './List'
+import { LeadingVisualContainer } from './Visuals'
 
 import { CheckIcon } from '@radix-ui/react-icons'
 
 const SELECTION_ERR_STR = 'For Item to be selected, ActionList or ActionList.Group needs to have a selectionVariant defined'
 
 type SelectionVariant = ListProps['selectionVariant'] | GroupProps['selectionVariant']
-
-interface SelectionProps { 
+interface SelectionProps extends Pick<ItemProps, 'selected'> { 
     selected: boolean; 
 }
 
