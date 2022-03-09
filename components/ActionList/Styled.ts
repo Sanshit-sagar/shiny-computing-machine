@@ -24,21 +24,50 @@ const StyledDivider = styled(Box, {
     listStyle: 'none'
 })
 
+const StyledContent = styled('span', {
+    backgroundColor: '$transparent',
+
+    fontSize: '12px',
+    fontVariant: 'tabular',
+    fontFamily: '$flow',
+    fontVariantNumeric: 'tabular-nums',
+    fontStyle: 'normal',
+    fontWeight: 300,
+
+    lineHeight: '16px', 
+    letterSpacing: '-0.05em',
+    wordSpacing: '-0.6ch',
+
+    verticalAlign: 'middle',
+
+    variants: {
+        inline: {
+            true: {
+                flexGrow: 0
+            },
+            false: {
+                flexGrow: 1
+            }
+        }
+    },
+    defaultVariants: {
+        inline: false
+    }
+})
+
 const StyledListItem = styled('li', {
      '--transparent': '$transparent',
 
     display: 'flex',
-    px: 2,
-    py: 6,
-    fontSize: '$1',
-    lineHeight: '20px',
+    p: '$2',
     minHeight: 5,
-    mx: 0,
-    br: 0,
+    m: '$1',
+    br: '$1',
 
     transition: 'background 300ms linear',
     cursor: 'pointer',
-
+    border: '1.25px solid transparent',
+ 
     variants: {
         inset: {
             true: {
@@ -52,13 +81,13 @@ const StyledListItem = styled('li', {
                 cursor: 'not-allowed'
             },
             false: null
-        }
+        },
         variant: {
             'default': {
                 bc: '$accentBg',
                 color: '$accentText',
                 '&:hover': {
-                    bc: '$accentBgHover',
+                    bc: '$accentLine',
                     color: '$accentTextContrast'
                 },
                 '&:focus': {
@@ -73,70 +102,143 @@ const StyledListItem = styled('li', {
                 }
             },
             'danger': {
-                bc: '$dangerBg',
+                bc: '$accentBg',
                 color: '$dangerText',
                 '&:hover': {
                     bc: '$dangerBgHover',
-                    color: '$dangerTextContrast'
+                    color: '$dangerText'
                 },
                 '&:focus': {
                     bc: '$dangerBgActive',
-                    color: '$dangerTextContrast',
+                    color: '$dangerText',
                     outline: '2px solid dodgerblue',
                     outlineOffset: 2
                 },
                 '&:active': {
-                    bc: '$dangerBgActive',
+                    bc: '$accentBgActive',
                     color: '$dangerTextContrast'
+                }
+            },
+            'info': {
+                bc: '$accentBg',
+                color: '$infoText',
+                '&:hover': {
+                    bc: '$infoBgHover',
+                    color: '$infoTextContrast'
+                },
+                '&:focus': {
+                    bc: '$infoBgActive',
+                    color: '$infoTextContrast',
+                    outline: '2px solid dodgerblue',
+                    outlineOffset: 2
+                },
+                '&:active': {
+                    bc: '$infoSolid',
+                    color: '$infoTextContrast'
+                }
+            },
+            'success': {
+                bc: '$accentBg',
+                color: '$successText',
+                '&:hover': {
+                    bc: '$successBgHover',
+                    color: '$successText'
+                },
+                '&:focus': {
+                    bc: '$successBgActive',
+                    color: '$successText',
+                    outline: '2px solid dodgerblue',
+                    outlineOffset: 2
+                },
+                '&:active': {
+                    bc: '$successBgActive',
+                    color: '$successTextContrast'
+                }
+            },
+            'warning': {
+                bc: '$accentBg',
+                color: '$warningText',
+                '&:hover': {
+                    bc: '$warningBgHover',
+                    color: '$warningText'
+                },
+                '&:focus': {
+                    bc: '$warningBgActive',
+                    color: '$warningTextContrast',
+                    outline: '2px solid dodgerblue',
+                    outlineOffset: 2
+                },
+                '&:active': {
+                    bc: '$warningBgActive',
+                    color: '$warningTextContrast'
                 }
             }
         }
     },
     defaultVariants: {
-        inset: true,
+        inset: false,
+        disabled: false,
         variant: 'default'
     }
 })
 
-const StyledHeader = styled(Box, {
-    py: 6,
-    px: 3,
-    fontSize: 0,
-    fontWeight: 'bold',
-    color: '$accentText',
+const StyledHeader = styled('div', {
+    p: '$2',
+    margin: '0em',
 
     variants: {
-        variant: {
-            'full': {
-                px: 2
+        full: {
+            true: {
+                px: '$2'
             },
-            'filled': {
-                mx: 0,
-                mb: 2,
-                borderTop: '1px solid',
-                borderBottom: '1px solid',
-                borderColor: '1px solid $accentLine'
+            false: null
+        },
+        filled: {
+            true: {
+                mx: '$0',
+                mb: '$2',
+                border: '1px solid $accentLine'
             },
-            'default': null
+            false: null
         }
     },
     defaultVariants: {
-        variant: 'default'
+        full: false,
+        filled: false
     }
 })
+
+const StyledHeaderLabel = styled('span', {
+    fontSize: '12px',
+    fontWeight: 400,
+    fontFamily: '$flow',
+    fontVariant: 'tabular',
+    textDecoration: 'none',
+    textTransform: 'capitalize',
+    letterSpacing: '0.05ch',
+    verticalAlign: 'top',
+    textAlign: 'start',
+    color: '$accentTextContrast',
+})
+
 
 const StyledGroup = styled('li', {
     listStyle: 'none',
 
     '&:not(:first-child)': {
-        marginTop: 2
+        marginTop: '$2'
     }
 })
 
 const StyledListBox = styled('ul', {
+    width: '100%',
     margin: '0em',
     padding: '0em',
     paddingInlineStart: 0,
+
+    bc: '$accentBg',
+    border: '$accentLine',
+    br: '$2',
 
     variants: {
         inset: {
@@ -170,6 +272,8 @@ export {
     StyledListBox,
     StyledListItem,
     StyledHeader,
+    StyledHeaderLabel,
+    StyledContent,
     StyledGroup,
     StyledDivider,
     StyledDividerContainer

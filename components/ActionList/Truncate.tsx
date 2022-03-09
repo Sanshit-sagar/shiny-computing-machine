@@ -19,6 +19,12 @@ const StyledTruncate = styled('div', {
     textOverflow: 'ellipsis',
     maxWidth: 'var(--max-width)',
 
+    fontSize: '10px',
+    fontFamily: '$jetbrains',
+    lineHeight: '14px',
+    verticalAlign: 'top',
+    textAlign: 'start',
+
     variants: {
         inline: {
             true: {
@@ -41,25 +47,19 @@ const StyledTruncate = styled('div', {
     },
     defaultVariants: {
         inline: false, 
-        block: false,
         expandable: false 
     }
 })
 
-const Truncate = forwardRef<TruncateElement, TruncateProps>(
-    ({ inline, expandable, maxWidth = 125, title, css, children, ...rest }, forwardedRef) => {
+const Truncate = ({ inline = false, expandable = false, maxWidth = 125, title, css, children, ...rest }) => {
 
     return (
-        <StyledTruncate
-            inline={inline}
-            exapndable={exapndable}
-            css={{ '--max-width': `${maxWidth}px`, ...css }}
-            ref={forwardedRef}
-        >
+        <StyledTruncate inline={inline} exapndable={expandable} css={{ '--max-width': `${maxWidth}px`, ...css }}>
             {children}
         </StyledTruncate>
     )
-})
+}
+
 Truncate.displayName = 'Truncate'
 
 export type {

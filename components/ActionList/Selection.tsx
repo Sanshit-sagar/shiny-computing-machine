@@ -18,10 +18,12 @@ const Selection = ({ selected }: SelectionProps) => {
     const { selectionVariant: listSelected } = useContext(ListContext)
     const { selectionVariant: groupSelected } = useContext(GroupContext)
 
-    let selectionVariant: SelectionVariant = groupSelected !== undefined ? groupSelected : listSelected
+    let selectionVariant: SelectionVariant
+    if (typeof groupSelected !== 'undefined') selectionVariant = groupSelected
+    else selectionVariant = listSelected
     
     if(!selectionVariant) {
-        if(!selected) {
+        if(selected) {
             throw new Error(SELECTION_ERR_STR)
         } else {
             return null
@@ -38,19 +40,19 @@ const Selection = ({ selected }: SelectionProps) => {
         <LeadingVisualContainer
             css={{
                 rect: {
-                    fill: selected ? '$accentText' : '$accentBase',
-                    stroke: selected ? '$accentText' : '$accentBase',
+                    fill: selected ? '$accentBase' : '$accentBase',
+                    stroke: selected ? '$accentTextContrast' : '$accentTextContrast',
                     shapeRendering: 'auto'
                 },
                 path: {
-                    fill: '$accentTextContrast',
+                    fill: selected ? '$accentTextContrast' : '$accentBase',
                     boxShadow: '$small',
                     opacity: selected ? 1 : 0
                 }
             }}
         >
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="2" width="12" height="12" rx="4" />
+                <rect x="2" y="2" width="12" height="12" rx="2" />
                 <path
                     fillRule="evenodd"
                     strokeWidth="0"

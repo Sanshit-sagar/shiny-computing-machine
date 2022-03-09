@@ -13,7 +13,7 @@ import { Selection } from './Selection'
 import { ConditionBox } from './ConditionBox'
 
 import { AriaRole } from './types' 
-import { StyledListItem, StyledDividerContainer } from './Styled'
+import { StyledListItem, StyledDividerContainer, StyledContent } from './Styled'
 
 const DEFAULT_TAG = 'li'
 
@@ -22,12 +22,12 @@ type ItemElement = ElementType<typeof DEFAULT_TAG>
 type ItemProps = {
     id?: string;
     role?: AriaRole;
-    onSelect: (event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>) => void;
+    onSelect?: (event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>) => void;
     selected?: boolean;
     variant?: 'default' | 'danger';
     disabled?: boolean;
     children?: ReactNode; 
-    _PrivateItemWrapper: ReactNode | ItemRenderer;
+    _PrivateItemWrapper?: ReactNode | ItemRenderer;
     css?: CSS; 
 }
 
@@ -51,6 +51,7 @@ const Item = forwardRef<ItemElement, ItemProps>(({
     selected = undefined,
     onSelect = (_event) => {},
     css = {},
+    _PrivateItemWrapper,
     ...props
 }, forwardedRef) => {
 
@@ -62,12 +63,14 @@ const Item = forwardRef<ItemElement, ItemProps>(({
     const inlineDescriptionId = useSSRSafeId(id && `${id}--inline--description`)
     const blockDescriptionId = useSSRSafeId(id && `${id}--block--description`)
 
-    const ItemWrapper = Fragment
+    const ItemWrapper = _PrivateItemWrapper || Fragment
 
     const clickHandler = useCallback((event) => {
         if(disabled) return
 
-        if(!event.preventDefault) {
+        if(!event.defaultPrevented) {
+            event.preventDefault()                                  // TODO: REMOVE THIS? 
+
             if (typeof onSelect === 'function') onSelect(event)
             if (typeof afterSelect === 'function') afterSelect()
         }
@@ -77,6 +80,8 @@ const Item = forwardRef<ItemElement, ItemProps>(({
         if (disabled) return
 
         if (!event.defaultPrevented && [' ', 'Enter'].includes(event.key)) {
+            event.preventDefault()                                  // TODO: REMOVE THIS? 
+
             if (typeof onSelect === 'function') onSelect(event)
             if (typeof afterSelect === 'function') afterSelect()
         }
@@ -112,7 +117,7 @@ const Item = forwardRef<ItemElement, ItemProps>(({
                     aria-labelledby={`${labelId} ${slots.InlineDescription ? inlineDescriptionId : ''}`}
                     aria-describedby={slots.BlockDescription ? blockDescriptionId : undefined}
                     aria-disabled={disabled ? true : undefined}
-                    ref={forwardedRef}
+                    variant={variant}
                     css={css}
                 >
                     <ItemWrapper> 
@@ -129,16 +134,12 @@ const Item = forwardRef<ItemElement, ItemProps>(({
                                 css={{ display: 'flex', flexGrow: 1 }}
                             >
                                 <ConditionBox 
-                                    if={Boolean(slots.InlineDescription) 
+                                    if={Boolean(slots.InlineDescription)}
                                     css={{ display: 'flex',  flexGrow: 1, alignItems: 'baseline', minWidth: 0 }}
                                 >
-                                    <Box 
-                                        as="span" 
-                                        id={labelId} 
-                                        css={{ flexGrow: slots.InlineDescription ? 0 : 1 }}
-                                    >
+                                    <StyledContent as="span" id={labelId} inline={Boolean(slots.InlineDescription)}>
                                         {props.children}
-                                    </Box> 
+                                    </StyledContent> 
                                     {slots.InlineDescription}
                                 </ConditionBox>
                                 {slots.TrailingVisual}

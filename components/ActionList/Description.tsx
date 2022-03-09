@@ -1,5 +1,5 @@
-import React from 'react'
-import { CSS } from 'stitches.config'
+import React, { forwardRef, ElementType } from 'react'
+import { CSS, styled } from 'stitches.config'
 
 import { Box } from '@/components/Box'
 
@@ -17,6 +17,14 @@ const StyledDescription = styled(Box, {
     flexGrow: 1,
     flexBasis: 0,
     minWidth: 0,
+    color: '$accentTextContrast',
+
+    fontSize: '10px',
+    fontFamily: '$jetbrains',
+    lineHeight: '14px',
+    verticalAlign: 'top',
+    textAlign: 'start',
+    
 
     variants: { 
         disabled: {
@@ -30,7 +38,7 @@ const StyledDescription = styled(Box, {
         inline: {
             true: {
                 marginLeft: '2px',
-                  maxWidth: '100%',
+                maxWidth: '100%',
             },
             false: null
         },
@@ -48,22 +56,30 @@ const StyledDescription = styled(Box, {
     }
 })
 
-export const Description = forwardedRef<DescriptionElement, DescriptionProps>(
-    ({ variant = 'inline', css, ...rest }, forwardedRef) => {
+const DEFAULT_TAG = 'div'
+type DescriptionElement = ElementRef<typeof DEFAULT_TAG>
+
+export const Description = ({ variant = 'inline', css, ...props }) => {
 
     return (
         <Slot name={variant === 'block' ? 'BlockDescription' : 'InlineDescription'}>
             {({ blockDescriptionId, inlineDescriptionId, disabled }: ItemContext) => (
-                variant == 'block' ? (
-                    <StyledDescription as="span" id={blockDescriptionId} block={true}>
+                variant === 'block' ? (
+                    <StyledDescription as="span" disabled={disabled} id={blockDescriptionId} block={true}>
                         {props.children} 
                     </StyledDescription>
                 ) : (
-                    <StyledDescription inline={true} id={inlineDescriptionId} title={props.children as string}>
+                    <Truncate 
+                        inline={true} 
+                        expandable={true}
+                        id={inlineDescriptionId} 
+                        title={props.children as string} 
+                        css={{ ml: '$2', maxWidth: '100%' }}
+                    >
                         {props.children}
-                    </StyledDescription>       
+                    </Truncate>       
                 )
             )}
         </Slot> 
     )
-})
+}

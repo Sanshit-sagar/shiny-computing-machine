@@ -1,103 +1,148 @@
-import { useState, HTMLAttributes, ReactNode } from 'react' 
-import { VariantProps } from 'stitches.config'
-import {
-    StyledContainer,
-    StyledMenu,
-    StyledMenuList,
-    StyledMenuItem,
-    StyledMenuSubList,
-    StyledMenuButton 
-} from './styles'
+import { useState } from 'react'
 
-import { 
-    
-    CircleIcon, 
-    ChevronRightIcon, 
-    TrashIcon,
-    Share1Icon, 
-    IdCardIcon,
-    CheckIcon,
-    PlayIcon,
-    StopIcon, 
-    ExclamationTriangleIcon,
-    CopyIcon,
-    LockClosedIcon,
-    ExternalLinkIcon, 
-    DownloadIcon, 
-    MoveIcon
-} from '@radix-ui/react-icons'
+import ActionList from './index'
+import { ExternalLinkIcon, ExclamationTriangleIcon, CheckCircledIcon, PlusCircledIcon, GlobeIcon, AvatarIcon } from '@radix-ui/react-icons'
 
-type MenuVariantProps = VariantProps<typeof StyledMenuButton>
 
-interface ContextMenuItemProps extends HTMLAttributes<HTMLButtonElement> { 
-    name: string; 
-    leftIcon: ReactNode | HTMLOrSVGElement; 
-    rightIcon?: ReactNode | HTMLOrSVGElement;
-    style?: MenuVariantProps['style'];
-}
+const ActionListWithPrefix = () => (
+    <ActionList>
+         <ActionList.Item>
+            <ActionList.LeadingVisual> 
+                <ExternalLinkIcon /> 
+            </ActionList.LeadingVisual>
+            github.com/primer
+            <ActionList.TrailingVisual>⌘N</ActionList.TrailingVisual>
+        </ActionList.Item>
 
-const ContextMenuItem = ({ 
-    name, 
-    leftIcon, 
-    rightIcon = null, 
-    style = 'black', 
-    ...rest 
-}: ContextMenuItemProps) => (
+        <ActionList.Item>
+            <ActionList.LeadingVisual> 
+                <AvatarIcon /> 
+            </ActionList.LeadingVisual>
+            <ActionList.TrailingVisual>⌘A</ActionList.TrailingVisual>
+            @frankherbert485
+        </ActionList.Item>
 
-    <StyledMenuItem>
-        <StyledMenuButton style={style} {...rest}>
-           <> {leftIcon} </>
-           <> {name} </>
-           {rightIcon && (
-               <> {rightIcon} </>
-           )}
-        </StyledMenuButton>
-    </StyledMenuItem>
+        <ActionList.Divider />
+
+        <ActionList.Item variant="info"> 
+            <ActionList.LeadingVisual> 
+                <ExternalLinkIcon /> 
+            </ActionList.LeadingVisual>
+            github.com/primer
+            <ActionList.TrailingVisual>⌘N</ActionList.TrailingVisual>
+        </ActionList.Item>
+
+        <ActionList.Item variant="warning"> 
+            <ActionList.LeadingVisual> 
+                <AvatarIcon /> 
+            </ActionList.LeadingVisual>
+            <ActionList.TrailingVisual>⌘A</ActionList.TrailingVisual>
+            @frankherbert485
+        </ActionList.Item>
+
+        <ActionList.Item variant="danger"> 
+            <ActionList.LeadingVisual> 
+                <ExclamationTriangleIcon /> 
+            </ActionList.LeadingVisual>
+            <ActionList.TrailingVisual>⌘X</ActionList.TrailingVisual>
+            4 vulnerabilities
+        </ActionList.Item>
+
+        <ActionList.Item variant="success"> 
+            <ActionList.LeadingVisual> 
+                <CheckCircledIcon /> 
+            </ActionList.LeadingVisual>
+            <ActionList.TrailingVisual>⌘S</ActionList.TrailingVisual>
+            Build Passed
+        </ActionList.Item>
+    </ActionList>
 )
 
+type SelectableOption = {
+    text: string;
+    selected: boolean; 
+}
 
-export const ContextMenuInstance = () => {
-    const [isVisible, setIsVisible] = useState<boolean>(false)
+const ActionListWithSections = () => {
 
-    const toggleVisibility = () => setIsVisible(!isVisible)
+    const [options, setOptions] = useState<SelectableOption[]>([
+        { text: 'Status', selected: true },
+        { text: 'Stage', selected: true },
+        { text: 'Assignee', selected: true },
+        { text: 'Team', selected: true },
+        { text: 'Estimate', selected: false },
+        { text: 'Due Date', selected: false }
+    ])
+
+    const visibleOptions = options.filter((option: SelectableOption) => option.selected)
+    const hiddenOptions = options.filter((option: SelectableOption) => !option.selected)
+
+    const toggle = (text: string) => {
+
+        setOptions(
+            options.map((option: SelectableOption) => {
+                if (option.text === text) option.selected = !option.selected
+                return option
+            })
+        )
+    }
 
     return (
-        <StyledContainer>
-            <StyledMenu>
-                <StyledMenuList>
-                   <ContextMenuItem name="Share" leftIcon={<Share1Icon />} /> 
-                   <ContextMenuItem name="Rename" leftIcon={<IdCardIcon />} />
-                </StyledMenuList>
+        <ActionList selectionVariant="multiple">
+            <ActionList.Group title="Visible fields">
+                {visibleOptions.map((option) => (
+                    <ActionList.Item key={option.text} selected={true} onSelect={() => toggle(option.text)}>
+                        {option.text}
+                    </ActionList.Item>
+                ))}
+            </ActionList.Group> 
 
-                <StyledMenuList>
-                    <StyledMenuItem>
-                        <ContextMenuItem 
-                            name="No Status" 
-                            onClick={toggleVisibility} 
-                            leftIcon={<CircleIcon />} 
-                            rightIcon={<ChevronRightIcon />} 
-                        /> 
-                        <StyledMenuSubList visible={isVisible}>
-                            <ContextMenuItem name="Needs Review" leftIcon={<ExclamationTriangleIcon />} style="orange" /> 
-                            <ContextMenuItem name="In Progress" leftIcon={<PlayIcon />} style="purple"  />
-                            <ContextMenuItem name="Approved" leftIcon={<CheckIcon />} style="green" /> 
-                            <ContextMenuItem name="No Status" leftIcon={<StopIcon />} style="checked" />
-                        </StyledMenuSubList>
-                    </StyledMenuItem>
-              
-                   
-                    <ContextMenuItem name="Copy Link Address" leftIcon={<ExclamationTriangleIcon />} /> 
-                    <ContextMenuItem name="Move to" leftIcon={<MoveIcon />}   />
-                    <ContextMenuItem name="Copy to" leftIcon={<CopyIcon />} /> 
-                    <ContextMenuItem name="Make Private" leftIcon={<LockClosedIcon />} />
-                    <ContextMenuItem name="Download" leftIcon={<DownloadIcon />} />
-                </StyledMenuList>
-
-                <StyledMenuList>
-                    <ContextMenuItem name="Trash" leftIcon={<TrashIcon />} style="delete" /> 
-                </StyledMenuList>
-            </StyledMenu>
-        </StyledContainer>
+            <ActionList.Group title="Hidden fields" selectionVariant={hiddenOptions.length ? 'multiple' : false}>
+                {hiddenOptions.map((option, index) => (
+                    <ActionList.Item key={option.text} selected={false} onSelect={() => toggle(option.text)}>
+                        {option.text}
+                    </ActionList.Item>  
+                ))}
+                {hiddenOptions.length === 0 && (
+                    <ActionList.Item disabled>
+                        No hidden fields
+                    </ActionList.Item>
+                )}
+            </ActionList.Group>
+        </ActionList>
     )
 }
 
+const ActionListWithDescription = () => (
+    <ActionList>
+        <ActionList.Item>
+            <ActionList.LeadingVisual> 
+                <GlobeIcon /> 
+            </ActionList.LeadingVisual>
+            Open Current Codespace
+
+            <ActionList.Description variant="block">
+                Your existing Codespace will be opened to its previous state, and you'll be asked to manually switch to new-branch.
+            </ActionList.Description>  
+        </ActionList.Item>
+
+        <ActionList.Item>
+            <ActionList.LeadingVisual> 
+                <PlusCircledIcon /> 
+            </ActionList.LeadingVisual>
+            Create new Codespace
+
+            <ActionList.Description variant="block">
+                Create a brand new Codespace with a fresh image and checkout this branch." 
+            </ActionList.Description>
+          
+        </ActionList.Item>
+    </ActionList>
+)
+
+const ActionListInstance = () => <ActionListWithPrefix /> 
+
+
+export {
+    ActionListInstance 
+}

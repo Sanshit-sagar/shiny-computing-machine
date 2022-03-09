@@ -33,11 +33,11 @@ const StyledPopoverMessage = styled('div', {
     borderRadius: '$2',
 
     position: 'relative',
-    width: '232px',
+    width: 'fit-content',
     marginRight: 'auto',
     marginLeft: 'auto',
     
-    padding: '$2',
+    padding: 0,
     backgroundColor: '$tooltipForeground',
     color: '$tooltipForeground',
 

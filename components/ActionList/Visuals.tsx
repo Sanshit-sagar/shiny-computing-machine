@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 import { styled, CSS } from 'stitches.config'
 
 import { ItemContext, Slot } from './Item'
@@ -8,41 +8,75 @@ const StyledVisualContainer = styled(Box, {
     height: '20px',
     minWidth: '$3',
     maxWidth: '20px',
+
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexShrink: 0,
-    marginRight: '$2'
+    marginRight: '$2',
+    color: 'inherit',
+    bc: 'transparent',
+    
+    variants: {
+        variant: {
+            'default': {
+                bc: 'transparent',
+                color: '$accentText'
+            },
+            'danger': {
+                bc: 'transparent',
+                color: '$dangerBg'
+            }
+        }
+    },
+    defaultVariants: {
+        variant: 'default'
+    }
 })
 
 const StyledTrailingVisual = styled(Box, {
+    bc: 'transparent',
     height: '20px',
     flexShrink: 0,
     marginLeft: '$2',
-    color: '$accentLine'
+    color: 'inherit',
+    fontSize: '13px',
+    fontFamily: '$jetbrains',
+    fontWeight: 400,
+    fontVariant: 'tabular',
+    fontVariantNumeric: 'tabular-nums',
+    fontStyle: 'normal',
+    lineHeight: '20px',
+    verticalAlign: 'middle',
+    letterSpacing: '0.15ch'
 })
 
-type VisualProps = HTMLAttributes<HTMLSpanElement> & { css: CSS; }
-type LeadingVisualProps = VisualProps
-type TrailingVisualProps = VisualProps
+type VisualProps = HTMLAttributes<HTMLSpanElement> & { 
+    css?: CSS; 
+}
 
-const LeadingVisualContainer = ({ children, css, ...rest }: VisualProps) => (
+interface VisualContainerProps extends VisualProps {}
+interface LeadingVisualProps extends VisualProps {}
+interface TrailingVisualProps extends VisualProps {}
+
+const LeadingVisualContainer = ({ children, css, ...rest }: VisualContainerProps) => (
     <StyledVisualContainer as="span" css={css} {...rest}>
         {children}
     </StyledVisualContainer>
 )
 LeadingVisualContainer.displayName = 'LeadingVisualContainer'
 
-const LeadingVisual = ({ children, css, ...rest }: VisualProps) => (
+const LeadingVisual = ({ children, css, ...rest }: LeadingVisualProps) => (
     <Slot name="LeadingVisual">
         {({ variant, disabled }: ItemContext) => (
             <LeadingVisualContainer 
-                {...props} 
+                {...rest} 
                 css={{
-                    color: '$accentTextContrast',
+                    color: 'inherit',
                     '& svg': {
 
-                    }
+                    },
+                    
                 }}
             >
                 {children}
@@ -52,10 +86,10 @@ const LeadingVisual = ({ children, css, ...rest }: VisualProps) => (
 )
 LeadingVisual.displayName = 'LeadingVisual'
 
-const TrailingVisual = ({ children, css, ...rest }: VisualProps) => (
+const TrailingVisual = ({ children, css, ...rest }: TrailingVisualProps) => (
     <Slot name="TrailingVisual">
         {({ variant, disabled }: ItemContext) => (
-            <StyledTrailingVisual as="span" {...props} css={{ ...css }}>
+            <StyledTrailingVisual as="span" {...rest} css={{ ...css }}>
                 {children}
             </StyledTrailingVisual>
         )}
@@ -67,4 +101,9 @@ export {
     LeadingVisual,
     TrailingVisual,
     LeadingVisualContainer
+}
+
+export type {
+    LeadingVisualProps,
+    TrailingVisualProps
 }

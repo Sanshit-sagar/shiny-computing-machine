@@ -18,7 +18,7 @@ const cssVars: CSS = {
 
     '--popover-border-width': '0.075em',
     '--popover-border-style': 'solid',
-    '--popover-border-color': '$colors$accentBorder',
+    '--popover-border-color': '$colors$transparent',
     '--popover-border-radius': '$sizes$2',
 
     '--popover-min-width':  '150px',
@@ -77,7 +77,7 @@ export const FollowButton = styled('button', {
     textAlign: 'center',
 
     $$shadowColor: '$colors$black3',
-    boxShadow: '0px 0px 2px $$shadowColor',
+    boxShadow: '0px 0px 2px transparent',
 
     '&:hover': {
         filter: 'drop-shadow(0px 0px 3px $$shadowColor)'
@@ -95,7 +95,7 @@ export const StyledCard = styled('div', {
 
     backgroundColor: 'inherit',
 
-    borderWidth: '1px',
+    borderWidth: '0em',
     borderStyle: 'solid',
     borderColor: 'transparent',
     outline: '2px solid transparent',
@@ -184,6 +184,7 @@ export const StyledPopoverImage = styled('img', {
     display: 'block',
 
     backgroundColor: 'white',
+
     border: '1px',
     borderRadius: '100%',
 
@@ -210,6 +211,7 @@ export const StyledPopoverText = styled('div', {
 
     fontSize: '15px',
     lineHeight: '20px',
+    color: '$accentText',
 
     variants: {
         faded: {

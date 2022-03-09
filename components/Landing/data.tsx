@@ -21,6 +21,7 @@ import { CodeBlockInstance } from '@/components/Pre/examples'
 
 import { DatePickerInstance } from '@/components/DatePicker/examples'
 // import { AvatarInstance } from '@/components/Avatar/examples'
+import { ActionListInstance } from '@/components/ActionList/examples'
 import { CheckboxInstance } from '@/components/Checkbox/examples'
 import { ContextMenuInstance } from '@/components/ActionList/examples'
 import { CheckboxGroupInstance } from '@/components/CheckboxGroup/examples'
@@ -117,7 +118,7 @@ export const showcases: IShowcase[] = [{
         description: '',
         icon: <ButtonIcon />
     }, {
-        element: <ContextMenuInstance />,
+        element: <ActionListInstance />,
         name: 'ActionList',
         description: '',
         icon: <ListIcon />

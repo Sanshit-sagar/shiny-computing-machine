@@ -5,7 +5,7 @@ import { AriaRole } from './types'
 import { StyledListBox } from './Styled'
 import { ActionListContainerContext} from './ActionListContext'
 
-interface ListProps {
+type ListProps = {
     variant?: 'inset' | 'full';
     selectionVariant?: 'single' | 'multiple';
     showDividers?: boolean; 
@@ -21,31 +21,32 @@ type ListElement = ElementType<typeof DEFAULT_TAG>
 const ListContext = createContext<ListContextProps>({})
 
 const List = forwardRef<ListElement, ListProps>(({
-    variant = 'inset' as Pick<ListProps, 'variant'>,
+    variant = 'inset',
     selectionVariant,
     showDividers = false,
     role,
     css = {},
     ...props
-}, forwardedRef): JSX.Element => {
+}, forwardedRef) => {
 
-    const { listRole, listLabelledBy, selectionVariant: containerSelectionVariant } = useContext(ActionListContainerContext)
+    const { 
+        listRole, 
+        listLabelledBy, 
+        selectionVariant: containerSelectionVariant 
+    } = useContext(ActionListContainerContext)
+
+    if(!role) role = listRole
+    if(!selectionVariant) selectionVariant = containerSelectionVariant
     
     return (
         <StyledListBox role={role || listRole} aria-labelledby={listLabelledBy} {...props} css={css} ref={forwardedRef}>
-            <ListContext.Provider 
-                value={{ 
-                    variant, 
-                    selectionVariant: selectionVariant || containerSelectionVariant, 
-                    showDividers,
-                    role: role || listRole
-                }}
-            >
+            <ListContext.Provider value={{ variant, selectionVariant, showDividers, role }}>
                 {props.children} 
-            </ListContext.Provder> 
+            </ListContext.Provider>
         </StyledListBox>
     )
-}) 
+})
+
 List.displayName = 'List'
 
 export {

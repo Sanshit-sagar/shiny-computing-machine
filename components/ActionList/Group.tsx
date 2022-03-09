@@ -1,15 +1,20 @@
-import React from 'react' 
+import { ReactNode, ReactElement, createContext, useContext } from 'react' 
 
 import { CSS } from 'stitches.config'
 import { useSSRSafeId } from '@react-aria/ssr'
 
-import { Box } from '@/components/Box'
-
+import { AriaRole } from './types'
 import { ListContext } from './List'
 import type { ListProps } from './List' 
+import { 
+    StyledGroup,
+    StyledHeader,
+    StyledHeaderLabel 
+} from './Styled'
 
-import { AriaRole } from './types'
-import { StyledHeader, StyledGroup } from './Styled'
+import { Box } from '@/components/Box'
+
+type GroupRenderer = (ReactElement | ReactElement[])[]
 
 interface GroupProps {
     variant?: 'subtle' | 'filled'; 
@@ -17,7 +22,8 @@ interface GroupProps {
     auxiliaryText?: string
     role?: AriaRole;  
     css: CSS;  
-    selectionVariant?: ListProps['selectionVariant'] | false
+    selectionVariant?: ListProps['selectionVariant'] | false;
+    children?: GroupRenderer | ReactNode;
 }
 
 
@@ -72,7 +78,7 @@ const Header = ({ variant, title, auxiliaryText, labelId, ...props }) => {
 
     return (
         <StyledHeader role="presentation" aria-hidden="true" {...props}>
-            <span id={labelId}> {title} </span> 
+            <StyledHeaderLabel id={labelId}> {title} </StyledHeaderLabel> 
             {auxiliaryText && (
                 <span> {auxiliaryText} </span> 
             )}

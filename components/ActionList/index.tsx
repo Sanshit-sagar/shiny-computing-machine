@@ -21,8 +21,9 @@ const ActionList = Object.assign(List, {
     Group,
     Divider,
     LinkItem,
-    Selection,
     Description,
     LeadingVisual,
     TrailingVisual
-}
+})
+
+export default ActionList
