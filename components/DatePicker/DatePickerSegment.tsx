@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, MutableRefObject } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { styled } from 'stitches.config'
 
 import { NumberParser } from '@internationalized/number'
@@ -28,7 +28,11 @@ const StyledEditableSegment = styled('div', {
     fontVariant: 'tabular',
     fontVariantNumeric: 'tabular-nums',
     color: '$accentTextContrast',
-    padding: '$2'
+    padding: '$1',
+    lineHeight: '16px',
+    letterSpacing: 'normal',
+    fontKerning: 'auto',
+    verticalAlign: 'middle'
 })
 
 const StyledLiteralSegment = styled('span', {
@@ -86,14 +90,19 @@ const EditableSegment = ({ segment, state, ...otherProps }: SegmentProps) => {
     const parser = useMemo(() => new NumberParser(locale), [locale])
     const isNumeric = useMemo(() => parser.isValidPartialNumber(segment.text), [segment.text, parser])
 
+    const segmentPropsUpdated = {
+        ...segmentProps, 
+        onKeyDown: (_event) => {},
+        onFocus: (_event) => {},
+        onPress: (_event) => {}
+    }
+
     return (
         <StyledEditableSegment
             ref={ref}
-            css={{
-                minWidth: !isNumeric ? null : String(segment.maxValue).length + 'ch',
-            }}
+            css={{ minWidth: !isNumeric ? null : String(segment.maxValue).length + 'ch' }}
             data-testid={segment.type}
-            {...segmentProps}
+            {...segmentPropsUpdated}
         >
             {segment.isPlaceholder ? '' : segment.text}
         </StyledEditableSegment>

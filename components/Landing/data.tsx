@@ -133,6 +133,11 @@ export const showcases: IShowcase[] = [{
         description: '',
         icon: <CheckboxIcon /> 
     }, {
+        element: <DatePickerInstance />,
+        name: 'Date Picker',
+        description: '',
+        icon: <MonthlyCalendarIcon />
+    }, {
         element: <TextInputInstance />,
         name: 'Input',
         description: '',

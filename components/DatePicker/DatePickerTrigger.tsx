@@ -1,4 +1,4 @@
-import React, { useRef, MutableRefObject } from 'react'
+import React, { useRef, ReactNode } from 'react'
 
 import { useButton } from '@react-aria/button'
 import { FocusScope } from '@react-aria/focus'
@@ -6,14 +6,17 @@ import { useOverlay, DismissButton } from '@react-aria/overlays'
 
 import { useMenuTriggerState } from '@react-stately/menu'
 import { useMenuTrigger } from '@react-aria/menu'
-
-import { Button } from '@/components/Buttons'
 import { CalendarIcon } from '@radix-ui/react-icons'
 
-export function DatePickerTrigger({ dir = 'ltr', children, ...props }) {
+interface DatePickerTriggerProps {
+    children: ReactNode; 
+    label: string; 
+}
+
+export function DatePickerTrigger({ children, label, ...props }: DatePickerTriggerProps) {
    
-    const state = useMenuTriggerState({ direction: 'left', closeOnSelect: true, ...props })
     const ref = useRef<HTMLButtonElement>()
+    const state = useMenuTriggerState({ direction: 'bottom', closeOnSelect: true, ...props })
 
     const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, ref)
     const { buttonProps } = useButton(menuTriggerProps, ref)
@@ -21,7 +24,7 @@ export function DatePickerTrigger({ dir = 'ltr', children, ...props }) {
     return (
         <div>
             <button {...buttonProps} ref={ref}>
-               <> {props.label} </> <CalendarIcon /> 
+               <> {label} </> <CalendarIcon /> 
             </button>
 
             {state.isOpen && (

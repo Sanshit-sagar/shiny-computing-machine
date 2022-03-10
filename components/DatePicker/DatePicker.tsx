@@ -17,9 +17,7 @@ import { Calendar } from '@/components/Calendar'
 
 import { useHover } from '@react-aria/interactions'
 import { useFocusRing } from '@react-aria/focus'
-
-import { CalendarIcon } from '@radix-ui/react-icons'
-
+import { usePreventScroll } from '@react-aria/overlays'
 
 const StyledContainer = styled('div', {
     d: 'flex', 
@@ -104,6 +102,8 @@ export function DatePicker<T extends DateValue>(props: SpectrumDatePickerProps<T
 
     const visibleMonths = maxVisibleMonths; // TODO: fix w/ resize observer 
 
+    usePreventScroll()
+
     return (
             <StyledContainer 
                 {...mergeProps(groupProps, hoverProps, focusProps)}
@@ -111,6 +111,7 @@ export function DatePicker<T extends DateValue>(props: SpectrumDatePickerProps<T
                 isFocused={isFocused || isFocusVisible}
             >
                 <Input 
+                    fieldProps={fieldProps}
                     autoFocus={false}
                     isDisabled={isDisabled}
                     validationState={state.validationState}

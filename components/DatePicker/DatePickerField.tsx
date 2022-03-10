@@ -27,40 +27,24 @@ interface DatePickerFieldProps<T extends DateValue> extends SpectrumDatePickerPr
     hideValidationIcon?: boolean;
 }
 
-
 export const DatePickerField = <T extends DateValue>(props: DatePickerFieldProps<T>) => {
-    const {
-        isDisabled, 
-        isRequired, 
-        isReadOnly, 
-        inputClassName,
-        ...rest
-    } = props
+    const segmentStates = { isDisabled: props.isDisabled, isRequired: props.isRequired, isReadOnly: props.isReadOnly }
     
-    const ref = useRef()
+    const ref = useRef<HTMLDivElement>()
     const { locale } = useLocale()
-    const state: DatePickerFieldState = useDatePickerFieldState({ 
-        ...props, 
-        locale, 
-        createCalendar 
-    })
-
+    const state: DatePickerFieldState = useDatePickerFieldState({ ...props, locale, createCalendar })
+        
     const { fieldProps } = useDateField(props, state, ref)
 
     return (
-        <StyledField 
-            {...fieldProps} 
-            ref={ref}
-        >
-            {state.segments.map((segment: DateSegment, i: number) => (
-                <DatePickerSegment
-                    key={`segment-${i}`}
-                    segment={segment}
-                    state={state}
-                    isDisabled={isDisabled}
-                    isRequired={isRequired}
-                    isReadOnly={isReadOnly}
-                /> 
+        <StyledField {...fieldProps} ref={ref}>
+            {state.segments.map((segment: DateSegment, index) => (
+                <DatePickerSegment 
+                    key={`segment-${index}`} 
+                    segment={segment} 
+                    state={state} 
+                    {...segmentStates} 
+                />
             ))}
         </StyledField>
     )
