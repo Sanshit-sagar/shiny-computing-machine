@@ -36,7 +36,7 @@ interface _OverlayProps extends OverlayOwnProps, OverlaySettings, OverlayVariant
     'data-test-id': unknown;
     top?: number; 
     left?: number; 
-    role?: AriaRole;
+    role?: 'none' | 'menu' | 'listbox' | 'modal' | 'popup';
 }
 
 type OverlayProps = MergeProps<ComponentPropsWithRef<typeof DEFAULT_TAG>, _OverlayProps>

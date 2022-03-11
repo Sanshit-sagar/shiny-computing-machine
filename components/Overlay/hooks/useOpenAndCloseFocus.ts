@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import type { OverlaySettings } from '../types'
 import type { ContainerRefProps } from './types'
+import { iterateFocusableElements } from '@primer/behaviors/utils'
 
 type UseOpenCloseFocusHookProps = Pick<
     OverlaySettings, 

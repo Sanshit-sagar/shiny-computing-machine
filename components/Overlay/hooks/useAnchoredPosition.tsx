@@ -19,7 +19,7 @@ interface AnchoredPositionHookReturnValue {
 
 const useAnchoredPosition = (
     settings?: AnchoredPositionHookSettings,
-    dependencies?: DependencyList[]
+    dependencies: DependencyList = []
 ): AnchoredPositionHookReturnValue => {
 
     const floatingElementRef = useProvidedRefOrCreate(settings?.floatingElementRef)

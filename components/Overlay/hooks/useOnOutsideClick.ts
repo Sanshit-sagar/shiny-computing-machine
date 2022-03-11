@@ -43,7 +43,7 @@ const useOnOutsideClick = (props: UseOnOutsideClickSettings) => {
             return stopPropagation
         }
 
-        if (ignoreClickRefs && ignoreClickRefs.some(({current}) => current?.contains(event.target as Node))) {
+        if (ignoreClickRefs && ignoreClickRefs.some(({ current }) => current?.contains(event.target as Node))) {
             return stopPropagation
         }
 

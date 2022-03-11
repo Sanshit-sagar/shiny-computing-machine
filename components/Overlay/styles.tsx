@@ -15,52 +15,11 @@ const cssVariables: CSS = {
     '--animation-function': 'ease-in-out'
 }
 
-type AutoInitSizeVariants = { 
-    auto: CSS, 
-    initial: CSS 
-} 
-
-type SharedSizeVariants =  { 
-    height: AutoInitSizeVariants,
-    width: AutoInitSizeVariants
-}
-
-const sharedSizeVariants: SharedSizeVariants = {
-    height: {
-        'auto': { height: 'auto' },
-        'initial': { height: 'auto' } 
-    },
-    width: {
-        'auto': { width: 'auto' },
-        'initial': { width: 'auto' } 
-    }
-}
-
-const heightVariants: CSS = {
-    'xsmall': { height: '192px' },
-    'small': { height: '256px' },
-    'medium': { height: '320px' },
-    'large': { height: '432px' },
-    'xlarge': { height: '600px' },
-    'xxlarge': { height: '918px' },
-    ...sharedSizeVariants['height']
-}
-
-const widthVariants: CSS = {
-    'xsmall': { width: '220px' },
-    'small': { width: '256px' },
-    'medium': { width: '320px' },
-    'large': { width: '480px' },
-    'xlarge': { width: '640px' },
-    'xxlarge': { width: '960px' },
-    ...sharedSizeVariants['width']
-}
-
 const StyledOverlay = styled(DEFAULT_TAG, {
     ...cssVariables,
 
     appearance: 'none',
-    position: 'absolute',
+    position: 'relative',
     overflow: 'hidden',
     outline: 'none',
 
@@ -78,18 +37,45 @@ const StyledOverlay = styled(DEFAULT_TAG, {
     '&:focus': { outline: 'none' },
 
     variants: {
-        height: { ...heightVariants },
-        width: { ...widthVariants },
-        maxHeight: { ...heightVariants },
+        height: {
+            'xsmall': { height: '192px' },
+            'small': { height: '256px' },
+            'medium': { height: '320px' },
+            'large': { height: '432px' },
+            'xlarge': { height: '600px' },
+            'xxlarge': { height: '918px' },
+            'auto': { height: 'auto' },
+            'initial': { height: 'auto' } 
+        },
+        width: { 
+            'xsmall': { width: '220px' },
+            'small': { width: '256px' },
+            'medium': { width: '320px' },
+            'large': { width: '480px' },
+            'xlarge': { width: '640px' },
+            'xxlarge': { width: '960px' },
+            'auto': { width: 'auto' },
+            'initial': { width: 'auto' } 
+        },
+        maxHeight: {
+            'xsmall': { height: '192px' },
+            'small': { height: '256px' },
+            'medium': { height: '320px' },
+            'large': { height: '432px' },
+            'xlarge': { height: '600px' },
+            'xxlarge': { height: '918px' },
+        },
         visibility: {
             'visible': { visibility: 'visible' },
-            'hidden': { visibility: 'hidden' }
+            'hidden': { visibility: 'visible' }
         },
-        anchorSide: { }
+        anchorSide: {
+            
+        }
     },
     defaultVariants: {
-        height: 'auto',
-        width: 'auto',
+        height: 'medium',
+        width: 'medium',
         visibility: 'visible',
         maxHeight: 'auto',
         anchorSide: 'bottom'

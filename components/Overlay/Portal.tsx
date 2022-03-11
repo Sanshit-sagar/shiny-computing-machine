@@ -46,10 +46,13 @@ function ensureDefaultPortal() {
 const Portal: FC<PortalProps> = ({ children, onMount, containerName: _containerName }) => {
 
     const hostElement = document.createElement('div')
-    hostElement.style.position = 'relative'
-    hostElement.style.zIndex = '1'
+    hostElement.style.position = 'absolute' 
+    hostElement.style.top = '100px'
+    hostElement.style.left = '200px'
+    hostElement.style.border = '2px solid red'
+    hostElement.style.zIndex = '999'
 
-    const elementRef = useRef(hostElement)
+    const elementRef = useRef<HTMLDivElement>(hostElement)
 
     useLayoutEffect(() => {
         let containerName = _containerName

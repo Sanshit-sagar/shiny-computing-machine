@@ -9,19 +9,27 @@ const StyledDividerContainer = styled('div', {
         display: 'block',
         position: 'absolute',
         width: '100%',
-        top: '-7px',
+        top: '-4px',
         border: '0 solid var(--divider-color, transparent)'
     }
 })
 
-const StyledDivider = styled(Box, {
-    '--divider-height': '1px',
+const StyledDivider = styled('li', {
+    '--divider-height': '1.25px',
+    '--divider-color': '$colors$accentLine',
 
+    listStyle: 'none',
     height: 'var(--divider-height)',
-    backgroundColor: '$accentLine',
-    marginTop: 'calc(var(--divider-height) - 1px)',
-    marginBottom: 'calc(2 * var(--divider-height))',
-    listStyle: 'none'
+    backgroundColor: 'var(--divider-color)',
+
+    padding: '0em',
+    marginTop: 'var(--divider-height)',
+    marginBottom: 'calc(2 * var(--divider-height) - 1px)',
+
+    boxShadow: 'none',
+    outline: 'none',
+    border: '0',
+    borderRadius: '$0'
 })
 
 const StyledContent = styled('span', {
@@ -34,9 +42,9 @@ const StyledContent = styled('span', {
     fontStyle: 'normal',
     fontWeight: 300,
 
-    lineHeight: '16px', 
+    lineHeight: '18px', 
     letterSpacing: '-0.05em',
-    wordSpacing: '-0.6ch',
+    wordSpacing: '-0.25ch',
 
     verticalAlign: 'middle',
 
@@ -88,17 +96,17 @@ const StyledListItem = styled('li', {
                 color: '$accentText',
                 '&:hover': {
                     bc: '$accentLine',
-                    color: '$accentTextContrast'
+                    color: '$accentSelection'
                 },
                 '&:focus': {
-                    bc: '$accentBgActive',
-                    color: '$accentTextContrast',
+                    bc: '$accentLine',
+                    color: '$accentSelection',
                     outline: '2px solid dodgerblue',
                     outlineOffset: 2
                 },
                 '&:active': {
-                    bc: '$accentBgActive',
-                    color: '$accentTextContrast'
+                    bc: '$accentLine',
+                    color: '$accentSelection'
                 }
             },
             'danger': {
@@ -183,8 +191,11 @@ const StyledListItem = styled('li', {
 })
 
 const StyledHeader = styled('div', {
-    p: '$2',
-    margin: '0em',
+    px: '$2',
+    py: '$1',
+    mt: '$1',
+    mb: '$0',
+    mx: '$0',
 
     variants: {
         full: {
@@ -225,8 +236,10 @@ const StyledHeaderLabel = styled('span', {
 const StyledGroup = styled('li', {
     listStyle: 'none',
 
-    '&:not(:first-child)': {
-        marginTop: '$2'
+    '& *': {
+        '&:not(:first-child)': {
+            marginTop: '0px'
+        }
     }
 })
 

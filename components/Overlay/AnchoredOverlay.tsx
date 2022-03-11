@@ -1,4 +1,4 @@
-import { useEffect, useCallback, RefObject, HTMLAttributes, KeyboardEvent } from 'react'
+import { useEffect, useCallback, RefObject, HTMLAttributes, KeyboardEvent, MouseEvent } from 'react'
 import { useSSRSafeId } from '@react-aria/ssr'
 import { PositionSettings } from '@primer/behaviors'
 import type { AnchorSide, AnchorAlignment } from '@primer/behaviors'
@@ -78,8 +78,7 @@ const AnchoredOverlay = ({
         }
     }, [open, onOpen])
 
-    const onAnchorClick = useCallback((event: KeyboardEvent<HTMLElement>) => {
-        if (event.defaultPrevented || event?.button !== 0) return
+    const onAnchorClick = useCallback((event: MouseEvent<HTMLElement>) => {
         
         if (!open) { 
             onOpen?.('anchor-click') 

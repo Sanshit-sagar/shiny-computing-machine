@@ -16,7 +16,7 @@ interface FocusTrapReturnValue {
 }
 
 const useFocusTrap = (
-    settings?: FocusTrapHookSettings,
+    settings?: FocusTrapHookSettings = {},
     dependencies: DependencyList = []
 ): FocusTrapReturnValue => {
 

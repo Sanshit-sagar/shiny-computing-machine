@@ -19,7 +19,6 @@ import type { AnchoredOverlayProps } from './AnchoredOverlay'
 
 import { TriangleDownIcon } from '@radix-ui/react-icons' 
 
-
 type MenuContextProps = Pick<
     AnchoredOverlayProps,
     'anchorRef' | 'renderAnchor' | 'open' | 'onOpen' | 'onClose' | 'anchorId'
@@ -34,7 +33,7 @@ export type ActionMenuProps = {
 
 const MenuContext = createContext<MenuContextProps>({
     renderAnchor: null, 
-    open: false
+    open: true
 })
 
 const Menu = ({ 
@@ -48,8 +47,9 @@ const Menu = ({
     const onOpen = useCallback(() => setCombinedOpenState(true), [setCombinedOpenState])
     const onClose = useCallback(() => setCombinedOpenState(false), [setCombinedOpenState])
 
-    const anchorId = useSSRSafeId()
+ 
     const anchorRef = useProvidedRefOrCreate(externalAnchorRef)
+    const anchorId = useSSRSafeId()
 
     let renderAnchor: AnchoredOverlayProps['renderAnchor'] = null
 
@@ -88,18 +88,16 @@ const Anchor = forwardRef<
     })
 })
  
-const MenuButton = forwardRef<AnchoredOverlayProps['anchorRef'], ButtonProps<'button'>>(
-    ({ sx: sxProp = {}, ...props }, anchorRef) => {
+export type ActionMenuButtonProps = ButtonProps<'button'>
+const MenuButton = forwardRef<
+    AnchoredOverlayProps['anchorRef'], 
+    ButtonProps<'button'>
+>(({ children, ...props }, anchorRef) => {
     
         return (
             <Anchor ref={anchorRef}>
-                <Button
-                    type="button"
-                    trailingIcon={TriangleDownIcon}
-                    {...props}
-                    css={{ `&[data-component=trailingIcon]`: -1 }}
-                >
-
+                <Button suffix={<TriangleDownIcon />} {...props}>
+                    {children}
                 </Button>
             </Anchor>
         )
@@ -157,7 +155,7 @@ const Overlay = ({ children, align = 'start', ...overlayProps }: MenuOverlayProp
 
 Menu.displayName = 'ActionMenu'
 
-export const ActionMenu =  Object.assign(Menu, {
+export const ActionMenu = Object.assign(Menu, {
     Button: MenuButton, 
     Anchor, 
     Overlay, 

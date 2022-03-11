@@ -9,7 +9,7 @@ const defaultProps: ButtonBaseProps = {
     isDisabled: false,
     isLoading: false,
     autoFocus: false,
-    size: 'medium',
+    size: 'small',
     style: 'default',
     prefix: null,
     suffix: null

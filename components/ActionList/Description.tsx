@@ -20,12 +20,11 @@ const StyledDescription = styled(Box, {
     color: '$accentTextContrast',
 
     fontSize: '10px',
-    fontFamily: '$jetbrains',
+    fontFamily: '$flow',
     lineHeight: '14px',
-    verticalAlign: 'top',
+    verticalAlign: 'middle',
     textAlign: 'start',
     
-
     variants: { 
         disabled: {
             true: {

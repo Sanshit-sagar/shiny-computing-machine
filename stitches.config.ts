@@ -15,23 +15,6 @@ import {
     grayDark
 } from '@radix-ui/colors'
 
-/*
-    base: rgb(42,39,46), 
-    bg0: rgb(30,31,44), 
-    bg1: rgba(7,7,10, 1),
-    bg2: rgba(7,7,10, 1),
-    bg3: rgba(7,7,10, 1),
-    line: rgb(23,32,200), 
-    solid1: rgb(24,28,30,1.0), 
-    solid2: rgb(24,28,30,0.8),
-    solid3: rgb(24,28,30,0.5),
-    overlay: rgb(25,25,25,0.5),
-    border: rgb(14,16,18),
-    border2: rgb(14,16,18),
-    border3: rgb(14,16,18),
-    accent1: rgb(23,32,200),
-    accent2: rgba(80,110,190)
-*/
 
 const sharedColors = {
     ...grass,
@@ -556,7 +539,25 @@ export const {
 
 export type CSS = Stitches.CSS<typeof config>
 
-export const utils = config.utils;
+export const utils = config.utils
+
+/*
+    base: rgb(42,39,46), 
+    bg0: rgb(30,31,44), 
+    bg1: rgba(7,7,10, 1),
+    bg2: rgba(7,7,10, 1),
+    bg3: rgba(7,7,10, 1),
+    line: rgb(23,32,200), 
+    solid1: rgb(24,28,30,1.0), 
+    solid2: rgb(24,28,30,0.8),
+    solid3: rgb(24,28,30,0.5),
+    overlay: rgb(25,25,25,0.5),
+    border: rgb(14,16,18),
+    border2: rgb(14,16,18),
+    border3: rgb(14,16,18),
+    accent1: rgb(23,32,200),
+    accent2: rgba(80,110,190)
+*/
 
 export const blackTheme = createTheme({
     colors: {
@@ -564,21 +565,23 @@ export const blackTheme = createTheme({
 
         accentBase: 'rgba(4,4,4,1.0)',
         accentBgSubtle: 'rgba(7,7,7,1.0)',
-        accentBg: 'rgba(14,14,14,1.0)',
-        accentBgHover: 'rgba(17,17,17,1.0)',
-        accentBgActive: 'rgba(22,22,22,1)',
-        accentLine: 'rgba(27,27,27,1)',
-        accentBorder: 'rgba(34,34,34,1)', 
-        accentBorderHover: 'rgba(56,56,56,1)',
-        accentBorderActive: 'rgba(64,64,64,1)',
-        accentSolid: 'rgba(32,32,32,1)',
-        accentSolidHover: 'rgba(46,46,46,1)',
-        accentSolidActive: 'rgba(46,46,46,1)',
-        accentText: 'rgba(218,220,236,1.0)',
-        accentTextContrast: 'rgba(236,237,238,1.0)',
-        accentFocusRing: 'rgba(6, 76, 178, 1.0)',
+        accentBg: 'rgba(7,7,10,1)',
+        accentBgHover: 'rgba(7,7,10,1)',
+        accentBgActive: 'rgba(7,7,10,1)',
+        accentLine: 'rgb(255,255,255,1.0)',
+        accentBorder: 'rgb(24,28,30,1.0)', 
+        accentBorderHover: 'rgb(24,28,30,0.8)',
+        accentBorderActive: 'rgba(24,28,30,0.6)',
+        accentSolid: 'rgb(14,16,18)',
+        accentSolidHover: 'rgb(14,16,18)',
+        accentSolidActive: 'rgb(14,16,18)',
+        accentText: 'rgba(218,220,236,1)',
+        accentTextContrast: 'rgba(236,237,238,1)',
+        accentFocusRing: 'rgba(6, 76, 178, 1)',
 
-        accentSelection: 'rgba(248,248,248,1)',
+        accentSelection: 'rgb(23,32,200,1.0)',
+        accentSelectionHover: 'rgb(23,32,200,0.8)',
+
         accentSelectionText: 'rgba(7,7,7,1)',
 
         tooltipBackground: 'rgba(248,248,248,1)',

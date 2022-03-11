@@ -15,11 +15,12 @@ const slideAnimationEasing = 'easeOutCubic'
 const Overlay = forwardRef<OverlayElement, OverlayProps>((props, forwardedRef) => {
     const {
         role = 'none',
-        height,
+        height = 'auto',
+        width = 'auto',
         top,
         left,
         anchorSide,
-        visibility,
+        visibility = 'visible',
         onEscape,
         onClickOutside,
         initialFocusRef,
@@ -27,6 +28,7 @@ const Overlay = forwardRef<OverlayElement, OverlayProps>((props, forwardedRef) =
         ignoreClickRefs,
         preventFocusOnOpen,
         portalContainerName,
+        children,
         ...rest
     } = props 
 
@@ -50,14 +52,14 @@ const Overlay = forwardRef<OverlayElement, OverlayProps>((props, forwardedRef) =
     }, [height, combinedRef])
 
     useLayoutEffect(() => {
-        const {x, y} = getSlideAnimationStartingVector(anchorSide)
+        const { x, y } = getSlideAnimationStartingVector(anchorSide)
         
         if ((!x && !y) || !overlayRef.current?.animate || visibility === 'hidden') {
             return
         }
 
         overlayRef.current.animate(
-            { transform: [`translate(${slideAnimationDistance * x}px, ${slideAnimationDistance * y}px)`, `translate(0, 0)`]},
+            {transform: [`translate(${slideAnimationDistance * x}px, ${slideAnimationDistance * y}px)`, `translate(0, 0)`]},
             {
               duration: animationDuration,
               easing: slideAnimationEasing
@@ -71,10 +73,13 @@ const Overlay = forwardRef<OverlayElement, OverlayProps>((props, forwardedRef) =
                 {...rest}
                 role={role}
                 height={height} 
+                width={width}
                 visibility={visibility}
                 ref={combinedRef}
                 css={{ top: `${top || 0}px`, left: `${left || 0}px`, }}
-            />
+            >
+                {children}
+            </StyledOverlay>
         </Portal>
     )
 })
