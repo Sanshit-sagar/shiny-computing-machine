@@ -13,7 +13,10 @@ type OverlayHookProps = OverlaySettings & { overlayRef: RefObject<HTMLDivElement
 type OverlayHookReturnValue = { ref: RefObject<HTMLDivElement>; }
 
 
-const useOverlay = ({ overlayRef: _overlayRef, ...props }: OverlayHookProps): OverlayHookReturnValue => {
+const useOverlay = ({ 
+    overlayRef: _overlayRef, 
+    ...props 
+}: OverlayHookProps): OverlayHookReturnValue => {
 
     const {
         onEscape,
@@ -26,19 +29,8 @@ const useOverlay = ({ overlayRef: _overlayRef, ...props }: OverlayHookProps): Ov
     } = props
 
     const overlayRef = useProvidedRefOrCreate(_overlayRef)
-
-    useOpenAndCloseFocus({
-        containerRef: overlayRef,
-        initialFocusRef,
-        returnFocusRef,
-        preventFocusOnOpen
-    })
-
-    useOnOutsideClick({
-        containerRef: overlayRef,
-        ignoreClickRefs,
-        onClickOutside
-    })
+    useOpenAndCloseFocus({ containerRef: overlayRef, initialFocusRef, returnFocusRef, preventFocusOnOpen })
+    useOnOutsideClick({ containerRef: overlayRef, ignoreClickRefs, onClickOutside })
 
     const preventedDefaultOnEscape: OverlaySettings['onEscape'] = (event: KeyboardEvent): void => {
         onEscape(event)

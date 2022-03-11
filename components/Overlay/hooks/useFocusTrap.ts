@@ -1,7 +1,7 @@
 import { useRef, useEffect, RefObject, DependencyList } from 'react' 
 import { useProvidedRefOrCreate } from '@/hooks/useRef'
+import { focusTrap } from '@primer/behaviors'
 
-import { focusTrap } from '@primer/behaviours'
 
 interface FocusTrapHookSettings {
     containerRef?: RefObject<HTMLElement>;
@@ -16,7 +16,7 @@ interface FocusTrapReturnValue {
 }
 
 const useFocusTrap = (
-    settings: FocusTrapHookSettings,
+    settings?: FocusTrapHookSettings,
     dependencies: DependencyList = []
 ): FocusTrapReturnValue => {
 

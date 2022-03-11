@@ -82,3 +82,7 @@ const Overlay = forwardRef<OverlayElement, OverlayProps>((props, forwardedRef) =
 export {
     Overlay 
 }
+
+export type {
+    OverlayProps
+}

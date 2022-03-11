@@ -1,5 +1,12 @@
 export * from './useOnOutsideClick'
 export * from './useOnEscapePress'
 export * from './useOpenAndCloseFocus'
+export * from './useMenuInitialFocus'
+export * from './useFocusTrap'
+export * from './useFocusZone'
+export * from './useResizeObserver'
+export * from './useTypeaheadFocus'
+export * from './useIsomorphicLayoutEffect'
+export * from './useAnchoredPosition'
 
 export * from './types'

@@ -15,6 +15,24 @@ import {
     grayDark
 } from '@radix-ui/colors'
 
+/*
+    base: rgb(42,39,46), 
+    bg0: rgb(30,31,44), 
+    bg1: rgba(7,7,10, 1),
+    bg2: rgba(7,7,10, 1),
+    bg3: rgba(7,7,10, 1),
+    line: rgb(23,32,200), 
+    solid1: rgb(24,28,30,1.0), 
+    solid2: rgb(24,28,30,0.8),
+    solid3: rgb(24,28,30,0.5),
+    overlay: rgb(25,25,25,0.5),
+    border: rgb(14,16,18),
+    border2: rgb(14,16,18),
+    border3: rgb(14,16,18),
+    accent1: rgb(23,32,200),
+    accent2: rgba(80,110,190)
+*/
+
 const sharedColors = {
     ...grass,
     ...yellow,

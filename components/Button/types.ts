@@ -63,3 +63,6 @@ export type ButtonVariantProps =  VariantProps<typeof StyledButtonBase>
 
 export type AriaButtonProps<T extends ElementType> = ButtonBaseProps & DiscriminatedButtonProps<T> & ButtonVariantProps
 export type DefaultButtonProps = ButtonAsButtonProps & SharedButtonProps & ButtonVariantProps
+
+
+export type ButtonProps<T extends ElementType> = AriaButtonProps<T>

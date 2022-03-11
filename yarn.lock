@@ -461,6 +461,11 @@
   dependencies:
     "@napi-rs/triples" "^1.0.3"
 
+"@primer/behaviors@^1.1.0":
+  "integrity" "sha512-Ej2OUc3ZIFaR7WwIUqESO1DTzmpb7wc8xbTVRT9s52jZQDjN7g5iljoK3ocYZm+BIAcKn3MvcwB42hEk4Ga4xQ=="
+  "resolved" "https://registry.npmjs.org/@primer/behaviors/-/behaviors-1.1.0.tgz"
+  "version" "1.1.0"
+
 "@radix-ui/colors@^0.1.7":
   "integrity" "sha512-E6+ZPQ+FFn1/NZ4c/KRvZTu9KjC/MXrbJNETYs1HKe96gyxQivPu65FkhOsRnPigvJ0YJ9ZxYGxayqDNmaC1cQ=="
   "resolved" "https://registry.npmjs.org/@radix-ui/colors/-/colors-0.1.7.tgz"

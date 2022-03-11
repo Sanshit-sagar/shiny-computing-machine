@@ -20,3 +20,4 @@ export const Button = withDefaultProps<
     DefaultButtonProps
 >(defaultProps, ButtonBase)
 
+export type { AriaButtonProps as ButtonProps } 

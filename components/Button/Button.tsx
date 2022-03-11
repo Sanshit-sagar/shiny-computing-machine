@@ -48,7 +48,7 @@ const AriaButton = <T extends ElementType = 'button'>(
     return (
         <StyledButton {...mergedProps} {...states} {...rest} role="button" ref={buttonRef}>
             {PrefixIcon && (
-                <Flex css={buttonPrefixStyles}>
+                <Flex data-component='leadingIcon' css={buttonPrefixStyles}>
                     {PrefixIcon} 
                 </Flex>
             )}
@@ -58,7 +58,7 @@ const AriaButton = <T extends ElementType = 'button'>(
             </Text>
 
             {SuffixIcon && (
-                <Flex css={buttonSuffixStyles}>
+                <Flex data-component='trailingIcon' css={buttonSuffixStyles}>
                     {SuffixIcon} 
                 </Flex>
             )}
@@ -71,4 +71,5 @@ const _AriaButton = forwardRef(AriaButton) as <T extends ElementType>(
     { ref?: FocusableRef<HTMLButtonElement> }
 ) => ReactElement 
 export { _AriaButton as Button }
+export type { AriaButtonProps as ButtonProps }
 

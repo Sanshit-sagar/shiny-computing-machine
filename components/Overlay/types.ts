@@ -10,11 +10,11 @@ type MergeProps<A,B = {}> = Omit<A, keyof B> & B
 type OverlayElement = ElementRef<typeof DEFAULT_TAG>
 
 interface OverlayVariantProps {
-    width: keyof typeof widthMap;
-    height: keyof typeof heightMap; 
-    maxHeight: keyof Omit<typeof heightMap, 'auto' | 'initial'>;
-    visibility: 'visible' | 'hidden';
-    anchorSide: VariantProps<typeof StyledOverlay>['anchorSide'];
+    width?: keyof typeof widthMap;
+    height?: keyof typeof heightMap; 
+    maxHeight?: keyof Omit<typeof heightMap, 'auto' | 'initial'>;
+    visibility?: 'visible' | 'hidden';
+    anchorSide?: VariantProps<typeof StyledOverlay>['anchorSide'];
 }
 
 type OverlaySettings = {
